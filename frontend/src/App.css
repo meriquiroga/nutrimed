@@ -59,14 +59,14 @@ a {
   color: #19B1BC;
 }
 
-/* a.active {
+a.active {
   color: gray
-} */
+}
 
 button {
   background-color: #19B1BC;
   color: white;
-  padding: 15px 50px;
+  padding: 10px 40px;
   border-radius: 50px;
   border: none;
   margin: 10px;
@@ -96,7 +96,7 @@ footer {
   flex-direction: column;
   align-content: center;
   align-items: center;
-  color: white
+  color: white;
 }
 
 footer img {
@@ -149,3 +149,41 @@ footer img {
 .icono {
     width: 2vw;
 }
+
+.container {
+  text-align: center;
+  align-self: center;
+}
+
+.signUpForm {
+  text-align: center;
+  background-color:#FCFCFC;
+  padding: 30px;
+}
+
+.radio {
+  display: flex;
+  justify-content: center;
+}
+
+.radio div {
+  padding: 10px;
+}
+
+.inputs {
+  text-align: center;
+  display: flex;
+  flex-direction: column
+}
+
+.inputs input {
+  padding: 10px;
+  border-radius: 50px;
+  border: 2px gray solid;
+  margin: 10px;
+  width: 400px;
+  align-self: center;
+  outline: none;
+}
+
+
