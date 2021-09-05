@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import RenderTurnos from "./RenderTurnos";
 
 const App = () => {
@@ -9,3 +10,12 @@ const App = () => {
   );
 };
 export default App;
+=======
+import DataClient from "./components/DataClient"
+import "./App.css"
+
+const App = () => {
+   return <DataClient />
+}
+export default App
+>>>>>>> origin/franco

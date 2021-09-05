@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require('express')
 const router = express.Router()
 const passport= require('passport')
@@ -14,25 +13,20 @@ router.route('/doctor')
 
 router.route('/doctor/:id')
 .post(doctorControllers.addappointment)
+.get(doctorControllers.getDoctorById)
 
 router.route('/patient')
 .get(patientControllers.singIn)
+.put(patientControllers.putPatient)
 
 router.route('/patient/:id')
 .post(patientControllers.addMedicalData)
 
 module.exports=router
-=======
-const express = require("express");
-const router = express.Router();
-const doctorControllers = require("../controllers/doctorControllers");
 
-router
-  .route("/doctor/signup")
-  .get(doctorControllers.getDoctors)
-  .post(doctorControllers.newDoctor);
-
-router.route("/doctor/:doctorId").get(doctorControllers.getDoctorById);
+router.route("/doctor/:doctorId");
 //   .put(doctorControllers.updateDoctor);
 module.exports = router;
->>>>>>> origin/dario
+
+
+
