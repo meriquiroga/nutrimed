@@ -9,6 +9,7 @@ const doctorSchema = new mongoose.Schema({
     registration:{type:String, default:null},
     specialty:{type:String, default:null},
     password:{type:String, default:null},
+    socialwork:{type:Boolean, default:null},
     data:{
         direction:{
             calle:{type:String, default:null},
@@ -19,14 +20,11 @@ const doctorSchema = new mongoose.Schema({
         mail:{type:String, default:null}
     },
     score:Array,
-    appointment:[{
+    review:{
         patientId:{type:mongoose.Types.ObjectId, ref:'patient'},
-        date:{
-            hour:{type:String, default:null},
-            date:{type:String, default:null}
-        }
-    }],
-    doctor:Boolean,
+        text:String,  
+    },
+    doc:Boolean,
     google:{type:Boolean, default:false}
 })
 
