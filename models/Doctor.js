@@ -26,7 +26,7 @@ const doctorSchema = new mongoose.Schema({
             date:{type:String, default:null}
         }
     }],
-    doctor:Boolean,
+    doc: Boolean,
     google:{type:Boolean, default:false}
 })
 
