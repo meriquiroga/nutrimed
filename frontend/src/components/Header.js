@@ -10,7 +10,7 @@ const Header = () => {
                 <NavLink exact to="/"><p>HOME</p></NavLink>
                 </li>
                 <li>
-                <NavLink to="/"><p>CREAR CUENTA</p></NavLink>
+                <NavLink to="/signup"><p>CREAR CUENTA</p></NavLink>
                 </li>
                 <li>
                 <NavLink to="/"><p>INGRESAR</p></NavLink>

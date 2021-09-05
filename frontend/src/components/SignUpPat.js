@@ -104,42 +104,46 @@ const SignUpPat = (props) => {
 
     return (
         <>
-            <div>
-                <h3>¿Usted se registrará como paciente o profesional?</h3>
-                <div>
-                    Paciente <input onClick={validInputHandler} type="radio" name="buttonRol" value="pat" defaultChecked/>
-                    Profesional <input onClick={validInputHandler} type="radio" name="buttonRol" value="prof"/>
+            <div className="container">
+                <div className="signUpForm">
+                    <img src='/assets/form.png' alt=""/>
+                    <h3>¿Usted se registrará como paciente o profesional?</h3>
+                    <div className="radio">
+                        <div>Paciente <input onClick={validInputHandler} type="radio" name="buttonRol" value="pat" defaultChecked/></div>
+                        <div>Profesional <input onClick={validInputHandler} type="radio" name="buttonRol" value="prof"/></div>
+                    </div>
+                    <div className="inputs">
+                    <input type="text" placeholder="Nombre" name="name" onChange={addUserHandler} defaultValue={newUser.name}/>
+                    <input type="text" placeholder="Apellido"name="lastName" onChange={addUserHandler} defaultValue={newUser.lastName}/>
+                    <input type="email" placeholder="Email" name="data" onChange={addUserHandler} defaultValue={newUser.data.mail}/>
+                    <input type="password" placeholder="Contraseña"name="password" onChange={addUserHandler}  defaultValue={newUser.password}/>
+                    <input type="password" placeholder="Repita su contraseña"name="validPassword" onChange={addUserHandler}  defaultValue={newUser.validPassword}/>
+                    <input type="text" placeholder="Foto de perfil" name="src" onChange={addUserHandler} defaultValue={newUser.src}/>
+                    <input style={{display:disp}}  type="text" placeholder="Contraseña de profesional" name="passwordProf" onChange={addUserHandler} defaultValue={newUser.passwordProf}/>
+                    </div>
+                    <button onClick={submitHandler} >REGISTRARSE</button>
+                    <div style={{display:dispGo}}>
+                        <div>
+                            <GoogleLogin 
+                            clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
+                            buttonText="Registrarse con Google"
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                            />
+                        </div>
+                        <div>
+                        <FacebookLogin
+                            appId="283809223550858"
+                            autoLoad={false}
+                            fields="first_name,last_name,email,picture"
+                            textButton="Registrarse con facebook"
+                            icon="fa-facebook"
+                            callback={responseFacebook} />
+                        </div>
+                    </div>
                 </div>
-                <input type="text" placeholder="Nombre" name="name" onChange={addUserHandler} defaultValue={newUser.name}/>
-                <input type="text" placeholder="Apellido"name="lastName" onChange={addUserHandler} defaultValue={newUser.lastName}/>
-                <input type="email" placeholder="Email" name="data" onChange={addUserHandler} defaultValue={newUser.data.mail}/>
-                <input type="password" placeholder="Contraseña"name="password" onChange={addUserHandler}  defaultValue={newUser.password}/>
-                <input type="password" placeholder="Repita su contraseña"name="validPassword" onChange={addUserHandler}  defaultValue={newUser.validPassword}/>
-                <input type="text" placeholder="Foto de perfil" name="src" onChange={addUserHandler} defaultValue={newUser.src}/>
-                <input style={{display:disp}}  type="text" placeholder="Contraseña de profesional" name="passwordProf" onChange={addUserHandler} defaultValue={newUser.passwordProf}/>
-
-                <button onClick={submitHandler} >Registrarse</button>
-
-                <div style={{display:dispGo}}>
-                    <GoogleLogin 
-                        clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
-                        buttonText="Registrarse con Google"
-                        onSuccess={responseGoogle}
-                        onFailure={responseGoogle}
-                        cookiePolicy={'single_host_origin'}
-                    />
-
-                    <FacebookLogin
-                        appId="283809223550858"
-                        autoLoad={false}
-                        fields="first_name,last_name,email,picture"
-                        textButton="Registrarse con facebook"
-                        icon="fa-facebook"
-                        callback={responseFacebook} />
-                </div>
-                
             </div>
-
         </>
     )
 }

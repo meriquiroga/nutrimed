@@ -1,5 +1,3 @@
-import {Link} from 'react-router-dom'
-
 const Main = () => {
   return (
     <main>
@@ -15,15 +13,15 @@ const Main = () => {
               <h3>NUTRICIÓN</h3>
             </div>
             <div className="iconCard">
-              <img src='/assets/icoNutricion.png' alt=""/>
+              <img src='/assets/icoPsicologia.png' alt=""/>
               <h3>PSICOLOGÍA</h3>
             </div>
             <div className="iconCard">
-              <img src='/assets/icoNutricion.png' alt=""/>
+              <img src='/assets/icoMedicina.png' alt=""/>
               <h3>MEDICINA GENERAL</h3>
             </div>
             <div className="iconCard">
-              <img src='/assets/icoNutricion.png' alt=""/>
+              <img src='/assets/icoEntrenamiento.png' alt=""/>
               <h3>ENTRENAMIENTO</h3>
             </div>
         </div>
