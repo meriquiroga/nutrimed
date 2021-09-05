@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  width: 100%;
+  padding: 0vw 10vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #19B1BC;
+}
+
+header p {
+  padding: 0px 20px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.navbar img {
+  padding-right: 20px;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+}
+
+ul li {
+  padding-left: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #19B1BC;
+}
+
+/* a.active {
+  color: gray
+} */
+
+button {
+  background-color: #19B1BC;
+  color: white;
+  padding: 15px 50px;
+  border-radius: 50px;
+  border: none;
+  margin: 10px;
+}
+
+.hero {
+  height: 60vh;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  padding-left: 18vw;  
+}
+
+.insideHero {
+  text-align: center;
+}
+.hero h1 {
+  color: gray;
+}
+
+footer {
+  width: 100%;
+  background-color: #19B1BC;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  color: white
+}
+
+footer img {
+  width: 45px;
+  margin: 10px;
+}
+
+.iconCardsContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px 0px;
+}
+
+.iconCard {
+  text-align: center;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 20px;
+  width: 220px;
+}
+
+.iconCard h3 {
+  color: gray
+}
+
+.description {
+  display: flex;
+  align-items: center;
+  height: 500px;
+  background-position: center;
+  background-size: cover;
+}
+
+.description p {
+  padding: 10vw;
+  color: gray
+}
