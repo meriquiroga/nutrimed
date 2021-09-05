@@ -20,10 +20,10 @@ const doctorSchema = new mongoose.Schema({
         mail:{type:String, default:null}
     },
     score:Array,
-    review:{
+    review:[{
         patientId:{type:mongoose.Types.ObjectId, ref:'patient'},
         text:String,  
-    },
+    }],
     doc:Boolean,
     google:{type:Boolean, default:false}
 })

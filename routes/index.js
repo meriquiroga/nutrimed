@@ -14,17 +14,17 @@ router.route('/doctor')
 
 router.route('/doctor/:id')
 .get(doctorControllers.getDoctorById)
-.put(passport.authenticate('jwt',{session:false}),doctorControllers.changedDoctor)//llega el id del doc y por token la info del paciente
+.put(passport.authenticate('jwt',{session:false}),doctorControllers.changedReview)
 
-// router.route('/doctor/perfil')
-// .put(doctorControllers.editPerfil)
+router.route('/doctor/profile/:id')
+.put(doctorControllers.editProfile)
 
 router.route('/patient')
 .get(patientControllers.singIn)
 .put(patientControllers.putPatient)
 
 router.route('/patient/:id')
-.post(patientControllers.addMedicalData)
+.put(passport.authenticate('jwt',{session:false}),patientControllers.addMedicalData)
 
 router.route('/appointment/:id')
 .post(passport.authenticate('jwt',{session:false}),appointmentControllers.addAppointment)

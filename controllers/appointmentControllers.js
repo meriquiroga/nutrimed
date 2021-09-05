@@ -2,8 +2,8 @@ const Appointment = require('../models/Appointment')
 
 const appointmentControllers={
     addAppointment:async(req,res)=>{
-        const newAppointment = new Appointment ({doctorId:req.params.id, patientId:req.user._id, date:req.body.date},{new:true})
         try{ 
+            const newAppointment = new Appointment({date:req.body.date, doctorId: req.params.id, patientId:req.user._id})
             await newAppointment.save()
             res.json({success:true, res:newAppointment})
         }catch(err){
