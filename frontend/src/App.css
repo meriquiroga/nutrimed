@@ -135,3 +135,17 @@ footer img {
   padding: 10vw;
   color: gray
 }
+.doctor-image {
+    width: 25vw;
+    height: 60vh;
+    background-position: center;
+    background-size: cover;
+}
+.section-doctors {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.icono {
+    width: 2vw;
+}
