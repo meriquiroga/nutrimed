@@ -7,7 +7,7 @@ const doctorSchema = new mongoose.Schema({
     src:String,
     description:{type:String, default:null},
     registration:{type:String, default:null},
-    speciality:{type:String, default:null},
+    specialty:{type:String, default:null},
     password:{type:String, default:null},
     socialwork:{type:Boolean, default:null},
     data:{
