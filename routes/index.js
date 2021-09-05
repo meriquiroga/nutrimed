@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const passport= require('passport')
+// const passport= require('passport')
 const userControllers = require('../controllers/userControllers')
 const doctorControllers = require('../controllers/doctorControllers')
 const patientControllers = require('../controllers/patientControllers')
@@ -24,9 +24,6 @@ router.route('/patient/:id')
 
 module.exports=router
 
-router.route("/doctor/:doctorId");
-//   .put(doctorControllers.updateDoctor);
-module.exports = router;
 
 
 
