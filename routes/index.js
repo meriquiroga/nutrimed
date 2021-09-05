@@ -15,8 +15,9 @@ router.route('/doctor')
 router.route('/doctor/:id')
 .get(doctorControllers.getDoctorById)
 .put(passport.authenticate('jwt',{session:false}),doctorControllers.changedDoctor)//llega el id del doc y por token la info del paciente
-router.route('/doctor/perfil')
-.put(doctorControllers.editPerfil)
+
+// router.route('/doctor/perfil')
+// .put(doctorControllers.editPerfil)
 
 router.route('/patient')
 .get(patientControllers.singIn)
