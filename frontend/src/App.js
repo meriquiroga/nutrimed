@@ -4,9 +4,19 @@ import { BrowserRouter, Route, Switch, Redirect} from "react-router-dom"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import SignUpPat from "./components/SignUpPat"
+// import { connect } from "react-redux";
+// import {useEffect} from "react"
 import DoctorInformation from './components/DoctorInformation'
 
-const App = () => {
+const App = (props) => {
+
+  // useEffect(()=>{
+  //   if (localStorage.getItem("token"){
+  //       props.logWithLs(localStorage.getItem("token"))
+  //   })
+  // }, [])
+
+
   return (
       <BrowserRouter>
         <Header />
@@ -19,4 +29,8 @@ const App = () => {
       </BrowserRouter>
   )
 }
-export default App;
+
+
+
+// connect(mapStateToProps, mapDispatchToProps)
+export default App
