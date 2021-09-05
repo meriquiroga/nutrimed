@@ -1,6 +1,11 @@
+import SignUpPat from "./components/SignUpPat"
+
 const App = ()=>{
   return(
-    <h1>HOLA</h1>
+    <>
+      <SignUpPat />
+    
+    </>
   )
 }
 export default App
