@@ -25,6 +25,6 @@ const doctorControllers = {
             res.json({success:false, res:err.message})
         }
 
-    }
+    },
 }
 module.exports = doctorControllers

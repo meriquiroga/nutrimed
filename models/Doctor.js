@@ -9,6 +9,7 @@ const doctorSchema = new mongoose.Schema({
     registration:{type:String, default:null},
     speciality:{type:String, default:null},
     password:{type:String, default:null},
+    socialwork:{type:Boolean, default:null},
     data:{
         direction:{
             calle:{type:String, default:null},
