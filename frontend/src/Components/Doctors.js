@@ -66,7 +66,7 @@ const Doctors = () => {
           <h4>Especialista en Nutrición</h4>
           <p>Matricula: 235472</p>
           <img className="icono" src="../assets/estrella.png" alt="icono" />
-
+ {console.log("hola")}
           <div>
             {iconos.map((icon) => (
               <img className="icono" src={`../assets/${icon}`} />
