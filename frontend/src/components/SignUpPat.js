@@ -145,4 +145,4 @@ const SignUpPat = () => {
 //     getSocialWorks: socialActions.getSocialWorks
 // }
 // connect(null, mapDispatchToProps)
-export default (SignUpPat)
+export default SignUpPat
