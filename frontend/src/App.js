@@ -1,21 +1,18 @@
-<<<<<<< HEAD
-import RenderTurnos from "./RenderTurnos";
+import "./App.css"
+import Home from "./pages/Home";
+import { BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
-    <>
-      <h1>HOLA</h1>
-      <RenderTurnos />
-    </>
+      <BrowserRouter>
+        <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+          </Switch>
+        <Footer />
+      </BrowserRouter>
   );
 };
 export default App;
-=======
-import DataClient from "./components/DataClient"
-import "./App.css"
-
-const App = () => {
-   return <DataClient />
-}
-export default App
->>>>>>> origin/franco
