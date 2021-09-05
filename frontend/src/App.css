@@ -1,0 +1,22 @@
+html * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.doctor-image {
+    width: 25vw;
+    height: 60vh;
+    background-position: center;
+    background-size: cover;
+}
+
+.section-doctors {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.icono {
+    width: 2vw;
+}
