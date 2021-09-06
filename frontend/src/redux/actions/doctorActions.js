@@ -1,11 +1,11 @@
 import axios from "axios"
 
 const doctorActions = {
-    editProfileDoctor: (idDoctor) => {
+    editProfileDoctor: (idDoctor,profileEdited) => {
         return async () => {
             try {
-                let res = await axios.put(`http://localhost:4000/api/doctor/perfil/${idDoctor}`)
-                if (res.data.success){
+                let response = await axios.put(`http://localhost:4000/api/doctor/perfil/${idDoctor}`, {profileEdited})
+                if (response.data.success){
                     return {success: true}
                 }
 
