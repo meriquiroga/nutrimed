@@ -114,7 +114,8 @@ export default class Staff extends Component {
  }
   render() {
     let result = this.state.doctor.map((item) => (
-      <div className="contenedor">
+      <div className="doctorCardsContainer">
+        <div className="doctorCard">
         <Link to="/information">
           <div
             className="doctor-image"
@@ -123,15 +124,20 @@ export default class Staff extends Component {
             }}
           ></div>
         </Link>
+        <div className="docCardText">
         <p>{item.name}</p>
         <p>Especialista en {item.specialty}</p>
-        <p>Matricula {item.dni}</p>
+        <p>Matrícula {item.dni}</p>
+
+        </div>
+
+        </div>
       </div>
     ));
 
     return (
-      <div className="contenedor1">
-        <h1>{result}</h1>
+      <div className="doctorCardsContainer">
+        <p>{result}</p>
       </div>
     );
   }
