@@ -32,7 +32,7 @@ const appointmentControllers={
       }
     }
   },
-  deleteItinerary: (req, res) => {
+  deleteItinerary:async (req, res) => {
     try {
       let appointmentToDelete = await Appointment.findOneAndDelete({
         _id: req.body._id,
