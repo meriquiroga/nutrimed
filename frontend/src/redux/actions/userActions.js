@@ -17,12 +17,12 @@ const userActions = {
             try {
                 let response = await axios.post("http://localhost:4000/api/user", user)
                 if (response.data.success) {
-                    dispatch({type: "SIGN_UP", payload: response.data.res})
+                    dispatch({type: "SIGN_UP", payload: response.data.res.newUser})
                     return {success: true}
                 }
                 
-            }catch(e){
-                return {success: false, response: e}
+            }catch(err){
+                return {success: false, res:err.message}
             }
         }
     }
