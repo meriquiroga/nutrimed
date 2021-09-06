@@ -24,15 +24,29 @@ router
 router
   .route("/patient")
   .get(patientControllers.singIn)
-  .put(patientControllers.putPatient);
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    patientControllers.putPatient
+  );
 
-router.route("/patient/:id").post(patientControllers.addMedicalData);
+router
+  .route("/patient/:id")
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    patientControllers.addMedicalData
+  );
 
 router
   .route("/appointment/:id")
+
   .post(
     passport.authenticate("jwt", { session: false }),
     appointmentControllers.addAppointment
   );
-
+router
+  .route("/appointments")
+  .get(
+    passport.authenticate("jwt", { session: false }),
+    appointmentControllers.getAppointments
+  );
 module.exports = router;
