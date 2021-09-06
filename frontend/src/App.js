@@ -7,7 +7,7 @@ import SignUpPat from "./components/SignUpPat"
 // import { connect } from "react-redux";
 // import {useEffect} from "react"
 import DoctorInformation from './components/DoctorInformation'
-import SignUpDoc from "./components/SignUpDoc"
+import editProfile from "./components/editProfile"
 
 const App = () => {
 
@@ -25,7 +25,7 @@ const App = () => {
             <Route exact path="/" component={Home} />
             <Route path='/signup' component={SignUpPat} />
             <Route path="/information" component={DoctorInformation} />
-            <Route path="/editdoc" component={SignUpDoc} />
+            <Route path="/editdoc" component={editProfile} />
           </Switch>
         <Footer />
       </BrowserRouter>

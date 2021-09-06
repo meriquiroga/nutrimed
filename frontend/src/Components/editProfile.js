@@ -2,7 +2,8 @@ import { useState } from "react"
 import { connect } from "react-redux"
 import doctorActions from "../redux/actions/doctorActions"
 
-const SignUpDoc = (props) => {
+const EditProfile = (props) => {
+    const {mail} = props.user.data
     const [valueIn, setValueIn] = useState(true)
     const [actDoc, setActDoc] = useState({
         dni: "",
@@ -15,7 +16,7 @@ const SignUpDoc = (props) => {
                 num: "",
                 city: ""
             },
-            // mail:"",
+            mail,
             phoneNumber: "",
         },
         socialWork: "",
@@ -44,7 +45,7 @@ const SignUpDoc = (props) => {
 
 
     const submitHandler = () => {
-        props.upgradeDoc()
+        props.upgradeDoc(props.user._id, actDoc)
     }
 
     
@@ -71,7 +72,7 @@ const SignUpDoc = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        doctors: state.users.dataUser
+        user: state.users.dataUser
     }
 }
 
@@ -79,4 +80,4 @@ const mapDispatchToProps = {
     upgradeDoc: doctorActions.editProfileDoctor
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpDoc)
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)

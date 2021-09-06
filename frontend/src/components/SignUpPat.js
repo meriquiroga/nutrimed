@@ -5,6 +5,7 @@ import FacebookLogin from 'react-facebook-login'
 import Swal from 'sweetalert2'
 import 'react-toastify/dist/ReactToastify.css'
 import userActions from "../redux/actions/userActions"
+import { Link } from "react-router-dom"
 
 
 
@@ -147,7 +148,11 @@ const SignUpPat = (props) => {
                         </div>
                     </div>
                 </div>
+                <Link to = "/editdoc">Probar</Link>
             </div>
+
+            
+
         </>
     )
 }

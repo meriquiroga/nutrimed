@@ -13,11 +13,12 @@ const userActions = {
     // },
 
     signUpUser: (user) => {
-        return async (dispatch) => {
+        return async (dispatch, getState) => {
             try {
                 let response = await axios.post("http://localhost:4000/api/user", user)
+                console.log(response)
                 if (response.data.success) {
-                    dispatch({type: "SIGN_UP", payload: response.data.res})
+                    dispatch({type: "SIGN_UP", payload: response.data.res.newUser})
                     return {success: true}
                 }
                 
