@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const express = require('express')
 const router = express.Router()
 const passport  = require('passport')
@@ -21,7 +22,7 @@ router.route('/doctor/profile/:id')
 
 router.route('/patient')
 .get(patientControllers.singIn)
-.put(patientControllers.putPatient)
+.put(passport.authenticate('jwt', { session: false }),patientControllers.putPatient)
 
 router.route('/patient/:id')
 .put(passport.authenticate('jwt',{session:false}),patientControllers.addMedicalData)
@@ -29,7 +30,11 @@ router.route('/patient/:id')
 router.route('/appointment/:id')
 .post(passport.authenticate('jwt',{session:false}),appointmentControllers.addAppointment)
 
+router.route("/appointments")
+.get(passport.authenticate("jwt", { session: false }),appointmentControllers.getAppointments);
+
 module.exports=router
+
 
 
 
