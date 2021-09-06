@@ -304,6 +304,7 @@ footer img {
   align-items: center;
   flex-wrap: wrap;
   padding: 20px;
+  min-height: 80vh;
 }
 
 .doctorCard {

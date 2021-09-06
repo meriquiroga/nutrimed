@@ -20,6 +20,9 @@ const doctorActions = {
             let res = await axios.get("http://localhost:4000/api/doctors");
             let info = res.data.res;
             dispatch({ type: "GET_ALL_DOCTORS", payload: info });
+            return {
+               success: true
+            }
           } catch (err) {
             return {success: false, res: err}
            
