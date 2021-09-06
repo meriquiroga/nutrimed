@@ -4,13 +4,12 @@ import { connect } from "react-redux";
 import doctorActions from "../redux/actions/doctorActions";
 
 class Staff extends Component {
-  state = {};
+  state = {
+  };
   componentDidMount() {
-    this.props.doctors();
-    // const { doctors } = this.props
   }
   render() {
-    let result = this.state.doctor.map((item) => (
+    let result = this.props.doctors.map((item) => (
       <div className="doctorCardsContainer">
         <div className="doctorCard">
         <Link to="/information">
