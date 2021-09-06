@@ -1,10 +1,10 @@
 import { connect } from "react-redux"
 import { useState} from "react"
-import socialActions from "../redux/actions/userActions"
 import { GoogleLogin } from 'react-google-login'
 import FacebookLogin from 'react-facebook-login'
 import Swal from 'sweetalert2'
 import 'react-toastify/dist/ReactToastify.css'
+import userActions from "../redux/actions/userActions"
 
 
 
@@ -35,8 +35,8 @@ const SignUpPat = (props) => {
     })
 
     function validFields(field) {
-        if(!field.passwordProf.length)
-        field.passwordProf = "No posee"
+        // if(!field.passwordProf.length)
+        // field.passwordProf
         for (var i in field){
             if(!field[i].length){
                 Toast.fire({
@@ -46,8 +46,9 @@ const SignUpPat = (props) => {
                 breaker = false
                 break
             }
-        }    
+        }  
     }           
+
 
     const responseGoogle = res => {
         let logWithGoogle = {
@@ -61,8 +62,10 @@ const SignUpPat = (props) => {
         props.signUpUser(logWithGoogle)
         .then((res) => {console.log(res)
             
-        }).catch((e)=> console.log(e))
+        })
     }
+
+
 
     const responseFacebook = (res) => {
         let logWithFacebook = {
@@ -82,22 +85,23 @@ const SignUpPat = (props) => {
 
     const submitHandler = () => {
         // validFields(newUser)
-         props.signUpUser(newUser)
+        // if (breaker) 
+        props.signUpUser(newUser)
+        .then((res)=>console.log(res)
+        )
     }
     
     const addUserHandler = (e) => {
         if (e.target.name === "data"){
             setNewUser({...newUser, data: {mail: e.target.value}})
         }else{
-               setNewUser({...newUser, [e.target.name]: e.target.value})
+            setNewUser({...newUser, [e.target.name]: e.target.value})
         }
     }
-    console.log(newUser)
 
     const validInputHandler = (e) => {
         setValueIn(e.target.value)
     }
-
 
     let disp = valueIn === "prof" ? "block" : "none" 
     let dispGo = valueIn === "prof" ? "none" : "block"
@@ -113,7 +117,7 @@ const SignUpPat = (props) => {
                         <div>Profesional <input onClick={validInputHandler} type="radio" name="buttonRol" value="prof"/></div>
                     </div>
                     <div className="inputs">
-                    <input type="text" placeholder="Nombre" name="name" onChange={addUserHandler} defaultValue={newUser.name}/>
+                    <input type="text" placeholder="Nombre" name="name" onChange={addUserHandler}  defaultValue={newUser.name}/>
                     <input type="text" placeholder="Apellido"name="lastName" onChange={addUserHandler} defaultValue={newUser.lastName}/>
                     <input type="email" placeholder="Email" name="data" onChange={addUserHandler} defaultValue={newUser.data.mail}/>
                     <input type="password" placeholder="Contraseña"name="password" onChange={addUserHandler}  defaultValue={newUser.password}/>
@@ -123,8 +127,8 @@ const SignUpPat = (props) => {
                     </div>
                     <button onClick={submitHandler} >REGISTRARSE</button>
                     <div style={{display:dispGo}}>
-                        <div>
-                            <GoogleLogin 
+                        <div >
+                            <GoogleLogin
                             clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
                             buttonText="Registrarse con Google"
                             onSuccess={responseGoogle}
@@ -133,7 +137,7 @@ const SignUpPat = (props) => {
                             />
                         </div>
                         <div>
-                        <FacebookLogin
+                        <FacebookLogin 
                             appId="283809223550858"
                             autoLoad={false}
                             fields="first_name,last_name,email,picture"
@@ -148,8 +152,14 @@ const SignUpPat = (props) => {
     )
 }
 
-const mapDispatchToProps = {
-    signUpUser: socialActions.signUpUser,
+const mapStateToProps = (state) => {
+    return {
+        doctors: state.users.dataUser
+    }
 }
 
-export default connect(null, mapDispatchToProps)(SignUpPat)
+const mapDispatchToProps = {
+    signUpUser: userActions.signUpUser,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpPat)

@@ -12,7 +12,7 @@ const doctorSchema = new mongoose.Schema({
     socialwork:{type:Boolean, default:null},
     data:{
         direction:{
-            calle:{type:String, default:null},
+            street:{type:String, default:null},
             num:{type:String, default:null},
             city:{type:String, default:null}, 
         },
@@ -20,10 +20,10 @@ const doctorSchema = new mongoose.Schema({
         mail:{type:String, default:null}
     },
     score:Array,
-    review:{
+    review:[{
         patientId:{type:mongoose.Types.ObjectId, ref:'patient'},
         text:String,  
-    },
+    }],
     doc:Boolean,
     google:{type:Boolean, default:false}
 })
