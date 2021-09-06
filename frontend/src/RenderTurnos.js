@@ -15,7 +15,6 @@ const RenderTurnos = () => {
     }
     getDoctor();
   }, []);
-  console.log(appointments);
   return (
     <>
       {appointments.map((appointment, index) => {
