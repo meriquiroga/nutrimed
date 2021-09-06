@@ -44,12 +44,12 @@ ul li {
 }
 
 a {
-   text-decoration: none;
-   color: #19b1bc;
+  text-decoration: none;
+  color: gray;
 }
 
 a.active {
-   color: gray;
+  color: #19B1BC
 }
 
 button {
@@ -120,14 +120,14 @@ footer img {
 }
 
 .description div {
-   padding: 10vw;
-   color: gray;
-   text-align: center;
-   line-height: 2.3;
+  padding: 10vw;
+  /* color: gray; */
+  text-align: center;
+  line-height: 2.3
 }
 
 .contenedor {
-   min-height: 80vh;
+  min-height: 80vh;
 }
 
 .contenedor1 {
@@ -135,10 +135,12 @@ footer img {
 }
 
 .doctor-image {
-   width: 25vw;
-   height: 60vh;
-   background-position: center;
-   background-size: cover;
+    width: 200px;
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 100px;
+    background-color: pink;
 }
 .section-doctors {
    display: flex;
@@ -294,4 +296,24 @@ footer img {
    display: flex;
    flex-direction: column;
    padding: 1rem;
+}
+
+.doctorCardsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.doctorCard {
+  height: 300px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.docCardText {
+  text-align: left;
+  padding-left: 20px;
 }
