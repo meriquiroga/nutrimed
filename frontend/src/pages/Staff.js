@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import doctorActions from "../redux/actions/doctorActions";
 
 class Staff extends Component {
-  state = {};
+  state = {
+    
+  };
   componentDidMount() {
     this.props.doctors();
     // const { doctors } = this.props
