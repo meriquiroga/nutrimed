@@ -15,6 +15,9 @@ router.route('/doctor/:id')
 .post(doctorControllers.addappointment)
 .get(doctorControllers.getDoctorById)
 
+router.route('/doctor/perfil/:id')
+.put(doctorControllers.editPerfil)
+
 router.route('/patient')
 .get(patientControllers.singIn)
 .put(patientControllers.putPatient)
@@ -23,6 +26,7 @@ router.route('/patient/:id')
 .post(patientControllers.addMedicalData)
 
 module.exports=router
+
 
 
 

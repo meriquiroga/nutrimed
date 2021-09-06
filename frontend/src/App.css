@@ -135,6 +135,16 @@ footer img {
   padding: 10vw;
   color: gray
 }
+
+.contenedor {
+  min-height: 80vh;
+
+}
+
+.contenedor1 {
+  display: flex;
+}
+
 .doctor-image {
     width: 25vw;
     height: 60vh;

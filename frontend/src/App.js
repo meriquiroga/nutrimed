@@ -5,6 +5,7 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import SignUpPat from "./components/SignUpPat"
 import DoctorInformation from './components/DoctorInformation'
+import Staff from "./pages/Staff"
 
 const App = () => {
   return (
@@ -13,7 +14,9 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path='/signup' component={SignUpPat}/>
+            <Route path="/staff" component={Staff} />
             <Route path="/information" component={DoctorInformation} />
+           
           </Switch>
         <Footer />
       </BrowserRouter>
