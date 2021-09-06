@@ -45,49 +45,16 @@ const doctorControllers = {
             break;
         }
     },
-    editProfile:async(req,res)=>{
+    editProfile: async(req, res)=>{
         try{
             let changedDoctor= await Doctor.findOneAndUpdate({_id : req.params.id},{...req.body},{new:true})
             if(changedDoctor){
                 res.json({success:true, res:changedDoctor})
-            }else{
+            }else {
                 throw new Error()
             }
         }catch(err){
             res.json({success: false, res:err.message})
-        }
-    },
-    changedDoctor:async(req,res)=>{
-      switch(req.body.action){
-          case 'addReview':
-              try{
-                  let newReview = await Doctor.findOneAndUpdate({_id: req.params.id},{$push:{review:{patientId:req.user._id, text:req.body.text}}},{new:true}).populate('appointment.patientId',{password:0, _v:0,})
-                  res.json({success:true, res:newReview.review})
-              }catch(err){
-                  res.jon({success:false, res:err.message})
-              }
-          break;
-      }
-  },
-    editPerfil: async(req,res) => {
-      try {
-        let changedDoctor =await Doctor.findOneAndUpdate({_id : req.params.id }, {...req.body},{new:true})
-        if(changedDoctor) {
-            res.json({success:true, res: changedDoctor})
-        } else {
-            throw new Error()
-        }
-      } catch(err) {
-          res.json({ success: false, res: err.message })
-      }
-    },
-
-    getDoctors: async (req, res) => {
-        try {
-            let doctors = await Doctor.find()
-            res.json({success:true, res:doctors})
-        }catch(err){
-            res.json({success:false, res:err.message})
         }
     },
     getDoctorById: async (req, res) => {

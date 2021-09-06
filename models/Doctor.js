@@ -12,7 +12,7 @@ const doctorSchema = new mongoose.Schema({
     socialwork:{type:Boolean, default:null},
     data:{
         direction:{
-            calle:{type:String, default:null},
+            street:{type:String, default:null},
             num:{type:String, default:null},
             city:{type:String, default:null}, 
         },

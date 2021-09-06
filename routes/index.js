@@ -20,9 +20,6 @@ router.route('/doctor/:id')
 router.route('/doctor/profile/:id')
 .put(doctorControllers.editProfile)
 
-router.route('/doctor/perfil/:id')
-.put(doctorControllers.editPerfil)
-
 router.route('/patient')
 .get(patientControllers.singIn)
 .put(passport.authenticate('jwt',{ session: false}),patientControllers.putPatient)
