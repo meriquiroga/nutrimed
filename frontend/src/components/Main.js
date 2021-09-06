@@ -26,7 +26,11 @@ const Main = () => {
             </div>
         </div>
         <div className="description" style={{ backgroundImage: "url('/assets/description2.jpg')"}}>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <div>
+            <h3>¿Quiénes somos?</h3>
+            <p>Somos un equipo interdisciplinario comprometido con la salud nutricional de la sociedad, con el propósito de acompañar a las personas en la búsqueda de la armonía del cuerpo y la mente.</p> 
+            <p>Contamos con profesionales especializados en alergias e intolerancias alimentarias, diabetología, alimentación y dietética clínica, nutrición materno-infantil,  dietoterapia, psiconutrición, medicina general y entrenamiento fit, con rutinas abocadas a la salud integral del paciente.</p>
+          </div>
         </div>
     </main>
   )

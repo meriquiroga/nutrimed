@@ -123,8 +123,8 @@ const SignUpPat = (props) => {
                     </div>
                     <button onClick={submitHandler} >REGISTRARSE</button>
                     <div style={{display:dispGo}}>
-                        <div>
-                            <GoogleLogin 
+                        <div >
+                            <GoogleLogin
                             clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
                             buttonText="Registrarse con Google"
                             onSuccess={responseGoogle}
@@ -133,7 +133,7 @@ const SignUpPat = (props) => {
                             />
                         </div>
                         <div>
-                        <FacebookLogin
+                        <FacebookLogin 
                             appId="283809223550858"
                             autoLoad={false}
                             fields="first_name,last_name,email,picture"
