@@ -1,6 +1,4 @@
-
-
-const usersReducer = (state={dataUser:{}, token: null}, action) => {
+const usersReducer = (state={dataUser:{}, token: null, doctors:[]}, action) => {
     switch (action.type) {
         case "SIGN_UP":
             console.log(action.payload)
@@ -9,6 +7,11 @@ const usersReducer = (state={dataUser:{}, token: null}, action) => {
                 dataUser: action.payload,
                 token: action.payload.token
             }
+            case "GET_ALL_DOCTORS":
+                return {
+                  ...state,
+                  doctors: action.payload,
+                }
         default:
             return state
     }

@@ -2,8 +2,8 @@ import { useState } from "react"
 import { connect } from "react-redux"
 import doctorActions from "../redux/actions/doctorActions"
 
-const EditProfile = (props) => {
-    const {mail} = props.user.data
+const SignUpDoc = (props) => {
+    
     const [valueIn, setValueIn] = useState(true)
     const [actDoc, setActDoc] = useState({
         dni: "",
@@ -72,7 +72,7 @@ const EditProfile = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.users.dataUser
+        doctor: state.users.dataUser
     }
 }
 

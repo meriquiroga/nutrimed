@@ -22,8 +22,8 @@ const userActions = {
                     return {success: true}
                 }
                 
-            }catch(e){
-                return {success: false, response: e}
+            }catch(err){
+                return {success: false, res:err.message}
             }
         }
     }
