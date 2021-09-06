@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require('express')
 const router = express.Router()
 const passport  = require('passport')
@@ -7,10 +6,11 @@ const doctorControllers = require('../controllers/doctorControllers')
 const patientControllers = require('../controllers/patientControllers')
 const appointmentControllers = require('../controllers/appointmentControllers')
 
-router.route('/user')
+
+router.route("/user")
 .post(userControllers.addUser)
 
-router.route('/doctor')
+router.route("/doctor")
 .get(doctorControllers.singIn)
 
 router.route('/doctor/:id')
@@ -22,7 +22,7 @@ router.route('/doctor/profile/:id')
 
 router.route('/patient')
 .get(patientControllers.singIn)
-.put(passport.authenticate('jwt', { session: false }),patientControllers.putPatient)
+.put(passport.authenticate('jwt',{ session: false}),patientControllers.putPatient)
 
 router.route('/patient/:id')
 .put(passport.authenticate('jwt',{session:false}),patientControllers.addMedicalData)
@@ -37,5 +37,8 @@ module.exports=router
 
 
 
+module.exports = router
 
+router.route("/doctor/:doctorId")
 
+module.exports = router
