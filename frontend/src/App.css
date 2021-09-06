@@ -28,12 +28,16 @@ header {
   padding: 0vw 10vw;
   display: flex;
   justify-content: space-between;
+  align-content: center;
   align-items: center;
   flex-wrap: wrap;
   color: #19B1BC;
 }
+
 header p {
   padding: 0px 20px;
+  text-align: center;
+  line-height: 1.2;
 }
 .navbar {
   display: flex;
@@ -42,14 +46,12 @@ header p {
   justify-content: center;
 }
 .navbar img {
-  padding-right: 20px;
+  margin: 20px
 }
-
 ul {
   display: flex;
   list-style: none;
 }
-
 ul li {
   padding-left: 10px;
 }
@@ -124,16 +126,17 @@ footer img {
 }
 
 .description {
-  display: flex;
   align-items: center;
-  height: 500px;
+  min-height: 500px;
   background-position: center;
   background-size: cover;
 }
 
-.description p {
+.description div {
   padding: 10vw;
-  color: gray
+  color: gray;
+  text-align: center;
+  line-height: 2.3
 }
 .doctor-image {
     width: 25vw;
@@ -157,7 +160,7 @@ footer img {
 
 .signUpForm {
   text-align: center;
-  background-color:#FCFCFC;
+  background-color:#f0f3f5;
   padding: 30px;
 }
 
@@ -186,4 +189,38 @@ footer img {
   outline: none;
 }
 
+.footerNavbar li p {
+  color: white;
+  padding: 15px
+}
 
+@media (max-width: 991px) {
+  .inputs input  {
+    padding: 10px;
+    border-radius: 50px;
+    border: 2px gray solid;
+    margin: 10px;
+    width: 85%;
+    align-self: center;
+    outline: none;
+  }
+  .hero {
+    height: 60vh;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    padding: 20vw;
+  }
+  header p {
+    padding: 0px 10px;
+  }
+  .description div {
+    line-height: 2
+  }
+  header {
+    width: 100%;
+    padding: 0vw 10vw;
+    display: flex;
+    justify-content: center;
+  }
+}
