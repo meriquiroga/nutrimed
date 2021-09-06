@@ -1,236 +1,297 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "Poppins", sans-serif;
 }
+
+body {
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+}
+header {
+   width: 100%;
+   padding: 0vw 10vw;
+   display: flex;
+   justify-content: space-between;
+   align-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   color: #19b1bc;
+}
+
+header p {
+   padding: 0px 20px;
+   text-align: center;
+   line-height: 1.2;
+}
+.navbar {
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+.navbar img {
+   margin: 20px;
+}
+ul {
+   display: flex;
+   list-style: none;
+}
+ul li {
+   padding-left: 10px;
+}
+
+a {
+   text-decoration: none;
+   color: #19b1bc;
+}
+
+a.active {
+   color: gray;
+}
+
+button {
+   background-color: #19b1bc;
+   color: white;
+   padding: 10px 40px;
+   border-radius: 50px;
+   border: none;
+   margin: 10px;
+}
+
+.hero {
+   height: 60vh;
+   background-position: center;
+   background-size: cover;
+   display: flex;
+   align-items: center;
+   padding-left: 18vw;
+}
+
+.insideHero {
+   text-align: center;
+}
+.hero h1 {
+   color: gray;
+}
+
+footer {
+   width: 100%;
+   background-color: #19b1bc;
+   padding: 2em;
+   display: flex;
+   flex-direction: column;
+   align-content: center;
+   align-items: center;
+   color: white;
+}
+
+footer img {
+   width: 45px;
+   margin: 10px;
+}
+
+.iconCardsContainer {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   padding: 20px 0px;
+}
+
+.iconCard {
+   text-align: center;
+   padding: 20px;
+   border-radius: 20px;
+   margin: 20px;
+   width: 220px;
+}
+
+.iconCard h3 {
+   color: gray;
+}
+
+.description {
+   align-items: center;
+   min-height: 500px;
+   background-position: center;
+   background-size: cover;
+}
+
+.description div {
+   padding: 10vw;
+   color: gray;
+   text-align: center;
+   line-height: 2.3;
+}
+
+.contenedor {
+   min-height: 80vh;
+}
+
+.contenedor1 {
+   display: flex;
+}
+
+.doctor-image {
+   width: 25vw;
+   height: 60vh;
+   background-position: center;
+   background-size: cover;
+}
+.section-doctors {
+   display: flex;
+   justify-content: space-evenly;
+   text-align: center;
+}
+.icono {
+   width: 2vw;
+}
+
+.container {
+   text-align: center;
+   align-self: center;
+}
+
+.signUpForm {
+   text-align: center;
+   background-color: #f0f3f5;
+   padding: 30px;
+}
+
+.radio {
+   display: flex;
+   justify-content: center;
+}
+
+.radio div {
+   padding: 10px;
+}
+
+.inputs {
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+}
+
+.inputs input {
+   padding: 10px;
+   border-radius: 50px;
+   border: 2px gray solid;
+   margin: 10px;
+   width: 400px;
+   align-self: center;
+   outline: none;
+}
+
+.footerNavbar li p {
+   color: white;
+   padding: 15px;
+}
+
+@media (max-width: 991px) {
+   .inputs input {
+      padding: 10px;
+      border-radius: 50px;
+      border: 2px gray solid;
+      margin: 10px;
+      width: 85%;
+      align-self: center;
+      outline: none;
+   }
+   .hero {
+      height: 60vh;
+      background-position: center;
+      background-size: cover;
+      text-align: center;
+      padding: 20vw;
+   }
+   header p {
+      padding: 0px 10px;
+   }
+   .description div {
+      line-height: 2;
+   }
+   header {
+      width: 100%;
+      padding: 0vw 10vw;
+      display: flex;
+      justify-content: center;
+   }
+}
+
+.profile {
+   display: flex;
+   min-height: 80vh;
+   justify-content: space-around;
+   margin-top: 2rem;
+}
+
+.profileImg {
+   width: 170px;
+   margin: 2rem;
+}
+
+.ladoProfile {
+   display: flex;
+   flex-direction: column;
+   background-color: #19b1bc;
+   height: 65vh;
+   width: 17vw;
+   align-items: center;
+}
+
+.preview {
+   border: 1px solid black;
+   height: 25vh;
+   width: 25vw;
+   margin: 0px 3rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.linkCompleta {
+   color: white;
+   font-size: 20px;
+}
+
+.centroProfile {
+   display: flex;
+   flex-direction: column;
+   width: 30vw;
+}
+
+.proxTurnos {
+   color: white;
+   padding-top: 1rem;
+}
+
+.tituloProfile {
+   align-self: center;
+}
+
+.turnos {
+   color: white;
+}
+
+.datosProfile {
+   display: flex;
+   justify-content: space-around;
+}
+
 .dataClient {
-   height: 100vh;
+   height: 80vh;
    display: flex;
    justify-content: center;
    flex-direction: column;
    align-items: center;
-   background-color: rgb(160, 156, 156);
+   background-color: rgb(255, 255, 255);
 }
 #form {
    min-height: 40vh;
    display: flex;
    flex-direction: column;
-   background-color: rgb(255, 255, 255);
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-header {
-  width: 100%;
-  padding: 0vw 10vw;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  color: #19B1BC;
-}
-
-header p {
-  padding: 0px 20px;
-  text-align: center;
-  line-height: 1.2;
-}
-.navbar {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.navbar img {
-  margin: 20px
-}
-ul {
-  display: flex;
-  list-style: none;
-}
-ul li {
-  padding-left: 10px;
-}
-
-a {
-  text-decoration: none;
-  color: #19B1BC;
-}
-
-a.active {
-  color: gray
-}
-
-button {
-  background-color: #19B1BC;
-  color: white;
-  padding: 10px 40px;
-  border-radius: 50px;
-  border: none;
-  margin: 10px;
-}
-
-.hero {
-  height: 60vh;
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  padding-left: 18vw;  
-}
-
-.insideHero {
-  text-align: center;
-}
-.hero h1 {
-  color: gray;
-}
-
-footer {
-  width: 100%;
-  background-color: #19B1BC;
-  padding: 2em;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  color: white;
-}
-
-footer img {
-  width: 45px;
-  margin: 10px;
-}
-
-.iconCardsContainer {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 20px 0px;
-}
-
-.iconCard {
-  text-align: center;
-  padding: 20px;
-  border-radius: 20px;
-  margin: 20px;
-  width: 220px;
-}
-
-.iconCard h3 {
-  color: gray
-}
-
-.description {
-  align-items: center;
-  min-height: 500px;
-  background-position: center;
-  background-size: cover;
-}
-
-.description div {
-  padding: 10vw;
-  color: gray;
-  text-align: center;
-  line-height: 2.3
-}
-
-.contenedor {
-  min-height: 80vh;
-
-}
-
-.contenedor1 {
-  display: flex;
-}
-
-.doctor-image {
-    width: 25vw;
-    height: 60vh;
-    background-position: center;
-    background-size: cover;
-}
-.section-doctors {
-    display: flex;
-    justify-content: space-evenly;
-    text-align: center;
-}
-.icono {
-    width: 2vw;
-}
-
-.container {
-  text-align: center;
-  align-self: center;
-}
-
-.signUpForm {
-  text-align: center;
-  background-color:#f0f3f5;
-  padding: 30px;
-}
-
-.radio {
-  display: flex;
-  justify-content: center;
-}
-
-.radio div {
-  padding: 10px;
-}
-
-.inputs {
-  text-align: center;
-  display: flex;
-  flex-direction: column
-}
-
-.inputs input {
-  padding: 10px;
-  border-radius: 50px;
-  border: 2px gray solid;
-  margin: 10px;
-  width: 400px;
-  align-self: center;
-  outline: none;
-}
-
-.footerNavbar li p {
-  color: white;
-  padding: 15px
-}
-
-@media (max-width: 991px) {
-  .inputs input  {
-    padding: 10px;
-    border-radius: 50px;
-    border: 2px gray solid;
-    margin: 10px;
-    width: 85%;
-    align-self: center;
-    outline: none;
-  }
-  .hero {
-    height: 60vh;
-    background-position: center;
-    background-size: cover;
-    text-align: center;
-    padding: 20vw;
-  }
-  header p {
-    padding: 0px 10px;
-  }
-  .description div {
-    line-height: 2
-  }
-  header {
-    width: 100%;
-    padding: 0vw 10vw;
-    display: flex;
-    justify-content: center;
-  }
+   padding: 1rem;
 }

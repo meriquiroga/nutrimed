@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken")
 
 const userControllers = {
   addUser: async (req, res) => {
-    console.log("entra a adduser");
     const { name, lastName, data, password, src, google, doc, passwordAdm } =
       req.body;
     const hashedPassword = bcryptjs.hashSync(password);
