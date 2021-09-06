@@ -1,6 +1,6 @@
 const Patient = require("../models/Patient")
 const Doctor = require("../models/Doctor")
-// const bcryptjs = require("bcryptjs")
+const bcryptjs = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
 const userControllers = {

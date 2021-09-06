@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import doctorActions from "../redux/actions/doctorActions"
 
 const SignUpDoc = (props) => {
+    
     const [valueIn, setValueIn] = useState(true)
     const [actDoc, setActDoc] = useState({
         dni: "",
@@ -71,7 +72,7 @@ const SignUpDoc = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        doctors: state.users.dataUser
+        doctor: state.users.dataUser
     }
 }
 

@@ -44,7 +44,6 @@ const patientControllers = {
     }
   },
   putPatient: async (req, res) => {
-    console.log(req.user);
     try {
       let modifyPatient = await Patient.findOneAndUpdate(
         { _id: req.user._id },

@@ -4,7 +4,7 @@ const doctorActions = {
     editProfileDoctor: (idDoctor) => {
         return async () => {
             try {
-                let response = await axios.put(`http://localhost:4000/api/doctor/perfil/${idDoctor}`)
+                let response = await axios.put(`http://localhost:4000/api/doctor/perfil/${idDoctor}`, {})
                 if (response.data.success){
                     return {success: true}
                 }
