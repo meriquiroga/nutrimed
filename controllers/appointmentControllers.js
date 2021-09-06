@@ -32,12 +32,12 @@ const appointmentControllers={
       }
     }
   },
-  deleteItinerary:async (req, res) => {
+  deleteAppointment:async (req, res) => {
     try {
       let appointmentToDelete = await Appointment.findOneAndDelete({
-        _id: req.body._id,
+        _id: req.params.id,
       });
-      res.json({ success: true, res: appointmentToDelete });
+      res.json({ success: true});
     } catch (err) {
       res.json({ success: false, res: err.message });
     }
