@@ -6,7 +6,12 @@ const doctorControllers = require("../controllers/doctorControllers")
 const patientControllers = require("../controllers/patientControllers")
 const appointmentControllers = require("../controllers/appointmentControllers")
 
-router.route("/user").post(userControllers.addUser)
+router
+   .route("/user")
+   .post(userControllers.addUser)
+   .get(userControllers.getPatients)
+
+router.route("/user/:id").put(userControllers.modifyPatient)
 
 router.route("/doctor").get(doctorControllers.singIn)
 
@@ -20,13 +25,7 @@ router
 
 router.route("/doctor/profile/:id").put(doctorControllers.editProfile)
 
-router
-   .route("/patient")
-   .get(patientControllers.singIn)
-   .put(
-      passport.authenticate("jwt", { session: false }),
-      patientControllers.putPatient
-   )
+router.route("/patient").get(patientControllers.singIn)
 
 router
    .route("/patient/:id")
