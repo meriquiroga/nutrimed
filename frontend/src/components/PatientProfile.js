@@ -4,45 +4,40 @@ import { connect } from "react-redux"
 const PatientProfile = () => {
    return (
       <div className="profile">
-         <div className="ladoProfile">
+         <div className="leftProfile">
             <img
                className="profileImg"
                src="https://jejuhydrofarms.com/wp-content/uploads/2020/05/blank-profile-picture-973460_1280.png"
                alt="profile"
             />
-            <h5>Hola "nombre"</h5>
+            <h4>Hola "nombre"</h4>
             <p>
-               Para poder sacar turno puedes completar tus datos haciendo click
-               en el siguiente enlace
+               Para poder sacar turno debés completar tus datos haciendo click
+               en el siguiente botón.
             </p>
-            <Link className="linkCompleta" to="/patientdata">
-               Completá tu perfil
-            </Link>
+            <button><Link to="/patientdata">
+               COMPLETÁ TU PERFIL
+            </Link></button>
          </div>
          <div>
             <div className="centroProfile">
-               <h1 className="tituloProfile">MIS DATOS</h1>
+               <h3 className="tituloProfile">Mis datos</h3>
                <div className="datosProfile">
-                  <h4>Nombre:</h4>
-                  <h4>Apellido:</h4>
+                  <p>Nombre:</p>
+                  <p>Apellido:</p>
+                  <p>DNI:</p>
+                  <p>Dirección:</p>
+                  <p>Teléfono:</p>
+                  <p>E-mail:</p>
                </div>
-               <div className="datosProfile">
-                  <h4>DNI:</h4>
-                  <h4>Direccion</h4>
-               </div>
-               <div className="datosProfile">
-                  <h4>Telefono</h4>
-                  <h4>Email</h4>
-               </div>
-               <div className="datosProfile">
-                  <h4>Historial Clinico</h4>
-                  <h4>Mis doctores</h4>
+               <div className="underConstruction">
+                  <h4>En construcción</h4>
                </div>
             </div>
          </div>
-         <div className="ladoProfile">
-            <h3 className="proxTurnos">PROXIMOS TURNOS</h3>
-            <h5 className="turnos">No tenes turnos por el momento</h5>
+         <div className="rightProfile">
+            <h3 className="proxTurnos">PRÓXIMOS TURNOS</h3>
+            <p className="turnos">No tenés turnos programados.</p>
          </div>
       </div>
    )
