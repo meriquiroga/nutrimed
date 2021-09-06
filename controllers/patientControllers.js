@@ -4,9 +4,9 @@ const jwt = require("jsonwebtoken")
 
 const patientControllers = {
    singIn: async (req, res) => {
-      const { mail, password, flagGoogle } = req.body
+      const {data, password, flagGoogle } = req.body
       try {
-         let userExist = await Patient.findOne({ "data.mail": mail }).populate(
+         let userExist = await Patient.findOne({ "data.mail": data.mail }).populate(
             "medicalData.doctorID",
             { name: 1, lastName: 1, registration: 1 }
          )
@@ -24,16 +24,15 @@ const patientControllers = {
       }
    },
    addMedicalData: async (req, res) => {
-      console.log(req.user._id)
       try {
          let newMedicalData = await Patient.findOneAndUpdate(
             { _id: req.params.id },
-            {$push: {medicalData: {doctorID: req.user._id,description: req.body.description}}},{ new: true })
+            {$push: {medicalData: {doctorId: req.user._id, description: req.body.description}}},{ new: true }).populate("medicalData.doctorId", { name: 1, lastName: 1, registration: 1 })
           res.json({success:true, res:newMedicalData.medicalData})
       }catch (err){
       res.json({success: false, res: err.message});}
     },
-    putPatient: async (req, res) => {
+    editProfile: async (req, res) => {
       try {
         let modifyPatient = await Patient.findOneAndUpdate({ _id: req.user._id },{ ...req.body },{ new: true });
         if (modifyPatient) {

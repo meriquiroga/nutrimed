@@ -14,11 +14,11 @@ const patientSchema = new mongoose.Schema({
       },
       phoneNumber: { type: Number, default: null },
       mail: { type: String, default: null },
-      clinicHistory: { type: String, default: null },
    },
+   clinicHistory: { type: String, default: null },
    medicalData: [
       {
-         doctorID: { type: mongoose.Types.ObjectId, ref: "doctor" },
+         doctorId: { type: mongoose.Types.ObjectId, ref: "doctor" },
          description: { type: String, default: null },
       },
    ],

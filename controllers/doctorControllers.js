@@ -4,12 +4,9 @@ const jwt = require("jsonwebtoken");
 
 const doctorControllers = {
   singIn: async (req, res) => {
-    const { mail, password, flagGoogle } = req.body;
+    const { data, password, flagGoogle } = req.body;
     try {
-      let userExist = await Doctor.findOne({ "data.mail": mail }).populate(
-        "appointment.patientId",
-        { password: 0, _v: 0 }
-      );
+      let userExist = await Doctor.findOne({ "data.mail": data.mail });
       if (!userExist)
         throw new Error("The data entered is not valid. Please, try again.");
       if (userExist.google && !flagGoogle)
@@ -18,7 +15,7 @@ const doctorControllers = {
       if (!match)
         throw new Error("The data entered is not valid. Please, try again.");
       let token = jwt.sign({ ...userExist }, process.env.SECRETOKEN);
-      res.json({ success: true, res: { userExist, token } });
+      res.json({ success: true, res: { userExist, token}});
     } catch (err) {
       res.json({ success: false, res: err.message });
     }
@@ -59,7 +56,7 @@ const doctorControllers = {
             { _id: req.params.id },
             {
               $pull: {
-                review: { patientId: req.user._id, text: req.body.text },
+                review: {_id:req.body.reviewId},
               },
             },
             { new: true }
@@ -74,7 +71,7 @@ const doctorControllers = {
   editProfile: async (req, res) => {
     try {
       let changedDoctor = await Doctor.findOneAndUpdate(
-        { _id: req.params.id },
+        { _id: req.user._id },
         { ...req.body },
         { new: true }
       );
@@ -89,14 +86,14 @@ const doctorControllers = {
   },
   getDoctorById: async (req, res) => {
     try {
-      let doctor = await Doctor.findOne({ _id: req.params.doctorId });
+      let doctor = await Doctor.findOne({ _id: req.params.id });
       if (doctor) {
-        res.json({ success: true, res: doctor });
+        res.json({ success: true, res:doctor});
       } else {
         throw new Error();
       }
     } catch (err) {
-      res.json({ success: false, res: err.message });
+      res.json({ success: false, res:err.message});
     }
   },
   getDoctors: async (req, res) => {
