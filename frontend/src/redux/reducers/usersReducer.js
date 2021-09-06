@@ -4,7 +4,7 @@ const usersReducer = (state={dataUser:{}, token: null, doctors:[]}, action) => {
             console.log(action.payload)
             return {
                 ...state,
-                dataUser: action.payload,
+                dataUser: action.payload.newUser,
                 token: action.payload.token
             }
             case "GET_ALL_DOCTORS":

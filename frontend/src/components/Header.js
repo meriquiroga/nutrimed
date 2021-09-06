@@ -1,6 +1,14 @@
-import { NavLink } from "react-router-dom"
+import { connect } from "react-redux"
+import { Link, NavLink } from "react-router-dom"
+import { useState } from "react"
 
-const Header = () => {
+const Header = (props) => {
+
+
+   const buttonHandler = () => {
+      props.valid ? props.history.push("/appointment") : props.history.push("/patient/profile")
+   }
+
    return (
       <header>
          <div className="navbar">
@@ -11,26 +19,33 @@ const Header = () => {
                      <p>HOME</p>
                   </NavLink>
                </li>
-               <li>
+               {!props.valid && <li>
                   <NavLink to="/signup">
                      <p>CREAR CUENTA</p>
                   </NavLink>
-               </li>
-               <li>
+               </li>}
+               {!props.valid && <li>
                   <NavLink to="/">
                      <p>INGRESAR</p>
                   </NavLink>
-               </li>
-               <li>
+               </li>}
+               {props.valid && <li>
                   <NavLink to="/patient">
                      <p>PERFIL</p>
                   </NavLink>
-               </li>
+               </li>}
             </ul>
          </div>
-         <button>SOLICITAR TURNO</button>
+         {! props.user.doc && <button onClick={buttonHandler}>SOLICITAR TURNO</button>}
       </header>
    )
 }
 
-export default Header
+const mapStateToProps = (state) => {
+   return {
+      valid: state.users.token,
+      user: state.users.dataUser
+   }
+}
+
+export default connect(mapStateToProps)(Header)
