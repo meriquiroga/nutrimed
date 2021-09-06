@@ -68,6 +68,19 @@ const doctorControllers = {
         }catch(err){
             res.json({success:false, res:err.message})
         }
-    }
+    },
+
+    getDoctors: async (req, res) => {
+      try {
+        let doctors = await Doctor.find();
+        if (doctors) {
+          res.json({ success: true, res: doctors });
+        } else {
+          throw new Error();
+        }
+      } catch (err) {
+        res.json({ success: false, res: err.message });
+      }
+    },
 }
 module.exports = doctorControllers

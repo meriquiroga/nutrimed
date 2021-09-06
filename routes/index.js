@@ -13,6 +13,8 @@ router.route("/user")
 router.route("/doctor")
 .get(doctorControllers.singIn)
 
+router.route("/doctors").get(doctorControllers.getDoctors);
+
 router.route('/doctor/:id')
 .get(doctorControllers.getDoctorById)
 .put(passport.authenticate('jwt',{session:false}),doctorControllers.changedReview)
