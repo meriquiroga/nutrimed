@@ -7,8 +7,9 @@ import SignUpPat from "./components/SignUpPat"
 // import { connect } from "react-redux";
 // import {useEffect} from "react"
 import DoctorInformation from './components/DoctorInformation'
+import SignUpDoc from "./components/SignUpDoc"
 
-const App = (props) => {
+const App = () => {
 
   // useEffect(()=>{
   //   if (localStorage.getItem("token"){
@@ -22,8 +23,9 @@ const App = (props) => {
         <Header />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path='/signup' component={SignUpPat}/>
+            <Route path='/signup' component={SignUpPat} />
             <Route path="/information" component={DoctorInformation} />
+            <Route path="/editdoc" component={SignUpDoc} />
           </Switch>
         <Footer />
       </BrowserRouter>

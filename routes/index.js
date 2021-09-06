@@ -29,6 +29,10 @@ router.route('/patient/:id')
 router.route('/appointment/:id')
 .post(passport.authenticate('jwt',{session:false}),appointmentControllers.addAppointment)
 
+router.route('/doctor/perfil/:id')
+.put(doctorControllers.editProfile)
+
+
 module.exports=router
 
 

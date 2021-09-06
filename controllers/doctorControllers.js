@@ -60,6 +60,19 @@ const doctorControllers = {
         }catch(err){
             res.json({success:false, res:err.message})
         }
+    },
+
+    editProfile: async(req, res)=>{
+        try{
+            let changedDoctor= await Doctor.findOneAndUpdate({_id : req.params.id},{...req.body},{new:true})
+            if(changedDoctor){
+                res.json({success:true, res:changedDoctor})
+            }else {
+                throw new Error()
+            }
+        }catch(err){
+            res.json({success: false, res:err.message})
+        }
     }
 }
 module.exports = doctorControllers
