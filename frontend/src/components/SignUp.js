@@ -10,6 +10,8 @@ import { Link } from "react-router-dom"
 
 
 const SignUp = ({signUpUser}) => {
+
+
     let breaker = true
     const [valueIn, setValueIn] = useState("")
     const [newUser, setNewUser] = useState({
@@ -86,6 +88,7 @@ const SignUp = ({signUpUser}) => {
 
 
     const submitHandler = () => {
+        console.log("hola")
         // validFields(newUser)
         // if (breaker)
         if (valueIn === "prof") newUser.doc = true
@@ -152,9 +155,6 @@ const SignUp = ({signUpUser}) => {
                     </div>
                 </div>
             </div>
-
-            
-
         </>
     )
 }
