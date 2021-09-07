@@ -1,10 +1,12 @@
 import { connect } from "react-redux"
 import { NavLink, Link } from "react-router-dom"
-import { useState } from "react"
+import userActions from "../redux/actions/userActions"
 
 const Header = (props) => {
 
-
+const outHandler = () => {
+   props.logOut()
+}
 
    return (
       <header>
@@ -31,6 +33,11 @@ const Header = (props) => {
                      <p>PERFIL</p>
                   </NavLink>
                </li>}
+               {props.valid && <li>
+                  <NavLink onClick={outHandler} to="/" >
+                     <p>SALIR</p>
+                  </NavLink>
+               </li>}
             </ul>
          </div>
          {!props.user.doc && <button><Link to={props.valid ? "/appointment" : "/signup"}>SOLICITAR TURNO</Link></button>}
@@ -45,4 +52,9 @@ const mapStateToProps = (state) => {
    }
 }
 
-export default connect(mapStateToProps)(Header)
+const mapDispatchToProps = {
+   logOut: userActions.logOut
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

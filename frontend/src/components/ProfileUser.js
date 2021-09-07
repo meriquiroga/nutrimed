@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 
 const ProfileUser = (props) => {
+   console.log(props)
    return (
       <div className="profile">
          <div className="leftProfile">
@@ -14,23 +15,24 @@ const ProfileUser = (props) => {
                Para poder sacar turno es necesario completar tus datos haciendo click
                en el siguiente botón.
             </p>
-            <button><Link to={!props.user.doc ? "/patient/profile" : "/doctor/profile"}>
-               COMPLETÁ TU PERFIL
-            </Link></button>
+            <Link className="linkCompleta" to={!props.user.newUser.doc ? "/patient/profile" : "/doc/profile"}>
+               Complete su perfil
+            </Link>
          </div>
          <div>
             <div className="centroProfile">
                <h3 className="tituloProfile">Mis datos</h3>
                <div className="datosProfile">
-                  <p>Nombre: {props.user.name}</p>
-                  <p>Apellido: {props.user.lastName}</p>
-                  <p>DNI: {!props.user.dni ? "A completar en su perfil" : props.user.dni}</p>
-                  <p>Domicilio: {!props.user.data.direction.street ? "A completar en su perfil" : props.user.data.direction.street, props.user.data.direction.num}</p>
-                  <p>Teléfono: {!props.user.data.phoneNumber ? "A completar en su perfil" : props.user.data.phoneNumber}</p>
-                  <p>E-mail: {props.user.data.mail}</p>
+                  <h4>Nombre: {props.user.newUser.name}</h4>
+                  <h4>Apellido: {props.user.newUser.lastName}</h4>
                </div>
-               <div>
-                  <img className="profileImg" src="/assets/date-picker-fxa.jpg" alt=""/>
+               <div className="datosProfile">
+                  <h4>DNI: {!props.user.newUser.dni ? "A completar en su perfil" : props.user.newUser.dni}</h4>
+                  <h4>Direccion: {!props.user.newUser.data.direction.street ? "A completar en su perfil" : `${props.user.newUser.data.direction.street} ${props.user.newUser.data.direction.num}`}</h4>
+               </div>
+               <div className="datosProfile">
+                  {<h4>Telefono: {!props.user.newUser.data.phoneNumber ? "A completar en su perfil" : props.user.newUser.data.phoneNumber}</h4>}
+                  { <h4>Email: {props.user.newUser.data.mail}</h4>}
                </div>
             </div>
          </div>

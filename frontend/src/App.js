@@ -14,6 +14,7 @@ import EditProfileDoctor from "./components/EditProfileDoctor"
 import { connect } from "react-redux";
 import {useEffect} from "react"
 import userActions from "./redux/actions/userActions"
+import Login from "./components/Login"
 
 
 const App = (props) => {
@@ -35,10 +36,11 @@ const App = (props) => {
             <Route path='/staff/:id' component={EachDoctor}/>
             <Route path="/appointment" component={Appointment} />
             <Route path="/shifts" component={Shifts} />
-            {(props.valid && props.user.doc) &&<Route exact path="/doc/profile" component={EditProfileDoctor} />}
+            {(props.valid && props.user.newUser.doc) &&<Route exact path="/doc/profile" component={EditProfileDoctor} />}
             {props.valid &&<Route exact path="/patient" component={Profile} />}
             {props.valid &&<Route path="/doctor" component={Profile} />}
-            {(props.valid && !props.user.doc) && <Route exact path="/patient/profile" component={EditProfilePatient}/>}
+            {(props.valid && !props.user.newUser.doc) && <Route exact path="/patient/profile" component={EditProfilePatient}/>}
+            <Route path="/login" component={Login}/>
             <Redirect to="/" />
          </Switch>
          <Footer />

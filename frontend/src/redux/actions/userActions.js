@@ -31,6 +31,39 @@ const userActions = {
         }}
     },
 
+    logIn: (user, validUser) => {
+        
+        let typeUser = null
+        if (validUser === "comun"){
+            typeUser = "patient"
+        }else {
+            typeUser = "doctor"
+        }
+        return async (dispatch) => {
+        try {
+            console.log(user)
+            let res = await axios.get(`http://localhost:4000/api/${typeUser}`, (user))
+            console.log(res)
+            if(res.data.success)  {
+                dispatch({type: "SIGN_UP", payload: {newUser: res.data, token: res.data.res.token}})
+                
+            }else {
+                console.log(res)
+                throw new Error()
+                
+            }
+        }catch(err){
+            return ({success: false, res: err.message})
+        }
+        }    
+    },
+
+    logOut: () => {
+        return(dispatch) => {
+            dispatch({type: "LOG_OUT"})
+        }
+    }
+
 }
 
 export default userActions
