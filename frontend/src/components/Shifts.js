@@ -1,4 +1,4 @@
-// import Calendar from "/Calendar"
+import useCalendar from "./Calendar"
 
 const Shifts = () => {
    const {
@@ -9,7 +9,7 @@ const Shifts = () => {
       monthNames,
       getNextMonth,
       getPrevMonth,
-   } = Calendar()
+   } = useCalendar()
 
    const dateClickHandler = (date) => {
       console.log(date)
