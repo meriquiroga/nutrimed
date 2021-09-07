@@ -5,9 +5,9 @@ const userActions = {
     signUpUser: (user) => {
         return async (dispatch) => {
             try {
-                let response = await axios.post("http://localhost:4000/api/user", user)
-                if (response.data.success) {
-                    dispatch({type: "SIGN_UP", payload: response.data.res})
+                let res = await axios.post("http://localhost:4000/api/user", user)
+                if (res.data.success) {
+                    dispatch({type: "SIGN_UP", payload: res.data.res})
                     return {success: true}
                 }
                 
@@ -25,7 +25,6 @@ const userActions = {
                         Authorization: "Bearer " + token
                     }
                 })
-                console.log(res)
             dispatch({type: "SIGN", payload: {newUser: res.data, token}})
         }catch(err) {
             return dispatch({type: "LOG_OUT"})
