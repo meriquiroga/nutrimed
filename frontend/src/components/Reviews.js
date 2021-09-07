@@ -44,7 +44,7 @@ const Reviews = ({ reviews, dataUser, doctorId, userToken, addReview }) => {
           onChange={editTextReviewHandler}
           defaultValue={text}
         />
-        <button onClick={addReviewHandler}>ENVIAR</button>
+        <button id="buttonSign" onClick={addReviewHandler}>ENVIAR</button>
       </div>
     </div>
   );

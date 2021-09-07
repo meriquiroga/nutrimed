@@ -6,7 +6,7 @@ const Main = () => {
         <div className="hero" style={{ backgroundImage: "url('/assets/hero3.jpg')"}}>
             <div className="insideHero">
                 <h1>Enfocados en tu bienestar integral.</h1>
-                <button><Link to="/staff">CONOCENOS</Link></button>
+                <button id="buttonSign"><Link to="/staff">CONOCENOS</Link></button>
             </div>
         </div>
         <div className="iconCardsContainer">

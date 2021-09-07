@@ -129,7 +129,7 @@ const SignUp = ({signUpUser}) => {
                     <input type="email" placeholder="Email" name="data" onChange={addUserHandler} defaultValue={newUser.data.mail}/>
                     <input style={{display:disp}}  type="text" placeholder="Contraseña de profesional" name="passwordAdm" onChange={addUserHandler} defaultValue={newUser.passwordAdm}/>
                     </div>
-                    <button onClick={submitHandler} >REGISTRARSE</button>
+                    <button  id="buttonSign" onClick={submitHandler} >REGISTRARSE</button>
                     <div style={{display:dispGo}}>
                         <div >
                             <GoogleLogin
