@@ -73,6 +73,7 @@ const doctorActions = {
   },
 
   getAppointments: (token) => {
+    console.log("borrame, Carla");
     return async (dispatch, getState) => {
       try {
         let res = await axios.get(
