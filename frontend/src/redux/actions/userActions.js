@@ -25,7 +25,7 @@ const userActions = {
                         Authorization: "Bearer " + token
                     }
                 })
-            dispatch({type: "SIGN", payload: {newUser: res.data, token}})
+            dispatch({type: "SIGN", payload: {userExist: res.data, token}})
         }catch(err) {
             return dispatch({type: "LOG_OUT"})
         }}
@@ -45,7 +45,7 @@ const userActions = {
             let res = await axios.get(`http://localhost:4000/api/${typeUser}`, (user))
             console.log(res)
             if(res.data.success)  {
-                dispatch({type: "SIGN_UP", payload: {newUser: res.data, token: res.data.res.token}})
+                dispatch({type: "SIGN_UP", payload: {userExist: res.data, token: res.data.res.token}})
                 
             }else {
                 console.log(res)
