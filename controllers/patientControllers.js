@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken")
 
 const patientControllers = {
    signIn: async (req, res) => {
-      const {data, password} = req.body
+      const {data, password, flagGoogle} = req.body
       console.log(req.body)
       try {
          let userExist = await Patient.findOne({
@@ -16,7 +16,7 @@ const patientControllers = {
          })
          if (!userExist)
             throw new Error("The data entered is not valid. Please, try again.")
-         if (!userExist.google)
+         if (userExist.google && !flagGoogle)
             throw new Error("Sign in with Google.")
          let match = bcryptjs.compareSync(password, userExist.password)
          if (!match)

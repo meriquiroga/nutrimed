@@ -24,7 +24,7 @@ const Login = (props) => {
     let newUserWithGoogle = {
       data: { mail: res.profileObj.email },
       password: res.profileObj.googleId,
-      google: true
+      flagGoogle: true
     };
     props.logIn(newUserWithGoogle, validUser);
   };
@@ -34,7 +34,7 @@ const Login = (props) => {
       let logWithFacebook = {
         data: { mail: res.email },
         password: res.id,
-        google: true
+        flagGoogle: true
       };
       props
         .logIn(logWithFacebook, validUser)
@@ -50,7 +50,6 @@ const Login = (props) => {
   };
 
   const submitUserLog = () => {
-    console.log(userLog);
     props.logIn(userLog, validUser);
   };
 

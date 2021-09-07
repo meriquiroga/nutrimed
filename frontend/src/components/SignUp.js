@@ -20,8 +20,8 @@ const SignUp = ({signUpUser}) => {
         passwordAdm: "",
         validPassword: "",
         src: "",
-        doc: false
-
+        doc: false,
+        google: false
     })
 
     const Toast = Swal.mixin({

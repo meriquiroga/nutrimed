@@ -33,7 +33,7 @@ const userActions = {
     },
 
     logIn: (user, validUser) => {
-        
+        console.log(user)
         let typeUser = null
         if (validUser === "comun"){
             typeUser = "patient"
