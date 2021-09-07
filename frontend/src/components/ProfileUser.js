@@ -1,17 +1,7 @@
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
-import doctorActions from "../redux/actions/doctorActions"
-import { useEffect } from "react"
-import { useState } from "react"
 
 const ProfileUser = (props) => {
-   const [appointments, setAppointments] = useState([])
-   console.log(props)
-
-   useEffect(() => {
-      props.getAppointments(props.token).then((res) => console.log(res))
-   }, [])
-
    return (
       <div className="profile">
          <div className="leftProfile">
@@ -93,8 +83,4 @@ const mapStateToProps = (state) => {
    }
 }
 
-const mapDispatchToProps = {
-   getAppointments: doctorActions.getAppointments,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileUser)
+export default connect(mapStateToProps)(ProfileUser)

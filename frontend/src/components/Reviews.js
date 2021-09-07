@@ -39,11 +39,11 @@ const Reviews = ({ reviews, dataUser, doctorId, userToken, addReview }) => {
       <ScrollableFeed className="divComentaries">{everyReview}</ScrollableFeed>
       <div>
         <input
-          placeholder="review"
+          placeholder="Dejale tu feedback al profesional"
           onChange={editTextReviewHandler}
           defaultValue={text}
         />
-        <button onClick={addReviewHandler}>enviar</button>
+        <button onClick={addReviewHandler}>ENVIAR</button>
       </div>
     </div>
   );

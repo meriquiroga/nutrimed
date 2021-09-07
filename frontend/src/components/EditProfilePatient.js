@@ -13,10 +13,8 @@ const EditProfilePatient = (props) => {
             num: "",
             city: "",
          },
-         mail,
-         phoneNumber: "",
+         socialWork: "",
       },
-      socialWork: "",
    })
 
    const inputPreview = useRef(null)

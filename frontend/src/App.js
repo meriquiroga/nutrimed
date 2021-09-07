@@ -19,7 +19,7 @@ import ProfileDoctor from "./components/ProfileDoctor"
 
 
 const App = (props) => {
-
+   console.log(props)
    useEffect(()=>{
      if (localStorage.getItem("token")){
          props.logWithLs(localStorage.getItem("token"))
@@ -40,7 +40,7 @@ const App = (props) => {
             {props.valid &&<Route exact path="/patient" component={Profile} />}
             {props.valid &&<Route path="/doctor" component={Profile} />}
             {(props.valid && !props.user.doc) && <Route exact path="/patient/profile" component={EditProfilePatient}/>}
-            <Route path="/login" component={Login}/>
+            {!props.valid &&<Route path="/login" component={Login}/>}
             <Redirect to="/" />
          </Switch>
          <Footer />
