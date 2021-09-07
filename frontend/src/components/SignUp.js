@@ -37,7 +37,8 @@ const SignUp = ({signUpUser}) => {
     })
 
     function validFields(field) {
-        for (var i in field){
+        for (var i in field ){
+            console.log(i)
             if(!field[i].length){
                 Toast.fire({
                     icon: 'error',

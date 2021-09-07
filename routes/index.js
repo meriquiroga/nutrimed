@@ -9,12 +9,21 @@ const appointmentControllers = require("../controllers/appointmentControllers");
 router.route("/user").post(userControllers.addUser);
 
 router
+<<<<<<< HEAD
   .route("/doctor")
   .get(doctorControllers.signIn)
   .put(
     passport.authenticate("jwt", { session: false }),
     doctorControllers.editProfile
   );
+=======
+   .route("/doctor")
+   .post(doctorControllers.signIn)
+   .put(
+      passport.authenticate("jwt", { session: false }),
+      doctorControllers.editProfile
+   )
+>>>>>>> 06aa5a502c183a3fb65d269b5a6d6f553b8c0294
 
 router.route("/doctors").get(doctorControllers.getDoctors);
 
@@ -27,12 +36,21 @@ router
   );
 
 router
+<<<<<<< HEAD
   .route("/patient")
   .post(patientControllers.signIn)
   .put(
     passport.authenticate("jwt", { session: false }),
     patientControllers.editProfile
   );
+=======
+   .route("/patient")
+   .post(patientControllers.signIn)
+   .put(
+      passport.authenticate("jwt", { session: false }),
+      patientControllers.editProfile
+   )
+>>>>>>> 06aa5a502c183a3fb65d269b5a6d6f553b8c0294
 
 router.route("/patients").get(patientControllers.getPatients);
 

@@ -7,6 +7,10 @@ const Header = (props) => {
     props.logOut();
   };
 
+  const outHandler = () => {
+    props.logOut();
+  };
+
   return (
     <header>
       <div className="navbar">
@@ -47,13 +51,7 @@ const Header = (props) => {
           )}
         </ul>
       </div>
-      {!props.user.doc && (
-        <button>
-          <Link to={props.valid ? "/appointment" : "/signup"}>
-            SOLICITAR TURNO
-          </Link>
-        </button>
-      )}
+      {/* {!props.user.userExist.doc && <button><Link to={props.valid ? "/appointment" : "/signup"}>SOLICITAR TURNO</Link></button>} */}
     </header>
   );
 };

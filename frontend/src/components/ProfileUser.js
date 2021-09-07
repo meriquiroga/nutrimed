@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 const ProfileUser = (props) => {
-  console.log(props);
   return (
     <div className="profile">
       <div className="leftProfile">
@@ -35,7 +34,7 @@ const ProfileUser = (props) => {
               DNI:{" "}
               {!props.user.userExist.dni
                 ? "A completar en su perfil"
-                : props.useruserExist.userExist.dni}
+                : props.user.userExist.dni}
             </h4>
             <h4>
               Direccion:{" "}

@@ -71,6 +71,27 @@ const doctorActions = {
       }
     };
   },
+
+  getAppointments: (token) => {
+    return async (dispatch, getState) => {
+      try {
+        let res = await axios.get(
+          "http://localhost:4000/api/appointments/",
+          {},
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (res.data.success) {
+          return { success: true, res: res.data.res };
+        }
+      } catch (err) {
+        return { success: false, res: err };
+      }
+    };
+  },
 };
 
 export default doctorActions;
