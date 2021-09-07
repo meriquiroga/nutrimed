@@ -1,6 +1,13 @@
-import {NavLink} from 'react-router-dom'
+import { connect } from "react-redux"
+import { NavLink, Link } from "react-router-dom"
+import userActions from "../redux/actions/userActions"
 
-const Footer = () => {
+const Footer = (props) => {
+
+   const outHandler = () => {
+      props.logOut()
+   }
+
     return (
         <footer>
             <div>
@@ -10,21 +17,49 @@ const Footer = () => {
                <img src='/assets/linkedin.png' alt=""/>
             </div>
             <div className="footerNavbar">
-                <ul>
-                    <li>
-                    <NavLink exact to="/"><p>HOME</p></NavLink>
-                    </li>
-                    <li>
-                    <NavLink to="/signup"><p>CREAR CUENTA</p></NavLink>
-                    </li>
-                    <li>
-                    <NavLink to="/"><p>INGRESAR</p></NavLink>
-                    </li>
-                </ul>
+            <ul>
+               <li>
+                  <NavLink exact to="/">
+                     <p>HOME</p>
+                  </NavLink>
+               </li>
+               {!props.valid && <li>
+                  <NavLink to="/signup">
+                     <p>CREAR CUENTA</p>
+                  </NavLink>
+               </li>}
+               {!props.valid && <li>
+                  <NavLink to="/login">
+                     <p>INGRESAR</p>
+                  </NavLink>
+               </li>}
+               {props.valid && <li>
+                  <NavLink to="/patient">
+                     <p>PERFIL</p>
+                  </NavLink>
+               </li>}
+               {props.valid && <li>
+                  <NavLink onClick={outHandler} to="/" >
+                     <p>SALIR</p>
+                  </NavLink>
+               </li>}
+            </ul>
             </div>
             <p>© Copyright 2021 | NutriMed. </p>
         </footer>
     )
 }
 
-export default Footer
+const mapStateToProps = (state) => {
+   return {
+      valid: state.users.token,
+      user: state.users.dataUser
+   }
+}
+
+const mapDispatchToProps = {
+   logOut: userActions.logOut
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer)
