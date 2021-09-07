@@ -2,24 +2,27 @@ import axios from "axios";
 
 const doctorActions = {
   editProfile: (typeUser, profileEdited, token) => {
-    let type = ""
-    if (typeUser)  type = "doctor"
-    else  type = "patient"
+    let type = "";
+    if (typeUser) type = "doctor";
+    else type = "patient";
     return async () => {
-        try {
-            let response = await axios.put(`http://localhost:4000/api/${type}`, {...profileEdited},
-            {headers: {
-                Authorization: "Bearer " + token
-                }
-            })
-            if (response.data.success){
-                return {success: true}
-            }
-
-        } catch(err) {
-            return {success: false, res: err}
+      try {
+        let response = await axios.put(
+          `http://localhost:4000/api/${type}`,
+          { ...profileEdited },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (response.data.success) {
+          return { success: true };
         }
-    }
+      } catch (err) {
+        return { success: false, res: err };
+      }
+    };
   },
   getDoctors: () => {
     return async (dispatch, getState) => {

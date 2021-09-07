@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import doctorActions from "../redux/actions/doctorActions";
 
 const EditProfilePatient = (props) => {
-  const mail = props.user.newUser.data.mail
+  const mail = props.user.userExist.data.mail;
   const [actPat, setActPat] = useState({
     dni: "",
     data: {
@@ -122,7 +122,8 @@ const EditProfilePatient = (props) => {
             onChange={addDocHandler}
             defaultValue={actPat.data.direction.city}
           />
-          <select id="optionObraSocial"
+          <select
+            id="optionObraSocial"
             name="socialWork"
             onChange={addDocHandler}
             defaultValue={actPat.socialWork}
@@ -168,4 +169,4 @@ const mapDispatchToProps = {
   upgradePat: doctorActions.editProfile,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfilePatient)
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfilePatient);
