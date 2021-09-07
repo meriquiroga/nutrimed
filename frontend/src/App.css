@@ -209,8 +209,13 @@ footer img {
 }
 
 .profileImg {
-   width: 170px;
+   width: 160px;
+   height: 160px;
+   border-radius: 100px;
    margin: 2rem;
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
 }
 
 .leftProfile {
