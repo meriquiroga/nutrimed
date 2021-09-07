@@ -22,7 +22,7 @@ const Header = (props) => {
                   </NavLink>
                </li>}
                {!props.valid && <li>
-                  <NavLink to="/">
+                  <NavLink to="/login">
                      <p>INGRESAR</p>
                   </NavLink>
                </li>}

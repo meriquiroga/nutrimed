@@ -65,8 +65,9 @@ const EditProfileDoctor = (props) => {
     
     return (
         <>  
-         <div className="dataClient">
-         <h2>Termina de completar tus datos</h2>
+         <div className="container">
+             <div className="signUpForm">
+             <h2>Termina de completar tus datos</h2>
             <input type="number" placeholder="DNI" name="dni" onChange={addDocHandler} defaultValue={actDoc.dni}/>
             <input type="text" placeholder="Descripción" name="description" onChange={addDocHandler} defaultValue={actDoc.description}/>
             <input type="text" placeholder="N° de matrícula" name="registration" onChange={addDocHandler} defaultValue={actDoc.registration}/>
@@ -87,6 +88,8 @@ const EditProfileDoctor = (props) => {
             
 
             <Link to="/doctor">Volver al perfil</Link>
+             </div>
+
         </div>
 
         </>

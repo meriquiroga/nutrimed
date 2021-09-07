@@ -4,42 +4,39 @@ import { connect } from "react-redux"
 const ProfileUser = (props) => {
    return (
       <div className="profile">
-         <div className="ladoProfile">
-            <img
-               className="profileImg"
+         <div className="leftProfile">
+            <img className="profileImg"
                src={props.user.src}
                alt="profile"
             />
-            <h5>Bienvenido {props.user.name}</h5>
+            <h4>Bienvenido/a, {props.user.name}</h4>
             <p>
-               Para poder sacar turno puedes completar tus datos haciendo click
-               en el siguiente enlace
+               Para poder sacar turno es necesario completar tus datos haciendo click
+               en el siguiente botón.
             </p>
-            <Link className="linkCompleta" to={!props.user.doc ? "/patient/profile" : "/doctor/profile"}>
-               Complete su perfil
-            </Link>
+            <button><Link to={!props.user.doc ? "/patient/profile" : "/doctor/profile"}>
+               COMPLETÁ TU PERFIL
+            </Link></button>
          </div>
          <div>
             <div className="centroProfile">
-               <h1 className="tituloProfile">MIS DATOS</h1>
+               <h3 className="tituloProfile">Mis datos</h3>
                <div className="datosProfile">
-                  <h4>Nombre: {props.user.name}</h4>
-                  <h4>Apellido: {props.user.lastName}</h4>
+                  <p>Nombre: {props.user.name}</p>
+                  <p>Apellido: {props.user.lastName}</p>
+                  <p>DNI: {!props.user.dni ? "A completar en su perfil" : props.user.dni}</p>
+                  <p>Domicilio: {!props.user.data.direction.street ? "A completar en su perfil" : props.user.data.direction.street, props.user.data.direction.num}</p>
+                  <p>Teléfono: {!props.user.data.phoneNumber ? "A completar en su perfil" : props.user.data.phoneNumber}</p>
+                  <p>E-mail: {props.user.data.mail}</p>
                </div>
-               <div className="datosProfile">
-                  <h4>DNI: {!props.user.dni ? "A completar en su perfil" : props.user.dni}</h4>
-                  <h4>Direccion: {!props.user.data.direction.street ? "A completar en su perfil" : props.user.data.direction.street, props.user.data.direction.num}</h4>
+               <div>
+                  <img className="profileImg" src="/assets/date-picker-fxa.jpg" alt=""/>
                </div>
-               <div className="datosProfile">
-                  <h4>Telefono: {!props.user.data.phoneNumber ? "A completar en su perfil" : props.user.data.phoneNumber}</h4>
-                  <h4>Email: {props.user.data.mail}</h4>
-               </div>
-               
             </div>
          </div>
-         <div className="ladoProfile">
-             {!props.user.doc ? <h3 className="proxTurnos">PROXIMOS TURNOS</h3> : <h3 className="proxTurnos">PRÓXIMOS PACIENTES</h3>}
-             {!props.user.doc ? <h5 className="turnos">No tenes turnos por el momento</h5> : <h5 className="turnos">No tenes pacientes por el momento</h5>}
+         <div className="rightProfile">
+             {!props.user.doc ? <h4 className="proxTurnos">PRÓXIMOS TURNOS</h4> : <h3 className="proxTurnos">PRÓXIMOS PACIENTES</h3>}
+             {!props.user.doc ? <p className="turnos">No tenés turnos programados.</p> : <h5 className="turnos">No tenes pacientes por el momento</h5>}
          </div>
       </div>
    )
