@@ -1,19 +1,9 @@
 import axios from "axios"
 
 const userActions = {
-    // getSocialWorks: () => {
-    //     return async () => {
-    //         try {
-    //             let response = await axios.get("")
-    //             return response
-    //         }catch(e){
-    //             return {}
-    //         }
-    //     }
-    // },
 
     signUpUser: (user) => {
-        return async (dispatch, getState) => {
+        return async (dispatch) => {
             try {
                 let response = await axios.post("http://localhost:4000/api/user", user)
                 if (response.data.success) {
@@ -25,7 +15,23 @@ const userActions = {
                 return {success: false, res:err.message}
             }
         }
-    }
+    },
+
+    logUserWithLs: (token) => {
+        return async (dispatch) => {
+           try {
+                let res = await axios.get("http://localhost:4000/api/verifyToken", {
+                    headers: {
+                        Authorization: "Bearer " + token
+                    }
+                })
+                console.log(res)
+            dispatch({type: "SIGN", payload: {newUser: res.data, token}})
+        }catch(err) {
+            return dispatch({type: "LOG_OUT"})
+        }}
+    },
+
 }
 
 export default userActions

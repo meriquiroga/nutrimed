@@ -10,9 +10,8 @@ import { Link } from "react-router-dom"
 
 
 const SignUp = (props) => {
-    
+    console.log(props)
     let breaker = true
-    const [socialWork, setSocialWork] = useState()
     const [valueIn, setValueIn] = useState("")
     const [newUser, setNewUser] = useState({
         name: "",
@@ -70,22 +69,20 @@ const SignUp = (props) => {
 
 
     const responseFacebook = (res) => {
-        if(res.picture){
-            let logWithFacebook = {
-                name: res.first_name,
-                lastName: res.last_name,
-    
-                data: {mail: res.email},
-                password: res.id,
-                src: res.picture.data.url,
-                google: true
-            }
-            props.signUpUser(logWithFacebook)
-            .then((res) => {console.log(res)
-    
-            }).catch((e)=> console.log(e))
+        if (res.picture){
+        let logWithFacebook = {
+            name: res.first_name,
+            lastName: res.last_name,
+            data: {mail: res.email},
+            password: res.id,
+            src: res.picture.data.url,
+            google: true
         }
-    }
+        props.signUpUser(logWithFacebook)
+        .then((res) => {console.log(res)
+
+        }).catch((e)=> console.log(e))
+    }}
 
 
     const submitHandler = () => {

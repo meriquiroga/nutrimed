@@ -59,4 +59,9 @@ router
       appointmentControllers.getAppointments
    )
 
+router
+   .route("/verifyToken")
+   .get(passport.authenticate('jwt', { session : false }), userControllers.verifyToken)
+   
+
 module.exports = router

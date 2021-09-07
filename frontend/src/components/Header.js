@@ -1,13 +1,10 @@
 import { connect } from "react-redux"
-import { NavLink } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 import { useState } from "react"
 
 const Header = (props) => {
 
 
-   const buttonHandler = () => {
-      props.valid ? props.history.push("/appointment") : props.history.push("/patient/profile")
-   }
 
    return (
       <header>
@@ -36,15 +33,8 @@ const Header = (props) => {
                </li>}
             </ul>
          </div>
-         {props.valid ? (
-  <NavLink to="/appointment">
-    <button>SOLICITAR TURNO</button>
-  </NavLink>
-) : (
-  <NavLink to="/signup">
-    <button>SOLICITAR TURNO</button>
-  </NavLink>
-)}
+         {!props.user.doc && <button><Link to={props.valid ? "/appointment" : "/signup"}>SOLICITAR TURNO</Link></button>}
+        
       </header>
    )
 }

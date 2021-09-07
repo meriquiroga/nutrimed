@@ -1,7 +1,7 @@
 const usersReducer = (state={dataUser:{}, token: null}, action) => {
     switch (action.type) {
         case "SIGN_UP":
-            console.log(action.payload)
+            localStorage.setItem("token", action.payload.token)
             return {
                 ...state,
                 dataUser: action.payload.newUser,
