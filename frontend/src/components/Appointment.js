@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 import doctorActions from "../redux/actions/doctorActions";
 
 const Appointment = (props) => {
-  console.log(props);
-  console.log(props.doctors);
   const [doctors, setDoctors] = useState([]);
   const [appointmentReady, setAppointmentReady] = useState({
     date: {
@@ -28,7 +26,6 @@ const Appointment = (props) => {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(appointmentReady);
   return (
     <>
       <h2>Bienvenido! Antes de solicitar un turno, elija un medico</h2>

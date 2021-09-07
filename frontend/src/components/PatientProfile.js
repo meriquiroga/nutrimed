@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
+import patientActions from "../redux/actions/patientActions"
 
 const PatientProfile = () => {
    return (
@@ -54,4 +55,8 @@ const mapStateToProps = (state) => {
    }
 }
 
-export default connect(mapStateToProps)(PatientProfile)
+const mapDispatchToProps = {
+   editProfilePatient: patientActions.editProfilePatient,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PatientProfile)

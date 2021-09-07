@@ -11,6 +11,7 @@ import PatientCompleteData from "./components/PatientCompleteData"
 import EachDoctor from "./pages/EachDoctor"
 import { connect } from "react-redux";
 import Appointment from "./Components/Appointment";
+import Shifts from "./components/Shifts"
 // import { connect } from "react-redux";
 // import {useEffect} from "react"
 
@@ -33,6 +34,7 @@ const App = (props) => {
             <Route path="/patient" component={Patient} />
             <Route path="/patientdata" component={PatientCompleteData} />
             <Route path="/appointment" component={Appointment} />
+            <Route path="/shifts" component={Shifts} />
          </Switch>
          <Footer />
       </BrowserRouter>
