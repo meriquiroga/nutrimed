@@ -28,30 +28,39 @@ const Appointment = (props) => {
   };
   return (
     <>
-      <h2>Bienvenido! Antes de solicitar un turno, elija un medico</h2>
+      <div className="container">
+        <div className="signUpForm">
+        <img src="/assets/appointment.png" alt="" />
+        <h3>
+          ¡Bienvenido! Antes de solicitar un turno, por favor elija el
+          profesional.
+        </h3>
+        <form>
+          <select
+            id="optionDoctor"
+            required
+            name="doctorId"
+            defaultValue={appointmentReady.doctorId}
+            onChange={appointmentValue}
+          >
+            <option value="generico">generico</option>
+            {props.doctors.map((doctor, index) => (
+              <option key={index} value={doctor._id}>
+                {doctor.name}
+              </option>
+            ))}
+          </select>
+        </form>
 
-      <form>
-        <select
-          required
-          name="doctorId"
-          defaultValue={appointmentReady.doctorId}
-          onChange={appointmentValue}
-        >
-          <option value="generico">generico</option>
-          {props.doctors.map((doctor, index) => (
-            <option key={index} value={doctor._id}>
-              {doctor.name}
-            </option>
-          ))}
-        </select>
-      </form>
+        </div>
+      </div>
     </>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    doctors: state.users.doctors,
+    doctors: state.doctors.doctors,
     patient: state.users.dataUser,
   };
 };
