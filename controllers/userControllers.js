@@ -32,7 +32,7 @@ const userControllers = {
       }
    },
    verifyToken: (req, res) => {
-      res.json({newUser: req.user})
+      res.json({userExist: req.user})
    }
 }
 module.exports = userControllers

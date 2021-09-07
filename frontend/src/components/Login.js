@@ -8,8 +8,6 @@ import { Link } from 'react-router-dom'
 
 
 const Login = (props) => {
-
-
     const [valueIn, setValueIn] = useState("")
     const [userLog, setUserLog] = useState({
         data: {mail: ""},
@@ -17,8 +15,7 @@ const Login = (props) => {
         google: false
     })
 
-    const userLogin = (e) =>{
-        
+    const userLogin = (e) =>{  
         if (e.target.name === "data"){
             setUserLog({...userLog, data: {mail: e.target.value}})
         }else {
@@ -54,7 +51,6 @@ const Login = (props) => {
     }
 
     const submitUserLog = () => {
-        console.log(userLog)
         props.logIn(userLog, validUser)
     }
     

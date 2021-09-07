@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { useState } from "react";
 
 const Reviews = ({ reviews, dataUser, doctorId, userToken, addReview }) => {
+  console.log(reviews, dataUser, doctorId, userToken, addReview)
   const [newReviews, setNewReview] = useState(reviews);
   const [text, setText] = useState("");
   const deleteReviewHandler = () => {};

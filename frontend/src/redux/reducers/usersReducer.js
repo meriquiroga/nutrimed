@@ -4,7 +4,7 @@ const usersReducer = (state={dataUser:{}, token: null}, action) => {
             localStorage.setItem("token", action.payload.token)
             return {
                 ...state,
-                dataUser: action.payload.newUser,
+                dataUser: action.payload.userExist,
                 token: action.payload.token
             }
         case "LOG_OUT":

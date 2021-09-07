@@ -25,14 +25,13 @@ const userActions = {
                         Authorization: "Bearer " + token
                     }
                 })
-            dispatch({type: "SIGN", payload: {newUser: res.data, token}})
+            dispatch({type: "SIGN_UP", payload: {userExist: res.data, token}})
         }catch(err) {
             return dispatch({type: "LOG_OUT"})
         }}
     },
 
     logIn: (user, validUser) => {
-        
         let typeUser = null
         if (validUser === "comun"){
             typeUser = "patient"
@@ -41,14 +40,12 @@ const userActions = {
         }
         return async (dispatch) => {
         try {
-            console.log(user)
-            let res = await axios.get(`http://localhost:4000/api/${typeUser}`, (user))
-            console.log(res)
+            let res = await axios.post(`http://localhost:4000/api/${typeUser}`, user)
+            console.log(res.data)
             if(res.data.success)  {
-                dispatch({type: "SIGN_UP", payload: {newUser: res.data, token: res.data.res.token}})
+                dispatch({type: "SIGN_UP", payload: {userExist: res.data.res, token: res.data.res.token}})
                 
             }else {
-                console.log(res)
                 throw new Error()
                 
             }

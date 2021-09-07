@@ -8,7 +8,7 @@ const patientControllers = {
       try {
          let userExist = await Patient.findOne({
             "data.mail": data.mail,
-         }).populate("medicalData.doctorID", {
+         }).populate("medicalData.doctorId", {
             name: 1,
             lastName: 1,
             registration: 1,

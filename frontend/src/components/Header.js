@@ -29,7 +29,7 @@ const outHandler = () => {
                   </NavLink>
                </li>}
                {props.valid && <li>
-                  <NavLink to="/patient">
+                  <NavLink to="/user">
                      <p>PERFIL</p>
                   </NavLink>
                </li>}
