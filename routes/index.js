@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
@@ -7,16 +6,8 @@ const doctorControllers = require("../controllers/doctorControllers");
 const patientControllers = require("../controllers/patientControllers");
 const appointmentControllers = require("../controllers/appointmentControllers")
 const calendarControllers = require('../controllers/calendarControllers')
-=======
-const express = require("express")
-const router = express.Router()
-const passport = require("passport")
-const userControllers = require("../controllers/userControllers")
-const doctorControllers = require("../controllers/doctorControllers")
-const patientControllers = require("../controllers/patientControllers")
-const appointmentControllers = require("../controllers/appointmentControllers")
 const validator = require("../controllers/validator")
->>>>>>> origin/franco
+
 
 router.route("/user").post(validator, userControllers.addUser)
 
