@@ -1,13 +1,12 @@
 import { connect } from "react-redux"
-import { NavLink } from "react-router-dom"
-import { useState } from "react"
+import { NavLink, Link } from "react-router-dom"
+import userActions from "../redux/actions/userActions"
 
 const Header = (props) => {
 
-
-   const buttonHandler = () => {
-      props.valid ? props.history.push("/appointment") : props.history.push("/patient/profile")
-   }
+const outHandler = () => {
+   props.logOut()
+}
 
    return (
       <header>
@@ -25,7 +24,7 @@ const Header = (props) => {
                   </NavLink>
                </li>}
                {!props.valid && <li>
-                  <NavLink to="/">
+                  <NavLink to="/login">
                      <p>INGRESAR</p>
                   </NavLink>
                </li>}
@@ -34,17 +33,15 @@ const Header = (props) => {
                      <p>PERFIL</p>
                   </NavLink>
                </li>}
+               {props.valid && <li>
+                  <NavLink onClick={outHandler} to="/" >
+                     <p>SALIR</p>
+                  </NavLink>
+               </li>}
             </ul>
          </div>
-         {props.valid ? (
-  <NavLink to="/appointment">
-    <button>SOLICITAR TURNO</button>
-  </NavLink>
-) : (
-  <NavLink to="/signup">
-    <button>SOLICITAR TURNO</button>
-  </NavLink>
-)}
+         {!props.user.doc && <button><Link to={props.valid ? "/appointment" : "/signup"}>SOLICITAR TURNO</Link></button>}
+        
       </header>
    )
 }
@@ -55,4 +52,9 @@ const mapStateToProps = (state) => {
    }
 }
 
-export default connect(mapStateToProps)(Header)
+const mapDispatchToProps = {
+   logOut: userActions.logOut
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

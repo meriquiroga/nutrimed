@@ -31,5 +31,8 @@ const userControllers = {
          res.json({ success: false, res: err.message })
       }
    },
+   verifyToken: (req, res) => {
+      res.json({newUser: req.user})
+   }
 }
 module.exports = userControllers
