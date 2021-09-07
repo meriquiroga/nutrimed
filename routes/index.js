@@ -4,7 +4,8 @@ const passport = require("passport");
 const userControllers = require("../controllers/userControllers");
 const doctorControllers = require("../controllers/doctorControllers");
 const patientControllers = require("../controllers/patientControllers");
-const appointmentControllers = require("../controllers/appointmentControllers");
+const appointmentControllers = require("../controllers/appointmentControllers")
+const calendarControllers = require('../controllers/calendarControllers')
 
 router.route("/user").post(userControllers.addUser);
 
@@ -70,4 +71,7 @@ router
       userControllers.verifyToken
    )
 
+router.route('/calendar')
+.post(calendarControllers.addDay)
+.get(calendarControllers.getAllCalendar)
 module.exports = router;

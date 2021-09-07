@@ -53,13 +53,10 @@ const doctorActions = {
       }
     };
   },
-  actionReview: (user, id, text) => {
-    return async (dispatch, getState) => {
+  actionReview: (user, id, text, action, reviewId) => {
+    return async () => {
       try {
-        let res = await axios.put(
-          `http://localhost:4000/api/doctor/${id}`,
-          { text, action: "addReview" },
-          {
+        let res = await axios.put(`http://localhost:4000/api/doctor/${id}`,{text, action:action, reviewId:reviewId},{
             headers: {
               Authorization: "Bearer " + user,
             },
@@ -73,7 +70,7 @@ const doctorActions = {
   },
 
   getAppointments: (token) => {
-    return async (dispatch, getState) => {
+    return async () => {
       try {
         let res = await axios.get(
           "http://localhost:4000/api/appointments/",

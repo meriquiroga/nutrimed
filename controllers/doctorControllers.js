@@ -6,7 +6,7 @@ const doctorControllers = {
   signIn: async (req, res) => {
     const { data, password, flagGoogle} = req.body;
     try {
-      let userExist = await Doctor.findOne({ "data.mail": data.mail });
+      let userExist = await Doctor.findOne({ "data.mail": data.mail }).populate("review.patientId", { name: 1, lastName: 1, src: 1 });
       if (!userExist)
         throw new Error("The data entered is not valid. Please, try again.");
       if (userExist.google && !flagGoogle)
@@ -74,7 +74,7 @@ const doctorControllers = {
         { _id: req.user._id },
         { ...req.body },
         { new: true }
-      );
+      ).populate("review.patientId", { name: 1, lastName: 1, src: 1 });
       if (changedDoctor) {
         res.json({ success: true, res: changedDoctor });
       } else {
@@ -86,7 +86,7 @@ const doctorControllers = {
   },
   getDoctorById: async (req, res) => {
     try {
-      let doctor = await Doctor.findOne({ _id: req.params.id });
+      let doctor = await Doctor.findOne({ _id: req.params.id }).populate("review.patientId", { name: 1, lastName: 1, src: 1 });
       if (doctor) {
         res.json({ success: true, res:doctor});
       } else {
@@ -98,7 +98,7 @@ const doctorControllers = {
   },
   getDoctors: async (req, res) => {
     try {
-      let doctors = await Doctor.find();
+      let doctors = await Doctor.find().populate("review.patientId", { name: 1, lastName: 1, src: 1 });
       if (doctors) {
         res.json({ success: true, res: doctors });
       } else {

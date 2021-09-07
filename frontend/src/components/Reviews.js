@@ -7,11 +7,18 @@ import { useState } from "react";
 const Reviews = ({ reviews, dataUser, doctorId, userToken, actionReview}) => {
   const [newReviews, setNewReview] = useState(reviews)
   const [text, setText] = useState("")
-  const [action, setAction] = useState('addReview')
-  const deleteReviewHandler = () => {
-
+ 
+  const deleteReviewHandler = (reviewId) => {
+    actionReview(userToken, doctorId, text, 'deleteReview',reviewId)
+    .then(res=>{
+      if(res.success){
+        setNewReview(res.res)
+      }else{
+        console.log(res)
+      }
+    })
   }
-  console.log(actionReview)
+ 
   const editTextReviewHandler = (e) => {
     setText(e.target.value);
   }
@@ -19,7 +26,8 @@ const Reviews = ({ reviews, dataUser, doctorId, userToken, actionReview}) => {
   const addReviewHandler = () => {
     setText('')
     if (text) {
-      actionReview(userToken, doctorId, text, action ).then((res) => {
+      actionReview(userToken, doctorId, text, 'addReview')
+      .then((res) => {
         if (res.success) {
           setNewReview([...newReviews, res.res[res.res.length - 1]])
         } else {
@@ -29,17 +37,19 @@ const Reviews = ({ reviews, dataUser, doctorId, userToken, actionReview}) => {
     }
   }
 
-  const everyReview = newReviews.map((obj) => (
+  const everyReview = newReviews.map(obj => (
     <EveryReview
       key={obj._id}
       review={obj}
       user={dataUser}
       userToken={userToken}
+      doctorId={doctorId}
       deleteReviewHandler={deleteReviewHandler}
       editTextReviewHandler={editTextReviewHandler}
     />
   ));
   return (
+    
     <div className="divReview">
       <ScrollableFeed className="divComentaries">{everyReview}</ScrollableFeed>
       <div>

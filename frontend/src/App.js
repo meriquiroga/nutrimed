@@ -18,7 +18,6 @@ import Login from "./components/Login"
 
 
 const App = (props) => {
-   console.log(props)
    useEffect(()=>{
      if (localStorage.getItem("token")){
          props.logWithLs(localStorage.getItem("token"))

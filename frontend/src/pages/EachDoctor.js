@@ -29,7 +29,6 @@ class EachDoctor extends Component {
     }
   }
   render() {
-    console.log(this.props.doctor);
     if (this.state.loading.condition) {
       return (
         <>
