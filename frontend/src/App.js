@@ -7,20 +7,22 @@ import SignUp from "./components/SignUp"
 import Staff from "./pages/Staff"
 import Profile from "./pages/Profile"
 import EachDoctor from "./pages/EachDoctor"
-import { connect } from "react-redux";
 import Appointment from "./components/Appointment";
 import Shifts from "./components/Shifts"
 import EditProfilePatient from "./components/EditProfilePatient"
 import EditProfileDoctor from "./components/EditProfileDoctor"
-// import { connect } from "react-redux";
-// import {useEffect} from "react"
+import { connect } from "react-redux";
+import {useEffect} from "react"
+import userActions from "./redux/actions/userActions"
+
 
 const App = (props) => {
-   // useEffect(()=>{
-   //   if (localStorage.getItem("token")){
-   //       props.logWithLs(localStorage.getItem("token"))
-   //   }
-   // }, [])
+
+   useEffect(()=>{
+     if (localStorage.getItem("token")){
+         props.logWithLs(localStorage.getItem("token"))
+     }
+   }, [])
 
 
    return (
@@ -50,4 +52,9 @@ const mapStateToProps = (state) => {
       user: state.users.dataUser
    }
 }
-export default connect(mapStateToProps)(App)
+
+const mapDispatchToProps = {
+   logWithLs: userActions.logUserWithLs
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
