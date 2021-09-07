@@ -8,18 +8,15 @@ import Staff from "./pages/Staff"
 import Profile from "./pages/Profile"
 import EachDoctor from "./pages/EachDoctor"
 import Appointment from "./components/Appointment"
-import Shifts from "./components/Shifts"
 import EditProfilePatient from "./components/EditProfilePatient"
 import EditProfileDoctor from "./components/EditProfileDoctor"
 import { connect } from "react-redux"
 import { useEffect } from "react"
 import userActions from "./redux/actions/userActions"
 import Login from "./components/Login"
-import ProfileDoctor from "./components/ProfileDoctor"
 import MedicalData from "./components/MedicalData"
 
 const App = (props) => {
-   console.log(props)
    useEffect(() => {
       if (localStorage.getItem("token")) {
          props.logWithLs(localStorage.getItem("token"))
@@ -34,7 +31,6 @@ const App = (props) => {
             <Route exact path="/staff" component={Staff} />
             <Route path="/staff/:id" component={EachDoctor} />
             <Route path="/appointment" component={Appointment} />
-            <Route path="/shifts" component={Shifts} />
             <Route path="/medicaldata" component={MedicalData} />
             {props.valid && props.user.doc && (
                <Route exact path="/doc/profile" component={EditProfileDoctor} />
