@@ -5,7 +5,7 @@ import doctorActions from "../redux/actions/doctorActions"
 
 
 const EditProfilePatient = (props) => {
-    // const mail = props.user.data.mail
+    const mail = props.user.newUser.data.mail
     const [valueIn, setValueIn] = useState(true)
     const [actPat, setActPat] = useState({
         dni: "",
@@ -15,7 +15,7 @@ const EditProfilePatient = (props) => {
                 num: "",
                 city: ""
             },
-            // mail,
+            mail,
             phoneNumber: "",
         },
         socialWork: "",

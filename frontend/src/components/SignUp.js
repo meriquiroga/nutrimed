@@ -10,7 +10,6 @@ import { Link } from "react-router-dom"
 
 
 const SignUp = (props) => {
-    console.log(props)
     let breaker = true
     const [valueIn, setValueIn] = useState("")
     const [newUser, setNewUser] = useState({

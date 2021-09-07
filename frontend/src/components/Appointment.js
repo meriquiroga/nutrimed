@@ -51,7 +51,7 @@ const Appointment = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    doctors: state.users.doctors,
+    doctors: state.doctors.doctors,
     patient: state.users.dataUser,
   };
 };
