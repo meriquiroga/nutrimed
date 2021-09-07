@@ -4,12 +4,15 @@ import doctorActions from "../redux/actions/doctorActions"
 import { useEffect } from "react"
 import { useState } from "react"
 import patientActions from "../redux/actions/patientActions"
+import userActions from "../redux/actions/userActions"
 
 const ProfileDoctor = (props) => {
-   useEffect(() => {
-      props.getPatiens()
-   }, [])
+   const [appointments, setAppointments] = useState([])
    console.log(props)
+
+   useEffect(() => {
+      props.getAppointments(props.token).then((res) => console.log(res))
+   }, [])
    return (
       <div className="profile">
          <div className="ladoProfile">
@@ -64,11 +67,13 @@ const mapStateToProps = (state) => {
    return {
       doctors: state.doctors.doctors,
       patients: state.patients.patients,
+      token: state.users.token,
    }
 }
 
 const mapDispatchtoProps = {
    getPatiens: patientActions.getPatients,
+   getAppointments: doctorActions.getAppointments,
 }
 
 export default connect(mapStateToProps, mapDispatchtoProps)(ProfileDoctor)

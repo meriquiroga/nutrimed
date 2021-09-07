@@ -75,7 +75,7 @@ const doctorActions = {
    getAppointments: (token) => {
       return async (dispatch, getState) => {
          try {
-            let response = await axios.get(
+            let res = await axios.get(
                "http://localhost:4000/api/appointments/",
                {},
                {
@@ -84,7 +84,7 @@ const doctorActions = {
                   },
                }
             )
-            if (response.data.success) {
+            if (res.data.success) {
                return { success: true, res: res.data.res }
             }
          } catch (err) {
