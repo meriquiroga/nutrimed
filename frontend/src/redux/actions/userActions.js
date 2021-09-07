@@ -43,13 +43,13 @@ const userActions = {
         return async (dispatch) => {
         try {
             console.log(user)
-            let res = await axios.post(`http://localhost:4000/api/${typeUser}`, user)
+            let res = await axios.get(`http://localhost:4000/api/${typeUser}`, (user))
             console.log(res)
             if(res.data.success)  {
                 dispatch({type: "SIGN_UP", payload: {newUser: res.data, token: res.data.res.token}})
                 
             }else {
-                
+                console.log(res)
                 throw new Error()
                 
             }

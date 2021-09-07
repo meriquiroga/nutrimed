@@ -3,7 +3,7 @@ const bcryptjs = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
 const patientControllers = {
-   singIn: async (req, res) => {
+   signIn: async (req, res) => {
       const {data, password, flagGoogle } = req.body
       try {
          let userExist = await Patient.findOne({ "data.mail": data.mail }).populate(

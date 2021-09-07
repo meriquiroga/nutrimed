@@ -54,7 +54,8 @@ const Login = (props) => {
     }
 
     const submitUserLog = () => {
-        props.logIn(userLog, validUser, )
+        console.log(userLog)
+        props.logIn(userLog, validUser)
     }
     
     let validUser = valueIn === "prof" ? "profesional" : "comun" 
