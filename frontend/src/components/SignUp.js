@@ -5,13 +5,13 @@ import FacebookLogin from 'react-facebook-login'
 import Swal from 'sweetalert2'
 import 'react-toastify/dist/ReactToastify.css'
 import userActions from "../redux/actions/userActions"
-import { Link } from "react-router-dom"
 
 
 
 const SignUp = ({signUpUser}) => {
     let breaker = true
     const [valueIn, setValueIn] = useState("")
+    const [error, setError] = useState(false)
     const [newUser, setNewUser] = useState({
         name: "",
         lastName: "",
@@ -21,7 +21,6 @@ const SignUp = ({signUpUser}) => {
         validPassword: "",
         src: "",
         doc: false,
-        google: false
     })
 
     const Toast = Swal.mixin({
@@ -36,20 +35,17 @@ const SignUp = ({signUpUser}) => {
         }
     })
 
+
     function validFields(field) {
         for (var i in field ){
-            console.log(i)
-            if(!field[i].length){
-                Toast.fire({
-                    icon: 'error',
-                    title: 'The field to complete is '+[i]
-                    })
+            if(!field[i].length && !Object.values([i]).includes("data")){
+                setError(true)
                 breaker = false
                 break
             }
         }  
-    }           
 
+    }           
 
     const responseGoogle = res => {
         let logWithGoogle = {
@@ -86,22 +82,27 @@ const SignUp = ({signUpUser}) => {
 
 
     const submitHandler = () => {
-        // validFields(newUser)
-        // if (breaker)
+        validFields(newUser)
+        if (breaker){
         if (valueIn === "prof") newUser.doc = true
         else newUser.doc = false
         signUpUser({...newUser, doc: newUser.doc})
         .then((res)=>console.log(res)
         )
     }
+    }
     
+    console.log(error)
+
     const addUserHandler = (e) => {
+        setError(false)
         if (e.target.name === "data"){
             setNewUser({...newUser, data: {mail: e.target.value}})
         }else{
             setNewUser({...newUser, [e.target.name]: e.target.value})
         }
     }
+
 
     const validInputHandler = (e) => {
         setValueIn(e.target.value)
@@ -120,16 +121,18 @@ const SignUp = ({signUpUser}) => {
                         <div>Paciente <input onClick={validInputHandler} type="radio" name="buttonRol" value="pat" defaultChecked/></div>
                         <div>Profesional <input onClick={validInputHandler} type="radio" name="buttonRol" value="prof"/></div>
                     </div>
-                    <div className="inputs">
-                    <input type="text" placeholder="Nombre" name="name" onChange={addUserHandler}  defaultValue={newUser.name}/>
-                    <input type="text" placeholder="Apellido"name="lastName" onChange={addUserHandler} defaultValue={newUser.lastName}/>
-                    <input type="password" placeholder="Contraseña"name="password" onChange={addUserHandler}  defaultValue={newUser.password}/>
-                    <input type="password" placeholder="Repita su contraseña"name="validPassword" onChange={addUserHandler}  defaultValue={newUser.validPassword}/>
-                    <input type="text" placeholder="Foto de perfil" name="src" onChange={addUserHandler} defaultValue={newUser.src}/>
-                    <input type="email" placeholder="Email" name="data" onChange={addUserHandler} defaultValue={newUser.data.mail}/>
-                    <input style={{display:disp}}  type="text" placeholder="Contraseña de profesional" name="passwordAdm" onChange={addUserHandler} defaultValue={newUser.passwordAdm}/>
-                    </div>
+                    <form>
+                        <div className="inputs">
+                        <input type="text" placeholder="Nombre" style={{backgroundColor: (!error ? "white" : "yellow")}} name="name" onChange={addUserHandler}  defaultValue={newUser.name} required />
+                        <input type="text" placeholder="Apellido"name="lastName" onChange={addUserHandler} defaultValue={newUser.lastName} required/>
+                        <input type="email" placeholder="Email" name="data" onChange={addUserHandler} defaultValue={newUser.data.mail} required/>
+                        <input type="password" placeholder="Contraseña"name="password" onChange={addUserHandler}  defaultValue={newUser.password} required/>
+                        <input type="password" placeholder="Repita su contraseña"name="validPassword" onChange={addUserHandler}  defaultValue={newUser.validPassword} required/>
+                        <input type="text" placeholder="Foto de perfil" name="src" onChange={addUserHandler} defaultValue={newUser.src} required/>
+                        <input style={{display:disp}}  type="text" placeholder="Contraseña de profesional" name="passwordAdm" onChange={addUserHandler} defaultValue={newUser.passwordAdm} required={valueIn === "prof" ? true : false}/>
+                        </div>
                     <button onClick={submitHandler} >REGISTRARSE</button>
+                    </form>
                     <div style={{display:dispGo}}>
                         <div >
                             <GoogleLogin

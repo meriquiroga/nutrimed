@@ -5,13 +5,15 @@ const userControllers = require("../controllers/userControllers");
 const doctorControllers = require("../controllers/doctorControllers");
 const patientControllers = require("../controllers/patientControllers");
 const appointmentControllers = require("../controllers/appointmentControllers");
+const validator = require("../controllers/validator")
+
 
 router.route("/user").post(userControllers.addUser);
 
 router
 
   .route("/doctor")
-  .post(doctorControllers.signIn)
+  .post(validator, doctorControllers.signIn)
   .put(
     passport.authenticate("jwt", { session: false }),
     doctorControllers.editProfile
@@ -30,7 +32,7 @@ router
 router
 
   .route("/patient")
-  .post(patientControllers.signIn)
+  .post(validator, patientControllers.signIn)
   .put(
     passport.authenticate("jwt", { session: false }),
     patientControllers.editProfile
