@@ -3,9 +3,9 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const patientControllers = {
-<<<<<<< HEAD
   signIn: async (req, res) => {
-    const { data, password, flagGoogle } = req.body;
+    const { data, password } = req.body;
+    console.log(req.body);
     try {
       let userExist = await Patient.findOne({
         "data.mail": data.mail,
@@ -27,6 +27,7 @@ const patientControllers = {
       res.json({ success: false, res: err.message });
     }
   },
+
   addMedicalData: async (req, res) => {
     try {
       let newMedicalData = await Patient.findOneAndUpdate(
@@ -36,43 +37,6 @@ const patientControllers = {
             medicalData: {
               doctorId: req.user._id,
               description: req.body.description,
-=======
-   signIn: async (req, res) => {
-      const {data, password} = req.body
-      console.log(req.body)
-      try {
-         let userExist = await Patient.findOne({
-            "data.mail": data.mail,
-         }).populate("medicalData.doctorId", {
-            name: 1,
-            lastName: 1,
-            registration: 1,
-         })
-         if (!userExist)
-            throw new Error("The data entered is not valid. Please, try again.")
-         if (!userExist.google)
-            throw new Error("Sign in with Google.")
-         let match = bcryptjs.compareSync(password, userExist.password)
-         if (!match)
-            throw new Error("The data entered is not valid. Please, try again.")
-         let token = jwt.sign({ ...userExist }, process.env.SECRETOKEN)
-         res.json({ success: true, res: { userExist, token } })
-      } catch (err) {
-         res.json({ success: false, res: err.message })
-      }
-   },
-   addMedicalData: async (req, res) => {
-      try {
-         let newMedicalData = await Patient.findOneAndUpdate(
-            { _id: req.params.id },
-            {
-               $push: {
-                  medicalData: {
-                     doctorId: req.user._id,
-                     description: req.body.description,
-                  },
-               },
->>>>>>> 06aa5a502c183a3fb65d269b5a6d6f553b8c0294
             },
           },
         },

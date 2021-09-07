@@ -7,10 +7,6 @@ const Header = (props) => {
     props.logOut();
   };
 
-  const outHandler = () => {
-    props.logOut();
-  };
-
   return (
     <header>
       <div className="navbar">
