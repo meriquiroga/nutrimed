@@ -35,8 +35,7 @@ const App = (props) => {
             <Route path="/appointment" component={Appointment} />
             <Route path="/shifts" component={Shifts} />
             {(props.valid && props.user.doc) &&<Route exact path="/doc/profile" component={EditProfileDoctor} />}
-            {props.valid &&<Route exact path="/patient" component={Profile} />}
-            {props.valid &&<Route path="/doctor" component={Profile} />}
+            {props.valid &&<Route exact path="/user" component={Profile} />}
             {(props.valid && !props.user.doc) && <Route exact path="/patient/profile" component={EditProfilePatient}/>}
             {!props.valid &&<Route path="/login" component={Login}/>}
             <Redirect to="/" />
