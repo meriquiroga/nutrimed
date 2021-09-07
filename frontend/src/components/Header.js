@@ -40,7 +40,7 @@ const outHandler = () => {
                </li>}
             </ul>
          </div>
-         {!props.user.doc && <button><Link to={props.valid ? "/appointment" : "/signup"}>SOLICITAR TURNO</Link></button>}
+         {!props.user.doc && <button><Link to={props.valid ? "/appointment" : "/login"}>SOLICITAR TURNO</Link></button>}
         
       </header>
    )

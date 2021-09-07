@@ -331,6 +331,8 @@ footer img {
    padding-left: 20px;
 }
 .divReview{
+   width: 80vw;
+   max-height: 25vh;
    display: flex;
    flex-direction: column;
    align-content: center;
