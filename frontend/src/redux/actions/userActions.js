@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 
 const userActions = {
    signUpUser: (user) => {
@@ -81,4 +81,4 @@ const userActions = {
    },
 }
 
-export default userActions
+export default userActions;

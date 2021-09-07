@@ -2,7 +2,13 @@ import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import doctorActions from "../redux/actions/doctorActions";
 
-const EveryReview = ({ review, user, userToken, deleteReviewHandler }) => {
+const EveryReview = ({
+  review,
+  user,
+  userToken,
+  deleteReviewHandler,
+  editTextReviewHandler,
+}) => {
   return (
     <div>
       <p>{review.text}</p>
