@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import doctorActions from "../redux/actions/doctorActions";
 
 const EditProfilePatient = (props) => {
-  const mail = props.user.newUser.data.mail
+  const mail = props.user.userExist.data.mail
   const [actPat, setActPat] = useState({
     dni: "",
     data: {

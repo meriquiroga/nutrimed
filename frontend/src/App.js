@@ -18,6 +18,7 @@ import Login from "./components/Login"
 
 
 const App = (props) => {
+   console.log(props)
    useEffect(()=>{
      if (localStorage.getItem("token")){
          props.logWithLs(localStorage.getItem("token"))
@@ -33,9 +34,10 @@ const App = (props) => {
             <Route path="/staff/:id" component={EachDoctor} />
             <Route path="/appointment" component={Appointment} />
             <Route path="/shifts" component={Shifts} />
-            {(props.valid && props.user.userExist.doc) &&<Route exact path="/doc/profile" component={EditProfileDoctor} />}
-            {props.valid &&<Route exact path="/user" component={Profile} />}
-            {(props.valid && !props.user.userExist.doc) && <Route exact path="/patient/profile" component={EditProfilePatient}/>}
+            {(props.valid && props.user.doc) &&<Route exact path="/doc/profile" component={EditProfileDoctor} />}
+            {props.valid &&<Route exact path="/patient" component={Profile} />}
+            {props.valid &&<Route path="/doctor" component={Profile} />}
+            {(props.valid && !props.user.doc) && <Route exact path="/patient/profile" component={EditProfilePatient}/>}
             {!props.valid &&<Route path="/login" component={Login}/>}
             <Redirect to="/" />
          </Switch>
