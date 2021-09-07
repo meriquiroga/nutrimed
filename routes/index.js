@@ -63,7 +63,9 @@ router
 
 router
    .route("/verifyToken")
-   .get(passport.authenticate('jwt', { session : false }), userControllers.verifyToken)
-   
+   .get(
+      passport.authenticate("jwt", { session: false }),
+      userControllers.verifyToken
+   )
 
 module.exports = router

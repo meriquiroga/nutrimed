@@ -1,36 +1,44 @@
 import axios from "axios"
 
 const userActions = {
-
-    signUpUser: (user) => {
-        console.log(user)
-        return async (dispatch) => {
-            try {
-                let res = await axios.post("http://localhost:4000/api/user", user)
-                if (res.data.success) {
-                    dispatch({type: "SIGN_UP", payload: {userExist: res.data.res, token: res.data.res.token}})
-                    return {success: true}
-                }
-                
-            }catch(err){
-                return {success: false, res:err.message}
+   signUpUser: (user) => {
+      console.log(user)
+      return async (dispatch) => {
+         try {
+            let res = await axios.post("http://localhost:4000/api/user", user)
+            if (res.data.success) {
+               dispatch({
+                  type: "SIGN_UP",
+                  payload: {
+                     userExist: res.data.res,
+                     token: res.data.res.token,
+                  },
+               })
+               return { success: true }
             }
-        }
-    },
+         } catch (err) {
+            return { success: false, res: err.message }
+         }
+      }
+   },
 
-    logUserWithLs: (token) => {
-        return async (dispatch) => {
-           try {
-                let res = await axios.get("http://localhost:4000/api/verifyToken", {
-                    headers: {
-                        Authorization: "Bearer " + token
-                    }
-                })
-            dispatch({type: "SIGN_UP", payload: {userExist: res.data, token}})
-        }catch(err) {
-            return dispatch({type: "LOG_OUT"})
-        }}
-    },
+   logUserWithLs: (token) => {
+      return async (dispatch) => {
+         try {
+            let res = await axios.get("http://localhost:4000/api/verifyToken", {
+               headers: {
+                  Authorization: "Bearer " + token,
+               },
+            })
+            dispatch({
+               type: "SIGN_UP",
+               payload: { userExist: res.data, token },
+            })
+         } catch (err) {
+            return dispatch({ type: "LOG_OUT" })
+         }
+      }
+   },
 
     logIn: (user, validUser) => {
         console.log(user)
@@ -43,28 +51,34 @@ const userActions = {
         return async (dispatch) => {
         try {
             console.log(user)
-            let res = await axios.post(`http://localhost:4000/api/${typeUser}`, (user))
+            let res = await axios.post(
+               `http://localhost:4000/api/${typeUser}`,
+               user
+            )
             console.log(res)
-            if(res.data.success)  {
-                dispatch({type: "SIGN_UP", payload: {userExist: res.data.res, token: res.data.res.token}})
-                
-            }else {
-                console.log(res)
-                throw new Error()
-                
+            if (res.data.success) {
+               dispatch({
+                  type: "SIGN_UP",
+                  payload: {
+                     userExist: res.data.res,
+                     token: res.data.res.token,
+                  },
+               })
+            } else {
+               console.log(res)
+               throw new Error()
             }
-        }catch(err){
-            return ({success: false, res: err.message})
-        }
-        }    
-    },
+         } catch (err) {
+            return { success: false, res: err.message }
+         }
+      }
+   },
 
-    logOut: () => {
-        return(dispatch) => {
-            dispatch({type: "LOG_OUT"})
-        }
-    }
-
+   logOut: () => {
+      return (dispatch) => {
+         dispatch({ type: "LOG_OUT" })
+      }
+   },
 }
 
 export default userActions

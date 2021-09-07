@@ -62,7 +62,7 @@ button {
 }
 
 button a {
-   color: white
+   color: white;
 }
 
 .hero {
@@ -143,11 +143,11 @@ footer img {
 }
 
 .doctor-image {
-    width: 200px;
-    height: 200px;
-    background-position: center;
-    background-size: cover;
-    border-radius: 100px;
+   width: 200px;
+   height: 200px;
+   background-position: center;
+   background-size: cover;
+   border-radius: 100px;
 }
 .section-doctors {
    display: flex;
@@ -292,19 +292,19 @@ footer img {
 }
 
 .doctorCardsContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 20px 60px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   padding: 20px 60px;
 }
 
 .doctorCard {
    width: 200px;
    text-align: center;
-   color: black
+   color: black;
 }
-.doc{
+.doc {
    width: 200px;
    height: 200px;
    background-position: center;
@@ -320,7 +320,7 @@ footer img {
 .containerDocCv {
    text-align: center;
    align-self: center;
-   background-color: #f0f3f5
+   background-color: #f0f3f5;
 }
 .docDescription p {
    padding: 20px 100px;
@@ -330,7 +330,7 @@ footer img {
    text-align: left;
    padding-left: 20px;
 }
-.divReview{
+.divReview {
    width: 80vw;
    max-height: 25vh;
    display: flex;
@@ -389,8 +389,6 @@ footer img {
    border-radius: 20px;
 }
 
-
-
 @media (max-width: 991px) {
    .inputs input {
       padding: 10px;
@@ -441,9 +439,6 @@ footer img {
    width: 50px;
 }
 
-.avatar img {
-   width: 20px;
-   height: 20px;
-   background-position: center;
-   background-size: cover;
+#buttonSign {
+   cursor: pointer;
 }
