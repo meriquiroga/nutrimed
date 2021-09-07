@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { connect } from "react-redux"
 import doctorActions from "../redux/actions/doctorActions"
+import { Link } from "react-router-dom"
 
-const SignUpDoc = (props) => {
-    
+const EditProfileDoctor = (props) => {
+    // const mail = props.user.data.mail
     const [valueIn, setValueIn] = useState(true)
     const [actDoc, setActDoc] = useState({
         dni: "",
@@ -16,7 +17,7 @@ const SignUpDoc = (props) => {
                 num: "",
                 city: ""
             },
-            // mail:"",
+            // mail,
             phoneNumber: "",
         },
         socialWork: "",
@@ -45,12 +46,27 @@ const SignUpDoc = (props) => {
 
 
     const submitHandler = () => {
-        props.upgradeDoc()
+        props.upgradeDoc(props.user.doc, actDoc, props.token)
     }
+
+    const allSocialWork = [
+        "MEDICAL",
+        "SWISS",
+        "APMA",
+        "OSDE",
+        "CARA",
+        "UDE",
+        "OSPIM",
+        "PREVENCIOON SALUD",
+        "SANCOR",
+        "LIAW",
+     ]
 
     
     return (
-        <>
+        <>  
+         <div className="dataClient">
+         <h2>Termina de completar tus datos</h2>
             <input type="number" placeholder="DNI" name="dni" onChange={addDocHandler} defaultValue={actDoc.dni}/>
             <input type="text" placeholder="Descripción" name="description" onChange={addDocHandler} defaultValue={actDoc.description}/>
             <input type="text" placeholder="N° de matrícula" name="registration" onChange={addDocHandler} defaultValue={actDoc.registration}/>
@@ -59,12 +75,19 @@ const SignUpDoc = (props) => {
             <input type="text" placeholder="Calle" name="street" onChange={addDocHandler} defaultValue={actDoc.data.direction.street}/>
             <input type="number" placeholder="Número" name="num" onChange={addDocHandler} defaultValue={actDoc.data.direction.num}/>
             <input type="text" placeholder="Ciudad" name="city" onChange={addDocHandler} defaultValue={actDoc.data.direction.city}/>
-            ¿Acepta Obra Social? <input type="checkbox" onClick={socialWorkHandler}/>
-            <select disabled={valueIn ? true : false} name="socialWork" >
-                <option>No tengo Obra Social</option>
-                {}
+            <h4>¿Acepta Obra Social? </h4> 
+            {valueIn ? "No" : "Si"}<input type="checkbox" onClick={socialWorkHandler}/>
+
+            <select disabled={valueIn ? true : false} onChange={addDocHandler} name="socialWork" defaultValue={actDoc.socialWork} >
+                {allSocialWork.map((social, index) => (
+                    <option key={index}>{social}</option>
+                ))}
             </select>
             <button onClick={submitHandler}>Actualizar datos</button>
+            
+
+            <Link to="/doctor">Volver al perfil</Link>
+        </div>
 
         </>
     )
@@ -72,12 +95,13 @@ const SignUpDoc = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        doctor: state.users.dataUser
+        user: state.users.dataUser,
+        token: state.users.token
     }
 }
 
 const mapDispatchToProps = {
-    upgradeDoc: doctorActions.editProfileDoctor
+    upgradeDoc: doctorActions.editProfile
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpDoc)
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfileDoctor)

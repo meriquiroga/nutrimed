@@ -5,10 +5,12 @@ import FacebookLogin from 'react-facebook-login'
 import Swal from 'sweetalert2'
 import 'react-toastify/dist/ReactToastify.css'
 import userActions from "../redux/actions/userActions"
+import { Link } from "react-router-dom"
 
 
 
-const SignUpPat = (props) => {
+const SignUp = (props) => {
+    
     let breaker = true
     const [socialWork, setSocialWork] = useState()
     const [valueIn, setValueIn] = useState("")
@@ -17,9 +19,11 @@ const SignUpPat = (props) => {
         lastName: "",
         data: {mail: ""},
         password: "",
-        passwordProf: "",
+        passwordAdm: "",
         validPassword: "",
         src: "",
+        doc: false
+
     })
 
     const Toast = Swal.mixin({
@@ -35,8 +39,6 @@ const SignUpPat = (props) => {
     })
 
     function validFields(field) {
-        // if(!field.passwordProf.length)
-        // field.passwordProf
         for (var i in field){
             if(!field[i].length){
                 Toast.fire({
@@ -68,9 +70,11 @@ const SignUpPat = (props) => {
 
 
     const responseFacebook = (res) => {
+
         let logWithFacebook = {
             name: res.first_name,
             lastName: res.last_name,
+
             data: {mail: res.email},
             password: res.id,
             src: res.picture.data.url,
@@ -86,7 +90,9 @@ const SignUpPat = (props) => {
     const submitHandler = () => {
         // validFields(newUser)
         // if (breaker) 
-        props.signUpUser(newUser)
+        if (valueIn === "prof") newUser.doc = true
+        else newUser.doc = false
+        props.signUpUser({...newUser, doc: newUser.doc})
         .then((res)=>console.log(res)
         )
     }
@@ -119,11 +125,11 @@ const SignUpPat = (props) => {
                     <div className="inputs">
                     <input type="text" placeholder="Nombre" name="name" onChange={addUserHandler}  defaultValue={newUser.name}/>
                     <input type="text" placeholder="Apellido"name="lastName" onChange={addUserHandler} defaultValue={newUser.lastName}/>
-                    <input type="email" placeholder="Email" name="data" onChange={addUserHandler} defaultValue={newUser.data.mail}/>
                     <input type="password" placeholder="Contraseña"name="password" onChange={addUserHandler}  defaultValue={newUser.password}/>
                     <input type="password" placeholder="Repita su contraseña"name="validPassword" onChange={addUserHandler}  defaultValue={newUser.validPassword}/>
                     <input type="text" placeholder="Foto de perfil" name="src" onChange={addUserHandler} defaultValue={newUser.src}/>
-                    <input style={{display:disp}}  type="text" placeholder="Contraseña de profesional" name="passwordProf" onChange={addUserHandler} defaultValue={newUser.passwordProf}/>
+                    <input type="email" placeholder="Email" name="data" onChange={addUserHandler} defaultValue={newUser.data.mail}/>
+                    <input style={{display:disp}}  type="text" placeholder="Contraseña de profesional" name="passwordAdm" onChange={addUserHandler} defaultValue={newUser.passwordAdm}/>
                     </div>
                     <button onClick={submitHandler} >REGISTRARSE</button>
                     <div style={{display:dispGo}}>
@@ -147,7 +153,11 @@ const SignUpPat = (props) => {
                         </div>
                     </div>
                 </div>
+                <Link to = "/editdoc">Probar</Link>
             </div>
+
+            
+
         </>
     )
 }
@@ -162,4 +172,4 @@ const mapDispatchToProps = {
     signUpUser: userActions.signUpUser,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpPat)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
