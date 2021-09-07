@@ -29,7 +29,8 @@ const Login = (props) => {
     const responseGoogle = (res) => {
         let newUserWithGoogle = {
             data: {mail: res.profileObj.email}, 
-            password: res.profileObj.googleId
+            password: res.profileObj.googleId,
+            google: true
         }
         props.logIn(newUserWithGoogle, validUser)
     }
@@ -39,7 +40,8 @@ const Login = (props) => {
         if (res.id){
         let logWithFacebook = {
             data: {mail: res.email},
-            password: res.id
+            password: res.id,
+            google: true
         }
         props.logIn(logWithFacebook, validUser)
         .then((res) => {console.log(res)

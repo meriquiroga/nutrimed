@@ -10,7 +10,7 @@ router.route("/user").post(userControllers.addUser)
 
 router
    .route("/doctor")
-   .get(doctorControllers.signIn)
+   .post(doctorControllers.signIn)
    .put(
       passport.authenticate("jwt", { session: false }),
       doctorControllers.editProfile
@@ -28,7 +28,7 @@ router
 
 router
    .route("/patient")
-   .get(patientControllers.signIn)
+   .post(patientControllers.signIn)
    .put(
       passport.authenticate("jwt", { session: false }),
       patientControllers.editProfile
