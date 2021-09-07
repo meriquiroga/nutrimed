@@ -73,6 +73,10 @@ button {
 .insideHero {
    text-align: center;
 }
+
+.insideHero button a {
+   color: white;
+}
 .hero h1 {
    color: gray;
 }
@@ -192,6 +196,143 @@ footer img {
    padding: 15px;
 }
 
+.profile {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   padding: 20px
+}
+
+.profileImg {
+   width: 170px;
+   margin: 2rem;
+   border-radius: 100px;
+}
+
+.leftProfile {
+   display: flex;
+   flex-direction: column;
+   background-color: #f0f3f5;
+   width: 300px;
+   align-items: center;
+   padding: 22px;
+   min-height: 70vh;
+}
+
+.leftProfile button a {
+   color: white
+}
+
+.leftProfile p {
+   text-align: center;
+   padding: 20px 0px
+}
+
+.rightProfile {
+   display: flex;
+   flex-direction: column;
+   background-color: #19b1bc;
+   width: 300px;
+   padding: 22px;
+   align-items: center;
+}
+
+.preview {
+  height: 25vh;
+   width: 300px;
+   margin: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-self: center;
+   background-color: white;
+   border-radius: 20px;
+   border: 2px gray solid;
+}
+
+.centroProfile {
+   display: flex;
+   flex-direction: column;
+   min-width: 600px;
+}
+
+.proxTurnos {
+   color: white;
+   padding-top: 1rem;
+}
+
+.tituloProfile {
+   align-self: center;
+}
+
+.turnos {
+   color: white;
+}
+
+.datosProfile {
+   text-align: left;
+   padding: 20px;
+}
+
+.dataClient {
+   height: 80vh;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+   background-color: rgb(255, 255, 255);
+}
+
+.doctorCardsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  min-height: 80vh;
+}
+.doc{
+   width: 10vw;
+   height: 10vw;
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+.divReview{
+   width: 80vw;
+   height: 15vw;
+   margin: 0,auto;
+}
+
+#optionObraSocial {
+   padding: 10px;
+   border-radius: 50px;
+   border: 2px gray solid;
+   margin: 10px;
+   width: 400px;
+   align-self: center;
+   outline: none;
+   color: gray;
+   appearance: none;
+}
+
+#fileCharger {
+   background-color: white;
+   color: gray;
+}
+
+.underConstruction {
+   height: 300px;
+   width: 300px;
+   margin-top: 40px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-self: center;
+   background-color: #f0f3f5;
+   border-radius: 20px;
+}
+
 @media (max-width: 991px) {
    .inputs input {
       padding: 10px;
@@ -201,6 +342,17 @@ footer img {
       width: 85%;
       align-self: center;
       outline: none;
+   }
+   #optionObraSocial {
+      padding: 10px;
+      border-radius: 50px;
+      border: 2px gray solid;
+      margin: 10px;
+      width: 85%;
+      align-self: center;
+      outline: none;
+      color: gray;
+      appearance: none;
    }
    .hero {
       height: 60vh;
@@ -220,100 +372,5 @@ footer img {
       padding: 0vw 10vw;
       display: flex;
       justify-content: center;
-   }
-}
-
-.profile {
-   display: flex;
-   min-height: 80vh;
-   justify-content: space-around;
-   margin-top: 2rem;
-}
-
-.profileImg {
-   width: 170px;
-   margin: 2rem;
-}
-
-.ladoProfile {
-   display: flex;
-   flex-direction: column;
-   background-color: #19b1bc;
-   height: 65vh;
-   width: 17vw;
-   align-items: center;
-}
-
-.preview {
-   border: 1px solid black;
-   height: 25vh;
-   width: 25vw;
-   margin: 0px 3rem;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
-.linkCompleta {
-   color: white;
-   font-size: 20px;
-}
-
-.centroProfile {
-   display: flex;
-   flex-direction: column;
-   width: 30vw;
-}
-
-.proxTurnos {
-   color: white;
-   padding-top: 1rem;
-}
-
-.tituloProfile {
-   align-self: center;
-}
-
-.turnos {
-   color: white;
-}
-
-.datosProfile {
-   display: flex;
-   justify-content: space-around;
-}
-
-.dataClient {
-   height: 80vh;
-   display: flex;
-   justify-content: center;
-   flex-direction: column;
-   align-items: center;
-   background-color: rgb(255, 255, 255);
-}
-#form {
-   min-height: 40vh;
-   display: flex;
-   flex-direction: column;
-   padding: 1rem;
-}
-
-.doctorCardsContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 20px;
-}
-
-.doctorCard {
-  height: 300px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-}
-
-.docCardText {
-  text-align: left;
-  padding-left: 20px;
+   }  
 }
