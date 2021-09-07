@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import {useEffect} from "react"
 import userActions from "./redux/actions/userActions"
 import Login from "./components/Login"
+import ProfileDoctor from "./components/ProfileDoctor"
 
 
 const App = (props) => {
@@ -25,16 +26,16 @@ const App = (props) => {
      }
    }, [])
 
-
    return (
       <BrowserRouter>
          <Header />
          <Switch>
             <Route exact path="/" component={Home} />
-            {!props.valid &&<Route path="/signup" component={SignUp} />}
+            {!props.valid && <Route path="/signup" component={SignUp} />}
             <Route exact path="/staff" component={Staff} />
-            <Route path='/staff/:id' component={EachDoctor}/>
+            <Route path="/staff/:id" component={EachDoctor} />
             <Route path="/appointment" component={Appointment} />
+            <Route path="/profiledoctor" component={ProfileDoctor} />
             <Route path="/shifts" component={Shifts} />
             {(props.valid && props.user.newUser.doc) &&<Route exact path="/doc/profile" component={EditProfileDoctor} />}
             {props.valid &&<Route exact path="/patient" component={Profile} />}
@@ -51,7 +52,7 @@ const App = (props) => {
 const mapStateToProps = (state) => {
    return {
       valid: state.users.token,
-      user: state.users.dataUser
+      user: state.users.dataUser,
    }
 }
 

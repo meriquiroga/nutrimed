@@ -9,11 +9,7 @@ import { Link } from "react-router-dom"
 
 
 
-<<<<<<< HEAD
 const SignUp = ({signUpUser}) => {
-=======
-const SignUp = (props) => {
->>>>>>> origin/rodrigo
     let breaker = true
     const [valueIn, setValueIn] = useState("")
     const [newUser, setNewUser] = useState({

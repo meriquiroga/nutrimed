@@ -34,6 +34,8 @@ router
       patientControllers.editProfile
    )
 
+router.route("/patients").get(patientControllers.getPatients)
+
 router
    .route("/patient/:id")
    .put(

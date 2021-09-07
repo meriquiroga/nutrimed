@@ -44,12 +44,12 @@ ul li {
 }
 
 a {
-  text-decoration: none;
-  color: gray;
+   text-decoration: none;
+   color: gray;
 }
 
 a.active {
-  color: #19B1BC
+   color: #19b1bc;
 }
 
 button {
@@ -128,14 +128,14 @@ footer img {
 }
 
 .description div {
-  padding: 10vw;
-  /* color: gray; */
-  text-align: center;
-  line-height: 2.3
+   padding: 10vw;
+   /* color: gray; */
+   text-align: center;
+   line-height: 2.3;
 }
 
 .contenedor {
-  min-height: 80vh;
+   min-height: 80vh;
 }
 
 .contenedor1 {
@@ -205,7 +205,7 @@ footer img {
    display: flex;
    flex-wrap: wrap;
    justify-content: center;
-   padding: 20px
+   padding: 20px;
 }
 
 .profileImg {
@@ -224,12 +224,12 @@ footer img {
 }
 
 .leftProfile button a {
-   color: white
+   color: white;
 }
 
 .leftProfile p {
    text-align: center;
-   padding: 20px 0px
+   padding: 20px 0px;
 }
 
 .rightProfile {
@@ -242,7 +242,7 @@ footer img {
 }
 
 .preview {
-  height: 25vh;
+   height: 25vh;
    width: 300px;
    margin: 10px;
    display: flex;
@@ -428,5 +428,13 @@ footer img {
       padding: 0vw 10vw;
       display: flex;
       justify-content: center;
-   }  
+   }
+}
+
+.pageDoctor {
+   display: flex;
+}
+
+.imgTurnos {
+   width: 50px;
 }
