@@ -14,14 +14,14 @@ class Staff extends Component {
       res.success
         ? this.setState({ loading: { condition: false } })
         : this.setState({
-          loading: {
-            ...this.state.loading,
-            text: "Lo sentimos a ocurrido un error vuelva a intentarlo mas tarde",
-          },
-        });
+            loading: {
+              ...this.state.loading,
+              text: "Lo sentimos, ha ocurrido un error, vuelva a intentarlo más tarde.",
+            },
+          });
     });
   }
-  
+
   render() {
     console.log(this.state.props)
     if (this.state.loading.condition) {
@@ -42,7 +42,7 @@ class Staff extends Component {
                 <h3>
                   {obj.name} {obj.lastName}
                 </h3>
-                <p>Matricula: {obj.registration}</p>
+                <p>Matrícula: {obj.registration}</p>
                 <p>Especialidad: {obj.specialty}</p>
               </div>
             </div>
@@ -50,7 +50,16 @@ class Staff extends Component {
         </Link>
       );
     });
-    return <div className="doctorCardsContainer">{doctor}</div>;
+    return (
+      <div className="container">
+        <div className="signUpForm">
+        <h3>Staff</h3>
+        <p>Contamos con un prestigioso equipo de profesionales en permanente capacitación para poder brindarte el mejor servicio.</p>
+        <div className="doctorCardsContainer">{doctor}</div>;
+
+        </div>
+      </div>
+    );
   }
 }
 

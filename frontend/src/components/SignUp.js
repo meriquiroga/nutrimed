@@ -9,10 +9,8 @@ import { Link } from "react-router-dom"
 
 
 
-const SignUp = (props) => {
-    
+const SignUp = ({signUpUser}) => {
     let breaker = true
-    const [socialWork, setSocialWork] = useState()
     const [valueIn, setValueIn] = useState("")
     const [newUser, setNewUser] = useState({
         name: "",
@@ -22,8 +20,8 @@ const SignUp = (props) => {
         passwordAdm: "",
         validPassword: "",
         src: "",
-        doc: false
-
+        doc: false,
+        google: false
     })
 
     const Toast = Swal.mixin({
@@ -39,7 +37,8 @@ const SignUp = (props) => {
     })
 
     function validFields(field) {
-        for (var i in field){
+        for (var i in field ){
+            console.log(i)
             if(!field[i].length){
                 Toast.fire({
                     icon: 'error',
@@ -61,7 +60,7 @@ const SignUp = (props) => {
             src: res.profileObj.imageUrl,
             google: true
         }
-        props.signUpUser(logWithGoogle)
+        signUpUser(logWithGoogle)
         .then((res) => {console.log(res)
             
         })
@@ -70,29 +69,28 @@ const SignUp = (props) => {
 
 
     const responseFacebook = (res) => {
-
+        if (res.picture){
         let logWithFacebook = {
             name: res.first_name,
             lastName: res.last_name,
-
             data: {mail: res.email},
             password: res.id,
             src: res.picture.data.url,
             google: true
         }
-        props.signUpUser(logWithFacebook)
+        signUpUser(logWithFacebook)
         .then((res) => {console.log(res)
 
         }).catch((e)=> console.log(e))
-    }
+    }}
 
 
     const submitHandler = () => {
         // validFields(newUser)
-        // if (breaker) 
+        // if (breaker)
         if (valueIn === "prof") newUser.doc = true
         else newUser.doc = false
-        props.signUpUser({...newUser, doc: newUser.doc})
+        signUpUser({...newUser, doc: newUser.doc})
         .then((res)=>console.log(res)
         )
     }
@@ -153,7 +151,6 @@ const SignUp = (props) => {
                         </div>
                     </div>
                 </div>
-                <Link to = "/editdoc">Probar</Link>
             </div>
 
             

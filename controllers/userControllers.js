@@ -12,7 +12,7 @@ const userControllers = {
       try {
          if (process.env.PASSWORD_ADM !== passwordAdm && userType == Doctor)
             throw new Error("No tienes autorizacion")
-         let newUser = new userType({
+         let userExist = new userType({
             name,
             lastName,
             data,
@@ -24,12 +24,15 @@ const userControllers = {
          let repeatUser = await userType.findOne({ "data.mail": data.mail })
          if (repeatUser)
             throw new Error("Mail is being used with another account")
-         await newUser.save()
-         let token = jwt.sign({ ...newUser }, process.env.SECRETOKEN)
-         res.json({ success: true, res: { newUser, token } })
+         await userExist.save()
+         let token = jwt.sign({ ...userExist }, process.env.SECRETOKEN)
+         res.json({ success: true, res: { userExist, token } })
       } catch (err) {
          res.json({ success: false, res: err.message })
       }
    },
+   verifyToken: (req, res) => {
+      res.json({userExist: req.user})
+   }
 }
 module.exports = userControllers

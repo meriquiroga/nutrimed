@@ -44,12 +44,12 @@ ul li {
 }
 
 a {
-  text-decoration: none;
-  color: gray;
+   text-decoration: none;
+   color: gray;
 }
 
 a.active {
-  color: #19B1BC
+   color: #19b1bc;
 }
 
 button {
@@ -59,6 +59,10 @@ button {
    border-radius: 50px;
    border: none;
    margin: 10px;
+}
+
+button a {
+   color: white;
 }
 
 .hero {
@@ -124,14 +128,14 @@ footer img {
 }
 
 .description div {
-  padding: 10vw;
-  /* color: gray; */
-  text-align: center;
-  line-height: 2.3
+   padding: 10vw;
+   /* color: gray; */
+   text-align: center;
+   line-height: 2.3;
 }
 
 .contenedor {
-  min-height: 80vh;
+   min-height: 80vh;
 }
 
 .contenedor1 {
@@ -139,12 +143,11 @@ footer img {
 }
 
 .doctor-image {
-    width: 200px;
-    height: 200px;
-    background-position: center;
-    background-size: cover;
-    border-radius: 100px;
-    background-color: pink;
+   width: 200px;
+   height: 200px;
+   background-position: center;
+   background-size: cover;
+   border-radius: 100px;
 }
 .section-doctors {
    display: flex;
@@ -158,12 +161,14 @@ footer img {
 .container {
    text-align: center;
    align-self: center;
+   min-height: 80vh;
 }
 
 .signUpForm {
    text-align: center;
    background-color: #f0f3f5;
    padding: 30px;
+   min-height: 80vh;
 }
 
 .radio {
@@ -200,13 +205,12 @@ footer img {
    display: flex;
    flex-wrap: wrap;
    justify-content: center;
-   padding: 20px
+   padding: 20px;
 }
 
 .profileImg {
    width: 170px;
    margin: 2rem;
-   border-radius: 100px;
 }
 
 .leftProfile {
@@ -220,12 +224,12 @@ footer img {
 }
 
 .leftProfile button a {
-   color: white
+   color: white;
 }
 
 .leftProfile p {
    text-align: center;
-   padding: 20px 0px
+   padding: 20px 0px;
 }
 
 .rightProfile {
@@ -238,7 +242,7 @@ footer img {
 }
 
 .preview {
-  height: 25vh;
+   height: 25vh;
    width: 300px;
    margin: 10px;
    display: flex;
@@ -274,6 +278,10 @@ footer img {
    padding: 20px;
 }
 
+.datosProfile p {
+   text-align: left;
+}
+
 .dataClient {
    height: 80vh;
    display: flex;
@@ -284,27 +292,75 @@ footer img {
 }
 
 .doctorCardsContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 20px;
-  min-height: 80vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   padding: 20px 60px;
 }
-.doc{
-   width: 10vw;
-   height: 10vw;
+
+.doctorCard {
+   width: 200px;
+   text-align: center;
+   color: black;
+}
+.doc {
+   width: 200px;
+   height: 200px;
    background-position: center;
    background-size: cover;
    background-repeat: no-repeat;
 }
-.divReview{
+.cvDoc {
+   display: flex;
+   padding: 20px 60px;
+   padding-left: 200px;
+   justify-content: start;
+}
+.containerDocCv {
+   text-align: center;
+   align-self: center;
+   background-color: #f0f3f5;
+}
+.docDescription p {
+   padding: 20px 100px;
+   text-align: center;
+}
+.docInfo {
+   text-align: left;
+   padding-left: 20px;
+}
+.divReview {
    width: 80vw;
-   height: 15vw;
-   margin: 0,auto;
+   max-height: 25vh;
+   display: flex;
+   flex-direction: column;
+   align-content: center;
+}
+
+.divReview input {
+   padding: 10px;
+   border-radius: 50px;
+   border: 2px gray solid;
+   margin: 10px;
+   width: 400px;
+   align-self: center;
+   outline: none;
 }
 
 #optionObraSocial {
+   padding: 10px;
+   border-radius: 50px;
+   border: 2px gray solid;
+   margin: 10px;
+   width: 400px;
+   align-self: center;
+   outline: none;
+   color: gray;
+   appearance: none;
+}
+
+#optionDoctor {
    padding: 10px;
    border-radius: 50px;
    border: 2px gray solid;
@@ -372,5 +428,17 @@ footer img {
       padding: 0vw 10vw;
       display: flex;
       justify-content: center;
-   }  
+   }
+}
+
+.pageDoctor {
+   display: flex;
+}
+
+.imgTurnos {
+   width: 50px;
+}
+
+#buttonSign {
+   cursor: pointer;
 }

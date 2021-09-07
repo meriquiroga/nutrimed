@@ -3,8 +3,8 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const doctorControllers = {
-  singIn: async (req, res) => {
-    const { data, password, flagGoogle } = req.body;
+  signIn: async (req, res) => {
+    const { data, password, flagGoogle} = req.body;
     try {
       let userExist = await Doctor.findOne({ "data.mail": data.mail });
       if (!userExist)
@@ -97,7 +97,6 @@ const doctorControllers = {
     }
   },
   getDoctors: async (req, res) => {
-    console.log("holaHola");
     try {
       let doctors = await Doctor.find();
       if (doctors) {

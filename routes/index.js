@@ -1,62 +1,73 @@
-const express = require("express")
-const router = express.Router()
-const passport = require("passport")
-const userControllers = require("../controllers/userControllers")
-const doctorControllers = require("../controllers/doctorControllers")
-const patientControllers = require("../controllers/patientControllers")
-const appointmentControllers = require("../controllers/appointmentControllers")
+const express = require("express");
+const router = express.Router();
+const passport = require("passport");
+const userControllers = require("../controllers/userControllers");
+const doctorControllers = require("../controllers/doctorControllers");
+const patientControllers = require("../controllers/patientControllers");
+const appointmentControllers = require("../controllers/appointmentControllers");
 
-router.route("/user").post(userControllers.addUser)
-
-router
-   .route("/doctor")
-   .get(doctorControllers.singIn)
-   .put(
-      passport.authenticate("jwt", { session: false }),
-      doctorControllers.editProfile
-   )
-
-router.route("/doctors").get(doctorControllers.getDoctors)
+router.route("/user").post(userControllers.addUser);
 
 router
-   .route("/doctor/:id")
-   .get(doctorControllers.getDoctorById)
-   .put(
-      passport.authenticate("jwt", { session: false }),
-      doctorControllers.changedReview
-   )
+
+  .route("/doctor")
+  .post(doctorControllers.signIn)
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    doctorControllers.editProfile
+  );
+
+router.route("/doctors").get(doctorControllers.getDoctors);
 
 router
-   .route("/patient")
-   .get(patientControllers.singIn)
-   .put(
-      passport.authenticate("jwt", { session: false }),
-      patientControllers.editProfile
-   )
+  .route("/doctor/:id")
+  .get(doctorControllers.getDoctorById)
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    doctorControllers.changedReview
+  );
 
 router
-   .route("/patient/:id")
-   .put(
-      passport.authenticate("jwt", { session: false }),
-      patientControllers.addMedicalData
-   )
+
+  .route("/patient")
+  .post(patientControllers.signIn)
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    patientControllers.editProfile
+  );
+
+router.route("/patients").get(patientControllers.getPatients);
 
 router
-   .route("/appointment/:id")
-   .post(
-      passport.authenticate("jwt", { session: false }),
-      appointmentControllers.addAppointment
-   )
-   .delete(
-      passport.authenticate("jwt", { session: false }),
-      appointmentControllers.deleteAppointment
-   )
+  .route("/patient/:id")
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    patientControllers.addMedicalData
+  );
 
 router
-   .route("/appointments")
+  .route("/appointment/:id")
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    appointmentControllers.addAppointment
+  )
+  .delete(
+    passport.authenticate("jwt", { session: false }),
+    appointmentControllers.deleteAppointment
+  );
+
+router
+  .route("/appointments")
+  .get(
+    passport.authenticate("jwt", { session: false }),
+    appointmentControllers.getAppointments
+  );
+
+router
+   .route("/verifyToken")
    .get(
       passport.authenticate("jwt", { session: false }),
-      appointmentControllers.getAppointments
+      userControllers.verifyToken
    )
 
-module.exports = router
+module.exports = router;
