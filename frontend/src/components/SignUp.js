@@ -151,7 +151,6 @@ const SignUp = ({signUpUser}) => {
                         </div>
                     </div>
                 </div>
-                <Link to = "/editdoc">Probar</Link>
             </div>
 
             

@@ -440,3 +440,10 @@ footer img {
 .imgTurnos {
    width: 50px;
 }
+
+.avatar img {
+   width: 20px;
+   height: 20px;
+   background-position: center;
+   background-size: cover;
+}
