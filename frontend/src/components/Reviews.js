@@ -36,6 +36,7 @@ const Reviews = ({ reviews, dataUser, doctorId, userToken, actionReview}) => {
       user={dataUser}
       userToken={userToken}
       deleteReviewHandler={deleteReviewHandler}
+      editTextReviewHandler={editTextReviewHandler}
     />
   ));
   return (

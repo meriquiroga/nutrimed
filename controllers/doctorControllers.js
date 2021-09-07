@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const doctorControllers = {
   signIn: async (req, res) => {
-    const { data, password, flagGoogle } = req.body;
+    const { data, password, flagGoogle} = req.body;
     try {
       let userExist = await Doctor.findOne({ "data.mail": data.mail });
       if (!userExist)
