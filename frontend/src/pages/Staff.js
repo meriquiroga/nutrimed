@@ -21,7 +21,7 @@ class Staff extends Component {
         });
     });
   }
-
+  
   render() {
     if (this.state.loading.condition) {
       return <h1>{this.state.loading.text}</h1>;

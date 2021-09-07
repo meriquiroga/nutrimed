@@ -8,7 +8,7 @@ import Staff from "./pages/Staff"
 import Profile from "./pages/Profile"
 import EachDoctor from "./pages/EachDoctor"
 import { connect } from "react-redux";
-import Appointment from "./Components/Appointment";
+import Appointment from "./components/Appointment";
 import Shifts from "./components/Shifts"
 import EditProfilePatient from "./components/EditProfilePatient"
 import EditProfileDoctor from "./components/EditProfileDoctor"
@@ -28,7 +28,7 @@ const App = (props) => {
          <Header />
          <Switch>
             <Route exact path="/" component={Home} />
-            {props.valid &&<Route path="/signup" component={SignUp} />}
+            {!props.valid &&<Route path="/signup" component={SignUp} />}
             <Route exact path="/staff" component={Staff} />
             <Route path='/staff/:id' component={EachDoctor}/>
             <Route path="/appointment" component={Appointment} />

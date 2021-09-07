@@ -36,11 +36,18 @@ const Header = (props) => {
                </li>}
             </ul>
          </div>
-         {! props.user.doc && <button onClick={buttonHandler}>SOLICITAR TURNO</button>}
+         {props.valid ? (
+  <NavLink to="/appointment">
+    <button>SOLICITAR TURNO</button>
+  </NavLink>
+) : (
+  <NavLink to="/signup">
+    <button>SOLICITAR TURNO</button>
+  </NavLink>
+)}
       </header>
    )
 }
-
 const mapStateToProps = (state) => {
    return {
       valid: state.users.token,

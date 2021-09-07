@@ -49,8 +49,8 @@ class EachDoctor extends Component{
 }
 const mapStateTopProps=(state)=>{
     return{
-        doctor:state.users.doctor,
-        doctors:state.users.doctors
+        doctor:state.doctors.doctor,
+        doctors:state.doctors.doctors
     }
 }
 const mapDispatchToProps={
