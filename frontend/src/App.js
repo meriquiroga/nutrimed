@@ -17,10 +17,11 @@ import userActions from "./redux/actions/userActions"
 import Login from "./components/Login"
 
 
-const App = ({logWithLs,valid,user}) => {
+const App = (props) => {
+   console.log(props)
    useEffect(()=>{
      if (localStorage.getItem("token")){
-         logWithLs(localStorage.getItem("token"))
+         props.logWithLs(localStorage.getItem("token"))
      }
    }, [])
    return (
@@ -28,16 +29,16 @@ const App = ({logWithLs,valid,user}) => {
          <Header />
          <Switch>
             <Route exact path="/" component={Home} />
-            {!valid && <Route path="/signup" component={SignUp} />}
+            {!props.valid && <Route path="/signup" component={SignUp} />}
             <Route exact path="/staff" component={Staff} />
             <Route path="/staff/:id" component={EachDoctor} />
             <Route path="/appointment" component={Appointment} />
             <Route path="/shifts" component={Shifts} />
-            {(valid && user.doc) &&<Route exact path="/doc/profile" component={EditProfileDoctor} />}
-            {valid &&<Route exact path="/patient" component={Profile} />}
-            {valid &&<Route path="/doctor" component={Profile} />}
-            {(valid && !user.doc) && <Route exact path="/patient/profile" component={EditProfilePatient}/>}
-            {!valid &&<Route path="/login" component={Login}/>}
+            {(props.valid && props.user.doc) &&<Route exact path="/doc/profile" component={EditProfileDoctor} />}
+            {props.valid &&<Route exact path="/patient" component={Profile} />}
+            {props.valid &&<Route path="/doctor" component={Profile} />}
+            {(props.valid && !props.user.doc) && <Route exact path="/patient/profile" component={EditProfilePatient}/>}
+            {!props.valid &&<Route path="/login" component={Login}/>}
             <Redirect to="/" />
          </Switch>
          <Footer />
