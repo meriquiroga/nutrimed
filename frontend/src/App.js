@@ -7,23 +7,23 @@ import SignUp from "./components/SignUp"
 import Staff from "./pages/Staff"
 import Profile from "./pages/Profile"
 import EachDoctor from "./pages/EachDoctor"
-import Appointment from "./components/Appointment";
+import Appointment from "./components/Appointment"
 import Shifts from "./components/Shifts"
 import EditProfilePatient from "./components/EditProfilePatient"
 import EditProfileDoctor from "./components/EditProfileDoctor"
-import { connect } from "react-redux";
-import {useEffect} from "react"
+import { connect } from "react-redux"
+import { useEffect } from "react"
 import userActions from "./redux/actions/userActions"
 import Login from "./components/Login"
 import ProfileDoctor from "./components/ProfileDoctor"
-
+import MedicalData from "./components/MedicalData"
 
 const App = (props) => {
    console.log(props)
-   useEffect(()=>{
-     if (localStorage.getItem("token")){
+   useEffect(() => {
+      if (localStorage.getItem("token")) {
          props.logWithLs(localStorage.getItem("token"))
-     }
+      }
    }, [])
    return (
       <BrowserRouter>
@@ -36,11 +36,20 @@ const App = (props) => {
             <Route path="/appointment" component={Appointment} />
             <Route path="/profiledoctor" component={ProfileDoctor} />
             <Route path="/shifts" component={Shifts} />
-            {(props.valid && props.user.doc) &&<Route exact path="/doc/profile" component={EditProfileDoctor} />}
-            {props.valid &&<Route exact path="/patient" component={Profile} />}
-            {props.valid &&<Route path="/doctor" component={Profile} />}
-            {(props.valid && !props.user.doc) && <Route exact path="/patient/profile" component={EditProfilePatient}/>}
-            {!props.valid &&<Route path="/login" component={Login}/>}
+            <Route path="/medicaldata" component={MedicalData} />
+            {props.valid && props.user.doc && (
+               <Route exact path="/doc/profile" component={EditProfileDoctor} />
+            )}
+            {props.valid && <Route exact path="/patient" component={Profile} />}
+            {props.valid && <Route path="/doctor" component={Profile} />}
+            {props.valid && !props.user.doc && (
+               <Route
+                  exact
+                  path="/patient/profile"
+                  component={EditProfilePatient}
+               />
+            )}
+            {!props.valid && <Route path="/login" component={Login} />}
             <Redirect to="/" />
          </Switch>
          <Footer />
@@ -56,7 +65,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-   logWithLs: userActions.logUserWithLs
+   logWithLs: userActions.logUserWithLs,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
