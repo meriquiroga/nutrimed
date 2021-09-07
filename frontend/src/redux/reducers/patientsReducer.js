@@ -10,11 +10,6 @@ const patientsReducer = (state = { patients: [], patient: {} }, action) => {
             ...state,
             patient: state.patients.find((obj) => obj._id === action.payload),
          }
-      case "GET_ONE_DOCTOR_DB":
-         return {
-            ...state,
-            patient: action.payload,
-         }
       default:
          return state
    }
