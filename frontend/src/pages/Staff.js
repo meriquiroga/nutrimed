@@ -16,7 +16,7 @@ class Staff extends Component {
         : this.setState({
           loading: {
             ...this.state.loading,
-            text: "Lo sentimos a ocurrido un error vuelva a intentarlo mas tarde",
+            text: "Lo sentimos, ha ocurrido un error, vuelva a intentarlo más tarde.",
           },
         });
     });
