@@ -99,9 +99,7 @@ const Login = (props) => {
                      onChange={userLogin}
                   />
                </div>
-               <button id="buttonSign" onClick={submitUserLog}>
-                  LOGIN
-               </button>
+               <button id="buttonSign" onClick={submitUserLog}>LOGIN</button>
                <div style={{ display: dispGo }}>
                   <div>
                      <GoogleLogin

@@ -209,9 +209,19 @@ footer img {
 }
 
 .profileImg {
-   width: 170px;
+   width: 160px;
+   height: 160px;
+   border-radius: 100px;
    margin: 2rem;
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
 }
+
+/* .profileDoc {
+   display: flex;
+   flex-wrap: wrap;
+} */
 
 .leftProfile {
    display: flex;
@@ -313,16 +323,22 @@ footer img {
 }
 .cvDoc {
    display: flex;
-   padding: 20px 60px;
-   padding-left: 200px;
-   justify-content: start;
+   flex-direction: column;
+   background-color: black;
+   width: 300px;
+   align-items: center;
+   padding: 22px;
+   min-height: 70vh;
+   
 }
 .containerDocCv {
-   text-align: center;
-   align-self: center;
-   background-color: #f0f3f5;
+   background-color: #3b5363;
+   display: flex;
+   justify-content: center;
+   min-height: 80vh;
 }
-.docDescription p {
+.docDescription {
+   width: 600px;
    padding: 20px 100px;
    text-align: center;
 }
@@ -455,4 +471,9 @@ footer img {
    display: flex;
    flex-direction: column;
    align-items: center;
+}
+.divComentaries {
+   background-color: white;
+   width: 60%;
+   align-self: center;
 }

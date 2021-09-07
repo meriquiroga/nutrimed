@@ -59,7 +59,7 @@ const Reviews = ({ reviews, dataUser, doctorId, userToken, actionReview}) => {
           onChange={editTextReviewHandler}
           value={text}
         />
-        <button onClick={addReviewHandler} disabled={!userToken}>ENVIAR</button>
+        <button id="buttonSign" onClick={addReviewHandler} disabled={!userToken}>ENVIAR</button>
       </div>
     </div>
   );

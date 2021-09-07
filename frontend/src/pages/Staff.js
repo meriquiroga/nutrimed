@@ -41,8 +41,8 @@ class Staff extends Component {
                 <h3>
                   {obj.name} {obj.lastName}
                 </h3>
-                <p>Matrícula: {obj.registration}</p>
-                <p>Especialidad: {obj.specialty}</p>
+                <p>M.P.: {obj.registration}</p>
+                <p>{obj.specialty}</p>
               </div>
             </div>
           </div>

@@ -183,7 +183,7 @@ const SignUp = ({ signUpUser }) => {
                      defaultValue={newUser.passwordAdm}
                   />
                </div>
-               <button onClick={submitHandler}>REGISTRARSE</button>
+               <button id="buttonSign" onClick={submitHandler}>REGISTRARSE</button>
                <div style={{ display: dispGo }}>
                   <div>
                      <GoogleLogin
