@@ -4,7 +4,7 @@ import doctorActions from "../redux/actions/doctorActions"
 import { Link } from "react-router-dom"
 
 const EditProfileDoctor = (props) => {
-    // const mail = props.user.data.mail
+    const mail = props.user.userExist.data.mail
     const [valueIn, setValueIn] = useState(true)
     const [actDoc, setActDoc] = useState({
         dni: "",
@@ -17,7 +17,7 @@ const EditProfileDoctor = (props) => {
                 num: "",
                 city: ""
             },
-            // mail,
+            mail,
             phoneNumber: "",
         },
         socialWork: "",

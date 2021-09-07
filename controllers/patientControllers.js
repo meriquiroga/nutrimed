@@ -4,18 +4,19 @@ const jwt = require("jsonwebtoken")
 
 const patientControllers = {
    signIn: async (req, res) => {
-      const {data, password, flagGoogle } = req.body
+      const {data, password} = req.body
+      console.log(req.body)
       try {
          let userExist = await Patient.findOne({
             "data.mail": data.mail,
-         }).populate("medicalData.doctorID", {
+         }).populate("medicalData.doctorId", {
             name: 1,
             lastName: 1,
             registration: 1,
          })
          if (!userExist)
             throw new Error("The data entered is not valid. Please, try again.")
-         if (userExist.google && !flagGoogle)
+         if (!userExist.google)
             throw new Error("Sign in with Google.")
          let match = bcryptjs.compareSync(password, userExist.password)
          if (!match)
