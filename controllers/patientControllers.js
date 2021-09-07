@@ -3,13 +3,8 @@ const bcryptjs = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
 const patientControllers = {
-<<<<<<< HEAD
    signIn: async (req, res) => {
       const {data, password, flagGoogle } = req.body
-=======
-   singIn: async (req, res) => {
-      const { data, password, flagGoogle } = req.body
->>>>>>> origin/franco
       try {
          let userExist = await Patient.findOne({
             "data.mail": data.mail,
@@ -33,7 +28,6 @@ const patientControllers = {
    },
    addMedicalData: async (req, res) => {
       try {
-         console.log(req)
          let newMedicalData = await Patient.findOneAndUpdate(
             { _id: req.params.id },
             {

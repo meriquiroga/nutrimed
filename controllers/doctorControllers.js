@@ -97,7 +97,6 @@ const doctorControllers = {
     }
   },
   getDoctors: async (req, res) => {
-    console.log("holaHola");
     try {
       let doctors = await Doctor.find();
       if (doctors) {
