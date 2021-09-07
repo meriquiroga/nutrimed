@@ -70,20 +70,21 @@ const SignUp = (props) => {
 
 
     const responseFacebook = (res) => {
-
-        let logWithFacebook = {
-            name: res.first_name,
-            lastName: res.last_name,
-
-            data: {mail: res.email},
-            password: res.id,
-            src: res.picture.data.url,
-            google: true
+        if(res.picture){
+            let logWithFacebook = {
+                name: res.first_name,
+                lastName: res.last_name,
+    
+                data: {mail: res.email},
+                password: res.id,
+                src: res.picture.data.url,
+                google: true
+            }
+            props.signUpUser(logWithFacebook)
+            .then((res) => {console.log(res)
+    
+            }).catch((e)=> console.log(e))
         }
-        props.signUpUser(logWithFacebook)
-        .then((res) => {console.log(res)
-
-        }).catch((e)=> console.log(e))
     }
 
 
