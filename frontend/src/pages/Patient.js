@@ -1,12 +1,12 @@
-import { Component } from "react"
-import PatientProfile from "../components/PatientProfile"
+import { Component } from "react";
+import PatientProfile from "../Components/PatientProfile";
 
 export default class Patient extends Component {
-   render() {
-      return (
-         <>
-            <PatientProfile />
-         </>
-      )
-   }
+  render() {
+    return (
+      <>
+        <PatientProfile />
+      </>
+    );
+  }
 }

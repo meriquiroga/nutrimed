@@ -9,15 +9,17 @@ import SignUpDoc from "./components/SignUpDoc"
 import Patient from "./pages/Patient"
 import PatientCompleteData from "./components/PatientCompleteData"
 import EachDoctor from "./pages/EachDoctor"
+import { connect } from "react-redux";
+import Appointment from "./Components/Appointment";
 // import { connect } from "react-redux";
 // import {useEffect} from "react"
 
-const App = () => {
-   // useEffect(()=>{
-   //   if (localStorage.getItem("token"){
-   //       props.logWithLs(localStorage.getItem("token"))
-   //   })
-   // }, [])
+const App = (props) => {
+  // useEffect(()=>{
+  //   if (localStorage.getItem("token"){
+  //       props.logWithLs(localStorage.getItem("token"))
+  //   })
+  // }, [])
 
    return (
       <BrowserRouter>
@@ -30,10 +32,21 @@ const App = () => {
             <Route path="/editdoc" component={SignUpDoc} />
             <Route path="/patient" component={Patient} />
             <Route path="/patientdata" component={PatientCompleteData} />
+            <Route path="/appointment" component={Appointment} />
          </Switch>
          <Footer />
       </BrowserRouter>
    )
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return {
+    token: state.users.token,
+  };
+};
+
+// const mapDispatchToProps = {
+//   logWithLs: userActions.logWithLs,
+// };
+
+export default connect(mapStateToProps)(App);
