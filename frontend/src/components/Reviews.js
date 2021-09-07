@@ -4,27 +4,30 @@ import doctorActions from "../redux/actions/doctorActions";
 import { connect } from "react-redux";
 import { useState } from "react";
 
-const Reviews = ({ reviews, dataUser, doctorId, userToken, addReview }) => {
-  console.log(reviews, dataUser, doctorId, userToken, addReview)
-  const [newReviews, setNewReview] = useState(reviews);
-  const [text, setText] = useState("");
-  const deleteReviewHandler = () => {};
+const Reviews = ({ reviews, dataUser, doctorId, userToken, actionReview}) => {
+  const [newReviews, setNewReview] = useState(reviews)
+  const [text, setText] = useState("")
+  const [action, setAction] = useState('addReview')
+  const deleteReviewHandler = () => {
+
+  }
+  console.log(actionReview)
   const editTextReviewHandler = (e) => {
     setText(e.target.value);
-  };
+  }
 
   const addReviewHandler = () => {
-    setText("");
+    setText('')
     if (text) {
-      addReview(userToken, doctorId, text).then((res) => {
+      actionReview(userToken, doctorId, text, action ).then((res) => {
         if (res.success) {
-          setNewReview([...newReviews, res.res[res.res.length - 1]]);
+          setNewReview([...newReviews, res.res[res.res.length - 1]])
         } else {
-          console.log(res.res);
+          console.log(res)
         }
-      });
+      })
     }
-  };
+  }
 
   const everyReview = newReviews.map((obj) => (
     <EveryReview
@@ -40,11 +43,12 @@ const Reviews = ({ reviews, dataUser, doctorId, userToken, addReview }) => {
       <ScrollableFeed className="divComentaries">{everyReview}</ScrollableFeed>
       <div>
         <input
-          placeholder="Dejale tu feedback al profesional"
+          placeholder={!userToken ? 'Create una cuenta para dejar tu feedback al profesional' : 'Dejale tu feedback al profesional'} 
+          disabled={!userToken}
           onChange={editTextReviewHandler}
-          defaultValue={text}
+          value={text}
         />
-        <button onClick={addReviewHandler}>ENVIAR</button>
+        <button onClick={addReviewHandler} disabled={!userToken}>ENVIAR</button>
       </div>
     </div>
   );
@@ -56,6 +60,6 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = {
-  addReview: doctorActions.addReview,
+  actionReview: doctorActions.actionReview,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Reviews);

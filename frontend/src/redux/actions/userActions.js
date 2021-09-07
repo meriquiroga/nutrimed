@@ -41,7 +41,6 @@ const userActions = {
         }
         return async (dispatch) => {
         try {
-            console.log(user)
             let res = await axios.post(`http://localhost:4000/api/${typeUser}`, (user))
             if(res.data.success)  {
                 dispatch({type: "SIGN_UP", payload: {userExist: res.data.res, token: res.data.res.token}})

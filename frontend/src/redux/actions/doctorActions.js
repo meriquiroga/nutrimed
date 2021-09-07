@@ -53,12 +53,12 @@ const doctorActions = {
          }
       }
    },
-   addReview: (user, id, text) => {
-      return async (dispatch, getState) => {
+   actionReview: (user, id, text , action) => {
+      return async () => {
          try {
             let res = await axios.put(
                `http://localhost:4000/api/doctor/${id}`,
-               { text, action: "addReview" },
+               { text, action},
                {
                   headers: {
                      Authorization: "Bearer " + user,

@@ -50,7 +50,6 @@ const Login = (props) => {
   };
 
   const submitUserLog = () => {
-    console.log(userLog);
     props.logIn(userLog, validUser);
   };
 
