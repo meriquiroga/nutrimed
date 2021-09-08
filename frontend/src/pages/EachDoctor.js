@@ -18,7 +18,7 @@ class EachDoctor extends Component {
           : this.setState({
               loading: {
                 ...this.state.loading,
-                text: "Ocurrió un error. Por favor, inténtelo más tarde",
+                text: "Ocurrió un error. Por favor, inténtalo de nuevo más tarde",
                 link: "Home",
               },
             });

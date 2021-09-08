@@ -17,10 +17,9 @@ const ProfileDoctor = (props) => {
       <div className="profile">
          <div className="ladoProfile">
             <img className="profileImg" src="" alt="profile" />
-            <h5>Bienvenido NAME</h5>
+            <h4>Bienvenido, NAME</h4>
             <p>
-               Para poder sacar turno puedes completar tus datos haciendo click
-               en el siguiente enlace
+               En la columna de la derecha verá los pacientes que tiene agendados para hoy.
             </p>
             {/* <Link
                className="linkCompleta"

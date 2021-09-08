@@ -54,7 +54,7 @@ const Reviews = ({ reviews, dataUser, doctorId, userToken, actionReview}) => {
       <ScrollableFeed className="divComentaries">{everyReview}</ScrollableFeed>
       <div>
         <input
-          placeholder={!userToken ? 'Create una cuenta para dejar tu feedback al profesional' : 'Dejale tu feedback al profesional'} 
+          placeholder={!userToken ? 'Creá tu cuenta para dejar feedback al profesional' : 'Dejale feedback al profesional'} 
           disabled={!userToken}
           onChange={editTextReviewHandler}
           value={text}
