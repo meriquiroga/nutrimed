@@ -73,6 +73,7 @@ const doctorActions = {
     };
   },
 
+<<<<<<< HEAD
   getAppointments: (token) => {
     return async () => {
       try {
@@ -106,5 +107,41 @@ const doctorActions = {
     };
   },
 };
+=======
+   getAppointments: (token) => {
+      return async () => {
+         try {
+            let res = await axios.get(
+               "http://localhost:4000/api/appointments/",
+               {
+                  headers: {
+                     Authorization: "Bearer " + token,
+                  },
+               }
+            )
+
+            if (res.data.success) {
+               console.log("TENGO RES")
+               return { success: true, res: res.data.res }
+            }
+         } catch (err) {
+            return { success: false, res: err }
+         }
+      }
+   },
+   getAppointementByDoctor: (doctorId) => {
+      return async () => {
+         try {
+            let res = await axios.get(
+               `http://localhost:4000/api/appointment/${doctorId}`
+            )
+            return { success: true, res: res }
+         } catch (err) {
+            return { success: false }
+         }
+      }
+   },
+}
+>>>>>>> origin/franco
 
 export default doctorActions;
