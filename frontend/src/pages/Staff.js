@@ -24,7 +24,10 @@ class Staff extends Component {
 
   render() {
     if (this.state.loading.condition) {
-      return <h1>{this.state.loading.text}</h1>;
+      return ( 
+      <div className="containerLoading"><h3>{this.state.loading.text}</h3>
+      </div>
+      )
     }
     let doctor = this.props.doctors.map((obj) => {
       return (
@@ -53,9 +56,8 @@ class Staff extends Component {
       <div className="container">
         <div className="signUpForm">
         <h3>Staff</h3>
-        <p>Contamos con un prestigioso equipo de profesionales en permanente capacitación para poder brindarte el mejor servicio.</p>
+        <p>Contamos con profesionales especializados en alergias e intolerancias alimentarias, diabetología, alimentación y dietética clínica, nutrición materno-infantil, dietoterapia, psiconutrición, medicina general y entrenamiento fit, con rutinas abocadas a la salud integral del paciente.</p>
         <div className="doctorCardsContainer">{doctor}</div>;
-
         </div>
       </div>
     );

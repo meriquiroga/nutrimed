@@ -214,6 +214,9 @@ const SignUp = ({ signUpUser }) => {
                         callback={responseFacebook}
                      />
                   </div>
+                  {<p>
+              ¿Ya creaste tu cuenta? <Link to="/login">¡Ingresá aquí!</Link>
+            </p>}
                </div>
             </div>
          </div>
@@ -222,13 +225,13 @@ const SignUp = ({ signUpUser }) => {
 }
 
 const mapStateToProps = (state) => {
-   return {
-      doctors: state.users.dataUser,
-   }
-}
+  return {
+    doctors: state.users.dataUser,
+  };
+};
 
 const mapDispatchToProps = {
-   signUpUser: userActions.signUpUser,
-}
+  signUpUser: userActions.signUpUser,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
