@@ -9,6 +9,7 @@ import userActions from "../redux/actions/userActions";
 const ProfileDoctor = (props) => {
   const [appointments, setAppointments] = useState([]);
 
+<<<<<<< HEAD
   useEffect(() => {
     props.getAppointments(props.token).then((res) => console.log(res));
   }, []);
@@ -22,6 +23,20 @@ const ProfileDoctor = (props) => {
           siguiente enlace
         </p>
         {/* <Link
+=======
+   useEffect(() => {
+      props.getAppointments(props.token).then((res) => console.log(res))
+   }, [])
+   return (
+      <div className="profile">
+         <div className="ladoProfile">
+            <img className="profileImg" src="" alt="profile" />
+            <h4>Bienvenido, NAME</h4>
+            <p>
+               En la columna de la derecha verá los pacientes que tiene agendados para hoy.
+            </p>
+            {/* <Link
+>>>>>>> origin/mariangeles
                className="linkCompleta"
                to={!props.user.doc ? "/patient/profile" : "/doctor/profile"}
             >

@@ -124,9 +124,12 @@ const Login = (props) => {
             </div>
           </div>
         </div>
+<<<<<<< HEAD
         <p>
           ¿No tenés cuenta? <Link to="/signup">¡Creala aquí!</Link>
         </p>
+=======
+>>>>>>> origin/mariangeles
       </div>
     </>
   );

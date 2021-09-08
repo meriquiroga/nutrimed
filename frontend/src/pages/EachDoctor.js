@@ -21,7 +21,7 @@ class EachDoctor extends Component {
           : this.setState({
               loading: {
                 ...this.state.loading,
-                text: "Ocurrió un error. Por favor, inténtelo más tarde",
+                text: "Ocurrió un error. Por favor, inténtalo de nuevo más tarde",
                 link: "Home",
               },
             });
@@ -30,8 +30,7 @@ class EachDoctor extends Component {
       this.props.getOneDoctor(this.props.match.params.id);
       this.setState({ loading: { condition: false } });
     }
-    // this.setState({ socket: io("http://localhost:4000/") });
-    // this.props.getSocket(this.state.socket);
+
   }
   render() {
     if (this.state.loading.condition) {
@@ -82,7 +81,6 @@ const mapStateTopProps = (state) => {
 };
 const mapDispatchToProps = {
   getOneDoctor: doctorActions.getOneDoctor,
-  getOneDoctorDB: doctorActions.getOneDoctorDB,
-  // getSocket: patientActions.getSocket,
+  getOneDoctorDB: doctorActions.getOneDoctorDB
 };
 export default connect(mapStateTopProps, mapDispatchToProps)(EachDoctor);

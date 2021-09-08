@@ -462,12 +462,28 @@ footer img {
 .imgTurnos {
    width: 50px;
 }
-.icon {
-   width: 3vw;
+.iconCom {
+   width: 30px;
 }
+
+.textArea {
+   border: none;
+   min-width: 400px;
+}
+
+.commentBox {
+   display: flex;
+   flex-direction: column;
+   max-width: 80%;
+}
+
 .iconperfil {
-   width: 4vw;
-   height: 4vw;
+   width: 60px;
+   height: 60px;
+   border-radius: 50px;
+   margin: 0px 10px;
+   background-position: center;
+   background-size: cover;
 }
 
 #buttonSign {
@@ -483,9 +499,17 @@ footer img {
 
 .divComentaries {
    background-color: white;
-   width: 60%;
-   align-self: center;
+   /* width: 60%; */
+   align-self: left;
 }
+
+.comment {
+   display: flex;
+   align-content: center;
+   align-items: top;
+   padding: 10px;
+}
+
 /*el nombre es estas dos clases son horrendos, perdon!!! */
 .container2 { 
    display: flex;

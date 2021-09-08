@@ -1,150 +1,241 @@
-import { connect } from "react-redux"
-import { useState, useEffect} from "react"
-import { GoogleLogin } from 'react-google-login'
-import FacebookLogin from 'react-facebook-login'
-import userActions from "../redux/actions/userActions"
+import { connect } from "react-redux";
+import { useState, useEffect } from "react";
+import { GoogleLogin } from "react-google-login";
+import FacebookLogin from "react-facebook-login";
+import userActions from "../redux/actions/userActions";
+import { Link } from "react-router-dom";
 
-const SignUp = ({signUpUser}) => {
-    let breaker = true
-    const [valueIn, setValueIn] = useState("")
-    const [error, setError] = useState(false)
-    const [newUser, setNewUser] = useState({
-        name: "",
-        lastName: "",
-        data: {mail: ""},
-        password: "",
-        passwordAdm: "",
-        validPassword: "",
-        src: "",
-        doc: false,
-    })
+const SignUp = ({ signUpUser }) => {
+  let breaker = true;
+  const [valueIn, setValueIn] = useState("");
+  const [error, setError] = useState(false);
+  const [newUser, setNewUser] = useState({
+    name: "",
+    lastName: "",
+    data: { mail: "" },
+    password: "",
+    passwordAdm: "",
+    validPassword: "",
+    src: "",
+    doc: false,
+  });
 
+  function validFields(field) {
+    for (var i in field) {
+      if (!field[i].length && !Object.values([i]).includes("data")) {
+        setError(true);
+        breaker = false;
+        break;
+      }
+    }
+  }
 
-    function validFields(field) {
-        for (var i in field ){
-            if(!field[i].length && !Object.values([i]).includes("data")){
-                setError(true)
-                breaker = false
-                break
-            }
-        }  
+  const responseGoogle = (res) => {
+    let logWithGoogle = {
+      name: res.profileObj.givenName,
+      lastName: res.profileObj.familyName,
+      data: { mail: res.profileObj.email },
+      password: res.profileObj.googleId,
+      src: res.profileObj.imageUrl,
+      google: true,
+    };
+    signUpUser(logWithGoogle).then((res) => {
+      console.log(res);
+    });
+  };
 
-    }           
-
-    const responseGoogle = res => {
-        let logWithGoogle = {
-            name: res.profileObj.givenName,
-            lastName: res.profileObj.familyName,
-            data: {mail: res.profileObj.email},
-            password: res.profileObj.googleId,
-            src: res.profileObj.imageUrl,
-            google: true
-        }
-        signUpUser(logWithGoogle)
-        .then((res) => {console.log(res)
-            
+  const responseFacebook = (res) => {
+    if (res.picture) {
+      let logWithFacebook = {
+        name: res.first_name,
+        lastName: res.last_name,
+        data: { mail: res.email },
+        password: res.id,
+        src: res.picture.data.url,
+        google: true,
+      };
+      signUpUser(logWithFacebook)
+        .then((res) => {
+          console.log(res);
         })
+        .catch((e) => console.log(e));
     }
+  };
 
-
-
-    const responseFacebook = (res) => {
-        if (res.picture){
-        let logWithFacebook = {
-            name: res.first_name,
-            lastName: res.last_name,
-            data: { mail: res.email },
-            password: res.id,
-            src: res.picture.data.url,
-            google: true
-        }
-        signUpUser(logWithFacebook)
-        .then((res) => {console.log(res)
-
-        }).catch((e)=> console.log(e))
-    }}
-
-
-    const submitHandler = () => {
-        validFields(newUser)
-        if (breaker){
-        if (valueIn === "prof") newUser.doc = true
-        else newUser.doc = false
-        signUpUser({...newUser, doc: newUser.doc})
-        .then((res)=>console.log(res)
-        )
-        }
+  const submitHandler = () => {
+    validFields(newUser);
+    if (breaker) {
+      if (valueIn === "prof") newUser.doc = true;
+      else newUser.doc = false;
+      signUpUser({ ...newUser, doc: newUser.doc }).then((res) =>
+        console.log(res)
+      );
     }
-    
+  };
 
-    const addUserHandler = (e) => {
-        setError(false)
-        if (e.target.name === "data"){
-            setNewUser({...newUser, data: {mail: e.target.value}})
-        }else{
-            setNewUser({...newUser, [e.target.name]: e.target.value})
-        }
+  const addUserHandler = (e) => {
+    setError(false);
+    if (e.target.name === "data") {
+      setNewUser({ ...newUser, data: { mail: e.target.value } });
+    } else {
+      setNewUser({ ...newUser, [e.target.name]: e.target.value });
     }
+  };
 
+  const validInputHandler = (e) => {
+    setValueIn(e.target.value);
+  };
 
+  let disp = valueIn === "prof" ? "block" : "none";
+  let dispGo = valueIn === "prof" ? "none" : "block";
 
-    const validInputHandler = (e) => {
-        setValueIn(e.target.value)
-    }
-
-    
-
-    let disp = valueIn === "prof" ? "block" : "none" 
-    let dispGo = valueIn === "prof" ? "none" : "block"
-
-    return (
-        <>
-            <div className="container">
-                <div className="signUpForm">
-                    <img src='/assets/form.png' alt=""/>  
-                    <h3>¿Usted se registrará como paciente o profesional?</h3>
-                    <div className="radio">
-                        <div>Paciente <input onClick={validInputHandler} type="radio" name="buttonRol" defaultValue="pat" defaultChecked/></div>
-                        <div>Profesional <input onClick={validInputHandler} type="radio" name="buttonRol" defaultValue="prof"/></div>
-                    </div>
-                    <form>
-                        <div className="inputs">
-                        <input type="text" placeholder="Nombre" style={{backgroundColor: ((error && !newUser.name.length) ? "yellow" : "white")}} name="name" onChange={addUserHandler}  defaultValue={newUser.name} required />
-                        <input type="text" placeholder="Apellido"name="lastName" style={{backgroundColor: ((error && !newUser.lastName.length) ? "yellow" : "white")}} onChange={addUserHandler} defaultValue={newUser.lastName} required/>
-                        <input type="email" placeholder="Email" name="data" style={{backgroundColor: ((error && !newUser.data.mail.length) ? "yellow" : "white")}} onChange={addUserHandler} defaultValue={newUser.data.mail} required/>
-                        <input type="password" placeholder="Contraseña"name="password" style={{backgroundColor: ((error && !newUser.password.length) ? "yellow" : "white")}} onChange={addUserHandler}  defaultValue={newUser.password} required/>
-                        <input type="password" placeholder="Repita su contraseña"name="validPassword" style={{backgroundColor: ((error && !newUser.validPassword.length) ? "yellow" : "white")}} onChange={addUserHandler}  defaultValue={newUser.validPassword} required/>
-                        <input type="text" placeholder="Foto de perfil" name="src" style={{backgroundColor: ((error && !newUser.src.length) ? "yellow" : "white")}} onChange={addUserHandler} defaultValue={newUser.src} required/>
-                        <input type="text" placeholder="Contraseña de profesional" style={{backgroundColor: ((error && !newUser.passwordAdm.length) ? "yellow" : "white"), display:disp}} name="passwordAdm" onChange={addUserHandler} defaultValue={newUser.passwordAdm} required={valueIn === "prof" ? true : false}/>
-                        </div>
-                    <button onClick={submitHandler} >REGISTRARSE</button>
-                    </form>
-                    <div style={{display:dispGo}}>
-                        <div >
-                            <GoogleLogin
-                            clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
-                            buttonText="Registrarse con Google"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
-                            cookiePolicy={'single_host_origin'}
-                            />
-                        </div>
-
-                        <div>
-                        <FacebookLogin
-                            appId="1145134492902308"
-                            autoLoad={false}
-                            fields="email"
-                            textButton="Ingresar con facebook"
-                            icon="fa-facebook"
-                            callback={responseFacebook} />
-                        </div>
-                    </div>
-                </div>
+  return (
+    <>
+      <div className="container">
+        <div className="signUpForm">
+          <img src="/assets/form.png" alt="" />
+          <h3>¿Usted se registrará como paciente o profesional?</h3>
+          <div className="radio">
+            <div>
+              Paciente{" "}
+              <input
+                onClick={validInputHandler}
+                type="radio"
+                name="buttonRol"
+                defaultValue="pat"
+                defaultChecked
+              />
             </div>
-      </>
-   )
-}
+            <div>
+              Profesional{" "}
+              <input
+                onClick={validInputHandler}
+                type="radio"
+                name="buttonRol"
+                defaultValue="prof"
+              />
+            </div>
+          </div>
+          <form>
+            <div className="inputs">
+              <input
+                type="text"
+                placeholder="Nombre"
+                style={{
+                  backgroundColor:
+                    error && !newUser.name.length ? "yellow" : "white",
+                }}
+                name="name"
+                onChange={addUserHandler}
+                defaultValue={newUser.name}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Apellido"
+                name="lastName"
+                style={{
+                  backgroundColor:
+                    error && !newUser.lastName.length ? "yellow" : "white",
+                }}
+                onChange={addUserHandler}
+                defaultValue={newUser.lastName}
+                required
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                name="data"
+                style={{
+                  backgroundColor:
+                    error && !newUser.data.mail.length ? "yellow" : "white",
+                }}
+                onChange={addUserHandler}
+                defaultValue={newUser.data.mail}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Contraseña"
+                name="password"
+                style={{
+                  backgroundColor:
+                    error && !newUser.password.length ? "yellow" : "white",
+                }}
+                onChange={addUserHandler}
+                defaultValue={newUser.password}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Repita su contraseña"
+                name="validPassword"
+                style={{
+                  backgroundColor:
+                    error && !newUser.validPassword.length ? "yellow" : "white",
+                }}
+                onChange={addUserHandler}
+                defaultValue={newUser.validPassword}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Foto de perfil"
+                name="src"
+                style={{
+                  backgroundColor:
+                    error && !newUser.src.length ? "yellow" : "white",
+                }}
+                onChange={addUserHandler}
+                defaultValue={newUser.src}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Contraseña de profesional"
+                style={{
+                  backgroundColor:
+                    error && !newUser.passwordAdm.length ? "yellow" : "white",
+                  display: disp,
+                }}
+                name="passwordAdm"
+                onChange={addUserHandler}
+                defaultValue={newUser.passwordAdm}
+                required={valueIn === "prof" ? true : false}
+              />
+            </div>
+            <button onClick={submitHandler}>REGISTRARSE</button>
+          </form>
+          <div style={{ display: dispGo }}>
+            <div>
+              <GoogleLogin
+                clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
+                buttonText="Registrarse con Google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={"single_host_origin"}
+              />
+            </div>
+
+            <div>
+              <FacebookLogin
+                appId="1145134492902308"
+                autoLoad={false}
+                fields="email"
+                textButton="Ingresar con facebook"
+                icon="fa-facebook"
+                callback={responseFacebook}
+              />
+            </div>
+            <p>
+              ¿Ya tenés cuenta? <Link to="/login">¡Ingresá aquí!</Link>
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
