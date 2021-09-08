@@ -2,7 +2,6 @@ import axios from "axios";
 
 const userActions = {
    signUpUser: (user) => {
-      console.log(user)
       return async (dispatch) => {
          try {
             let res = await axios.post("http://localhost:4000/api/user", user)
