@@ -50,6 +50,7 @@ router
 
 router
    .route("/appointment/:id")
+   .get(appointmentControllers.getAppointementByDoctor)
    .post(
       passport.authenticate("jwt", { session: false }),
       appointmentControllers.addAppointment

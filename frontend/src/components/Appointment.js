@@ -5,9 +5,10 @@ import doctorActions from "../redux/actions/doctorActions";
 import patientActions from '../redux/actions/patientActions'
 import AppointmentDay from '../components/AppointmentDay'
 
-const Appointment = ({doctors,getDoctors, user, getCalendar,calendar}) => {
+const Appointment = ({doctors,getDoctors, user, getCalendar,calendar,getAppointementByDoctor}) => {
   const [newDoctors, setNewDoctors] = useState(doctors)
   const [newCalendar, setNewCalendar] = useState(calendar)
+  const [diaryByDoc, setDiaryByDoc]= useState([])
   const [view, setView] = useState(false)
   const [appointmentReady, setAppointmentReady] = useState({
     date: {
@@ -39,13 +40,25 @@ const Appointment = ({doctors,getDoctors, user, getCalendar,calendar}) => {
           }
         })
       }
+
   }, []);
 
   const appointmentValue = (e) => {
+    if(!e.target.value){
+      setDiaryByDoc([])
+    }else{
+      setAppointmentReady({...appointmentReady, [e.target.name]:e.target.value})
+      getAppointementByDoctor(e.target.value)
+      .then(res=> setDiaryByDoc(res.res))
+    }
   };
 
-  const inputDay = newCalendar.map(obj => <AppointmentDay key={obj._id} day={obj.day} timeTable={obj.timeTable}/>)
-  
+  const inputDay = newCalendar.map(obj =>{
+    const appointmentByDay = !diaryByDoc.length ? [] : diaryByDoc.filter(diary=>diary.date.date === obj.day)
+    return(
+      <AppointmentDay key={obj._id} day={obj.day} fullDay={appointmentByDay.length === 18} appointmentByDay={appointmentByDay} timeTable={obj.timeTable}/>
+    )
+  })
   return (
     <>
       <div className="container">
@@ -60,7 +73,7 @@ const Appointment = ({doctors,getDoctors, user, getCalendar,calendar}) => {
             defaultValue={appointmentReady.doctorId}
             onChange={appointmentValue}
           >
-            <option value="generico">generico</option>
+            <option value="">Seleccione un Profesional</option>
             {newDoctors.map((doctor, index) => (
               <option key={index} value={doctor._id}>
                 {doctor.name}
@@ -86,7 +99,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   getDoctors: doctorActions.getDoctors,
-  getCalendar:patientActions.getCalendar
+  getCalendar:patientActions.getCalendar,
+  getAppointementByDoctor:doctorActions.getAppointementByDoctor
 
 };
 

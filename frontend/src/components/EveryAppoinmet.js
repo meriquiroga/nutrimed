@@ -1,4 +1,5 @@
-const EveryAppoinmet = ({hour, bookAppointmentHandler})=>{
+const EveryAppoinmet = ({hour, bookAppointmentHandler,fullHour})=>{
+    console.log(fullHour)
 
     return(
         <div>

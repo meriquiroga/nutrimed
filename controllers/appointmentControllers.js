@@ -15,7 +15,7 @@ const appointmentControllers={
       try {
         let appointments = await Appointment.find({
           doctorId: req.user._id,
-        });
+        }).populate('patientId');
         res.json({ success: true, res: appointments });
       } catch (err) {
         res.json({ success: false, res: err.message });
@@ -24,7 +24,7 @@ const appointmentControllers={
       try {
         let appointments = await Appointment.find({
           patientId: req.user._id,
-        });
+        }).populate('doctorId', {name:1, lastName:1, src:1, registration:1, specialty:1});
         res.json({ success: true, res: appointments });
       } catch (err) {
         res.json({ success: false, res: err.message });
@@ -41,6 +41,14 @@ const appointmentControllers={
       res.json({ success: false, res: err.message });
     }
   },
+  getAppointementByDoctor:async(req,res)=>{
+    try{
+      let appointmenDoctor = await Appointment.find({doctorId:req.params.id})
+      res.json({success:true, res:appointmenDoctor})
+    }catch(err){
+      res.json({success:false, res:err.message})
+    }
+  }
 };
 
 module.exports = appointmentControllers;

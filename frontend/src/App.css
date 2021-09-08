@@ -487,10 +487,15 @@ footer img {
    align-content: start
  }
  
-.item2 {
+.full, .noFull {
    height: 10vh;
    width: 10vw;
    flex: 0 0 auto;
    margin: 10px;
-   background-color: green;
- }
+}
+.full{
+   background-color: red;
+}
+.noFull{
+   background-color: rgb(32, 218, 32);
+}

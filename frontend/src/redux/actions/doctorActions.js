@@ -89,6 +89,16 @@ const doctorActions = {
       }
     };
   },
+  getAppointementByDoctor: (dorctorid)=>{
+    return async ()=>{
+      try{
+        let res = await axios.get(`http://localhost:4000/api/appointment/${dorctorid}`)
+        return{success:true, res:res.data.res}
+      }catch(err){
+        return{success:false}
+      }
+    }
+  }
 };
 
 export default doctorActions;
