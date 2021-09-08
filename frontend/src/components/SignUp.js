@@ -1,8 +1,9 @@
 import { connect } from "react-redux"
 import { useState } from "react"
 import { GoogleLogin } from 'react-google-login'
-// import FacebookLogin from 'react-facebook-login'
+import FacebookLogin from 'react-facebook-login'
 import userActions from "../redux/actions/userActions"
+import { Link } from "react-router-dom"
 
 const SignUp = ({signUpUser}) => {
     let valor = 0
@@ -46,21 +47,6 @@ const SignUp = ({signUpUser}) => {
         })
     }
 
-  const responseGoogle = (res) => {
-    let logWithGoogle = {
-      name: res.profileObj.givenName,
-      lastName: res.profileObj.familyName,
-      data: { mail: res.profileObj.email },
-      password: res.profileObj.googleId,
-      src: res.profileObj.imageUrl,
-      google: true,
-    };
-    signUpUser(logWithGoogle).then((res) => {
-      console.log(res);
-    });
-  };
-
-
     // const responseFacebook = (res) => {
     //     console.log(res)
     //     if (res.userID){
@@ -86,29 +72,15 @@ const SignUp = ({signUpUser}) => {
         else newUser.doc = false
         if (valor > 0){
         signUpUser({...newUser, doc: newUser.doc})
-        .then((res)=> {if (res.errors) {
-            setErrors(res.errors)
-            }
-        }
-        )
+        // .then((res)=> {if (res.errors) {
+        //     setErrors(res.errors)
+        // }else{
+        //   console.log('ok')
+        // }
+        // }
+        // )
         }
     }
-
-
-    console.log(errors)
-    
-
-  const submitHandler = () => {
-    validFields(newUser);
-    if (breaker) {
-      if (valueIn === "prof") newUser.doc = true;
-      else newUser.doc = false;
-      signUpUser({ ...newUser, doc: newUser.doc }).then((res) =>
-        console.log(res)
-      );
-    }
-  };
-
   const addUserHandler = (e) => {
     setError(false);
     if (e.target.name === "data") {
@@ -117,6 +89,10 @@ const SignUp = ({signUpUser}) => {
       setNewUser({ ...newUser, [e.target.name]: e.target.value });
     }
   };
+
+  const validInputHandler = (e) => {
+    setValueIn(e.target.value)
+  }
 
 
     let disp = valueIn === "prof" ? "block" : "none" 
