@@ -29,7 +29,6 @@ class EachDoctor extends Component {
     }
   }
   render() {
-    console.log(this.props.doctor);
     if (this.state.loading.condition) {
       return (
         <>
@@ -40,21 +39,21 @@ class EachDoctor extends Component {
     }
     return (
       <div className="containerDocCv">
-          <div className="signUpForm">
+        <div className="signUpForm">
           <div className="cvDoc">
-          <div
-            className="doc"
-            style={{ backgroundImage: `url('${this.props.doctor.src}')` }}
-          ></div>
-          <div className="docInfo">
-            <h4>
-              {this.props.doctor.name} {this.props.doctor.lastName}
-            </h4>
-            <p>Matrícula: {this.props.doctor.registration}</p>
-            <p>Especialidad: {this.props.doctor.specialty}</p>
+            <div
+              className="doc"
+              style={{ backgroundImage: `url('${this.props.doctor.src}')` }}
+            ></div>
+            <div className="docInfo">
+              <h4>
+                {this.props.doctor.name} {this.props.doctor.lastName}
+              </h4>
+              <p>Matrícula: {this.props.doctor.registration}</p>
+              <p>Especialidad: {this.props.doctor.specialty}</p>
+            </div>
           </div>
-        </div>
-        <div className="docDescription">
+          <div className="docDescription">
             <p>{this.props.doctor.description}</p>
             <div>
               <Reviews
@@ -63,7 +62,7 @@ class EachDoctor extends Component {
               />
             </div>
           </div>
-          </div>
+        </div>
       </div>
     );
   }
