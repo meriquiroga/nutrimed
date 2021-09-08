@@ -48,7 +48,7 @@ const patientActions = {
                   },
                }
             )
-            if (res.data.res) {
+            if (res.data.success) {
                return { success: true, res: res.data.res }
             } else {
                throw new Error("Database Error")
@@ -58,6 +58,24 @@ const patientActions = {
          }
       }
    },
+   addAppointment:(data)=>{
+      return async ()=>{
+         try{
+            let res= await axios.post(`http://localhost:4000/api/appointment/${data.doctorId}`,{date:data.date},{
+                  headers: {
+                     Authorization: "Bearer " + data.patientId
+                  },
+            })
+            if(res.data.success){
+               return{success:true}
+            }else{
+               throw Error()
+            }
+         }catch(err){
+            return{success:false}
+         }
+      }
+   }
 }
 
 export default patientActions

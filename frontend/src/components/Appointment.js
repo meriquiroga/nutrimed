@@ -5,11 +5,13 @@ import doctorActions from "../redux/actions/doctorActions";
 import patientActions from '../redux/actions/patientActions'
 import AppointmentDay from '../components/AppointmentDay'
 
-const Appointment = ({doctors,getDoctors, user, getCalendar,calendar,getAppointementByDoctor}) => {
+const Appointment = ({doctors,getDoctors, userToken,addAppointment, getCalendar,calendar,getAppointementByDoctor}) => {
   const [newDoctors, setNewDoctors] = useState(doctors)
   const [newCalendar, setNewCalendar] = useState(calendar)
+  const [docName, setDocName] = useState(null)
   const [diaryByDoc, setDiaryByDoc]= useState([])
-  const [view, setView] = useState(false)
+  const [confirmAppointment, setConfirmAppointment] = useState('')
+  const [views, setViews] = useState({view:false, confirm:false, ok:false})
   const [appointmentReady, setAppointmentReady] = useState({
     date: {
       hour: "",
@@ -29,36 +31,61 @@ const Appointment = ({doctors,getDoctors, user, getCalendar,calendar,getAppointe
         })
       }
       if(!calendar.length){
-        console.log('fecheo a los cale')
         getCalendar()
         .then(res=>{
           if(res.success){
-            console.log(res.res)
             setNewCalendar(res.res)
           }else{
             console.log(res.res)
           }
         })
       }
-
   }, []);
 
-  const appointmentValue = (e) => {
+  const appointmentValueHandler = (e) => {
     if(!e.target.value){
-      setDiaryByDoc([])
+      setViews({...views, view:false, ok:false})
     }else{
+      !views.view && setViews({...views, view:true, ok:false})
       setAppointmentReady({...appointmentReady, [e.target.name]:e.target.value})
       getAppointementByDoctor(e.target.value)
       .then(res=> setDiaryByDoc(res.res))
+      setDocName(newDoctors.find(obj => obj._id === e.target.value))
     }
-  };
-
+  }
+  const bookAppointmentHandler=(hour,day)=>{
+    setAppointmentReady({...appointmentReady,
+      date: {
+      hour: hour,
+      date: day,
+      },
+      patientId: userToken,
+    })
+    setViews({...views, confirm:true, ok:false})
+  }
+  const optionDoctor = newDoctors.map(obj => <option key={obj._id} value={obj._id}>{obj.name} {obj.lastName}</option>)
+ 
   const inputDay = newCalendar.map(obj =>{
     const appointmentByDay = !diaryByDoc.length ? [] : diaryByDoc.filter(diary=>diary.date.date === obj.day)
     return(
-      <AppointmentDay key={obj._id} day={obj.day} fullDay={appointmentByDay.length === 18} appointmentByDay={appointmentByDay} timeTable={obj.timeTable}/>
+      <AppointmentDay key={obj._id} day={obj.day} docName={`${obj.name} ${obj.lastName}`} fullDay={appointmentByDay.length === 18} appointmentByDay={appointmentByDay} bookAppointmentHandler={bookAppointmentHandler} timeTable={obj.timeTable}/>
     )
   })
+  const confirmAppointmentHandler =(data)=>{
+    addAppointment(data)
+    .then(res=>{
+      if(res.success){
+        setViews({...views, confirm:false, ok:true})
+        setConfirmAppointment('Tu turno fue agendado exitosamente. Gracias!!')
+      }else{
+        setViews({...views, confirm:false, ok:true})
+        setConfirmAppointment('Lo sentimos ha ocurrido un error, intente mas tarde')
+      }
+      setTimeout(() => {
+        setViews({...views,confirm:false, ok:false})
+      }, 3000);
+    })
+  }
   return (
     <>
       <div className="container">
@@ -71,19 +98,25 @@ const Appointment = ({doctors,getDoctors, user, getCalendar,calendar,getAppointe
         <form>
           <select id="optionDoctor" name="doctorId"
             defaultValue={appointmentReady.doctorId}
-            onChange={appointmentValue}
+            onChange={appointmentValueHandler}
           >
-            <option value="">Seleccione un Profesional</option>
-            {newDoctors.map((doctor, index) => (
-              <option key={index} value={doctor._id}>
-                {doctor.name}
-              </option>
-            ))}
+            <option value="" >Seleccione un Profesional</option>
+            {optionDoctor}
           </select>
         </form>
-        <div className="container2" >{inputDay}</div>
+        {views.ok && <h2>{confirmAppointment}</h2>}
+        {views.confirm && 
+          <div>
+            <h3>Confirmacion de turno</h3>
+            <p>Profesional: {docName.name} {docName.lastName}</p>
+            <p>Día: {appointmentReady.date.date}</p>
+            <p>Hora: {appointmentReady.date.hour}</p>
+            <img className='icon'  src='/assets/cross.png' alt='edit' onClick={()=>setViews({...views, confirm:false})}/>
+            <img className='icon'  src='/assets/check.png' alt='edit' onClick={()=>confirmAppointmentHandler(appointmentReady)}/>
+          </div>}
+        {views.view && <div className="container2" >{inputDay}</div>}
+        {!views.view && <p>aca algo, hasta q elija un medico, pueden ser recomendaciones de protocolo covid o tips de salud nose !!</p>}
         </div>
-        
       </div>
     </>
   );
@@ -92,7 +125,7 @@ const Appointment = ({doctors,getDoctors, user, getCalendar,calendar,getAppointe
 const mapStateToProps = (state) => {
   return {
     doctors: state.doctors.doctors,
-    user: state.users.dataUser,
+    userToken: state.users.token,
     calendar:state.patients.calendar
   };
 };
@@ -100,8 +133,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   getDoctors: doctorActions.getDoctors,
   getCalendar:patientActions.getCalendar,
-  getAppointementByDoctor:doctorActions.getAppointementByDoctor
-
+  getAppointementByDoctor:doctorActions.getAppointementByDoctor,
+  addAppointment:patientActions.addAppointment
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Appointment);
