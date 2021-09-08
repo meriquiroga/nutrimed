@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useEffect, useState } from "react"
 
 const EveryAppoinmet = ({hour,fullHour,bookAppointmentHandler,viewHandler,doctorName,day})=>{
@@ -20,3 +21,19 @@ const EveryAppoinmet = ({hour,fullHour,bookAppointmentHandler,viewHandler,doctor
     )
 }
 export default EveryAppoinmet
+=======
+const EveryAppoinmet = ({ hour, bookAppointmentHandler, fullHour }) => {
+  return (
+    <div>
+      <button onClick={bookAppointmentHandler}>{hour}</button>
+    </div>
+  );
+};
+export default EveryAppoinmet;
+
+{
+  /* <p>seguro?</p>
+            <img className='icon' src='/assets/check.png' alt='edit' />
+            <img className='icon'  src='/assets/cross.png' alt='edit' onClick={confirmHandler}/> */
+}
+>>>>>>> origin/dario

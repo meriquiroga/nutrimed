@@ -2,8 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import doctorActions from "../redux/actions/doctorActions";
-import patientActions from '../redux/actions/patientActions'
-import AppointmentDay from '../components/AppointmentDay'
+import patientActions from "../redux/actions/patientActions";
+import AppointmentDay from "../components/AppointmentDay";
 
 const Appointment = ({doctors,getDoctors, userToken,addAppointment, getCalendar,calendar,getAppointementByDoctor}) => {
   const [newDoctors, setNewDoctors] = useState(doctors)

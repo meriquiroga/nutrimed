@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-import EveryAppoinmet from "./EveryAppoinmet"
+import { useEffect, useState } from "react";
+import EveryAppoinmet from "./EveryAppoinmet";
 
 const AppointmentDay =({day,timeTable,appointmentByDay,bookAppointmentHandler,fullDay})=>{
     const[view, setView] = useState({turn: false, warning:false})
@@ -27,5 +27,28 @@ const AppointmentDay =({day,timeTable,appointmentByDay,bookAppointmentHandler,fu
         </>
     )
 
-}
-export default AppointmentDay
+  const turn = timeTable.map((obj, index) => {
+    const fullHour = appointmentByDay.filter((day) => day.date.hour === obj);
+
+    return (
+      <EveryAppoinmet
+        key={index}
+        bookAppointmentHandler={bookAppointmentHandler}
+        hour={obj}
+        fullHour={fullHour}
+      />
+    );
+  });
+  return (
+    <>
+      <div
+        className={fullDay ? "full" : "noFull"}
+        onClick={!fullDay ? viewHandler : () => {}}
+      >
+        <h3>{day}</h3>
+      </div>
+      <div>{view && turn}</div>
+    </>
+  );
+};
+export default AppointmentDay;

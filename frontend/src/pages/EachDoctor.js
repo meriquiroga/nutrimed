@@ -3,10 +3,13 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import doctorActions from "../redux/actions/doctorActions";
 import Reviews from "../components/Reviews";
+// import io from "socket.io-client";
+// import patientActions from "../redux/actions/patientActions";
 
 class EachDoctor extends Component {
   state = {
     loading: { condition: true, text: "Loading...", link: "" },
+    socket: null,
   };
 
   componentDidMount() {
@@ -27,6 +30,8 @@ class EachDoctor extends Component {
       this.props.getOneDoctor(this.props.match.params.id);
       this.setState({ loading: { condition: false } });
     }
+    // this.setState({ socket: io("http://localhost:4000/") });
+    // this.props.getSocket(this.state.socket);
   }
   render() {
     if (this.state.loading.condition) {
@@ -78,5 +83,6 @@ const mapStateTopProps = (state) => {
 const mapDispatchToProps = {
   getOneDoctor: doctorActions.getOneDoctor,
   getOneDoctorDB: doctorActions.getOneDoctorDB,
+  // getSocket: patientActions.getSocket,
 };
 export default connect(mapStateTopProps, mapDispatchToProps)(EachDoctor);

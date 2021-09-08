@@ -2,42 +2,86 @@ import ScrollableFeed from "react-scrollable-feed";
 import EveryReview from "./EveryReview";
 import doctorActions from "../redux/actions/doctorActions";
 import { connect } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import io from "socket.io-client";
+import patientActions from "../redux/actions/patientActions";
 
-const Reviews = ({ reviews, dataUser, doctorId, userToken, actionReview}) => {
-  const [newReviews, setNewReview] = useState(reviews)
-  const [text, setText] = useState("")
- 
+const Reviews = ({
+  reviews,
+  dataUser,
+  doctorId,
+  userToken,
+  actionReview,
+  getSocket,
+  getOneDoctorDB,
+}) => {
+  const [newReviews, setNewReview] = useState(reviews);
+  const [text, setText] = useState("");
+  const [socket, setSocket] = useState(null);
+  const [refetch, setRefetch] = useState(false);
+  const [escribiendo, setEscribiendo] = useState("");
+
+  useEffect(() => {
+    setSocket(io("http://localhost:4000/"));
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("message", (mensaje) => {
+        if (mensaje === "refetch") {
+          setRefetch(!refetch);
+          getOneDoctorDB(doctorId).then((res) => {
+            if (res.success) {
+              setNewReview(res.res);
+            } else {
+              console.log("error");
+            }
+          });
+        }
+        if (mensaje.includes("escribiendo")) {
+          setEscribiendo(mensaje);
+          setTimeout(() => {
+            setEscribiendo("");
+          }, 1000);
+        }
+      });
+    }
+  }, [socket]);
+
+  getSocket(socket);
+
   const deleteReviewHandler = (reviewId) => {
-    actionReview(userToken, doctorId, text, 'deleteReview',reviewId)
-    .then(res=>{
-      if(res.success){
-        setNewReview(res.res)
-      }else{
-        console.log(res)
+    actionReview(userToken, doctorId, text, "deleteReview", reviewId).then(
+      (res) => {
+        if (res.success) {
+          setNewReview(res.res);
+        } else {
+          console.log(res);
+        }
       }
-    })
-  }
- 
+    );
+  };
+
   const editTextReviewHandler = (e) => {
+    socket.emit("message", `Alguien está escribiendo...`);
     setText(e.target.value);
-  }
+  };
 
   const addReviewHandler = () => {
-    setText('')
+    setText("");
     if (text) {
-      actionReview(userToken, doctorId, text, 'addReview')
-      .then((res) => {
+      actionReview(userToken, doctorId, text, "addReview").then((res) => {
+        socket.emit("message", "nuevo mensaje");
         if (res.success) {
-          setNewReview([...newReviews, res.res[res.res.length - 1]])
+          setNewReview([...newReviews, res.res[res.res.length - 1]]);
         } else {
-          console.log(res)
+          console.log(res);
         }
-      })
+      });
     }
-  }
+  };
 
-  const everyReview = newReviews.map(obj => (
+  const everyReview = newReviews.map((obj) => (
     <EveryReview
       key={obj._id}
       review={obj}
@@ -49,17 +93,29 @@ const Reviews = ({ reviews, dataUser, doctorId, userToken, actionReview}) => {
     />
   ));
   return (
-    
     <div className="divReview">
       <ScrollableFeed className="divComentaries">{everyReview}</ScrollableFeed>
+      <span style={{ fontSize: 10, color: "gray", marginTop: 10 }}>
+        {escribiendo}
+      </span>
       <div>
         <input
-          placeholder={!userToken ? 'Create una cuenta para dejar tu feedback al profesional' : 'Dejale tu feedback al profesional'} 
+          placeholder={
+            !userToken
+              ? "Create una cuenta para dejar tu feedback al profesional"
+              : "Dejale tu feedback al profesional"
+          }
           disabled={!userToken}
           onChange={editTextReviewHandler}
           value={text}
         />
-        <button id="buttonSign" onClick={addReviewHandler} disabled={!userToken}>ENVIAR</button>
+        <button
+          id="buttonSign"
+          onClick={addReviewHandler}
+          disabled={!userToken}
+        >
+          ENVIAR
+        </button>
       </div>
     </div>
   );
@@ -72,5 +128,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = {
   actionReview: doctorActions.actionReview,
+  getSocket: patientActions.getSocket,
+  getOneDoctorDB: doctorActions.getOneDoctorDB,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Reviews);

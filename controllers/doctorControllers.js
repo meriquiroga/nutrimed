@@ -4,9 +4,12 @@ const jwt = require("jsonwebtoken");
 
 const doctorControllers = {
   signIn: async (req, res) => {
-    const { data, password, flagGoogle} = req.body;
+    const { data, password, flagGoogle } = req.body;
     try {
-      let userExist = await Doctor.findOne({ "data.mail": data.mail }).populate("review.patientId", { name: 1, lastName: 1, src: 1 });
+      let userExist = await Doctor.findOne({ "data.mail": data.mail }).populate(
+        "review.patientId",
+        { name: 1, lastName: 1, src: 1 }
+      );
       if (!userExist)
         throw new Error("The data entered is not valid. Please, try again.");
       if (userExist.google && !flagGoogle)
@@ -15,7 +18,7 @@ const doctorControllers = {
       if (!match)
         throw new Error("The data entered is not valid. Please, try again.");
       let token = jwt.sign({ ...userExist }, process.env.SECRETOKEN);
-      res.json({ success: true, res: { userExist, token}});
+      res.json({ success: true, res: { userExist, token } });
     } catch (err) {
       res.json({ success: false, res: err.message });
     }
@@ -56,7 +59,7 @@ const doctorControllers = {
             { _id: req.params.id },
             {
               $pull: {
-                review: {_id:req.body.reviewId},
+                review: { _id: req.body.reviewId },
               },
             },
             { new: true }
@@ -86,19 +89,26 @@ const doctorControllers = {
   },
   getDoctorById: async (req, res) => {
     try {
-      let doctor = await Doctor.findOne({ _id: req.params.id }).populate("review.patientId", { name: 1, lastName: 1, src: 1 });
+      let doctor = await Doctor.findOne({ _id: req.params.id }).populate(
+        "review.patientId",
+        { name: 1, lastName: 1, src: 1 }
+      );
       if (doctor) {
-        res.json({ success: true, res:doctor});
+        res.json({ success: true, res: doctor });
       } else {
         throw new Error();
       }
     } catch (err) {
-      res.json({ success: false, res:err.message});
+      res.json({ success: false, res: err.message });
     }
   },
   getDoctors: async (req, res) => {
     try {
-      let doctors = await Doctor.find().populate("review.patientId", { name: 1, lastName: 1, src: 1 });
+      let doctors = await Doctor.find().populate("review.patientId", {
+        name: 1,
+        lastName: 1,
+        src: 1,
+      });
       if (doctors) {
         res.json({ success: true, res: doctors });
       } else {
