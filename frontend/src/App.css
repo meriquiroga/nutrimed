@@ -559,3 +559,27 @@ footer img {
 .icon-contact {
    width: 7vw;
 }
+
+.icon-map {
+   width: 7vw;
+}
+
+.form-consulta {
+   width: 100%;
+   padding: 4vh;
+}
+
+.form-consulta {
+   display: flex;
+   justify-content: center;
+}
+
+.textarea {
+   width: 20vw;
+   height: 25vh;
+   resize: none;
+   border-radius: 2vw;
+   outline: none;
+   border: 2px gray solid;
+   padding: 1vw;
+}

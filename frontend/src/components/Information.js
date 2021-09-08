@@ -21,9 +21,18 @@ const Information = () => {
           <h3>Loza Bravo 3333</h3>
         </div>
         <div className="iconCard">
-        <img src="/assets/icoNutricion.png" />
-        <h3>Lunes a Viernes</h3>
-        <h3>9:00 a 20:30hs.</h3>
+          <img src="/assets/icoNutricion.png" />
+          <h3>Lunes a Viernes</h3>
+          <h3>9:00 a 20:30hs.</h3>
+        </div>
+        <div className="form-consulta">
+        <div className="inputs">
+          <h2> Envianos tu consulta:</h2>
+          <input type="email" placeholder="E-mail" />
+          <input type="text" placeholder="Nombre" />
+          <textarea className="textarea" type="text" placeholder="Escribe tu consulta.." />
+          <button>Enviar</button>
+        </div>
         </div>
       </div>
     </div>
