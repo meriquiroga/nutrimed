@@ -1,6 +1,6 @@
-import { connect } from "react-redux";
-import { NavLink, Link } from "react-router-dom";
-import userActions from "../redux/actions/userActions";
+import { connect } from "react-redux"
+import { NavLink, Link } from "react-router-dom"
+import userActions from "../redux/actions/userActions"
 
 const Header = (props) => {
    const outHandler = () => {
@@ -47,7 +47,11 @@ const Header = (props) => {
                )}
             </ul>
          </div>
-         {/* {!props.user.userExist.doc && <button><Link to={props.valid ? "/appointment" : "/signup"}>SOLICITAR TURNO</Link></button>} */}
+         <button>
+            <Link to={props.valid ? "/appointment" : "/login"}>
+               SOLICITAR TURNO
+            </Link>
+         </button>
       </header>
    )
 }
