@@ -25,6 +25,17 @@ const patientActions = {
          }
       }
    },
+   getCalendar:()=>{
+      return async (dispatch, getState)=>{
+         try{
+            let calendar = await axios.get('http://localhost:4000/api/calendar')
+            dispatch({type:'GET_CALENDAR', payload:calendar.data.res})
+            return ({success:true, res:calendar.data.res})
+         }catch(err){
+            return({success:false})
+         }
+      }
+   }
 }
 
 export default patientActions

@@ -477,3 +477,20 @@ footer img {
    width: 60%;
    align-self: center;
 }
+/*el nombre es estas dos clases son horrendos, perdon!!! */
+.container2 { 
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: row;
+   justify-content: start;
+   align-items: auto;
+   align-content: start
+ }
+ 
+.item2 {
+   height: 10vh;
+   width: 10vw;
+   flex: 0 0 auto;
+   margin: 10px;
+   background-color: green;
+ }

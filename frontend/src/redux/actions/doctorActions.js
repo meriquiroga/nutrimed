@@ -29,7 +29,7 @@ const doctorActions = {
       try {
         let res = await axios.get("http://localhost:4000/api/doctors");
         dispatch({ type: "GET_ALL_DOCTORS", payload: res.data.res });
-        return { success: true };
+        return { success: true , res: res.data.res};
       } catch (err) {
         return { success: false, res: err };
       }

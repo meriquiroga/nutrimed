@@ -23,7 +23,6 @@ class Staff extends Component {
   }
 
   render() {
-    console.log(this.state.props)
     if (this.state.loading.condition) {
       return <h1>{this.state.loading.text}</h1>;
     }
