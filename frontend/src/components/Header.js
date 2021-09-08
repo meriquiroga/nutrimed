@@ -45,6 +45,11 @@ const Header = (props) => {
                      </NavLink>
                   </li>
                )}
+                <li>
+                     <NavLink to="/information">
+                        <p>CONTACTO</p>
+                     </NavLink>
+                  </li>
             </ul>
          </div>
          <button><Link to={props.valid ? "/appointment" : "/login"}>SOLICITAR TURNO</Link></button>

@@ -15,6 +15,7 @@ import { useEffect } from "react"
 import userActions from "./redux/actions/userActions"
 import Login from "./components/Login"
 import MedicalData from "./components/MedicalData"
+import Information from "./components/Information"
 
 const App = (props) => {
    useEffect(() => {
@@ -30,6 +31,7 @@ const App = (props) => {
             {!props.valid && <Route path="/signup" component={SignUp} />}
             <Route exact path="/staff" component={Staff} />
             <Route path="/staff/:id" component={EachDoctor} />
+            <Route path="/information" component={Information} />
             <Route path="/appointment" component={Appointment} />
             <Route path="/medicaldata" component={MedicalData} />
             {props.valid && props.user.doc && (
