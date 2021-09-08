@@ -7,6 +7,7 @@ const EditProfileDoctor = (props) => {
   const mail = props.user.userExist.data.mail;
   const [valueIn, setValueIn] = useState(true);
   const [actDoc, setActDoc] = useState({
+    
     dni: "",
     description: "",
     registration: "",

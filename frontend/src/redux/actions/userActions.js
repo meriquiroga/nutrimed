@@ -2,7 +2,6 @@ import axios from "axios";
 
 const userActions = {
    signUpUser: (user) => {
-      console.log(user)
       return async (dispatch) => {
          try {
             let res = await axios.post("http://localhost:4000/api/user", user)
@@ -41,7 +40,6 @@ const userActions = {
    },
 
     logIn: (user, validUser) => {
-        console.log(user)
         let typeUser = null
         if (validUser === "comun"){
             typeUser = "patient"
@@ -50,7 +48,6 @@ const userActions = {
         }
         return async (dispatch) => {
         try {
-            console.log(user)
             let res = await axios.post(
                `http://localhost:4000/api/${typeUser}`,
                user
@@ -65,7 +62,6 @@ const userActions = {
                   },
                })
             } else {
-               console.log(res)
                throw new Error()
             }
          } catch (err) {

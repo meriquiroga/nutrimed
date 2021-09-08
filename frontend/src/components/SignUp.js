@@ -1,14 +1,12 @@
 import { connect } from "react-redux"
-import { useState} from "react"
+import { useState, useEffect} from "react"
 import { GoogleLogin } from 'react-google-login'
 import FacebookLogin from 'react-facebook-login'
-import Swal from 'sweetalert2'
-import 'react-toastify/dist/ReactToastify.css'
 import userActions from "../redux/actions/userActions"
 
 
-
 const SignUp = ({signUpUser}) => {
+
     let breaker = true
     const [valueIn, setValueIn] = useState("")
     const [error, setError] = useState(false)
@@ -21,18 +19,6 @@ const SignUp = ({signUpUser}) => {
         validPassword: "",
         src: "",
         doc: false,
-    })
-
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
     })
 
 
@@ -89,10 +75,9 @@ const SignUp = ({signUpUser}) => {
         signUpUser({...newUser, doc: newUser.doc})
         .then((res)=>console.log(res)
         )
-    }
+        }
     }
     
-    console.log(error)
 
     const addUserHandler = (e) => {
         setError(false)
@@ -104,9 +89,12 @@ const SignUp = ({signUpUser}) => {
     }
 
 
+
     const validInputHandler = (e) => {
         setValueIn(e.target.value)
     }
+
+    
 
     let disp = valueIn === "prof" ? "block" : "none" 
     let dispGo = valueIn === "prof" ? "none" : "block"
@@ -115,21 +103,21 @@ const SignUp = ({signUpUser}) => {
         <>
             <div className="container">
                 <div className="signUpForm">
-                    <img src='/assets/form.png' alt=""/>
+                    <img src='/assets/form.png' alt=""/>  
                     <h3>¿Usted se registrará como paciente o profesional?</h3>
                     <div className="radio">
-                        <div>Paciente <input onClick={validInputHandler} type="radio" name="buttonRol" value="pat" defaultChecked/></div>
-                        <div>Profesional <input onClick={validInputHandler} type="radio" name="buttonRol" value="prof"/></div>
+                        <div>Paciente <input onClick={validInputHandler} type="radio" name="buttonRol" defaultValue="pat" defaultChecked/></div>
+                        <div>Profesional <input onClick={validInputHandler} type="radio" name="buttonRol" defaultValue="prof"/></div>
                     </div>
                     <form>
                         <div className="inputs">
-                        <input type="text" placeholder="Nombre" style={{backgroundColor: (!error ? "white" : "yellow")}} name="name" onChange={addUserHandler}  defaultValue={newUser.name} required />
-                        <input type="text" placeholder="Apellido"name="lastName" onChange={addUserHandler} defaultValue={newUser.lastName} required/>
-                        <input type="email" placeholder="Email" name="data" onChange={addUserHandler} defaultValue={newUser.data.mail} required/>
-                        <input type="password" placeholder="Contraseña"name="password" onChange={addUserHandler}  defaultValue={newUser.password} required/>
-                        <input type="password" placeholder="Repita su contraseña"name="validPassword" onChange={addUserHandler}  defaultValue={newUser.validPassword} required/>
-                        <input type="text" placeholder="Foto de perfil" name="src" onChange={addUserHandler} defaultValue={newUser.src} required/>
-                        <input style={{display:disp}}  type="text" placeholder="Contraseña de profesional" name="passwordAdm" onChange={addUserHandler} defaultValue={newUser.passwordAdm} required={valueIn === "prof" ? true : false}/>
+                        <input type="text" placeholder="Nombre" style={{backgroundColor: ((error && !newUser.name.length) ? "yellow" : "white")}} name="name" onChange={addUserHandler}  defaultValue={newUser.name} required />
+                        <input type="text" placeholder="Apellido"name="lastName" style={{backgroundColor: ((error && !newUser.lastName.length) ? "yellow" : "white")}} onChange={addUserHandler} defaultValue={newUser.lastName} required/>
+                        <input type="email" placeholder="Email" name="data" style={{backgroundColor: ((error && !newUser.data.mail.length) ? "yellow" : "white")}} onChange={addUserHandler} defaultValue={newUser.data.mail} required/>
+                        <input type="password" placeholder="Contraseña"name="password" style={{backgroundColor: ((error && !newUser.password.length) ? "yellow" : "white")}} onChange={addUserHandler}  defaultValue={newUser.password} required/>
+                        <input type="password" placeholder="Repita su contraseña"name="validPassword" style={{backgroundColor: ((error && !newUser.validPassword.length) ? "yellow" : "white")}} onChange={addUserHandler}  defaultValue={newUser.validPassword} required/>
+                        <input type="text" placeholder="Foto de perfil" name="src" style={{backgroundColor: ((error && !newUser.src.length) ? "yellow" : "white")}} onChange={addUserHandler} defaultValue={newUser.src} required/>
+                        <input type="text" placeholder="Contraseña de profesional" style={{backgroundColor: ((error && !newUser.passwordAdm.length) ? "yellow" : "white"), display:disp}} name="passwordAdm" onChange={addUserHandler} defaultValue={newUser.passwordAdm} required={valueIn === "prof" ? true : false}/>
                         </div>
                     <button onClick={submitHandler} >REGISTRARSE</button>
                     </form>
@@ -143,14 +131,22 @@ const SignUp = ({signUpUser}) => {
                             cookiePolicy={'single_host_origin'}
                             />
                         </div>
+
                         <div>
-                        <FacebookLogin 
-                            appId="283809223550858"
+                        <FacebookLogin
+                            appId="1145134492902308"
                             autoLoad={false}
-                            fields="first_name,last_name,email,picture"
-                            textButton="Registrarse con facebook"
+                            fields="email"
+                            textButton="Ingresar con facebook"
                             icon="fa-facebook"
                             callback={responseFacebook} />
+                            {/* <FacebookLogin 
+                                appId="395639211980680"
+                                autoLoad={false}
+                                fields="first_name,last_name,email,picture"
+                                textButton="Registrarse con facebook"
+                                icon="fa-facebook"
+                                callback={responseFacebook} /> */}
                         </div>
                     </div>
                 </div>

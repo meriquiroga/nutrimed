@@ -11,11 +11,9 @@ const validator = require("../controllers/validator")
 router.route("/user").post(userControllers.addUser);
 
 router
-
   .route("/doctor")
-  .post(validator, doctorControllers.signIn)
-  .put(
-    passport.authenticate("jwt", { session: false }),
+  .post(doctorControllers.signIn)
+  .put(passport.authenticate("jwt", { session: false }),
     doctorControllers.editProfile
   );
 
@@ -30,9 +28,8 @@ router
   );
 
 router
-
   .route("/patient")
-  .post(validator, patientControllers.signIn)
+  .post(patientControllers.signIn)
   .put(
     passport.authenticate("jwt", { session: false }),
     patientControllers.editProfile

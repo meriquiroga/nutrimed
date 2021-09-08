@@ -20,31 +20,35 @@ const Login = (props) => {
       setUserLog({ ...userLog, [e.target.name]: e.target.value });
     }
   };
+
+
   const responseGoogle = (res) => {
     let newUserWithGoogle = {
       data: { mail: res.profileObj.email },
       password: res.profileObj.googleId,
       flagGoogle: true
     };
-    props.logIn(newUserWithGoogle, validUser);
+    props.logIn(newUserWithGoogle, validUser)
+    .then((res) => {console.log(res)})
   };
 
-  const responseFacebook = (res) => {
+
+
+
+  const responseFacebookk = (res) => {
+     console.log(res)
     if (res.id) {
-      let logWithFacebook = {
+      let logWithFacebookk = {
         data: { mail: res.email },
         password: res.id,
         flagGoogle: true
-      };
-      props
-        .logIn(logWithFacebook, validUser)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((e) => console.log(e));
+      }
+      props.logIn(logWithFacebookk, validUser)
+      .then((res) => {console.log(res)})
     }
-  };
+  }
 
+  
    const validInputHandler = (e) => {
       setValueIn(e.target.value)
    }
@@ -114,12 +118,12 @@ const Login = (props) => {
                   </div>
                   <div>
                      <FacebookLogin
-                        appId="283809223550858"
+                        appId="1145134492902308"
                         autoLoad={false}
                         fields="email"
                         textButton="Ingresar con facebook"
                         icon="fa-facebook"
-                        callback={responseFacebook}
+                        callback={responseFacebookk}
                      />
                      <p>
                         ¿No tenés cuenta?{" "}
