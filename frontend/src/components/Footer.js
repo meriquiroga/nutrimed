@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { NavLink, Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import userActions from "../redux/actions/userActions"
 
 const Footer = (props) => {

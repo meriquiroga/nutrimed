@@ -6,9 +6,9 @@ const doctorControllers = require("../controllers/doctorControllers")
 const patientControllers = require("../controllers/patientControllers")
 const appointmentControllers = require("../controllers/appointmentControllers")
 const calendarControllers = require("../controllers/calendarControllers")
-// const validator = require("../controllers/validator")
+const validator = require("../controllers/validator")
 
-router.route("/user").post(userControllers.addUser)
+router.route("/user").post(validator, userControllers.addUser)
 
 router
    .route("/doctor")
