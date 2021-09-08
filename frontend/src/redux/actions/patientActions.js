@@ -35,7 +35,29 @@ const patientActions = {
             return({success:false})
          }
       }
-   }
+   },
+   postDescription: (id, token, description) => {
+      return async () => {
+         try {
+            let res = await axios.put(
+               "http://localhost:4000/api/patient/" + id,
+               { description },
+               {
+                  headers: {
+                     Authorization: "Bearer " + token,
+                  },
+               }
+            )
+            if (res.data.res) {
+               return { success: true, res: res.data.res }
+            } else {
+               throw new Error("Database Error")
+            }
+         } catch (err) {
+            return { success: false, error: err }
+         }
+      }
+   },
 }
 
 export default patientActions

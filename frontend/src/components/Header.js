@@ -1,6 +1,6 @@
-import { connect } from "react-redux";
-import { NavLink, Link } from "react-router-dom";
-import userActions from "../redux/actions/userActions";
+import { connect } from "react-redux"
+import { NavLink, Link } from "react-router-dom"
+import userActions from "../redux/actions/userActions"
 
 const Header = (props) => {
   const outHandler = () => {
