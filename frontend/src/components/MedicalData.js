@@ -31,6 +31,14 @@ const MedicalData = (props) => {
       setInputDescription({ description: "" })
    }
 
+   const pressEnter = (e) => {
+      if (e.key === "Enter") {
+         submitHandler()
+      }
+   }
+
+   console.log(props)
+
    return (
       <>
          <div className="medicalData">
@@ -40,26 +48,26 @@ const MedicalData = (props) => {
                <div>
                   <img
                      className="imgMD"
-                     src={props.patients[0].src}
+                     // src={props.patients[0].src}
                      alt="abc"
                   />
                </div>
                <div>
                   {" "}
-                  <p>Nombre: {props.patients[0].name}</p>
-                  <p>Apellido: {props.patients[0].lastName}</p>
-                  <p>
+                  {/* <p>Nombre: {props.patients[0].name}</p>
+                  <p>Apellido: {props.patients[0].lastName}</p> */}
+                  {/* <p>
                      DNI:{" "}
                      {props.patients[0].dni != null
                         ? props.patients[0].dni
                         : "Falta completar"}
-                  </p>
+                  </p> */}
                </div>
                <div>
                   {" "}
                   <p>Domicilio: Falta completar</p>
                   <p>Telefono: Falta completar</p>
-                  <p>E-mail: {props.patients[0].data.mail}</p>
+                  {/* <p>E-mail: {props.patients[0].data.mail}</p> */}
                </div>
             </div>
             <div className="DEF">
@@ -77,6 +85,7 @@ const MedicalData = (props) => {
                      name="description"
                      placeholder="Ingresar descripcion"
                      onChange={inputHandler}
+                     onKeyPress={pressEnter}
                   />
                   <button onClick={submitHandler}>ENVIAR</button>
                </div>

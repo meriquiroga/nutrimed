@@ -23,17 +23,17 @@ const doctorActions = {
             return { success: false, res: err }
          }
       }
-  },
-  getDoctors: () => {
-    return async (dispatch, getState) => {
-      try {
-        let res = await axios.get("http://localhost:4000/api/doctors");
-        dispatch({ type: "GET_ALL_DOCTORS", payload: res.data.res });
-        return { success: true , res: res.data.res};
-      } catch (err) {
-        return { success: false, res: err };
+   },
+   getDoctors: () => {
+      return async (dispatch, getState) => {
+         try {
+            let res = await axios.get("http://localhost:4000/api/doctors")
+            dispatch({ type: "GET_ALL_DOCTORS", payload: res.data.res })
+            return { success: true, res: res.data.res }
+         } catch (err) {
+            return { success: false, res: err }
+         }
       }
-   }
    },
    getOneDoctor: (id) => {
       return (dispatch, getState) => {
@@ -77,31 +77,34 @@ const doctorActions = {
          try {
             let res = await axios.get(
                "http://localhost:4000/api/appointments/",
-               {},
                {
                   headers: {
                      Authorization: "Bearer " + token,
                   },
                }
             )
+
             if (res.data.success) {
+               console.log("TENGO RES")
                return { success: true, res: res.data.res }
             }
          } catch (err) {
             return { success: false, res: err }
          }
       }
-  },
-  getAppointementByDoctor: (dorctorid)=>{
-    return async ()=>{
-      try{
-        let res = await axios.get(`http://localhost:4000/api/appointment/${dorctorid}`)
-        return{success:true, res:res.data.res}
-      }catch(err){
-        return{success:false}
+   },
+   getAppointementByDoctor: (doctorId) => {
+      return async () => {
+         try {
+            let res = await axios.get(
+               `http://localhost:4000/api/appointment/${doctorId}`
+            )
+            return { success: true, res: res }
+         } catch (err) {
+            return { success: false }
+         }
       }
-    }
-  }
-};
+   },
+}
 
 export default doctorActions
