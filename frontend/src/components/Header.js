@@ -3,9 +3,9 @@ import { NavLink, Link } from "react-router-dom";
 import userActions from "../redux/actions/userActions";
 
 const Header = (props) => {
-   const outHandler = () => {
-      props.logOut()
-   }
+  const outHandler = () => {
+    props.logOut();
+  };
 
    return (
       <header>
@@ -52,14 +52,14 @@ const Header = (props) => {
    )
 }
 const mapStateToProps = (state) => {
-   return {
-      valid: state.users.token,
-      user: state.users.dataUser,
-   }
-}
+  return {
+    valid: state.users.token,
+    user: state.users.dataUser,
+  };
+};
 
 const mapDispatchToProps = {
-   logOut: userActions.logOut,
-}
+  logOut: userActions.logOut,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
