@@ -5,6 +5,7 @@ const userActions = {
       return async (dispatch) => {
          try {
             let res = await axios.post("http://localhost:4000/api/user", user)
+            console.log(res)
             if (res.data.success) {
                dispatch({
                   type: "SIGN_UP",
@@ -13,13 +14,16 @@ const userActions = {
                      token: res.data.res.token,
                   },
                })
-               return { success: true }
+               // return { success: true, res: res }
+            }else {
+               return res.data
             }
          } catch (err) {
             return { success: false, res: err.message }
          }
       }
    },
+
 
    logUserWithLs: (token) => {
       return async (dispatch) => {
@@ -32,6 +36,7 @@ const userActions = {
             dispatch({
                type: "SIGN_UP",
                payload: { userExist: res.data, token },
+
             })
          } catch (err) {
             return dispatch({ type: "LOG_OUT" })
@@ -40,6 +45,7 @@ const userActions = {
    },
 
     logIn: (user, validUser) => {
+       console.log("login")
         let typeUser = null
         if (validUser === "comun"){
             typeUser = "patient"

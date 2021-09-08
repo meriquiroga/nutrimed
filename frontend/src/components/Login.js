@@ -23,6 +23,7 @@ const Login = (props) => {
 
 
   const responseGoogle = (res) => {
+     console.log(res)
     let newUserWithGoogle = {
       data: { mail: res.profileObj.email },
       password: res.profileObj.googleId,
@@ -35,14 +36,14 @@ const Login = (props) => {
 
 
 
-  const responseFacebookk = (res) => {
-     console.log(res)
-    if (res.id) {
+  const responseFacebook = (res) => {
+    if (res.userID) {
       let logWithFacebookk = {
         data: { mail: res.email },
-        password: res.id,
+        password: res.userID,
         flagGoogle: true
       }
+      console.log("Aca")
       props.logIn(logWithFacebookk, validUser)
       .then((res) => {console.log(res)})
     }
@@ -123,7 +124,7 @@ const Login = (props) => {
                         fields="email"
                         textButton="Ingresar con facebook"
                         icon="fa-facebook"
-                        callback={responseFacebookk}
+                        callback={responseFacebook}
                      />
                   </div>
                </div>
