@@ -4,9 +4,7 @@ import { GoogleLogin } from 'react-google-login'
 import FacebookLogin from 'react-facebook-login'
 import userActions from "../redux/actions/userActions"
 
-
 const SignUp = ({signUpUser}) => {
-
     let breaker = true
     const [valueIn, setValueIn] = useState("")
     const [error, setError] = useState(false)

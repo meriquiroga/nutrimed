@@ -6,12 +6,11 @@ const doctorControllers = require("../controllers/doctorControllers")
 const patientControllers = require("../controllers/patientControllers")
 const appointmentControllers = require("../controllers/appointmentControllers")
 const calendarControllers = require("../controllers/calendarControllers")
-const validator = require("../controllers/validator")
+// const validator = require("../controllers/validator")
 
 router.route("/user").post(userControllers.addUser)
 
 router
-<<<<<<< HEAD
    .route("/doctor")
    .post(doctorControllers.signIn)
    .put(
@@ -20,15 +19,6 @@ router
    )
 
 router.route("/doctors").get(doctorControllers.getDoctors)
-=======
-  .route("/doctor")
-  .post(doctorControllers.signIn)
-  .put(passport.authenticate("jwt", { session: false }),
-    doctorControllers.editProfile
-  );
-
-router.route("/doctors").get(doctorControllers.getDoctors);
->>>>>>> origin/rodrigo
 
 router
    .route("/doctor/:id")
