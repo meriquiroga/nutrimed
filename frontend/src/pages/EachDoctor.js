@@ -6,7 +6,7 @@ import Reviews from "../components/Reviews";
 
 class EachDoctor extends Component {
   state = {
-    loading: { condition: true, text: "loading...", link: "" },
+    loading: { condition: true, text: "Loading...", link: "" },
   };
 
   componentDidMount() {
@@ -32,8 +32,11 @@ class EachDoctor extends Component {
     if (this.state.loading.condition) {
       return (
         <>
-          <h2>{this.state.loading.text}</h2>
-          <Link to="/">{this.state.loading.link}</Link>
+          (
+          <div className="containerLoading">
+            <h3>{this.state.loading.text}</h3>
+          </div>
+          )<Link to="/">{this.state.loading.link}</Link>
         </>
       );
     }
@@ -55,7 +58,6 @@ class EachDoctor extends Component {
           <div>
             <p>{this.props.doctor.description}</p>
           </div>
-
           <div>
             <Reviews
               reviews={this.props.doctor.review}

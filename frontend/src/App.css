@@ -122,14 +122,13 @@ footer img {
 
 .description {
    align-items: center;
-   min-height: 500px;
+   min-height: 400px;
    background-position: center;
    background-size: cover;
 }
 
 .description div {
    padding: 10vw;
-   /* color: gray; */
    text-align: center;
    line-height: 2.3;
 }
@@ -164,10 +163,17 @@ footer img {
    min-height: 80vh;
 }
 
+.containerLoading {
+   text-align: center;
+   align-self: center;
+   min-height: 80vh;
+   padding-top: 20vh;
+   background-color: #f0f3f5;
+}
 .signUpForm {
    text-align: center;
    background-color: #f0f3f5;
-   padding: 30px;
+   padding: 30px 60px;
    min-height: 80vh;
 }
 
@@ -329,8 +335,8 @@ footer img {
    align-items: center;
    padding: 22px;
    min-height: 70vh;
-   
 }
+
 .containerDocCv {
    background-color: #3b5363;
    display: flex;
@@ -338,16 +344,18 @@ footer img {
    min-height: 80vh;
 }
 .docDescription {
-   width: 600px;
+   width: 800px;
    padding: 20px 100px;
-   text-align: center;
+   text-align: left;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
 }
 .docInfo {
    text-align: left;
    padding-left: 20px;
 }
 .divReview {
-   width: 80vw;
    max-height: 50vh;
    display: flex;
    flex-direction: column;
@@ -472,8 +480,7 @@ footer img {
    flex-direction: column;
    align-items: center;
 }
+
 .divComentaries {
-   background-color: white;
-   width: 60%;
-   align-self: center;
+   padding: 20px;
 }

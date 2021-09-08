@@ -47,7 +47,7 @@ const Header = (props) => {
                )}
             </ul>
          </div>
-         {/* {!props.user.userExist.doc && <button><Link to={props.valid ? "/appointment" : "/signup"}>SOLICITAR TURNO</Link></button>} */}
+         <button><Link to={props.valid ? "/appointment" : "/login"}>SOLICITAR TURNO</Link></button>
       </header>
    )
 }
