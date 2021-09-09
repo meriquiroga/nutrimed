@@ -1,5 +1,4 @@
 import { GoogleLogin } from "react-google-login";
-import FacebookLogin from "react-facebook-login";
 import { useState } from "react";
 import { connect } from "react-redux";
 import userActions from "../redux/actions/userActions";
@@ -100,10 +99,8 @@ const Login = (props) => {
               />
             </div>
           </div>
+          <p>¿No tenés cuenta? <Link to="/signup">¡Creala aquí!</Link></p>
         </div>
-        <p>
-          ¿No tenés cuenta? <Link to="/signup">¡Creala aquí!</Link>
-        </p>
       </div>
     </>
   );

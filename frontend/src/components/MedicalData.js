@@ -37,9 +37,10 @@ const MedicalData = (props) => {
 
    return (
       <>
-         <div className="medicalData">
-            <h1>HISTORIAL MÉDICO</h1>
-            <h2>Paciente</h2>
+      <div className="signUpForm">
+      <div className="medicalData">
+            <h3>Historial Médico</h3>
+            <h3>Paciente</h3>
             <div className="ABC">
                <div>
                   <img className="imgMD" src={src} alt="fotoPaciente" />
@@ -75,17 +76,18 @@ const MedicalData = (props) => {
                   )}
                </div>
                <div>
-                  <input
+                  <input className="medicalInput"
                      type="text"
                      name="description"
                      placeholder="Ingresar nota"
                      onChange={inputHandler}
                      onKeyPress={pressEnter}
                   />
-                  <button onClick={submitHandler}>ENVIAR</button>
+                  <button id="buttonSign" onClick={submitHandler}>ENVIAR</button>
                </div>
             </div>
          </div>
+      </div>
       </>
    )
 }

@@ -203,6 +203,16 @@ footer img {
   outline: none;
 }
 
+.medicalInput {
+   padding: 10px;
+   border-radius: 50px;
+   border: 2px gray solid;
+   margin: 10px;
+   width: 400px;
+   align-self: center;
+   outline: none;
+}
+
 .footerNavbar li p {
   color: white;
   padding: 15px;
@@ -287,7 +297,15 @@ footer img {
 }
 
 .turnos {
-  color: white;
+   background-color: #f0f3f5;
+   padding: 5px 10px;
+   margin: 5px;
+   border-radius: 12px;
+   text-align: center;
+}
+
+.turnos p{
+   font-size: small;
 }
 
 .datosProfile {
@@ -467,6 +485,17 @@ footer img {
   width: 30px;
 }
 
+.iconTurn {
+   width: 50px;
+}
+
+.hour {
+   padding: 5px;
+   border-radius: 0;
+   width: 80px;
+   margin: 6px;
+}
+
 .textArea {
   border: none;
   min-width: 400px;
@@ -511,30 +540,34 @@ footer img {
   padding: 10px;
 }
 
-/*el nombre es estas dos clases son horrendos, perdon!!! */
-.container2 {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: start;
-  align-items: auto;
-  align-content: start;
+.confirm {
+   color: #19b1bc;
 }
 
-.full,
-.noFull {
-  height: 10vh;
-  width: 10vw;
-  flex: 0 0 auto;
-  margin: 10px;
+.container2 { 
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: auto;
+   align-content: center
+ }
+ 
+.full, .noFull {
+   height: 45px;
+   flex: 0 0 auto;
+   margin: 10px;
+   padding: 10px;
+   color: white;
 }
-.full {
-  background-color: red;
+.full{
+   background-color: rgb(160, 160, 160);
 }
-.noFull {
-  background-color: rgb(32, 218, 32);
+.noFull{
+   background-color: #19b1bc;
 }
-
+.noTurns {
+   max-width: 180px;
+}
 .ABC {
   display: flex;
   justify-content: space-around;
@@ -547,11 +580,24 @@ footer img {
 }
 
 .descripcion {
-  overflow-y: scroll;
-  height: 60vh;
-  width: 60vw;
+   overflow-y: scroll;
+   height: 60vh;
+   width: 60vw;
+   background-color: white;
+   text-align: left;
+   padding: 20px;
+   border-radius: 20px;
 }
 
+.avisador {
+   color: #19b1bc;
+}
+.logOut {
+   display: flex;
+   align-content: center;
+   align-items: center;
+   height: 80px;
+}
 .DEF {
   display: flex;
   flex-direction: column;
@@ -637,3 +683,5 @@ footer img {
    background-color: white;
    color: teal;
 }
+
+

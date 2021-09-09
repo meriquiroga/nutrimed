@@ -33,7 +33,7 @@ const ProfileUser = (props) => {
                   Hacelo en el siguiente botón.
                </p>
             ) : (
-               <p>Completá tus datos doc. Hacelo en el siguiente botón.</p>
+               <p>Completá tus datos y mantenelos actualizados en el siguiente botón.</p>
             )}
 
             <button>
@@ -88,7 +88,7 @@ const ProfileUser = (props) => {
             {!props.user.userExist.doc ? (
                <p className="turnos">No tenés turnos programados.</p>
             ) : appointments.length === 0 ? (
-               <h5 className="turnos">No tenes pacientes por el momento</h5>
+               <p className="turnos">No tenés pacientes agendados para hoy.</p>
             ) : (
                <div>
                   {appointments.map((appointment, index) => {

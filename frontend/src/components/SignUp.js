@@ -132,10 +132,10 @@ const SignUp = ({signUpUser}) => {
                             cookiePolicy={'single_host_origin'}
                             />
                         </div>
-                          <p>
-                            ¿Ya tenés cuenta? <Link to="/login">¡Ingresá aquí!</Link>
-                          </p>
                       </div>
+                      <p>
+                          ¿Ya tenés cuenta? <Link to="/login">¡Ingresá aquí!</Link>
+                      </p>
                   </div>
                 </div>
     </>
