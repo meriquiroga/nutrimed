@@ -24,7 +24,14 @@ const EditProfileDoctor = (props) => {
     socialWork: "",
   });
 
+  
+
   const addDocHandler = (e) => {
+    // if (e.target.name === "socialWork"){  
+    //   console.log("aca") 
+    //   console.log(valueIn)
+    //   setActDoc({...actDoc, [e.target.name]: valueIn})  
+    //   }  
     if (e.target.name === "street") {
       setActDoc({
         ...actDoc,
@@ -52,8 +59,10 @@ const EditProfileDoctor = (props) => {
     }
   };
 
-  const socialWorkHandler = () => {
-    setValueIn(!valueIn);
+  const socialWorkHandler = (e) => {
+    setValueIn(!valueIn)
+    setActDoc({...actDoc, [e.target.name]: valueIn})  
+    
   };
 
   const submitHandler = () => {
@@ -72,7 +81,7 @@ const EditProfileDoctor = (props) => {
     "SANCOR",
     "LIAW",
   ];
-
+  console.log(actDoc)
   return (
     <>
       <div className="container">
@@ -135,22 +144,14 @@ const EditProfileDoctor = (props) => {
             defaultValue={actDoc.data.direction.city}
           />
           <h4>¿Acepta Obra Social? </h4>
-          {valueIn ? "No" : "Si"}
-          <input type="checkbox" onClick={socialWorkHandler} />
+          
+          Si<input type="radio" name="socialWork" onChange={addDocHandler} onClick={socialWorkHandler} value={true} />
+          No<input type="radio" name="socialWork" onChange={addDocHandler} onClick={socialWorkHandler} value={false} />
 
-          <select
-            disabled={valueIn ? true : false}
-            onChange={addDocHandler}
-            name="socialWork"
-            defaultValue={actDoc.socialWork}
-          >
-            {allSocialWork.map((social, index) => (
-              <option key={index}>{social}</option>
-            ))}
-          </select>
+       
           <button onClick={submitHandler}>Actualizar datos</button>
 
-          <Link to="/doctor">Volver al perfil</Link>
+          <Link to="/profile">Volver al perfil</Link>
         </div>
       </div>
     </>

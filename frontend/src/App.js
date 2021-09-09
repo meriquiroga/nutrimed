@@ -16,39 +16,7 @@ import userActions from "./redux/actions/userActions"
 import Login from "./components/Login"
 import Information from "./components/Information"
 
-<<<<<<< HEAD
-const App = (props) => {
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      props.logWithLs(localStorage.getItem("token"));
-    }
-  }, []);
-console.log(props)
-  return (
-    <BrowserRouter>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        {!props.valid && <Route path="/signup" component={SignUp} />}
-        <Route exact path="/staff" component={Staff} />
-        <Route path="/staff/:id" component={EachDoctor} />
-        <Route path="/information" component={Information} />
-        <Route path="/appointment" component={Appointment} />
-        <Route path="/medicaldata" component={MedicalData} />
-        {(props.valid && props.user.userExist.doc) && <Route path="/doc/profile" component={EditProfileDoctor} />}
-        {props.valid && <Route exact path="/patient" component={Profile} />}
-        {props.valid && <Route path="/doctor" component={Profile} />}
-        {props.valid && !props.user.doc && (
-          <Route exact path="/patient/profile" component={EditProfilePatient} />
-        )}
-        {!props.valid && <Route path="/login" component={Login} />}
-        <Redirect to="/" />
-      </Switch>
-      <Footer />
-    </BrowserRouter>
-  );
-};
-=======
+
 
 const App = (props) => {
    useEffect(() => {
@@ -84,7 +52,7 @@ const App = (props) => {
       </BrowserRouter>
    )
 }
->>>>>>> 02607d84ecdf6933a6ed775edd69f1d9438fb02f
+
 
 const mapStateToProps = (state) => {
    return {

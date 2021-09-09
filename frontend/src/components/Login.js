@@ -6,19 +6,26 @@ import { Link } from "react-router-dom";
 
 const Login = (props) => {
   const [valueIn, setValueIn] = useState("");
+  const [errors, setErrors] = useState("")
+  const [error, setError] = useState({errorUno: false, errorDos: false})
   const [userLog, setUserLog] = useState({
     data: { mail: "" },
     password: "",
     google: false,
   });
 
+  // console.log(error1)
+
   const userLogin = (e) => {
+    setError({errorUno: false})
     if (e.target.name === "data") {
       setUserLog({ ...userLog, data: { mail: e.target.value } });
-    } else {
-      setUserLog({ ...userLog, [e.target.name]: e.target.value });
+      }else {
+        setUserLog({ ...userLog, [e.target.name]: e.target.value });
     }
   };
+
+
 
   const responseGoogle = (res) => {
     let newUserWithGoogle = {
@@ -26,19 +33,37 @@ const Login = (props) => {
       password: res.profileObj.googleId,
       flagGoogle: true,
     };
-    props.logIn(newUserWithGoogle, validUser).then((res) => {
-      console.log(res);
-    });
+    props.logIn(newUserWithGoogle, validUser)
+    .then((res) => {if (!res.success){
+      setErrors("Debe estar registrado con Google para utilizar este botón")
+      setError({errorDos: true})
+
+      }else 
+        console.log("k");
+      });
   }
   
   const validInputHandler = (e) => {
+    setError({errorUno: false})
     setValueIn(e.target.value);
   };
 
   const submitUserLog = () => {
-    props.logIn(userLog, validUser);
+    if(!userLog.password.length || !userLog.data.mail.length){
+        setError({errorUno: true})
+        setErrors("Todos los campos deben estar completos")
+        return false
+    }
+    if(!error.errorUno){
+      props.logIn(userLog, validUser)
+      .then((res) => {if (!res.success) {
+        setErrors("Error de autenticación. Verifique correctamente")
+        setError({errorUno: true})
+        }
+      })
+    } 
+    
   };
-
   let validUser = valueIn === "prof" ? "profesional" : "comun";
   let dispGo = valueIn === "prof" ? "none" : "block";
 
@@ -56,7 +81,6 @@ const Login = (props) => {
                 type="radio"
                 name="buttonRol"
                 defaultValue="pat"
-                defaultChecked
               />
             </div>
             <div>
@@ -76,6 +100,7 @@ const Login = (props) => {
               name="data"
               defaultValue={userLog.data.mail}
               onChange={userLogin}
+              className={((error.errorUno && !userLog.data.mail.length) ? "errorY" : "errorN")}
             />
             <input
               type="password"
@@ -83,14 +108,17 @@ const Login = (props) => {
               name="password"
               defaultValue={userLog.password}
               onChange={userLogin}
+              className={((error.errorUno && !userLog.password.length) ? "errorY" : "errorN")}
             />
           </div>
+          {error.errorUno && <p style={{fontSize:"1.3vmin"}} >*{errors}</p>}
+          {error.errorDos && <p style={{fontSize:"1.3vmin"}} >*{errors}</p>}
           <button id="buttonSign" onClick={submitUserLog}>
             LOGIN
           </button>
           <div style={{ display: dispGo }}>
-            <div>
-              <GoogleLogin
+            <div >
+              <GoogleLogin disabled={valueIn === "" ? true : false}
                 clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
                 buttonText="Ingresar con Google"
                 onSuccess={responseGoogle}

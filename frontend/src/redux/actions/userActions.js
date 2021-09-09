@@ -31,7 +31,6 @@ const userActions = {
                   Authorization: "Bearer " + token,
                },
             })
-            console.log(res)
             dispatch({
                type: "SIGN_UP",
                payload: { userExist: res.data, token },
@@ -63,8 +62,9 @@ const userActions = {
                      token: res.data.res.token,
                   },
                })
+               return {res: res.data.res}
             } else {
-               throw new Error()
+               return {success: false, res: res.data.res}
             }
          } catch (err) {
             return { success: false, res: err.message }

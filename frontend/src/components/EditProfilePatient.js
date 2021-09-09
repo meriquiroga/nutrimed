@@ -13,9 +13,10 @@ const EditProfilePatient = (props) => {
         num: "",
         city: "",
       },
-      socialWork: "",
+      phoneNumber:"",
       src:""
     },
+    socialWork: "",
   });
   const [previewImg, setPreviewImg] = useState(
     "https://pickaface.net/gallery/avatar/64431738_161013_0015_3fnpl.png"
