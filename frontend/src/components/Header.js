@@ -1,4 +1,3 @@
-import { valid } from "joi"
 import { connect } from "react-redux"
 import { NavLink, Link } from "react-router-dom"
 import userActions from "../redux/actions/userActions"
@@ -28,7 +27,7 @@ const Header = (props) => {
                )}
                {!props.valid && (
                   <li>
-                     <NavLink to="/login">
+                     <NavLink to="/signin">
                         <p>INGRESAR</p>
                      </NavLink>
                   </li>
@@ -55,8 +54,7 @@ const Header = (props) => {
                )}
             </ul>
          </div>
-         {props.valid && <h3>Bienvenido/a {props.user.userExist.name}</h3>}
-         <button><Link to={props.valid ? "/appointment" : "/login"}>SOLICITAR TURNO</Link></button>
+         <button><Link to={props.valid ? "/appointment" : "/signin"}>SOLICITAR TURNO</Link></button>
       </header>
    )
 }

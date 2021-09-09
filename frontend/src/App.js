@@ -14,9 +14,9 @@ import { connect } from "react-redux";
 import { useEffect, useState } from "react";
 import userActions from "./redux/actions/userActions";
 import patientActions from "./redux/actions/patientActions";
-import Login from "./components/Login";
 import Information from "./components/Information";
 import io from "socket.io-client";
+import SignIn from "./components/SignIn";
 
 
 const App = (props) => {
@@ -48,7 +48,7 @@ const App = (props) => {
         {props.valid && !props.user.userExist.doc && (
           <Route exact path="/patient/profile" component={EditProfilePatient} />
         )}
-        {!props.valid && <Route path="/login" component={Login} />}
+        {!props.valid && <Route path="/signin" component={SignIn} />}
         <Redirect to="/" />
       </Switch>
       <Footer />

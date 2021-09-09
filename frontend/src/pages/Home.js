@@ -1,13 +1,57 @@
 import { Component } from "react";
-import Main from "../components/Main";
+import { Link } from "react-router-dom";
 
 export default class Home extends Component {
+  componentDidMount(){
+    window.scroll(0,0)
+  }
   render() {
     return (
-      <>
-        <Main />
-        
-      </>
+      <main>
+      <div
+        className="hero"
+        style={{ backgroundImage: "url('/assets/hero3.jpg')" }}
+      >
+        <div className="insideHero">
+          <h1>Enfocados en tu bienestar integral.</h1>
+          <button id="buttonSign">
+            <Link to="/staff">CONOCENOS</Link>
+          </button>
+        </div>
+      </div>
+      <div className="iconCardsContainer">
+        <div className="iconCard">
+          <img src="/assets/icoNutricion.png" alt="" />
+          <h3>NUTRICIÓN</h3>
+        </div>
+        <div className="iconCard">
+          <img src="/assets/icoPsicologia.png" alt="" />
+          <h3>PSICOLOGÍA</h3>
+        </div>
+        <div className="iconCard">
+          <img src="/assets/icoMedicina.png" alt="" />
+          <h3>MEDICINA GENERAL</h3>
+        </div>
+        <div className="iconCard">
+          <img src="/assets/icoEntrenamiento.png" alt="" />
+          <h3>ENTRENAMIENTO</h3>
+        </div>
+      </div>
+      <div
+        className="description"
+        style={{ backgroundImage: "url('/assets/description2.jpg')" }}
+      >
+        <div>
+          <img src="/assets/logo.png" alt="" />
+          <h3>¿Quiénes somos?</h3>
+          <p>
+            Somos un equipo interdisciplinario comprometido con la salud
+            nutricional de la sociedad, con el propósito de acompañar a las
+            personas en la búsqueda de la armonía del cuerpo y la mente.
+          </p>
+        </div>
+      </div>
+    </main>
     );
   }
 }
