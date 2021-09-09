@@ -20,6 +20,7 @@ import SignIn from "./components/SignIn";
 
 
 const App = (props) => {
+  console.log(props.user)
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {

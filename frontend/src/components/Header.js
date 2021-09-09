@@ -3,7 +3,6 @@ import { NavLink, Link } from "react-router-dom"
 import userActions from "../redux/actions/userActions"
 
 const Header = (props) => {
-   console.log(props)
   const outHandler = () => {
     props.logOut();
   };
