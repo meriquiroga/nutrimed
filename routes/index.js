@@ -77,4 +77,6 @@ router
    .post(calendarControllers.addDay)
    .get(calendarControllers.getAllCalendar)
 
+router.route('/mail')
+.post(passport.authenticate("jwt", { session: false }),appointmentControllers.sendMails)
 module.exports = router

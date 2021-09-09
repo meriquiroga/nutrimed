@@ -5,7 +5,7 @@ import doctorActions from "../redux/actions/doctorActions";
 import patientActions from "../redux/actions/patientActions";
 import AppointmentDay from "../components/AppointmentDay";
 
-const Appointment = ({doctors,getDoctors, userToken,addAppointment, getCalendar,calendar,getAppointementByDoctor}) => {
+const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMail, getCalendar,calendar,getAppointementByDoctor}) => {
   const [newDoctors, setNewDoctors] = useState(doctors)
   const [newCalendar, setNewCalendar] = useState(calendar)
   const [docName, setDocName] = useState(null)
@@ -75,16 +75,18 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment, getCalendar,
     addAppointment(data)
     .then(res=>{
       if(res.success){
-        setViews({...views, confirm:false, ok:true})
         setConfirmAppointment('Tu turno fue agendado exitosamente. Gracias!!')
+        confirmFormMail(data.patientId)
       }else{
-        setViews({...views, confirm:false, ok:true})
         setConfirmAppointment('Lo sentimos ha ocurrido un error, intente mas tarde')
       }
+      getAppointementByDoctor(appointmentReady.doctorId)
+      .then(res=> setDiaryByDoc(res.res))
       setTimeout(() => {
-        setViews({...views,confirm:false, ok:false})
+        setViews({view:false,confirm:false, ok:false})
       }, 3000);
     })
+    setViews({view:false, confirm:false, ok:true})
   }
   return (
     <>
@@ -134,7 +136,8 @@ const mapDispatchToProps = {
   getDoctors: doctorActions.getDoctors,
   getCalendar:patientActions.getCalendar,
   getAppointementByDoctor:doctorActions.getAppointementByDoctor,
-  addAppointment:patientActions.addAppointment
+  addAppointment:patientActions.addAppointment,
+  confirmFormMail:patientActions.confirmFormMail
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Appointment);

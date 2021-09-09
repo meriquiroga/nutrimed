@@ -72,13 +72,11 @@ const doctorActions = {
       }
     };
   },
-
   getAppointments: (token) => {
     return async () => {
       try {
         let res = await axios.get(
           "http://localhost:4000/api/appointments/",
-          {},
           {
             headers: {
               Authorization: "Bearer " + token,

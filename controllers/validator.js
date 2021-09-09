@@ -43,7 +43,7 @@ const validator = (req, res, next) => {
          "string.uri": "El campo foto de perfil debe contener una URL válida",
       }),
       google: joi.boolean(),
-      doc: joi.boolean().required(false),
+      doc: joi.boolean(),
       data: joi.object({mail: joi.string().trim().email().required().messages({
         "string.empty": "El campo email no puede estar vacio",
         "string.email": "El campo email debe contener un email válido",
@@ -57,7 +57,7 @@ const validator = (req, res, next) => {
    if (!validation.error) {
       next()
    } else {
-      res.json({ success: false, errors: validation.error.details })
+      res.json({ success: false, res:validation.error.details })
    }
 }
 
