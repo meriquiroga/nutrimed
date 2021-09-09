@@ -184,7 +184,7 @@ const EditProfilePatient = (props) => {
           ENVIAR
         </button>
         <div>
-          <Link to="/patient">Volver al perfil</Link>
+          <Link to="/profile">Volver al perfil</Link>
         </div>
       </div>
     </div>
