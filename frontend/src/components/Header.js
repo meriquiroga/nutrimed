@@ -26,7 +26,7 @@ const Header = (props) => {
                )}
                {!props.valid && (
                   <li>
-                     <NavLink to="/login">
+                     <NavLink to="/signin">
                         <p>INGRESAR</p>
                      </NavLink>
                   </li>
@@ -53,7 +53,7 @@ const Header = (props) => {
                )}
             </ul>
          </div>
-         <button><Link to={props.valid ? "/appointment" : "/login"}>SOLICITAR TURNO</Link></button>
+         <button><Link to={props.valid ? "/appointment" : "/singin"}>SOLICITAR TURNO</Link></button>
       </header>
    )
 }

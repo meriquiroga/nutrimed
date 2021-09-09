@@ -29,7 +29,7 @@ const Footer = (props) => {
                   </NavLink>
                </li>}
                {!props.valid && <li>
-                  <NavLink to="/login">
+                  <NavLink to="/signin">
                      <p>INGRESAR</p>
                   </NavLink>
                </li>}

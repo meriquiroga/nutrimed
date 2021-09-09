@@ -22,31 +22,17 @@ const EditProfilePatient = (props) => {
   );
 
   const addDocHandler = (e) => {
-    if (e.target.name === "street") {
+    if (e.target.name === "street" || e.target.name === "num" || e.target.name === "city" ) {
       setActPat({
         ...actPat,
         data: {
-          direction: { ...actPat.data.direction, street: e.target.value },
+          direction: { ...actPat.data.direction, [e.target.name]: e.target.value },
         },
       });
     } else if (e.target.name === "phoneNumber") {
       setActPat({
         ...actPat,
         data: { ...actPat.data, phoneNumber: e.target.value },
-      });
-    } else if (e.target.name === "num") {
-      setActPat({
-        ...actPat,
-        data: {
-          direction: { ...actPat.data.direction, num: e.target.value },
-        },
-      });
-    } else if (e.target.name === "city") {
-      setActPat({
-        ...actPat,
-        data: {
-          direction: { ...actPat.data.direction, city: e.target.value },
-        },
       });
     } else {
       setActPat({ ...actPat, [e.target.name]: e.target.value });

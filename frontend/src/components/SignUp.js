@@ -137,7 +137,7 @@ const SignUp = ({signUpUser}) => {
                         </div>
                       </div>
                       <p>
-                          ¿Ya tenés cuenta? <Link to="/login">¡Ingresá aquí!</Link>
+                          ¿Ya tenés cuenta? <Link to="/signin">¡Ingresá aquí!</Link>
                       </p>
                   </div>
                 </div>

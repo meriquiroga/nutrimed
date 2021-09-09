@@ -6,6 +6,7 @@ const doctorControllers = require("../controllers/doctorControllers")
 const patientControllers = require("../controllers/patientControllers")
 const appointmentControllers = require("../controllers/appointmentControllers")
 const calendarControllers = require("../controllers/calendarControllers")
+const extraControllers = require('../controllers/extraControllers')
 const validator = require("../controllers/validator")
 
 router.route("/user").post(validator, userControllers.addUser)
@@ -79,4 +80,13 @@ router
 
 router.route('/mail')
 .post(passport.authenticate("jwt", { session: false }),appointmentControllers.sendMails)
+
+router.route('/avatar')
+.post(extraControllers.addAvatar)
+.get(extraControllers.getAvatar)
+
+router.route('/socialwork')
+.post(extraControllers.addSocialwork)
+.get(extraControllers.getSocialwork)
+
 module.exports = router

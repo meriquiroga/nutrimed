@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import userActions from "../redux/actions/userActions";
 import { Link } from "react-router-dom";
 
-const Login = (props) => {
+const SingIn = (props) => {
   const [valueIn, setValueIn] = useState("");
   const [userLog, setUserLog] = useState({
     data: { mail: "" },
@@ -110,4 +110,4 @@ const mapDispatchToProps = {
   logIn: userActions.logIn,
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(SingIn);

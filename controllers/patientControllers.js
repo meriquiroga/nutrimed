@@ -21,7 +21,7 @@ const patientControllers = {
          if (!match)
             throw new Error("The data entered is not valid. Please, try again.")
          let token = jwt.sign({ ...userExist }, process.env.SECRETOKEN)
-         res.json({ success: true, res: { userExist, token } })
+         res.json({ success: true, res: { ...userExist, token } })
       } catch (err) {
          res.json({ success: false, res: err.message })
       }

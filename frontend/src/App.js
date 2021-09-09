@@ -13,14 +13,16 @@ import EditProfileDoctor from "./components/EditProfileDoctor"
 import { connect } from "react-redux"
 import { useEffect } from "react"
 import userActions from "./redux/actions/userActions"
-import Login from "./components/Login"
 import Information from "./components/Information"
+import SignIn from "./components/SignIn"
 
 
-const App = (props) => {
+const App = ({valid,user,logWithLs}) => {
+   console.log(user)
+   console.log(valid)
    useEffect(() => {
       if (localStorage.getItem("token")) {
-         props.logWithLs(localStorage.getItem("token"))
+         logWithLs(localStorage.getItem("token"))
       }
    }, [])
    return (
@@ -28,23 +30,23 @@ const App = (props) => {
          <Header />
          <Switch>
             <Route exact path="/" component={Home} />
-            {!props.valid && <Route path="/signup" component={SignUp} />}
+            {!valid && <Route path="/signup" component={SignUp} />}
             <Route exact path="/staff" component={Staff} />
             <Route path="/staff/:id" component={EachDoctor} />
             <Route path="/information" component={Information} />
             <Route path="/appointment" component={Appointment} />
-            {(props.valid && props.user.userExist.doc) && (
+            {(valid && user.userExist.doc) && (
                <Route exact path="/doc/profile" component={EditProfileDoctor} />
             )}
-            {props.valid && <Route exact path="/profile" component={Profile} />}
-            {(props.valid && !props.user.userExist.doc) && (
+            {valid && <Route exact path="/profile" component={Profile} />}
+            {(valid && !user.userExist.doc) && (
                <Route
                   exact
                   path="/patient/profile"
                   component={EditProfilePatient}
                />
             )}
-            {!props.valid && <Route path="/login" component={Login} />}
+            {!valid && <Route path="/signin" component={SignIn} />}
             <Redirect to="/" />
          </Switch>
          <Footer />
