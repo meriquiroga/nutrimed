@@ -34,7 +34,7 @@ const Footer = (props) => {
                   </NavLink>
                </li>}
                {props.valid && <li>
-                  <NavLink to="/patient">
+                  <NavLink to="/profile">
                      <p>PERFIL</p>
                   </NavLink>
                </li>}

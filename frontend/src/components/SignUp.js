@@ -41,9 +41,9 @@ const SignUp = ({signUpUser}) => {
             google: true
         }
         signUpUser(logWithGoogle)
-        .then((res) => {if (!res.data.success) {
+        .then((res) => {if (!res.success) {
           setError(true)
-          setErrors([{message: res.data.res}])
+          setErrors([{message: res.res}])
         }})
     }
 
@@ -54,7 +54,7 @@ const SignUp = ({signUpUser}) => {
         }else{
           newUser.doc = false
         }
-        if (valor > 0){
+        if (valor < 2){
         signUpUser({...newUser, doc: newUser.doc})
         .then(res=> {if(!res.success){
           typeof res.res === 'string' ? setErrors([{message:'Ups! intentelo mas tarde'}]) :  setErrors(res.res)

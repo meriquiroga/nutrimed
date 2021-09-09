@@ -7,13 +7,14 @@ import ReactCircleModal from "react-circle-modal"
 import MedicalData from "./MedicalData"
 
 const ProfileUser = (props) => {
-   
    const [appointments, setAppointments] = useState([])
 
    useEffect(() => {
       if (props.user.userExist.doc) {
          props.getAppointments(props.token).then((res) => {
-            setAppointments(res.res)
+            if(res.success){
+               setAppointments(res.res)
+            }
          })
       }
       return false

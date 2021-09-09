@@ -69,8 +69,7 @@ const App = (props) => {
             {(props.valid && props.user.userExist.doc) && (
                <Route exact path="/doc/profile" component={EditProfileDoctor} />
             )}
-            {props.valid && <Route exact path="/patient" component={Profile} />}
-            {props.valid && <Route path="/doctor" component={Profile} />}
+            {props.valid && <Route exact path="/profile" component={Profile} />}
             {(props.valid && !props.user.userExist.doc) && (
                <Route
                   exact
