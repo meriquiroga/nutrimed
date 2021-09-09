@@ -3,7 +3,6 @@ import EveryReview from "./EveryReview";
 import doctorActions from "../redux/actions/doctorActions";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
-import io from "socket.io-client";
 import patientActions from "../redux/actions/patientActions";
 
 const Reviews = ({
@@ -12,18 +11,13 @@ const Reviews = ({
   doctorId,
   userToken,
   actionReview,
-  getSocket,
   getOneDoctorDB,
+  socket,
 }) => {
   const [newReviews, setNewReview] = useState(reviews);
   const [text, setText] = useState("");
-  const [socket, setSocket] = useState(null);
   const [refetch, setRefetch] = useState(false);
   const [escribiendo, setEscribiendo] = useState("");
-
-  useEffect(() => {
-    setSocket(io("http://localhost:4000/"));
-  }, []);
 
   useEffect(() => {
     if (socket) {
@@ -49,8 +43,6 @@ const Reviews = ({
     return false
     // eslint-disable-next-line
   }, [socket]);
-
-  getSocket(socket);
 
   const deleteReviewHandler = (reviewId) => {
     actionReview(userToken, doctorId, text, "deleteReview", reviewId).then(
@@ -102,7 +94,11 @@ const Reviews = ({
       </span>
       <div>
         <input
-          placeholder={!userToken ? 'Creá tu cuenta para dejar feedback al profesional' : 'Dejale feedback al profesional'} 
+          placeholder={
+            !userToken
+              ? "Creá tu cuenta para dejar feedback al profesional"
+              : "Dejale feedback al profesional"
+          }
           disabled={!userToken}
           onChange={editTextReviewHandler}
           value={text}
@@ -122,6 +118,7 @@ const mapStateToProps = (state) => {
   return {
     dataUser: state.users.dataUser,
     userToken: state.users.token,
+    socket: state.patients.socket,
   };
 };
 const mapDispatchToProps = {
