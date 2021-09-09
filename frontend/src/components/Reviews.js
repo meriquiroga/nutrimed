@@ -18,7 +18,7 @@ const Reviews = ({
   const [text, setText] = useState("");
   const [refetch, setRefetch] = useState(false);
   const [escribiendo, setEscribiendo] = useState("");
-
+  console.log("esta prueba para el merge");
   useEffect(() => {
     if (socket) {
       socket.on("message", (mensaje) => {

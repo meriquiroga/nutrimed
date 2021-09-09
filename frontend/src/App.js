@@ -31,7 +31,8 @@ const App = (props) => {
   }, []);
 
   props.getSocket(socket);
-
+  console.log("BORRAME");
+  console.log("otro log");
   return (
     <BrowserRouter>
       <Header />
