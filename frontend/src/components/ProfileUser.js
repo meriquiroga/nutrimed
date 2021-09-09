@@ -2,8 +2,12 @@ import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import { useEffect, useState } from "react"
 import doctorActions from "../redux/actions/doctorActions"
+import React from "react"
+import ReactCircleModal from "react-circle-modal"
+import MedicalData from "./MedicalData"
 
 const ProfileUser = (props) => {
+   
    const [appointments, setAppointments] = useState([])
 
    useEffect(() => {
@@ -90,14 +94,44 @@ const ProfileUser = (props) => {
                   {appointments.map((appointment, index) => {
                      return (
                         <div key={index}>
-                           <Link to="./medicaldata/">
-                              <h2 className="turnos">
-                                 {appointment.patientId.name}{" "}
-                                 {appointment.patientId.lastName}
-                              </h2>
-                           </Link>
+                           <h2 className="turnos">
+                              {appointment.patientId.name}{" "}
+                              {appointment.patientId.lastName}
+                           </h2>
                            <h5>{appointment.date.date}</h5>
                            <h5>{appointment.date.hour}</h5>
+                           <ReactCircleModal
+                              backgroundColor="#36B0B4"
+                              toogleComponent={(onClick) => (
+                                 <button
+                                    className="botonFichaMedica"
+                                    onClick={onClick}
+                                 >
+                                    VER FICHA MEDICA
+                                 </button>
+                              )}
+                              // Optional fields and their default values
+                              offsetX={0}
+                              offsetY={0}
+                           >
+                              {(onClick) => (
+                                 <div
+                                    style={{
+                                       backgroundColor: "#fff",
+                                       padding: "1em",
+                                       width: "75vw",
+                                       alignSelf: "center",
+                                       display: "flex",
+                                       flexDirection: "column",
+                                       justifyContent: "center",
+                                       alignItems: "center",
+                                    }}
+                                 >
+                                    <MedicalData appointment={appointment} />
+                                    <button onClick={onClick}>VOLVER</button>
+                                 </div>
+                              )}
+                           </ReactCircleModal>
                         </div>
                      )
                   })}
