@@ -1,5 +1,4 @@
 import { GoogleLogin } from "react-google-login";
-import FacebookLogin from "react-facebook-login";
 import { useState } from "react";
 import { connect } from "react-redux";
 import userActions from "../redux/actions/userActions";
@@ -22,7 +21,6 @@ const Login = (props) => {
   };
 
   const responseGoogle = (res) => {
-     console.log(res)
     let newUserWithGoogle = {
       data: { mail: res.profileObj.email },
       password: res.profileObj.googleId,
@@ -31,20 +29,8 @@ const Login = (props) => {
     props.logIn(newUserWithGoogle, validUser).then((res) => {
       console.log(res);
     });
-  };
-  const responseFacebook = (res) => {
-    if (res.userID) {
-      let logWithFacebookk = {
-        data: { mail: res.email },
-        password: res.userID,
-        flagGoogle: true
-      }
-      console.log("Aca")
-      props.logIn(logWithFacebookk, validUser)
-      .then((res) => {console.log(res)})
-    }
-  };
-
+  }
+  
   const validInputHandler = (e) => {
     setValueIn(e.target.value);
   };
@@ -112,21 +98,9 @@ const Login = (props) => {
                 cookiePolicy={"single_host_origin"}
               />
             </div>
-            <div>
-              <FacebookLogin
-                appId="1145134492902308"
-                autoLoad={false}
-                fields="email"
-                textButton="Ingresar con facebook"
-                icon="fa-facebook"
-                callback={responseFacebook}
-              />
-            </div>
           </div>
+          <p>¿No tenés cuenta? <Link to="/signup">¡Creala aquí!</Link></p>
         </div>
-        <p>
-          ¿No tenés cuenta? <Link to="/signup">¡Creala aquí!</Link>
-        </p>
       </div>
     </>
   );

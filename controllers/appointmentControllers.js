@@ -1,4 +1,5 @@
 const Appointment = require("../models/Appointment")
+const transport = require('../config/transport')
 
 const appointmentControllers = {
    addAppointment: async (req, res) => {
@@ -61,6 +62,21 @@ const appointmentControllers = {
          res.json({ success: false, res: err.message })
       }
    },
+   sendMails:async(req, res)=>{
+      try{
+         let options ={
+            from:'NutriMed <nutrimed.centronutricional@gmail.com>',
+            to: req.user.data.mail,
+            subject:'Confimarcion de Turno',
+            text:`Hola ${req.user.name} ${req.user.lastName}`
+         }
+         transport.sendMail(options, (err,info)=>{
+            console.log(err)
+         })
+      }catch(err){
+         console.log(err)
+      }
+   }
 }
 
 module.exports = appointmentControllers

@@ -88,6 +88,20 @@ const patientActions = {
         console.log(err);
       }
     }
+  },
+  confirmFormMail:(user)=>{
+    return async()=>{
+      try{
+        let resMail = await axios.post('http://localhost:4000/api/mail',{},{
+              headers: {
+                Authorization: "Bearer " + user
+             },
+            })
+            console.log(resMail)
+      }catch(err){
+        console.log(err)
+      }
+    }
   }
 }
 

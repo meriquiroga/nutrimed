@@ -1,7 +1,6 @@
 import { connect } from "react-redux"
 import { useState } from "react"
 import { GoogleLogin } from 'react-google-login'
-// import FacebookLogin from 'react-facebook-login'
 import userActions from "../redux/actions/userActions"
 import { Link } from "react-router-dom"
 
@@ -21,16 +20,16 @@ const SignUp = ({signUpUser}) => {
         doc: false,
     })
 
-
-    function validFields(field) {
-        for (var i in field ){
-            if(!field[i].length && !Object.values([i]).includes("data") && !Object.values([i]).includes("passwordAdm")){
-                valor++
-                setError(true)
-            }
-        }  
-        return valor    
-    }           
+    const validFields=(field)=>{
+      for (var i in field ){
+        if(!field[i].length && !Object.values([i]).includes("data") && !Object.values([i]).includes("passwordAdm")){
+            valor=valor+1
+            setError(true)
+        }
+      }  
+      return valor
+    }
+           
 
     const responseGoogle = res => {
         let logWithGoogle = {
@@ -42,42 +41,25 @@ const SignUp = ({signUpUser}) => {
             google: true
         }
         signUpUser(logWithGoogle)
-        .then((res) => {
-          if (!res.data.success) {
-            setErrors([{message: res.data.res}])
-          }
-            
-        })
+        .then((res) => {if (!res.data.success) {
+          setError(true)
+          setErrors([{message: res.data.res}])
+        }})
     }
-
-    // const responseFacebook = (res) => {
-    //     console.log(res)
-    //     if (res.userID){
-    //     let logWithFacebook = {
-    //         name: res.first_name,
-    //         lastName: res.last_name,
-    //         data: { mail: res.email },
-    //         password: res.userID,
-    //         src: res.picture.data.url,
-    //         google: true
-    //     }
-    //     console.log("face")
-    //     signUpUser(logWithFacebook)
-    //     .then((res) => {console.log(res)
-            
-    //     }).catch((e)=> console.log(e))
-    // }}
-
 
     const submitHandler = () => {
         validFields(newUser)
-        if (valueIn === "prof") newUser.doc = true
-            else newUser.doc = false
-        if (valor < 2){
-            signUpUser({...newUser, doc: newUser.doc})
-            .then((res)=> {console.log(res)
-                
-            })
+        if (valueIn === "prof"){
+          newUser.doc = true
+        }else{
+          newUser.doc = false
+        }
+        if (valor > 0){
+        signUpUser({...newUser, doc: newUser.doc})
+        .then(res=> {if(!res.success){
+          typeof res.res === 'string' ? setErrors([{message:'Ups! intentelo mas tarde'}]) :  setErrors(res.res)
+        }
+        })
         }
     }
 
@@ -109,8 +91,6 @@ const SignUp = ({signUpUser}) => {
                         <div>Paciente <input onClick={validInputHandler} type="radio" name="buttonRol" defaultValue="pat" defaultChecked/></div>
                         <div>Profesional <input onClick={validInputHandler} type="radio" name="buttonRol" defaultValue="prof"/></div>
                     </div>
-                     
-                    
                         <div className="inputs">
                             <input type="text" placeholder="Nombre" className={((error && !newUser.name.length) ? "errorY" : "errorN")}
                             name="name" onChange={addUserHandler}  defaultValue={newUser.name}  
@@ -135,15 +115,15 @@ const SignUp = ({signUpUser}) => {
                             name="src" className={((error && !newUser.src.length) ? "errorY" : "errorN")}
                              onChange={addUserHandler} defaultValue={newUser.src} 
                              />
-                            <input type="text" placeholder="Contraseña de profesional" name="passwordAdm"
+                            <input type="password" placeholder="Contraseña de profesional" name="passwordAdm"
                             style={{display:disp}}  className={((error && !newUser.passwordAdm.length) ? "errorY" : "errorN")}
                             onChange={addUserHandler} defaultValue={newUser.passwordAdm} required={valueIn === "prof" ? true : false}
                             />
                         </div>
                         <div>
-                            {error && errors.map(error => <p style={{fontSize:"1.3vmin"}} >*{error.message}</p>)}
+                            {error && errors.map(error => <p key={error.message} style={{fontSize:"1.3vmin"}} >*{error.message}</p>)}
                         </div>
-                        <button  onClick={submitHandler} >REGISTRARSE</button>
+                        <button  onClick={submitHandler}>REGISTRARSE</button>
                     
                     <div style={{display:dispGo}}>
                         <div >
@@ -155,20 +135,10 @@ const SignUp = ({signUpUser}) => {
                             cookiePolicy={'single_host_origin'}
                             />
                         </div>
-
-                        <div>
-                        {/* <FacebookLogin
-                            appId="1145134492902308"
-                            autoLoad={true}
-                            fields="first_name, last_name, picture, email"
-                            textButton="Ingresar con facebook"
-                            icon="fa-facebook"
-                            callback={responseFacebook} /> */}
-                        </div>
-                          <p>
-                            ¿Ya tenés cuenta? <Link to="/login">¡Ingresá aquí!</Link>
-                          </p>
                       </div>
+                      <p>
+                          ¿Ya tenés cuenta? <Link to="/login">¡Ingresá aquí!</Link>
+                      </p>
                   </div>
                 </div>
     </>

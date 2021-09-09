@@ -1,11 +1,10 @@
-import axios from "axios";
+import axios from "axios"
 
 const userActions = {
    signUpUser: (user) => {
       return async (dispatch) => {
          try {
             let res = await axios.post("http://localhost:4000/api/user", user)
-            console.log(res)
             if (res.data.success) {
                dispatch({
                   type: "SIGN_UP",
@@ -14,7 +13,7 @@ const userActions = {
                      token: res.data.res.token,
                   },
                })
-               return { success: true, res }
+               return { success: true, res: res }
             }else {
                return res
             }
@@ -23,7 +22,6 @@ const userActions = {
          }
       }
    },
-
 
    logUserWithLs: (token) => {
       return async (dispatch) => {
@@ -36,7 +34,6 @@ const userActions = {
             dispatch({
                type: "SIGN_UP",
                payload: { userExist: res.data, token },
-
             })
          } catch (err) {
             return dispatch({ type: "LOG_OUT" })
@@ -44,15 +41,15 @@ const userActions = {
       }
    },
 
-    logIn: (user, validUser) => {
-        let typeUser = null
-        if (validUser === "comun"){
-            typeUser = "patient"
-        }else {
-            typeUser = "doctor"
-        }
-        return async (dispatch) => {
-        try {
+   logIn: (user, validUser) => {
+      let typeUser = null
+      if (validUser === "comun") {
+         typeUser = "patient"
+      } else {
+         typeUser = "doctor"
+      }
+      return async (dispatch) => {
+         try {
             let res = await axios.post(
                `http://localhost:4000/api/${typeUser}`,
                user
@@ -81,4 +78,4 @@ const userActions = {
    },
 }
 
-export default userActions;
+export default userActions
