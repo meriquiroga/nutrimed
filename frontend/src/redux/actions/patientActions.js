@@ -2,6 +2,7 @@ import axios from "axios";
 
 const patientActions = {
   editProfilePatient: () => {
+    console.log("editando")
     return async () => {
       try {
         let res = await axios.put(`http://localhost:4000/api/patient`, {});

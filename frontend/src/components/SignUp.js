@@ -1,12 +1,12 @@
 import { connect } from "react-redux"
 import { useState } from "react"
 import { GoogleLogin } from 'react-google-login'
-import FacebookLogin from 'react-facebook-login'
+// import FacebookLogin from 'react-facebook-login'
 import userActions from "../redux/actions/userActions"
 import { Link } from "react-router-dom"
 
 const SignUp = ({signUpUser}) => {
-    let valor = 0
+    let valor = null
     const [valueIn, setValueIn] = useState("")
     const [errors, setErrors] = useState([])
     const [error, setError] = useState(false)
@@ -25,7 +25,7 @@ const SignUp = ({signUpUser}) => {
     function validFields(field) {
         for (var i in field ){
             if(!field[i].length && !Object.values([i]).includes("data") && !Object.values([i]).includes("passwordAdm")){
-                valor=valor+1
+                valor++
                 setError(true)
             }
         }  
@@ -42,7 +42,10 @@ const SignUp = ({signUpUser}) => {
             google: true
         }
         signUpUser(logWithGoogle)
-        .then((res) => {console.log(res)
+        .then((res) => {
+          if (!res.data.success) {
+            setErrors([{message: res.data.res}])
+          }
             
         })
     }
@@ -67,20 +70,18 @@ const SignUp = ({signUpUser}) => {
 
 
     const submitHandler = () => {
-        validFields(newUser, valor)
+        validFields(newUser)
         if (valueIn === "prof") newUser.doc = true
-        else newUser.doc = false
-        if (valor > 0){
-        signUpUser({...newUser, doc: newUser.doc})
-        // .then((res)=> {if (res.errors) {
-        //     setErrors(res.errors)
-        // }else{
-        //   console.log('ok')
-        // }
-        // }
-        // )
+            else newUser.doc = false
+        if (valor < 2){
+            signUpUser({...newUser, doc: newUser.doc})
+            .then((res)=> {console.log(res)
+                
+            })
         }
     }
+
+
   const addUserHandler = (e) => {
     setError(false);
     if (e.target.name === "data") {

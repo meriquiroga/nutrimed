@@ -14,9 +14,9 @@ const userActions = {
                      token: res.data.res.token,
                   },
                })
-               // return { success: true, res: res }
+               return { success: true, res }
             }else {
-               return res.data
+               return res
             }
          } catch (err) {
             return { success: false, res: err.message }
@@ -45,7 +45,6 @@ const userActions = {
    },
 
     logIn: (user, validUser) => {
-       console.log("login")
         let typeUser = null
         if (validUser === "comun"){
             typeUser = "patient"
