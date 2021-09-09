@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import doctorActions from "../redux/actions/doctorActions";
 import Reviews from "../components/Reviews";
-// import io from "socket.io-client";
-// import patientActions from "../redux/actions/patientActions";
 
 class EachDoctor extends Component {
   state = {

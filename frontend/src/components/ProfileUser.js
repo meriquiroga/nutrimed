@@ -218,6 +218,7 @@ const ProfileUser = (props) => {
                                                    flexDirection: "column",
                                                    justifyContent: "center",
                                                    alignItems: "center",
+                                                   minHeight:"90vh"
                                                 }}
                                              >
                                                 <MedicalData

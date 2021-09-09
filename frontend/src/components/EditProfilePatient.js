@@ -23,31 +23,17 @@ const EditProfilePatient = (props) => {
   );
 
   const addDocHandler = (e) => {
-    if (e.target.name === "street") {
+    if (e.target.name === "street" || e.target.name === "num" || e.target.name === "city" ) {
       setActPat({
         ...actPat,
         data: {
-          direction: { ...actPat.data.direction, street: e.target.value },
+          direction: { ...actPat.data.direction, [e.target.name]: e.target.value },
         },
       });
     } else if (e.target.name === "phoneNumber") {
       setActPat({
         ...actPat,
         data: { ...actPat.data, phoneNumber: e.target.value },
-      });
-    } else if (e.target.name === "num") {
-      setActPat({
-        ...actPat,
-        data: {
-          direction: { ...actPat.data.direction, num: e.target.value },
-        },
-      });
-    } else if (e.target.name === "city") {
-      setActPat({
-        ...actPat,
-        data: {
-          direction: { ...actPat.data.direction, city: e.target.value },
-        },
       });
     } else {
       setActPat({ ...actPat, [e.target.name]: e.target.value });
@@ -98,12 +84,12 @@ const EditProfilePatient = (props) => {
   };
   return (
     <div className="container">
-      <div className="signUpForm">
+      <div className="grayContainer">
         <img src="/assets/form.png" alt="" />
         <h3>Por favor, completá tus datos</h3>
         <form className="inputs">
           <input
-            type="number"
+            type="text"
             placeholder="DNI"
             name="dni"
             onChange={addDocHandler}
@@ -124,7 +110,7 @@ const EditProfilePatient = (props) => {
             defaultValue={actPat.data.direction.street}
           />
           <input
-            type="number"
+            type="text"
             placeholder="Número"
             name="num"
             onChange={addDocHandler}
@@ -147,16 +133,16 @@ const EditProfilePatient = (props) => {
             {allSocialWork.map((social, index) => (
               <option key={index}>{social}</option>
             ))}
-            <option>Otro.</option>
+            <option>Otra</option>
           </select>
-          <div class="containerPreview">
+          <div className="containerPreview">
             <div
-              class="preview"
+              className="preview"
               style={{
                 backgroundImage: `url("${previewImg}")`,
               }}
             ></div>
-            <div class="avatarInput">
+            <div>
               <select onChange={inputValue} name="avatar">
                 <option>Seleccioná tu avatar</option>
                 {avatarsArray.map((img, index) => (

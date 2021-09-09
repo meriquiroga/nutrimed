@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import userActions from "../redux/actions/userActions";
 import { Link } from "react-router-dom";
 
-const Login = (props) => {
+const SignIn = ({logIn}) => {
   const [valueIn, setValueIn] = useState("");
   const [errors, setErrors] = useState("")
   const [error, setError] = useState({errorUno: false, errorDos: false})
@@ -33,7 +33,7 @@ const Login = (props) => {
       password: res.profileObj.googleId,
       flagGoogle: true,
     };
-    props.logIn(newUserWithGoogle, validUser)
+    logIn(newUserWithGoogle, validUser)
     .then((res) => {if (!res.success){
       setErrors("Debe estar registrado con Google para utilizar este botón")
       setError({errorDos: true})
@@ -55,7 +55,7 @@ const Login = (props) => {
         return false
     }
     if(!error.errorUno){
-      props.logIn(userLog, validUser)
+      logIn(userLog, validUser)
       .then((res) => {if (!res.success) {
         setErrors("Error de autenticación. Verifique correctamente")
         setError({errorUno: true})
@@ -70,7 +70,7 @@ const Login = (props) => {
   return (
     <>
       <div className="container">
-        <div className="signUpForm">
+        <div className="grayContainer">
           <img src="/assets/login.png" alt="" />
           <h3>Por favor, seleccioná si sos paciente o profesional</h3>
           <div className="radio">
@@ -138,4 +138,4 @@ const mapDispatchToProps = {
   logIn: userActions.logIn,
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(SignIn);

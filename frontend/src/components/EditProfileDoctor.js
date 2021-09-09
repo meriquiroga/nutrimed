@@ -85,70 +85,72 @@ const EditProfileDoctor = (props) => {
   return (
     <>
       <div className="container">
-        <div className="signUpForm">
-          <h2>Termina de completar tus datos</h2>
-          <input
-            type="number"
-            placeholder="DNI"
-            name="dni"
-            onChange={addDocHandler}
-            defaultValue={actDoc.dni}
-          />
-          <input
-            type="text"
-            placeholder="Descripción"
-            name="description"
-            onChange={addDocHandler}
-            defaultValue={actDoc.description}
-          />
-          <input
-            type="text"
-            placeholder="N° de matrícula"
-            name="registration"
-            onChange={addDocHandler}
-            defaultValue={actDoc.registration}
-          />
-          <input
-            type="text"
-            placeholder="Especialidad"
-            name="specialty"
-            onChange={addDocHandler}
-            defaultValue={actDoc.specialty}
-          />
-          <input
-            type="text"
-            placeholder="Teléfono"
-            name="phoneNumber"
-            onChange={addDocHandler}
-            defaultValue={actDoc.data.phoneNumber}
-          />
-          <input
-            type="text"
-            placeholder="Calle"
-            name="street"
-            onChange={addDocHandler}
-            defaultValue={actDoc.data.direction.street}
-          />
-          <input
-            type="number"
-            placeholder="Número"
-            name="num"
-            onChange={addDocHandler}
-            defaultValue={actDoc.data.direction.num}
-          />
-          <input
-            type="text"
-            placeholder="Ciudad"
-            name="city"
-            onChange={addDocHandler}
-            defaultValue={actDoc.data.direction.city}
-          />
-          <h4>¿Acepta Obra Social? </h4>
+        <div className="grayContainer">
+          <h3>Completá o actualizá tus datos</h3>
+          <form className="inputs">
+            <input
+              type="number"
+              placeholder="DNI"
+              name="dni"
+              onChange={addDocHandler}
+              defaultValue={actDoc.dni}
+            />
+            <input
+              type="text"
+              placeholder="Descripción"
+              name="description"
+              onChange={addDocHandler}
+              defaultValue={actDoc.description}
+            />
+            <input
+              type="text"
+              placeholder="N° de matrícula"
+              name="registration"
+              onChange={addDocHandler}
+              defaultValue={actDoc.registration}
+            />
+            <input
+              type="text"
+              placeholder="Especialidad"
+              name="specialty"
+              onChange={addDocHandler}
+              defaultValue={actDoc.specialty}
+            />
+            <input
+              type="text"
+              placeholder="Teléfono"
+              name="phoneNumber"
+              onChange={addDocHandler}
+              defaultValue={actDoc.data.phoneNumber}
+            />
+            <input
+              type="text"
+              placeholder="Calle"
+              name="street"
+              onChange={addDocHandler}
+              defaultValue={actDoc.data.direction.street}
+            />
+            <input
+              type="number"
+              placeholder="Número"
+              name="num"
+              onChange={addDocHandler}
+              defaultValue={actDoc.data.direction.num}
+            />
+            <input
+              type="text"
+              placeholder="Ciudad"
+              name="city"
+              onChange={addDocHandler}
+              defaultValue={actDoc.data.direction.city}
+            />
           
-          Si<input type="radio" name="socialWork" onChange={addDocHandler} onClick={socialWorkHandler} value={true} />
-          No<input type="radio" name="socialWork" onChange={addDocHandler} onClick={socialWorkHandler} value={false} />
+            <h4>¿Acepta Obra Social? </h4>
+            
+            Si<input type="radio" name="socialWork" onChange={addDocHandler} onClick={socialWorkHandler} value={true} />
+            No<input type="radio" name="socialWork" onChange={addDocHandler} onClick={socialWorkHandler} value={false} />
 
-       
+          </form>
           <button onClick={submitHandler}>Actualizar datos</button>
 
           <Link to="/profile">Volver al perfil</Link>

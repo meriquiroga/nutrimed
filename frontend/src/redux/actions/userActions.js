@@ -55,6 +55,7 @@ const userActions = {
                `http://localhost:4000/api/${typeUser}`,
                user
             )
+            console.log(res)
             if (res.data.success) {
                dispatch({
                   type: "SIGN_UP",
