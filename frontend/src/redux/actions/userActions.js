@@ -31,6 +31,7 @@ const userActions = {
                   Authorization: "Bearer " + token,
                },
             })
+            console.log(res)
             dispatch({
                type: "SIGN_UP",
                payload: { userExist: res.data, token },

@@ -33,7 +33,7 @@ const Header = (props) => {
                )}
                {props.valid && (
                   <li>
-                     <NavLink to="/patient">
+                     <NavLink to="/profile">
                         <p>PERFIL</p>
                      </NavLink>
                   </li>
