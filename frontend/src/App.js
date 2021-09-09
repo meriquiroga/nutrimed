@@ -17,12 +17,10 @@ import Information from "./components/Information"
 import SignIn from "./components/SignIn"
 
 
-const App = ({valid,user,logWithLs}) => {
-   console.log(user)
-   console.log(valid)
+const App = (props) => {
    useEffect(() => {
       if (localStorage.getItem("token")) {
-         logWithLs(localStorage.getItem("token"))
+         props.logWithLs(localStorage.getItem("token"))
       }
    }, [])
    return (
@@ -30,23 +28,23 @@ const App = ({valid,user,logWithLs}) => {
          <Header />
          <Switch>
             <Route exact path="/" component={Home} />
-            {!valid && <Route path="/signup" component={SignUp} />}
+            {!props.valid && <Route path="/signup" component={SignUp} />}
             <Route exact path="/staff" component={Staff} />
             <Route path="/staff/:id" component={EachDoctor} />
             <Route path="/information" component={Information} />
             <Route path="/appointment" component={Appointment} />
-            {(valid && user.userExist.doc) && (
+            {(props.valid && props.user.userExist.doc) && (
                <Route exact path="/doc/profile" component={EditProfileDoctor} />
             )}
-            {valid && <Route exact path="/profile" component={Profile} />}
-            {(valid && !user.userExist.doc) && (
+            {props.valid && <Route exact path="/profile" component={Profile} />}
+            {(props.valid && !props.user.userExist.doc) && (
                <Route
                   exact
                   path="/patient/profile"
                   component={EditProfilePatient}
                />
             )}
-            {!valid && <Route path="/signin" component={SignIn} />}
+            {!props.valid && <Route path="/signin" component={SignIn} />}
             <Redirect to="/" />
          </Switch>
          <Footer />

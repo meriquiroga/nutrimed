@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import userActions from "../redux/actions/userActions";
 import { Link } from "react-router-dom";
 
-const SingIn = (props) => {
+const SignIn = ({logIn}) => {
   const [valueIn, setValueIn] = useState("");
   const [userLog, setUserLog] = useState({
     data: { mail: "" },
@@ -26,7 +26,7 @@ const SingIn = (props) => {
       password: res.profileObj.googleId,
       flagGoogle: true,
     };
-    props.logIn(newUserWithGoogle, validUser).then((res) => {
+    logIn(newUserWithGoogle, validUser).then((res) => {
       console.log(res);
     });
   }
@@ -36,7 +36,7 @@ const SingIn = (props) => {
   };
 
   const submitUserLog = () => {
-    props.logIn(userLog, validUser);
+    logIn(userLog, validUser);
   };
 
   let validUser = valueIn === "prof" ? "profesional" : "comun";
@@ -110,4 +110,4 @@ const mapDispatchToProps = {
   logIn: userActions.logIn,
 };
 
-export default connect(null, mapDispatchToProps)(SingIn);
+export default connect(null, mapDispatchToProps)(SignIn);
