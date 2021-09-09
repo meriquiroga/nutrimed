@@ -12,11 +12,11 @@ const ProfileUser = (props) => {
 
    useEffect(() => {
       if (props.user.userExist.doc) {
-         console.log(props.token)
          props.getAppointments(props.token).then((res) => {
             setAppointments(res.res)
          })
       }
+      return false
    }, [])
 
    return (

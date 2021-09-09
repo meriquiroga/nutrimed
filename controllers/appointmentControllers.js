@@ -63,13 +63,12 @@ const appointmentControllers = {
       }
    },
    sendMails:async(req, res)=>{
-      console.log(req.user)
       try{
          let options ={
             from:'NutriMed <nutrimed.centronutricional@gmail.com>',
             to: req.user.data.mail,
             subject:'Confimarcion de Turno',
-            text:`Hola ${req.user.name, req.user.lastName}`
+            text:`Hola ${req.user.name} ${req.user.lastName}`
          }
          transport.sendMail(options, (err,info)=>{
             console.log(err)

@@ -23,7 +23,6 @@ const App = (props) => {
          props.logWithLs(localStorage.getItem("token"))
       }
    }, [])
-
    return (
       <BrowserRouter>
          <Header />
@@ -34,12 +33,12 @@ const App = (props) => {
             <Route path="/staff/:id" component={EachDoctor} />
             <Route path="/information" component={Information} />
             <Route path="/appointment" component={Appointment} />
-            {props.valid && props.user.doc && (
+            {(props.valid && props.user.userExist.doc) && (
                <Route exact path="/doc/profile" component={EditProfileDoctor} />
             )}
             {props.valid && <Route exact path="/patient" component={Profile} />}
             {props.valid && <Route path="/doctor" component={Profile} />}
-            {props.valid && !props.user.doc && (
+            {(props.valid && !props.user.userExist.doc) && (
                <Route
                   exact
                   path="/patient/profile"

@@ -46,6 +46,7 @@ const Reviews = ({
         }
       });
     }
+    return false
   }, [socket]);
 
   getSocket(socket);

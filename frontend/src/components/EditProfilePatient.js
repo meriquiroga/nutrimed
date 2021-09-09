@@ -14,6 +14,7 @@ const EditProfilePatient = (props) => {
         city: "",
       },
       socialWork: "",
+      src:""
     },
   });
   const [previewImg, setPreviewImg] = useState(

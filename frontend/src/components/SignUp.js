@@ -21,7 +21,6 @@ const SignUp = ({signUpUser}) => {
     })
 
     const validFields=(field)=>{
-      console.log(field)
       for (var i in field ){
         if(!field[i].length && !Object.values([i]).includes("data") && !Object.values([i]).includes("passwordAdm")){
             valor=valor+1
@@ -43,12 +42,12 @@ const SignUp = ({signUpUser}) => {
         }
         signUpUser(logWithGoogle)
         .then((res) => {if (!res.data.success) {
+          setError(true)
           setErrors([{message: res.data.res}])
         }})
     }
 
     const submitHandler = () => {
-        console.log('me quiere registrar')
         validFields(newUser)
         if (valueIn === "prof"){
           newUser.doc = true
@@ -122,7 +121,7 @@ const SignUp = ({signUpUser}) => {
                             />
                         </div>
                         <div>
-                            {error && errors.map(error => <p style={{fontSize:"1.3vmin"}} >*{error.message}</p>)}
+                            {error && errors.map(error => <p key={error.message} style={{fontSize:"1.3vmin"}} >*{error.message}</p>)}
                         </div>
                         <button  onClick={submitHandler}>REGISTRARSE</button>
                     
