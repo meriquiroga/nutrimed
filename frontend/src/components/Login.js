@@ -70,7 +70,7 @@ const Login = (props) => {
   return (
     <>
       <div className="container">
-        <div className="signUpForm">
+        <div className="grayContainer">
           <img src="/assets/login.png" alt="" />
           <h3>Por favor, seleccioná si sos paciente o profesional</h3>
           <div className="radio">
