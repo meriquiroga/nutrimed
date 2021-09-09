@@ -62,19 +62,23 @@ const MedicalData = (props) => {
                </div>
             </div>
             <div className="DEF">
-               <h2>ANOTACIONES</h2>
+               <h2>REGISTRO DE NOTAS</h2>
                <div className="descripcion">
-                  {descriptions.map((description, index) => {
-                     return (
-                        <Description description={description} key={index} />
-                     )
-                  })}
+                  {descriptions.length === 0 ? (
+                     <p>No hay notas aún</p>
+                  ) : (
+                     descriptions.map((description, index) => {
+                        return (
+                           <Description description={description} key={index} />
+                        )
+                     })
+                  )}
                </div>
                <div>
                   <input
                      type="text"
                      name="description"
-                     placeholder="Ingresar anotación"
+                     placeholder="Ingresar nota"
                      onChange={inputHandler}
                      onKeyPress={pressEnter}
                   />
