@@ -29,7 +29,8 @@ const App = (props) => {
     setSocket(io("http://localhost:4000/"));
   }, []);
   props.getSocket(socket);
-
+  console.log("BORRAME");
+  console.log("otro log");
   return (
     <BrowserRouter>
       <Header />
