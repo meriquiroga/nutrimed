@@ -41,9 +41,9 @@ class Staff extends Component {
                 }}
               ></div>
               <div className="docCardText">
-                <h3>
+                <h4>
                   {obj.name} {obj.lastName}
-                </h3>
+                </h4>
                 <p>M.P.: {obj.registration}</p>
                 <p>{obj.specialty}</p>
               </div>
@@ -54,7 +54,7 @@ class Staff extends Component {
     });
     return (
       <div className="container">
-        <div className="signUpForm">
+        <div className="grayContainer">
         <h3>Staff</h3>
         <p>Contamos con profesionales especializados en alergias e intolerancias alimentarias, diabetología, alimentación y dietética clínica, nutrición materno-infantil, dietoterapia, psiconutrición, medicina general y entrenamiento fit, con rutinas abocadas a la salud integral del paciente.</p>
         <div className="doctorCardsContainer">{doctor}</div>;

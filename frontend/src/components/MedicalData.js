@@ -37,7 +37,6 @@ const MedicalData = (props) => {
 
    return (
       <>
-      <div className="signUpForm">
       <div className="medicalData">
             <h3>Historial Médico</h3>
             <h3>Paciente</h3>
@@ -58,15 +57,15 @@ const MedicalData = (props) => {
                      {data.direction.num}
                      {data.direction.city}
                   </p>
-                  <p>Telefono: {data.phoneNumber}</p>
+                  <p>Teléfono: {data.phoneNumber}</p>
                   <p>E-mail: {data.mail}</p>
                </div>
             </div>
             <div className="DEF">
-               <h2>REGISTRO DE NOTAS</h2>
+               <h2>Registro de notas</h2>
                <div className="descripcion">
                   {descriptions.length === 0 ? (
-                     <p>No hay notas aún</p>
+                     <p>No hay notas aún.</p>
                   ) : (
                      descriptions.map((description, index) => {
                         return (
@@ -75,11 +74,11 @@ const MedicalData = (props) => {
                      })
                   )}
                </div>
-               <div>
-                  <input className="medicalInput"
+               <div className="commentsMedicalData">
+                  <textarea  
                      type="text"
                      name="description"
-                     placeholder="Ingresar nota"
+                     placeholder="Ingresar fecha y nota"
                      onChange={inputHandler}
                      onKeyPress={pressEnter}
                   />
@@ -87,7 +86,6 @@ const MedicalData = (props) => {
                </div>
             </div>
          </div>
-      </div>
       </>
    )
 }

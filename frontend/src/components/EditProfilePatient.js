@@ -97,7 +97,7 @@ const EditProfilePatient = (props) => {
   };
   return (
     <div className="container">
-      <div className="signUpForm">
+      <div className="grayContainer">
         <img src="/assets/form.png" alt="" />
         <h3>Por favor, completá tus datos</h3>
         <form className="inputs">
@@ -146,16 +146,16 @@ const EditProfilePatient = (props) => {
             {allSocialWork.map((social, index) => (
               <option key={index}>{social}</option>
             ))}
-            <option>Otro.</option>
+            <option>Otra</option>
           </select>
-          <div class="containerPreview">
+          <div className="containerPreview">
             <div
-              class="preview"
+              className="preview"
               style={{
                 backgroundImage: `url("${previewImg}")`,
               }}
             ></div>
-            <div class="avatarInput">
+            <div>
               <select onChange={inputValue} name="avatar">
                 <option>Seleccioná tu avatar</option>
                 {avatarsArray.map((img, index) => (

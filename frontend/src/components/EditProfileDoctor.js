@@ -76,8 +76,9 @@ const EditProfileDoctor = (props) => {
   return (
     <>
       <div className="container">
-        <div className="signUpForm">
-          <h2>Termina de completar tus datos</h2>
+        <div className="grayContainer">
+          <h3>Completá o actualizá tus datos</h3>
+          <form className="inputs">
           <input
             type="number"
             placeholder="DNI"
@@ -134,21 +135,11 @@ const EditProfileDoctor = (props) => {
             onChange={addDocHandler}
             defaultValue={actDoc.data.direction.city}
           />
-          <h4>¿Acepta Obra Social? </h4>
+          <h4>¿Aceptás obras sociales? </h4>
           {valueIn ? "No" : "Si"}
           <input type="checkbox" onClick={socialWorkHandler} />
-
-          <select
-            disabled={valueIn ? true : false}
-            onChange={addDocHandler}
-            name="socialWork"
-            defaultValue={actDoc.socialWork}
-          >
-            {allSocialWork.map((social, index) => (
-              <option key={index}>{social}</option>
-            ))}
-          </select>
-          <button onClick={submitHandler}>Actualizar datos</button>
+          </form>
+          <button onClick={submitHandler}>ACTUALIZAR DATOS</button>
 
           <Link to="/doctor">Volver al perfil</Link>
         </div>

@@ -91,11 +91,10 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
   return (
     <>
       <div className="container">
-        <div className="signUpForm">
+        <div className="grayContainer">
         <img src="/assets/appointment.png" alt="" />
         <h3>
-          ¡Bienvenido! Antes de solicitar un turno, por favor elija el
-          profesional.
+          ¡Bienvenido! Seleccioná el profesional para ver sus turnos disponibles.
         </h3>
         <form>
           <select id="optionDoctor" name="doctorId"
@@ -118,7 +117,6 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
           </div>}
         {views.view && <div className="container2" >{inputDay}</div>}
         {!views.view && <div>
-          <h3 className="avisador">Los turnos que verás por doctor, son los disponibles.</h3>
           <h3>Protocolo COVID:</h3>
           <h4>Cuidémonos entre todos.</h4>
           <p>Por favor, asistir sólo con turno previamente acordado y ante cualquier síntoma, solicitá la reprogramación.</p></div>}
