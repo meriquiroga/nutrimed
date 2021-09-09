@@ -13,15 +13,17 @@ const Information = () => {
 
       <div className="iconCardsContainer">
         <div className="iconCard">
-          <img src="/assets/icoNutricion.png" />
+          <img src="/assets/icono-telefono.png" />
+          <h3>Teléfono</h3>
           <h3> +54 9 351 802 2424</h3>
         </div>
         <div className="iconCard">
-          <img id="buttonSign" src="/assets/icoNutricion.png" />
+          <img id="buttonSign" src="/assets/icono-map.png" />
+          <h3>Dirección</h3>
           <h3>Loza Bravo 3333</h3>
         </div>
         <div className="iconCard">
-          <img src="/assets/icoNutricion.png" />
+          <img src="/assets/icono-reloj.png" />
           <h3>Lunes a Viernes</h3>
           <h3>9:00 a 20:30hs.</h3>
         </div>

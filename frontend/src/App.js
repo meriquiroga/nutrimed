@@ -17,6 +17,7 @@ import Login from "./components/Login";
 import MedicalData from "./components/MedicalData";
 import Information from "./components/Information";
 
+
 const App = (props) => {
   useEffect(() => {
     if (localStorage.getItem("token")) {
