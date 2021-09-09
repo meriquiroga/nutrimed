@@ -164,10 +164,10 @@ const SignUp = ({signUpUser}) => {
                             icon="fa-facebook"
                             callback={responseFacebook} /> */}
                         </div>
-                          <p>
-                            ¿Ya tenés cuenta? <Link to="/login">¡Ingresá aquí!</Link>
-                          </p>
                       </div>
+                      <p>
+                          ¿Ya tenés cuenta? <Link to="/login">¡Ingresá aquí!</Link>
+                      </p>
                   </div>
                 </div>
     </>

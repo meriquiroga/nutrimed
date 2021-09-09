@@ -38,18 +38,19 @@ const Header = (props) => {
                      </NavLink>
                   </li>
                )}
-               {props.valid && (
                   <li>
-                     <NavLink onClick={outHandler} to="/">
-                        <p>SALIR</p>
-                     </NavLink>
-                  </li>
-               )}
-                <li>
                      <NavLink to="/information">
                         <p>CONTACTO</p>
                      </NavLink>
                   </li>
+                  {props.valid && (
+                  <li>
+                     <NavLink onClick={outHandler} to="/">
+                        <p>SALIR</p>
+{/*                       <img src="/assets/salir.png" alt="" />
+ */}                     </NavLink>
+                  </li>
+               )}
             </ul>
          </div>
          <button><Link to={props.valid ? "/appointment" : "/login"}>SOLICITAR TURNO</Link></button>

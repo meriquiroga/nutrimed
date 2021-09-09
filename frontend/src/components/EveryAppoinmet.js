@@ -15,7 +15,7 @@ const EveryAppoinmet = ({hour,fullHour,bookAppointmentHandler,viewHandler,doctor
     
     return(
         <div>
-            {view && <button onClick={functionHandler}>{hour}</button>}
+            {view && <button className="hour" onClick={functionHandler}>{hour}</button>}
         </div>
     )
 }

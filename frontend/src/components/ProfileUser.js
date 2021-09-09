@@ -28,7 +28,7 @@ const ProfileUser = (props) => {
                   Hacelo en el siguiente botón.
                </p>
             ) : (
-               <p>Completá tus datos doc. Hacelo en el siguiente botón.</p>
+               <p>Completá tus datos y mantenelos actualizados en el siguiente botón.</p>
             )}
 
             <button>
@@ -83,20 +83,20 @@ const ProfileUser = (props) => {
             {!props.user.userExist.doc ? (
                <p className="turnos">No tenés turnos programados.</p>
             ) : appointments.length === 0 ? (
-               <h5 className="turnos">No tenes pacientes por el momento</h5>
+               <p className="turnos">No tenés pacientes agendados para hoy.</p>
             ) : (
                <div>
                   {appointments.map((appointment, index) => {
                      return (
-                        <div key={index}>
+                        <div className="turnos" key={index}>
                            <Link to="./medicaldata/">
-                              <h2 className="turnos">
+                              <h4>
                                  {appointment.patientId.name}{" "}
                                  {appointment.patientId.lastName}
-                              </h2>
+                              </h4>
                            </Link>
-                           <h5>{appointment.date.date}</h5>
-                           <h5>{appointment.date.hour}</h5>
+                           <p>{appointment.date.date}</p>
+                           <p>{appointment.date.hour}</p>
                         </div>
                      )
                   })}

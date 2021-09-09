@@ -44,7 +44,7 @@ const EveryReview = ({review, user, userToken, deleteReviewHandler,actionReview,
   }
   const editReviews= !edit ? null 
                     :<div>
-                        {(!enable.edit && enable.delete) && <span>Seguro?</span>}
+                        {(!enable.edit && enable.delete) && <span><h5 className="confirm">¿Realmente deseas eliminar tu comentario?</h5></span>}
                         {(!enable.delete && !enable.edit) && <img className='iconCom'  src='/assets/delete.png' alt='delete' onClick={enableDeleteHandler}/>}
                         {enable.edit && <img className='iconCom'  src='/assets/send.png' alt='delete' onClick={()=>actionReviewHandler(newText.editReview, _id)}/>}
                         {(enable.edit || enable.delete) && <img className='iconCom'  src='/assets/cross.png' alt='edit' onClick={()=>enableEditHandler('cross')}/>}

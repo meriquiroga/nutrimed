@@ -17,13 +17,15 @@ const AppointmentDay =({day,timeTable,appointmentByDay,bookAppointmentHandler,fu
         )})
     return(
         <>
-            <div className={fullDay ? 'full' : 'noFull'} onClick={!fullDay ? viewHandler : viewWarningHandler}>
-                <h3>{day}</h3>
+        <div className="containerDay">
+        <div className={fullDay ? 'full' : 'noFull'} onClick={!fullDay ? viewHandler : viewWarningHandler}>
+                <p>{day}</p>
             </div>
             <div>
                 {view.turn && turn}
-                {view.warning && <p>Sin turnos disponible, intente con otra fecha</p>}
+                {view.warning && <div className="noTurns">Sin turnos disponibles, por favor seleccioná otra fecha.</div>}
             </div>
+        </div>
         </>
     )
 };

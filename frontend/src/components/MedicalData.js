@@ -41,9 +41,10 @@ const MedicalData = (props) => {
 
    return (
       <>
-         <div className="medicalData">
-            <h1>HISTORIAL MÉDICO</h1>
-            <h2>Paciente</h2>
+      <div className="signUpForm">
+      <div className="medicalData">
+            <h3>Historial Médico</h3>
+            <h3>Paciente</h3>
             <div className="ABC">
                <div>
                   <img
@@ -65,13 +66,13 @@ const MedicalData = (props) => {
                </div>
                <div>
                   {" "}
-                  <p>Domicilio: Falta completar</p>
-                  <p>Telefono: Falta completar</p>
+                  <p>Domicilio: Falta completar.</p>
+                  <p>Teléfono: Falta completar.</p>
                   {/* <p>E-mail: {props.patients[0].data.mail}</p> */}
                </div>
             </div>
             <div className="DEF">
-               <h2>Descripción</h2>
+               <h3>Descripción</h3>
                <div className="descripcion">
                   {descriptions.map((description, index) => {
                      return (
@@ -80,17 +81,18 @@ const MedicalData = (props) => {
                   })}
                </div>
                <div>
-                  <input
+                  <input className="medicalInput"
                      type="text"
                      name="description"
-                     placeholder="Ingresar descripcion"
+                     placeholder="Ingresar descripción"
                      onChange={inputHandler}
                      onKeyPress={pressEnter}
                   />
-                  <button onClick={submitHandler}>ENVIAR</button>
+                  <button id="buttonSign" onClick={submitHandler}>ENVIAR</button>
                </div>
             </div>
          </div>
+      </div>
       </>
    )
 }

@@ -202,6 +202,16 @@ footer img {
    outline: none;
 }
 
+.medicalInput {
+   padding: 10px;
+   border-radius: 50px;
+   border: 2px gray solid;
+   margin: 10px;
+   width: 400px;
+   align-self: center;
+   outline: none;
+}
+
 .footerNavbar li p {
    color: white;
    padding: 15px;
@@ -286,7 +296,15 @@ footer img {
 }
 
 .turnos {
-   color: white;
+   background-color: #f0f3f5;
+   padding: 5px 10px;
+   margin: 5px;
+   border-radius: 12px;
+   text-align: center;
+}
+
+.turnos p{
+   font-size: small;
 }
 
 .datosProfile {
@@ -466,6 +484,17 @@ footer img {
    width: 30px;
 }
 
+.iconTurn {
+   width: 50px;
+}
+
+.hour {
+   padding: 5px;
+   border-radius: 0;
+   width: 80px;
+   margin: 6px;
+}
+
 .textArea {
    border: none;
    min-width: 400px;
@@ -510,29 +539,35 @@ footer img {
    padding: 10px;
 }
 
+.confirm {
+   color: #19b1bc;
+}
+
 /*el nombre es estas dos clases son horrendos, perdon!!! */
 .container2 { 
    display: flex;
    flex-wrap: wrap;
-   flex-direction: row;
-   justify-content: start;
+   justify-content: center;
    align-items: auto;
-   align-content: start
+   align-content: center
  }
  
 .full, .noFull {
-   height: 10vh;
-   width: 10vw;
+   height: 45px;
    flex: 0 0 auto;
    margin: 10px;
+   padding: 10px;
+   color: white;
 }
 .full{
-   background-color: red;
+   background-color: rgb(160, 160, 160);
 }
 .noFull{
-   background-color: rgb(32, 218, 32);
+   background-color: #19b1bc;
 }
-
+.noTurns {
+   max-width: 180px;
+}
 .ABC {
    display: flex;
    justify-content: space-around;
@@ -548,8 +583,21 @@ footer img {
    overflow-y: scroll;
    height: 60vh;
    width: 60vw;
+   background-color: white;
+   text-align: left;
+   padding: 20px;
+   border-radius: 20px;
 }
 
+.avisador {
+   color: #19b1bc;
+}
+.logOut {
+   display: flex;
+   align-content: center;
+   align-items: center;
+   height: 80px;
+}
 .DEF {
    display: flex;
    flex-direction: column;
@@ -594,3 +642,5 @@ box-shadow: none;
 -webkit-box-shadow: none;
 -moz-box-shadow: none;
 }
+
+

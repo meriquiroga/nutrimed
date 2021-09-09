@@ -123,10 +123,8 @@ const Login = (props) => {
               />
             </div>
           </div>
+          <p>¿No tenés cuenta? <Link to="/signup">¡Creala aquí!</Link></p>
         </div>
-        <p>
-          ¿No tenés cuenta? <Link to="/signup">¡Creala aquí!</Link>
-        </p>
       </div>
     </>
   );

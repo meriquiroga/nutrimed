@@ -76,10 +76,10 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment, getCalendar,
     .then(res=>{
       if(res.success){
         setViews({...views, confirm:false, ok:true})
-        setConfirmAppointment('Tu turno fue agendado exitosamente. Gracias!!')
+        setConfirmAppointment('Tu turno fue agendado exitosamente. ¡Gracias!')
       }else{
         setViews({...views, confirm:false, ok:true})
-        setConfirmAppointment('Lo sentimos ha ocurrido un error, intente mas tarde')
+        setConfirmAppointment('Lo sentimos, ha ocurrido un error. Por favor, intentá de nuevo más tarde.')
       }
       setTimeout(() => {
         setViews({...views,confirm:false, ok:false})
@@ -100,22 +100,26 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment, getCalendar,
             defaultValue={appointmentReady.doctorId}
             onChange={appointmentValueHandler}
           >
-            <option value="" >Seleccione un Profesional</option>
+            <option value="" >Seleccioná un profesional</option>
             {optionDoctor}
           </select>
         </form>
         {views.ok && <h2>{confirmAppointment}</h2>}
         {views.confirm && 
           <div>
-            <h3>Confirmacion de turno</h3>
+            <h3>Confirmación de turno</h3>
             <p>Profesional: {docName.name} {docName.lastName}</p>
             <p>Día: {appointmentReady.date.date}</p>
             <p>Hora: {appointmentReady.date.hour}</p>
-            <img className='icon'  src='/assets/cross.png' alt='edit' onClick={()=>setViews({...views, confirm:false})}/>
-            <img className='icon'  src='/assets/check.png' alt='edit' onClick={()=>confirmAppointmentHandler(appointmentReady)}/>
+            <img className='iconTurn'  src='/assets/cross.png' alt='edit' onClick={()=>setViews({...views, confirm:false})}/>
+            <img className='iconTurn'  src='/assets/check.png' alt='edit' onClick={()=>confirmAppointmentHandler(appointmentReady)}/>
           </div>}
         {views.view && <div className="container2" >{inputDay}</div>}
-        {!views.view && <p>aca algo, hasta q elija un medico, pueden ser recomendaciones de protocolo covid o tips de salud nose !!</p>}
+        {!views.view && <div>
+          <h3 className="avisador">Los turnos que verás por doctor, son los disponibles.</h3>
+          <h3>Protocolo COVID:</h3>
+          <h4>Cuidémonos entre todos.</h4>
+          <p>Por favor, asistir sólo con turno previamente acordado y ante cualquier síntoma, solicitá la reprogramación.</p></div>}
         </div>
       </div>
     </>

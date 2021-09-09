@@ -1,7 +1,7 @@
 const Description = ({ description }) => {
    return (
       <>
-         <h2>{description.description}</h2>
+         <h5>{description.description}</h5>
       </>
    )
 }
