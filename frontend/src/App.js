@@ -16,6 +16,7 @@ import userActions from "./redux/actions/userActions"
 import Login from "./components/Login"
 import Information from "./components/Information"
 
+
 const App = (props) => {
    useEffect(() => {
       if (localStorage.getItem("token")) {
