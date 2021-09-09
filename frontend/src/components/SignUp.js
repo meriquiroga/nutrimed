@@ -5,7 +5,7 @@ import userActions from "../redux/actions/userActions"
 import { Link } from "react-router-dom"
 
 const SignUp = ({signUpUser}) => {
-    let valor = 0
+    let valor = null
     const [valueIn, setValueIn] = useState("")
     const [errors, setErrors] = useState([])
     const [error, setError] = useState(false)
@@ -42,7 +42,9 @@ const SignUp = ({signUpUser}) => {
             google: true
         }
         signUpUser(logWithGoogle)
-        .then((res) => {console.log(res)})
+        .then((res) => {if (!res.data.success) {
+          setErrors([{message: res.data.res}])
+        }})
     }
 
     const submitHandler = () => {
@@ -61,6 +63,8 @@ const SignUp = ({signUpUser}) => {
         })
         }
     }
+
+
   const addUserHandler = (e) => {
     setError(false);
     if (e.target.name === "data") {
