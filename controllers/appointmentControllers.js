@@ -75,7 +75,7 @@ const appointmentControllers = {
             <div>
               <h1>Reserva de turno</h1>
               <h2>
-                Estimado/a ${req.user.name} ${lastname}:
+                Estimado/a ${req.user.name} ${req.user.lastName}:
               </h2>
               <p>
                 Te enviamos este e-mail para comunicarte que has reservado un turno en
@@ -86,7 +86,7 @@ const appointmentControllers = {
             <div>
               <h3>Datos del paciente:</h3>
               <p>Nombre: ${req.user.name} </p>
-              <p>Apellido: ${req.user.lastname}</p>
+              <p>Apellido: ${req.user.lastName}</p>
               <p>Tipo Documento: D.N.I.</p>
               <p>Nro. Doc. :</p>
             </div>
