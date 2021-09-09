@@ -89,7 +89,7 @@ const EditProfilePatient = (props) => {
         <h3>Por favor, completá tus datos</h3>
         <form className="inputs">
           <input
-            type="number"
+            type="text"
             placeholder="DNI"
             name="dni"
             onChange={addDocHandler}
@@ -110,7 +110,7 @@ const EditProfilePatient = (props) => {
             defaultValue={actPat.data.direction.street}
           />
           <input
-            type="number"
+            type="text"
             placeholder="Número"
             name="num"
             onChange={addDocHandler}

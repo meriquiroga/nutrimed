@@ -53,6 +53,7 @@ const Header = (props) => {
                )}
             </ul>
          </div>
+         {props.valid && <h3>Bienvenido/a {props.user.userExist.name}</h3>}
          <button><Link to={props.valid ? "/appointment" : "/signin"}>SOLICITAR TURNO</Link></button>
       </header>
    )

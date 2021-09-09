@@ -26,7 +26,7 @@ const userControllers = {
             throw new Error("Mail is being used with another account")
          await userExist.save()
          let token = jwt.sign({ ...userExist }, process.env.SECRETOKEN)
-         res.json({ success: true, res:{...userExist,token}})
+         res.json({ success: true, res:{userExist,token}})
       } catch (err) {
          res.json({ success: false, res: err.message })
       }
