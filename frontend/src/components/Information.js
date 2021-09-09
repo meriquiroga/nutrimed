@@ -20,7 +20,7 @@ const Information = () => {
         <div className="iconCard">
           <img id="buttonSign" src="/assets/icono-map.png" />
           <h3>Dirección</h3>
-          <h3>Loza Bravo 3333</h3>
+          <h3>Av Colón 150</h3>
         </div>
         <div className="iconCard">
           <img src="/assets/icono-reloj.png" />
