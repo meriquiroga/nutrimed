@@ -3,9 +3,9 @@ import { connect } from "react-redux"
 import { useEffect, useState } from "react"
 import doctorActions from "../redux/actions/doctorActions"
 import React from "react"
-import ReactCircleModal from "react-circle-modal"
-import MedicalData from "./MedicalData"
-import { Accordion, AccordionItem } from "react-sanfona"
+// import ReactCircleModal from "react-circle-modal"
+// import MedicalData from "./MedicalData"
+// import { Accordion, AccordionItem } from "react-sanfona"
 
 const ProfileUser = (props) => {
    const [appointments, setAppointments] = useState([])
@@ -116,7 +116,7 @@ const ProfileUser = (props) => {
                <p className="turnos">No tenés pacientes agendados para hoy.</p>
             ) : (
                <div>
-                  <Accordion>
+                  {/* <Accordion>
                      <AccordionItem
                         className="accordion"
                         title="Lunes"
@@ -420,7 +420,7 @@ const ProfileUser = (props) => {
                            })
                         )}
                      </AccordionItem>
-                  </Accordion>
+                  </Accordion> */}
                </div>
             )}
          </div>

@@ -5,6 +5,7 @@ const userActions = {
       return async (dispatch) => {
          try {
             let res = await axios.post("http://localhost:4000/api/user", user)
+            console.log(res.data)
             if (res.data.success) {
                dispatch({
                   type: "SIGN_UP",
