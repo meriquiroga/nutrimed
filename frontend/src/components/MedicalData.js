@@ -10,8 +10,6 @@ const MedicalData = (props) => {
    const [descriptions, setDescriptions] = useState(medicalData)
    const [change, setChange] = useState(false)
 
-   console.log(props)
-
    const inputHandler = (e) => {
       setInputDescription({
          ...inputDescription,
@@ -37,57 +35,63 @@ const MedicalData = (props) => {
 
    return (
       <>
-      <div className="signUpForm">
-      <div className="medicalData">
-            <h3>Historial Médico</h3>
-            <h3>Paciente</h3>
-            <div className="ABC">
-               <div>
-                  <img className="imgMD" src={src} alt="fotoPaciente" />
+         <div className="signUpForm">
+            <div className="medicalData">
+               <h3>Historial Médico</h3>
+               <h3>Paciente</h3>
+               <div className="ABC">
+                  <div>
+                     <img className="imgMD" src={src} alt="fotoPaciente" />
+                  </div>
+                  <div>
+                     {" "}
+                     <p>Nombre: {name}</p>
+                     <p>Apellido: {lastName}</p>
+                     <p>DNI: {dni}</p>
+                  </div>
+                  <div>
+                     {" "}
+                     <p>
+                        Domicilio: {data.direction.street}
+                        {data.direction.num}
+                        {data.direction.city}
+                     </p>
+                     <p>Telefono: {data.phoneNumber}</p>
+                     <p>E-mail: {data.mail}</p>
+                  </div>
                </div>
-               <div>
-                  {" "}
-                  <p>Nombre: {name}</p>
-                  <p>Apellido: {lastName}</p>
-                  <p>DNI: {dni}</p>
-               </div>
-               <div>
-                  {" "}
-                  <p>
-                     Domicilio: {data.direction.street}
-                     {data.direction.num}
-                     {data.direction.city}
-                  </p>
-                  <p>Telefono: {data.phoneNumber}</p>
-                  <p>E-mail: {data.mail}</p>
-               </div>
-            </div>
-            <div className="DEF">
-               <h2>REGISTRO DE NOTAS</h2>
-               <div className="descripcion">
-                  {descriptions.length === 0 ? (
-                     <p>No hay notas aún</p>
-                  ) : (
-                     descriptions.map((description, index) => {
-                        return (
-                           <Description description={description} key={index} />
-                        )
-                     })
-                  )}
-               </div>
-               <div>
-                  <input className="medicalInput"
-                     type="text"
-                     name="description"
-                     placeholder="Ingresar nota"
-                     onChange={inputHandler}
-                     onKeyPress={pressEnter}
-                  />
-                  <button id="buttonSign" onClick={submitHandler}>ENVIAR</button>
+               <div className="DEF">
+                  <h2>REGISTRO DE NOTAS</h2>
+                  <div className="descripcion">
+                     {descriptions.length === 0 ? (
+                        <p>No hay notas aún</p>
+                     ) : (
+                        descriptions.map((description, index) => {
+                           return (
+                              <Description
+                                 description={description}
+                                 key={index}
+                              />
+                           )
+                        })
+                     )}
+                  </div>
+                  <div>
+                     <input
+                        className="medicalInput"
+                        type="text"
+                        name="description"
+                        placeholder="Ingresar nota"
+                        onChange={inputHandler}
+                        onKeyPress={pressEnter}
+                     />
+                     <button id="buttonSign" onClick={submitHandler}>
+                        ENVIAR
+                     </button>
+                  </div>
                </div>
             </div>
          </div>
-      </div>
       </>
    )
 }
