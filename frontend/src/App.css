@@ -176,10 +176,10 @@ footer img {
    background-color: #f0f3f5;
 }
 .grayContainer {
-  text-align: center;
-  background-color: #f0f3f5;
-  padding: 30px 100px;
-  min-height: 80vh;
+   text-align: center;
+   background-color: #f0f3f5;
+   padding: 30px 100px;
+   min-height: 80vh;
 }
 .click {
    color: #1BB6D1;
@@ -211,19 +211,19 @@ footer img {
 }
 
 .inputs p {
-  font-size: small;
+   font-size: small;
 }
 
 .commentsMedicalData {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  padding-top: 10px;
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+   padding-top: 10px;
 }
 
 .commentsMedicalData textarea {
-  width: 90%;
-  padding: 10px;
+   width: 90%;
+   padding: 10px;
 }
 
 .footerNavbar li p {
@@ -322,33 +322,32 @@ footer img {
 }
 
 .doctorCardsContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 20px 60px;
-  
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   padding: 20px 60px;
 }
 
 .doctorCard {
-  width: 200px;
-  height: 280px;
-  color: black;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+   width: 200px;
+   height: 280px;
+   color: black;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
 }
 
 .doctor-image {
-  width: 180px;
-  height: 180px;
-  background-position: center;
-  background-size: cover;
-  border-radius: 100px;
-  position: absolute;
-  top: 120px;
-  border: solid #f0f3f5 10px
+   width: 180px;
+   height: 180px;
+   background-position: center;
+   background-size: cover;
+   border-radius: 100px;
+   position: absolute;
+   top: 120px;
+   border: solid #f0f3f5 10px;
 }
 .docCardText {
   background-color: #71CBE3;
@@ -559,9 +558,10 @@ footer img {
 }
 
 .medicalData {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   min-height: 90vh;
 }
 
 .divComentaries {
@@ -665,17 +665,17 @@ footer img {
    align-self: center;
 }
 .errorY {
-  border: 2px red solid !important;
-  box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
-  -webkit-box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
-  -moz-box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
+   border: 2px red solid !important;
+   box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
+   -webkit-box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
+   -moz-box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
 }
 
 .errorN {
-  border: 2px gray solid;
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
+   border: 2px gray solid;
+   box-shadow: none;
+   -webkit-box-shadow: none;
+   -moz-box-shadow: none;
 }
 
 .buttonGoogle {
@@ -686,30 +686,30 @@ footer img {
 /* ESTILOS QUE DEBEN SER CAMBIADOS */
 
 .containerPreview {
-  border-radius: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
+   border-radius: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-self: center;
 }
 
 .preview {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: top;
-  margin: 0 3vw;
-  width: 80px;
-  height: 80px;
-  border-radius: 50px
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: top;
+   margin: 0 3vw;
+   width: 80px;
+   height: 80px;
+   border-radius: 50px;
 }
 
 .containerPreview select {
-  padding: 10px;
-  border-radius: 50px;
-  border: 2px gray solid;
-  margin: 10px;
-  align-self: center;
-  outline: none;
+   padding: 10px;
+   border-radius: 50px;
+   border: 2px gray solid;
+   margin: 10px;
+   align-self: center;
+   outline: none;
 }
 
 .avatarInput select {
@@ -748,4 +748,32 @@ footer img {
    justify-content: space-between;
    align-items: center;
    padding: 5px 10px;
+}
+
+.medicalInput {
+   resize: none;
+   outline: none;
+   width: 40vw;
+   height: 15vh;
+   border: 2px gray solid;
+   padding: 0.5rem 1rem;
+   margin: 1rem;
+   overflow: auto;
+   font-size: 15px;
+}
+
+.divEnviarNota {
+   display: flex;
+   align-items: center;
+}
+
+.linksDoctor {
+   color: rgb(31, 177, 182);
+   background-color: white;
+   border-radius: 10px;
+   padding: 5px 10px;
+}
+
+.linksDoctor:hover {
+   color: rgb(80, 239, 245);
 }
