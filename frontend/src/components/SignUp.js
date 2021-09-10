@@ -90,7 +90,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
         }
       });
     }
-    setErrors([{ message: "Todos los campos debe estar completos" }]);
+    setErrors([{ message: "Todos los campos deben estar completos" }]);
   };
 
   const addUserHandler = (e) => {
@@ -109,43 +109,21 @@ const SignUp = ({ signUpUser, getAvatars }) => {
   let disp = valueIn === "prof" ? "block" : "none";
   let dispGo = valueIn === "prof" ? "none" : "block";
 
-    return (
-      <>
-        <div className="container">
-          <div className="grayContainer">
-            <img src='/assets/form.png' alt=""/>  
-            <h3>¿Usted se registrará como paciente o profesional?</h3>
-            <div className="radio">
-              <div>Paciente <input onClick={validInputHandler} type="radio" name="buttonRol" defaultValue="pat" defaultChecked/></div>
-              <div>Profesional <input onClick={validInputHandler} type="radio" name="buttonRol" defaultValue="prof"/></div>
-            </div>
-            <div className="inputs">
-              <input type="text" placeholder="Nombre" className={((error && !newUser.name.length) ? "errorY" : "errorN")}
-              name="name" onChange={addUserHandler}  defaultValue={newUser.name}  
-              />
-              <input type="text" placeholder="Apellido"
-              name="lastName"  className={((error && !newUser.lastName.length) ? "errorY" : "errorN")}
-              onChange={addUserHandler} defaultValue={newUser.lastName} 
-                />
-              <input type="email" placeholder="Email" 
-              name="data" className={((error && !newUser.data.mail.length) ? "errorY" : "errorN")}
-              onChange={addUserHandler} defaultValue={newUser.data.mail} 
-              />
-              <input type="password" placeholder="Contraseña"
-              name="password" className={((error && !newUser.password.length) ? "errorY" : "errorN")} 
-              onChange={addUserHandler}  defaultValue={newUser.password} 
-              />
-              <input type="password" placeholder="Repita su contraseña"
-              name="validPassword" className={((error && !newUser.validPassword.length) ? "errorY" : "errorN")}
-                onChange={addUserHandler}  defaultValue={newUser.validPassword} 
-                />
-              <input type="text" placeholder="Foto de perfil" 
-              name="src" className={((error && !newUser.src.length) ? "errorY" : "errorN")}
-                onChange={addUserHandler} defaultValue={newUser.src} 
-                />
-              <input type="password" placeholder="Clave profesional NutriMed" name="passwordAdm"
-              style={{display:disp}}  className={((error && !newUser.passwordAdm.length) ? "errorY" : "errorN")}
-              onChange={addUserHandler} defaultValue={newUser.passwordAdm} required={valueIn === "prof" ? true : false}
+  return (
+    <>
+      <div className="container">
+        <div className="grayContainer">
+          <img src="/assets/form.png" alt="" />
+          <h3>¿Usted se registrará como paciente o profesional?</h3>
+          <div className="radio">
+            <div>
+              Paciente{" "}
+              <input
+                onClick={validInputHandler}
+                type="radio"
+                name="buttonRol"
+                defaultValue="pat"
+                defaultChecked
               />
             </div>
             <div>
@@ -179,7 +157,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
             />
             <input
               type="email"
-              placeholder="Email"
+              placeholder="E-mail"
               name="data"
               className={
                 error && !newUser.data.mail.length ? "errorY" : "errorN"
@@ -217,7 +195,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
             />
             <input
               type="password"
-              placeholder="Contraseña de profesional"
+              placeholder="Clave profesional NutriMed"
               name="passwordAdm"
               style={{ display: disp }}
               className={
@@ -231,33 +209,35 @@ const SignUp = ({ signUpUser, getAvatars }) => {
           <div>
             {error &&
               errors.map((error) => (
-                <p key={error.message} style={{ fontSize: "1.3vmin" }}>
+                <p key={error.message} style={{ fontSize: "small" }}>
                   *{error.message}
                 </p>
               ))}
           </div>
-          <div className="containerPreview">
-            <div
-              className="preview"
-              style={{
-                backgroundImage: `url("${previewImg}")`,
-              }}
-            ></div>
-
-            <div className="thumbNails">
-              {avatars.map((div, index) => (
-                <div
-                  onClick={inputValue}
-                  className="thumbNail"
-                  key={index}
-                  style={{
-                    backgroundImage: `url("${div.src}")`,
-                  }}
-                >
-                  <input className="inputAvatar" defaultValue={div.src}></input>
-                </div>
-              ))}
-            </div>
+            <div className="containerPreview">
+              <div
+                className="preview"
+                style={{
+                  backgroundImage: `url("${previewImg}")`,
+                }}
+              ></div>
+              <div className="thumbNails">
+                {avatars.map((div, index) => (
+                  <div
+                    onClick={inputValue}
+                    className="thumbNail"
+                    key={index}
+                    style={{
+                      backgroundImage: `url("${div.src}")`,
+                    }}
+                  >
+                    <input
+                      className="inputAvatar"
+                      defaultValue={div.src}
+                    ></input>
+                  </div>
+                ))}
+              </div>
           </div>
           <button onClick={submitHandler}>REGISTRARSE</button>
 
@@ -276,6 +256,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
             ¿Ya tenés cuenta? <Link to="/signin">¡Ingresá aquí!</Link>
           </p>
         </div>
+      </div>
     </>
   );
 };

@@ -104,7 +104,7 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
           </select>
         {views.ok && <div>
         <h2>{confirmAppointment}</h2>
-        <span>Te llegara un mail con la informacion del turno</span>
+        <span>Te llegará un mail con la información del turno.</span>
         </div>}
         {views.confirm && 
           <div>
