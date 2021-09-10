@@ -7,8 +7,6 @@ const Header = (props) => {
       props.logOut()
    }
 
-   console.log(props)
-
    return (
       <header>
          <div className="navbar">

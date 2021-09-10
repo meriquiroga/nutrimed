@@ -106,7 +106,6 @@ const doctorActions = {
                   },
                }
             )
-            console.log(res.data)
             if (res.data.success) {
                return { success: true, res: res.data.res }
             }
