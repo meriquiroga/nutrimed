@@ -7,7 +7,6 @@ const EditProfileDoctor = (props) => {
   const mail = props.user.userExist.data.mail;
   const [valueIn, setValueIn] = useState(true);
   const [actDoc, setActDoc] = useState({
-    
     dni: "",
     description: "",
     registration: "",
@@ -24,14 +23,12 @@ const EditProfileDoctor = (props) => {
     socialWork: "",
   });
 
-  
-
   const addDocHandler = (e) => {
-    // if (e.target.name === "socialWork"){  
-    //   console.log("aca") 
+    // if (e.target.name === "socialWork"){
+    //   console.log("aca")
     //   console.log(valueIn)
-    //   setActDoc({...actDoc, [e.target.name]: valueIn})  
-    //   }  
+    //   setActDoc({...actDoc, [e.target.name]: valueIn})
+    //   }
     if (e.target.name === "street") {
       setActDoc({
         ...actDoc,
@@ -60,9 +57,8 @@ const EditProfileDoctor = (props) => {
   };
 
   const socialWorkHandler = (e) => {
-    setValueIn(!valueIn)
-    setActDoc({...actDoc, [e.target.name]: valueIn})  
-    
+    setValueIn(!valueIn);
+    setActDoc({ ...actDoc, [e.target.name]: valueIn });
   };
 
   const submitHandler = () => {
@@ -81,7 +77,7 @@ const EditProfileDoctor = (props) => {
     "SANCOR",
     "LIAW",
   ];
-  console.log(actDoc)
+  console.log(actDoc);
   return (
     <>
       <div className="container">
@@ -89,7 +85,7 @@ const EditProfileDoctor = (props) => {
           <h3>Completá o actualizá tus datos</h3>
           <form className="inputs">
             <input
-              type="number"
+              type="text"
               placeholder="DNI"
               name="dni"
               onChange={addDocHandler}
@@ -131,7 +127,7 @@ const EditProfileDoctor = (props) => {
               defaultValue={actDoc.data.direction.street}
             />
             <input
-              type="number"
+              type="text"
               placeholder="Número"
               name="num"
               onChange={addDocHandler}
@@ -144,16 +140,32 @@ const EditProfileDoctor = (props) => {
               onChange={addDocHandler}
               defaultValue={actDoc.data.direction.city}
             />
-          
-            <h4>¿Acepta Obra Social? </h4>
-            
-            Si<input type="radio" name="socialWork" onChange={addDocHandler} onClick={socialWorkHandler} value={true} />
-            No<input type="radio" name="socialWork" onChange={addDocHandler} onClick={socialWorkHandler} value={false} />
-
           </form>
+          <h4>¿Acepta Obra Social? </h4>
+          <div className="radio">
+            <div>
+              Si{" "}
+              <input
+                type="radio"
+                name="socialWork"
+                onChange={addDocHandler}
+                onClick={socialWorkHandler}
+                value={true}
+              />
+            </div>
+            <div>
+              No{" "}
+              <input
+                type="radio"
+                name="socialWork"
+                onChange={addDocHandler}
+                onClick={socialWorkHandler}
+                value={false}
+              />
+            </div>
+          </div>
           <button onClick={submitHandler}>Actualizar datos</button>
-
-          <Link to="/profile">Volver al perfil</Link>
+          <div><Link to="/profile">Volver al perfil</Link></div>
         </div>
       </div>
     </>
