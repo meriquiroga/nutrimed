@@ -85,7 +85,7 @@ const SignUp = ({signUpUser}) => {
     return (
       <>
         <div className="container">
-          <div className="signUpForm">
+          <div className="grayContainer">
             <img src='/assets/form.png' alt=""/>  
             <h3>¿Usted se registrará como paciente o profesional?</h3>
             <div className="radio">
@@ -116,7 +116,7 @@ const SignUp = ({signUpUser}) => {
               name="src" className={((error && !newUser.src.length) ? "errorY" : "errorN")}
                 onChange={addUserHandler} defaultValue={newUser.src} 
                 />
-              <input type="password" placeholder="Contraseña de profesional" name="passwordAdm"
+              <input type="password" placeholder="Clave profesional NutriMed" name="passwordAdm"
               style={{display:disp}}  className={((error && !newUser.passwordAdm.length) ? "errorY" : "errorN")}
               onChange={addUserHandler} defaultValue={newUser.passwordAdm} required={valueIn === "prof" ? true : false}
               />

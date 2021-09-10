@@ -18,7 +18,7 @@ header {
    align-content: center;
    align-items: center;
    flex-wrap: wrap;
-   color: #19b1bc;
+   color: #71CBE3;
 }
 
 header p {
@@ -49,11 +49,22 @@ a {
 }
 
 a.active {
-   color: #19b1bc;
+   color: #1BB6D1;
 }
 
+.logOut {
+   padding-left: 30px;
+}
+
+.headerRigth {
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   justify-content: center;
+
+}
 button {
-   background-color: #19b1bc;
+   background-color: #1BB6D1;
    color: white;
    padding: 10px 40px;
    border-radius: 50px;
@@ -88,7 +99,7 @@ button a {
 
 footer {
    width: 100%;
-   background-color: #19b1bc;
+   background-color: #1BB6D1;
    padding: 2em;
    display: flex;
    flex-direction: column;
@@ -170,7 +181,10 @@ footer img {
   padding: 30px 100px;
   min-height: 80vh;
 }
-
+.click {
+   color: #1BB6D1;
+   padding-top: 20px;
+}
 .radio {
    display: flex;
    justify-content: center;
@@ -256,7 +270,7 @@ footer img {
 .rightProfile {
    display: flex;
    flex-direction: column;
-   background-color: #19b1bc;
+   background-color: #71CBE3;
    width: 300px;
    padding: 22px;
    align-items: center;
@@ -337,7 +351,7 @@ footer img {
   border: solid #f0f3f5 10px
 }
 .docCardText {
-  background-color: #19b1bc;
+  background-color: #71CBE3;
   width: 240px;
   color: white;
   height: 200px;
@@ -481,6 +495,21 @@ footer img {
   .grayContainer {
     padding: 10%;
   }
+  
+  .leftProfile {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   background-color: #f0f3f5;
+   width: 80%;
+   align-items: center;
+   padding: 22px;
+   min-height: 1vh;
+   }
+   .leftProfile h4, p {
+      padding: 0px 10px
+   }
 }
 
 .pageDoctor {
@@ -534,11 +563,6 @@ footer img {
   flex-direction: column;
   align-items: center;
 }
-.popUpMedicalData {
-  width: 200px;
-  height: 200px;
-  background-color: black;
-}
 
 .divComentaries {
    background-color: white;
@@ -554,7 +578,7 @@ footer img {
 }
 
 .confirm {
-   color: #19b1bc;
+   color: #71CBE3;
 }
 
 .container2 {
@@ -577,7 +601,7 @@ footer img {
    background-color: rgb(160, 160, 160);
 }
 .noFull {
-   background-color: #19b1bc;
+   background-color: #1BB6D1;
 }
 .noTurns {
    max-width: 180px;
@@ -585,6 +609,7 @@ footer img {
 .ABC {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   width: 60vw;
   margin-top: 3rem;
 }
@@ -702,7 +727,7 @@ footer img {
 
 .botonFichaMedica {
    background-color: white;
-   color: teal;
+   color: #12A8C2;
 }
 
 .accordion {

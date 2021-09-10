@@ -57,6 +57,7 @@ class Staff extends Component {
         <div className="grayContainer">
         <h3>Staff</h3>
         <p>Contamos con profesionales especializados en alergias e intolerancias alimentarias, diabetología, alimentación y dietética clínica, nutrición materno-infantil, dietoterapia, psiconutrición, medicina general y entrenamiento fit, con rutinas abocadas a la salud integral del paciente.</p>
+        <h4 className="click">Hacé click en la imagen de los doctores para entrar a su perfil profesional.</h4>
         <div className="doctorCardsContainer">{doctor}</div>;
         </div>
       </div>

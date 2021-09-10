@@ -35,7 +35,7 @@ const MedicalData = (props) => {
 
    return (
       <>
-         <div className="signUpForm">
+         <div>
             <div className="medicalData">
                <h3>Historial Médico</h3>
                <h3>Paciente</h3>

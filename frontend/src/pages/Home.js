@@ -16,7 +16,7 @@ export default class Home extends Component {
         <div className="insideHero">
           <h1>Enfocados en tu bienestar integral.</h1>
           <button id="buttonSign">
-            <Link to="/staff">CONOCENOS</Link>
+            <Link to="/staff">CONOCÉ NUESTRO STAFF</Link>
           </button>
         </div>
       </div>

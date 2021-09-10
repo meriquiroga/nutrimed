@@ -8,55 +8,62 @@ const Header = (props) => {
   };
 
    return (
-      <header>
-         <div className="navbar">
-            <img src="/assets/logo.png" alt="" />
-            <ul>
-               <li>
-                  <NavLink exact to="/">
-                     <p>HOME</p>
-                  </NavLink>
-               </li>
-               {!props.valid && (
-                  <li>
-                     <NavLink to="/signup">
-                        <p>CREAR CUENTA</p>
-                     </NavLink>
-                  </li>
-               )}
-               {!props.valid && (
-                  <li>
-                     <NavLink to="/signin">
-                        <p>INGRESAR</p>
-                     </NavLink>
-                  </li>
-               )}
-               {props.valid && (
-                  <li>
-                     <NavLink to="/profile">
-                        <p>PERFIL</p>
-                     </NavLink>
-                  </li>
-               )}
-                  <li>
-                     <NavLink to="/information">
-                        <p>CONTACTO</p>
-                     </NavLink>
-                  </li>
-                  {props.valid && (
-                  <li>
-                     <NavLink onClick={outHandler} to="/">
-                        <p>SALIR</p>
-{/*                       <img src="/assets/salir.png" alt="" />
- */}                     </NavLink>
-                  </li>
-               )}
-            </ul>
-         </div>
-         {props.valid && <h3>Bienvenido/a {props.user.userExist.name}</h3>}
-         <button><Link to={props.valid ? "/appointment" : "/signin"}>SOLICITAR TURNO</Link></button>
-      </header>
-   )
+     <header>
+       <div className="navbar">
+         <img src="/assets/logo.png" alt="" />
+         <ul>
+           <li>
+             <NavLink exact to="/">
+               <p>HOME</p>
+             </NavLink>
+           </li>
+           {!props.valid && (
+             <li>
+               <NavLink to="/signup">
+                 <p>CREAR CUENTA</p>
+               </NavLink>
+             </li>
+           )}
+           {!props.valid && (
+             <li>
+               <NavLink to="/signin">
+                 <p>INGRESAR</p>
+               </NavLink>
+             </li>
+           )}
+           {props.valid && (
+             <li>
+               <NavLink to="/profile">
+                 <p>PERFIL</p>
+               </NavLink>
+             </li>
+           )}
+           <li>
+             <NavLink to="/information">
+               <p>CONTACTO</p>
+             </NavLink>
+           </li>
+         </ul>
+       </div>
+       <div  className="headerRigth">
+       {props.valid && <h4>Bienvenido/a, {props.user.userExist.name}</h4>}
+       <div>
+         {props.valid && (
+           <NavLink className="logOut" onClick={outHandler} to="/">
+             SALIR
+             <img src="/assets/salir.png" alt="" />
+           </NavLink>
+         )}
+       </div>
+       <button>
+         <Link to={props.valid ? "/appointment" : "/signin"}>
+           SOLICITAR TURNO
+         </Link>
+       </button>
+
+       </div>
+     </header>
+   );
 }
 const mapStateToProps = (state) => {
   return {
