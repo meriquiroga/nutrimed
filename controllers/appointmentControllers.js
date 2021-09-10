@@ -68,7 +68,6 @@ const appointmentControllers = {
         from: "NutriMed <nutrimed.centronutricional@gmail.com>",
         to: req.user.data.mail,
         subject: "Confimarcion de Turno",
-        // text:`Hola ${req.user.name} ${req.user.lastName}`
         html: `
         <div>
         <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" alt="logo" />
