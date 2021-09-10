@@ -9,7 +9,8 @@ const calendarControllers = require("../controllers/calendarControllers");
 const extraControllers = require('../controllers/extraControllers')
 const validator = require("../controllers/validator");
 
-router.route("/user").post(validator, userControllers.addUser);
+router.route("/user")
+.post(validator, userControllers.addUser);
 
 router
   .route("/doctor")
@@ -26,7 +27,7 @@ router
   .get(doctorControllers.getDoctorById)
   .put(
     passport.authenticate("jwt", { session: false }),
-    doctorControllers.changedReview
+    doctorControllers.changedReviewAndScore
   );
 
 router
@@ -54,10 +55,10 @@ router
     passport.authenticate("jwt", { session: false }),
     appointmentControllers.addAppointment
   )
-  // .delete(
-  //   passport.authenticate("jwt", { session: false }),
-  //   appointmentControllers.deleteAppointment
-  // );
+  .delete(
+    passport.authenticate("jwt", { session: false }),
+    appointmentControllers.deleteAppointement
+  );
 
 router
   .route("/appointments")

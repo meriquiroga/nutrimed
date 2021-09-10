@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import doctorActions from "../redux/actions/doctorActions";
 import Reviews from "../components/Reviews";
+import Score from '../components/Score'
 
 class EachDoctor extends Component {
   state = {
     loading: { condition: true, text: "Loading...", link: "" },
     socket: null,
+    newScore: []
   };
-
   componentDidMount() {
     window.scroll(0, 0);
     if (!this.props.doctors.length) {
@@ -28,9 +29,9 @@ class EachDoctor extends Component {
       this.props.getOneDoctor(this.props.match.params.id);
       this.setState({ loading: { condition: false } });
     }
-
   }
   render() {
+    
     if (this.state.loading.condition) {
       return (
         <>
@@ -58,6 +59,7 @@ class EachDoctor extends Component {
         </div>
         <div className="docDescription">
           <div>
+            <Score scoreArray={this.props.doctor.score} staff={false} valid={this.props.valid} doctorId={this.props.doctor._id}/>
             <p>{this.props.doctor.description}</p>
           </div>
           <div>
@@ -75,6 +77,7 @@ const mapStateTopProps = (state) => {
   return {
     doctor: state.doctors.doctor,
     doctors: state.doctors.doctors,
+    valid: state.users.token
   };
 };
 const mapDispatchToProps = {

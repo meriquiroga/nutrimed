@@ -23,7 +23,7 @@ const doctorControllers = {
       res.json({ success: false, res: err.message });
     }
   },
-  changedReview: async (req, res) => {
+  changedReviewAndScore: async (req, res) => {
     switch (req.body.action) {
       case "addReview":
         try {
@@ -69,23 +69,37 @@ const doctorControllers = {
           res.json({ success: false, res: err.message });
         }
         break;
+        case 'editScore':
+        try{
+          let addScore = await Doctor.findOne({_id: req.params.id, 'score.patientId':req.user._id})
+          if (!addScore){
+            let newScore = await Doctor.findOneAndUpdate({_id: req.params.id},{$push:{score:{patientId:req.user._id, point:req.body.point}}},{new:true})
+            res.json({success:true, res:newScore.score})
+          }else{
+            let editScore = await Doctor.findOneAndUpdate({'score.patientId': req.user._id},{$set:{'score.$.point': req.body.point}},{new:true})
+            console.log(editScore)
+            res.json({success:true, res:editScore.score})
+          }
+        }catch(err){
+          res.json({success:false, res:err.message})
+        }
     }
   },
   editProfile: async (req, res) => {
-    try {
-      let changedDoctor = await Doctor.findOneAndUpdate(
-        { _id: req.user._id },
-        { ...req.body },
-        { new: true }
-      ).populate("review.patientId", { name: 1, lastName: 1, src: 1 });
-      if (changedDoctor) {
-        res.json({ success: true, res: changedDoctor });
-      } else {
-        throw new Error();
-      }
-    } catch (err) {
-      res.json({ success: false, res: err.message });
-    }
+        try {
+          let changedDoctor = await Doctor.findOneAndUpdate(
+            { _id: req.user._id },
+            { ...req.body },
+            { new: true }
+          ).populate("review.patientId", { name: 1, lastName: 1, src: 1 });
+          if (changedDoctor) {
+            res.json({ success: true, res: changedDoctor });
+          } else {
+            throw new Error();
+          }
+        } catch (err) {
+          res.json({ success: false, res: err.message });
+        }
   },
   getDoctorById: async (req, res) => {
     try {

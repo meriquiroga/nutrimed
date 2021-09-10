@@ -1,7 +1,8 @@
-import { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import doctorActions from "../redux/actions/doctorActions";
+import { Component } from "react"
+import { Link } from "react-router-dom"
+import { connect } from "react-redux"
+import doctorActions from "../redux/actions/doctorActions"
+import Score from "../components/Score"
 
 class Staff extends Component {
   state = {
@@ -46,6 +47,7 @@ class Staff extends Component {
                 </h4>
                 <p>M.P.: {obj.registration}</p>
                 <p>{obj.specialty}</p>
+                <Score scoreArray={obj.score} staff={true} doctorId={obj._id}/>
               </div>
             </div>
           </div>
@@ -58,10 +60,10 @@ class Staff extends Component {
         <h3>Staff</h3>
         <p>Contamos con profesionales especializados en alergias e intolerancias alimentarias, diabetología, alimentación y dietética clínica, nutrición materno-infantil, dietoterapia, psiconutrición, medicina general y entrenamiento fit, con rutinas abocadas a la salud integral del paciente.</p>
         <h4 className="click">Hacé click en la imagen de los doctores para entrar a su perfil profesional.</h4>
-        <div className="doctorCardsContainer">{doctor}</div>;
+        <div className="doctorCardsContainer">{doctor}</div>
         </div>
       </div>
-    );
+    )
   }
 }
 

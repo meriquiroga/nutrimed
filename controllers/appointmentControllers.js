@@ -16,7 +16,6 @@ const appointmentControllers = {
       }
    },
    getAppointments: async (req, res) => {
-      console.log(req.user)
       if (req.user.doc) {
          try {
             let appointments = await Appointment.find({
@@ -53,9 +52,15 @@ const appointmentControllers = {
          res.json({ success: false, res: err.message })
       }
    },
+   deleteAppointement:async(req,res)=>{
+      try{
+         let removeAppointment = await Appointment.findOneAndDelete({_id:req.params.id})
+         res.json({success:true, res:removeAppointment})
+      }catch(err){
+         res.json({success:false, res:error.message})
+      }
+   },
    sendMails:async(req, res)=>{
-      const {info,doc}= req.body
-      const {name, lastName, data}=req.user
       try{
          let options ={
             from:'NutriMed <nutrimed.centronutricional@gmail.com>',

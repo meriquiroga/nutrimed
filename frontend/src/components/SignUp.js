@@ -149,86 +149,6 @@ const SignUp = ({ signUpUser, getAvatars }) => {
               />
             </div>
             <div>
-              Profesional{" "}
-              <input
-                onClick={validInputHandler}
-                type="radio"
-                name="buttonRol"
-                defaultValue="prof"
-              />
-            </div>
-          </div>
-          <div className="inputs">
-            <input
-              type="text"
-              placeholder="Nombre"
-              className={error && !newUser.name.length ? "errorY" : "errorN"}
-              name="name"
-              onChange={addUserHandler}
-              defaultValue={newUser.name}
-            />
-            <input
-              type="text"
-              placeholder="Apellido"
-              name="lastName"
-              className={
-                error && !newUser.lastName.length ? "errorY" : "errorN"
-              }
-              onChange={addUserHandler}
-              defaultValue={newUser.lastName}
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              name="data"
-              className={
-                error && !newUser.data.mail.length ? "errorY" : "errorN"
-              }
-              onChange={addUserHandler}
-              defaultValue={newUser.data.mail}
-            />
-            <input
-              type="password"
-              placeholder="Contraseña"
-              name="password"
-              className={
-                error && !newUser.password.length ? "errorY" : "errorN"
-              }
-              onChange={addUserHandler}
-              defaultValue={newUser.password}
-            />
-            <input
-              type="password"
-              placeholder="Repita su contraseña"
-              name="validPassword"
-              className={
-                error && !newUser.validPassword.length ? "errorY" : "errorN"
-              }
-              onChange={addUserHandler}
-              defaultValue={newUser.validPassword}
-            />
-            <input
-              type="text"
-              placeholder="Foto de perfil"
-              name="src"
-              className={error && !newUser.src.length ? "errorY" : "errorN"}
-              onChange={addUserHandler}
-              defaultValue={newUser.src}
-            />
-            <input
-              type="password"
-              placeholder="Contraseña de profesional"
-              name="passwordAdm"
-              style={{ display: disp }}
-              className={
-                error && !newUser.passwordAdm.length ? "errorY" : "errorN"
-              }
-              onChange={addUserHandler}
-              defaultValue={newUser.passwordAdm}
-              required={valueIn === "prof" ? true : false}
-            />
-          </div>
-          <div>
             {error &&
               errors.map((error) => (
                 <p key={error.message} style={{ fontSize: "1.3vmin" }}>
@@ -276,6 +196,8 @@ const SignUp = ({ signUpUser, getAvatars }) => {
             ¿Ya tenés cuenta? <Link to="/signin">¡Ingresá aquí!</Link>
           </p>
         </div>
+          </div>
+          
     </>
   );
 };
