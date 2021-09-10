@@ -111,6 +111,16 @@ const patientActions = {
       }
     };
   },
+  getAvatars: () => {
+    return async () => {
+      try {
+        let res = await axios.get("http://localhost:4000/api/avatar");
+        return { success: true, res: res.data.res };
+      } catch (err) {
+        return { success: false, res: err };
+      }
+    };
+  },
 };
 
 export default patientActions;

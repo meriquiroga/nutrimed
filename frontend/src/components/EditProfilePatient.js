@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import doctorActions from "../redux/actions/doctorActions";
+import patientActions from "../redux/actions/patientActions";
 
 const EditProfilePatient = (props) => {
   const mail = props.user.userExist.data.mail;
@@ -13,21 +14,44 @@ const EditProfilePatient = (props) => {
         num: "",
         city: "",
       },
-      phoneNumber:"",
-      src:""
+      phoneNumber: "",
+      src: "",
     },
     socialWork: "",
   });
   const [previewImg, setPreviewImg] = useState(
-    "https://pickaface.net/gallery/avatar/64431738_161013_0015_3fnpl.png"
+    "https://i.postimg.cc/Hn7rq5TV/avatar5.png"
   );
+  const [avatars, setAvatars] = useState([]);
+
+  useEffect(() => {
+    async function getAllAvatars() {
+      let response = await props.getAvatars();
+      if (response.success) {
+        setAvatars(response.res);
+        console.log(response.res);
+      } else {
+        console.log("no fetchea avatares");
+      }
+    }
+    getAllAvatars();
+
+    return false;
+  }, []);
 
   const addDocHandler = (e) => {
-    if (e.target.name === "street" || e.target.name === "num" || e.target.name === "city" ) {
+    if (
+      e.target.name === "street" ||
+      e.target.name === "num" ||
+      e.target.name === "city"
+    ) {
       setActPat({
         ...actPat,
         data: {
-          direction: { ...actPat.data.direction, [e.target.name]: e.target.value },
+          direction: {
+            ...actPat.data.direction,
+            [e.target.name]: e.target.value,
+          },
         },
       });
     } else if (e.target.name === "phoneNumber") {
@@ -56,32 +80,10 @@ const EditProfilePatient = (props) => {
     "SANCOR",
     "LIAW",
   ];
-
-  const avatarsArray = [
-    {
-      url: "https://st4.depositphotos.com/1012074/20946/v/600/depositphotos_209469984-stock-illustration-flat-and-isolated-vector-illustration.jpg",
-      name: "avatar one",
-    },
-    {
-      url: "https://pickaface.net/gallery/avatar/64431738_161013_0015_3fnpl.png",
-      name: "avatar two",
-    },
-    {
-      url: "https://image.shutterstock.com/image-vector/man-faceless-cartoon-260nw-1025524036.jpg",
-      name: "avatar three",
-    },
-    {
-      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTea6mpJZODj13Lvutndl6PgvULvVC3tPcreM4doidd7vHImnTOeK0HkfZIrFGeHuN_aJc&usqp=CAU",
-      name: "avatar four",
-    },
-    {
-      url: "https://cdn.icon-icons.com/icons2/1879/PNG/512/iconfinder-9-avatar-2754584_120518.png",
-      name: "avatar five",
-    },
-  ];
   const inputValue = (e) => {
     setPreviewImg(e.target.value);
   };
+
   return (
     <div className="container">
       <div className="grayContainer">
@@ -142,30 +144,22 @@ const EditProfilePatient = (props) => {
                 backgroundImage: `url("${previewImg}")`,
               }}
             ></div>
-            <div>
-              <select onChange={inputValue} name="avatar">
-                <option>Seleccioná tu avatar</option>
-                {avatarsArray.map((img, index) => (
-                  <option key={index} value={img.url}>
-                    {img.name}
-                  </option>
-                ))}
-              </select>
+
+            <div className="thumbNails">
+              {avatars.map((div, index) => (
+                <div
+                  onClick={inputValue}
+                  className="thumbNail"
+                  key={index}
+                  style={{
+                    backgroundImage: `url("${div.src}")`,
+                  }}
+                >
+                  <input className="inputAvatar" defaultValue={div.src}></input>
+                </div>
+              ))}
             </div>
           </div>
-
-          {/* <label>Tu historia clínica</label>
-               <input
-                  id="fileCharger"
-                  ref={inputPreview}
-                  type="file"
-                  name="file"
-                  multiple
-                  onChange={inputHandler}
-               ></input>
-               <div className="preview">
-                  <img src="" ref={preview} alt="preview" />
-               </div> */}
         </form>
         <button type="submit" onClick={submitHandler}>
           ENVIAR
@@ -187,6 +181,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   upgradePat: doctorActions.editProfile,
+  getAvatars: patientActions.getAvatars,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfilePatient);
