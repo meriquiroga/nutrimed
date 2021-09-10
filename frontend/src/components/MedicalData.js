@@ -77,7 +77,7 @@ const MedicalData = (props) => {
                      )}
                   </div>
                   <div>
-                     <input
+                     <textarea
                         className="medicalInput"
                         type="text"
                         name="description"

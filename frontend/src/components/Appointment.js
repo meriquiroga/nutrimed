@@ -76,7 +76,7 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
     .then(res=>{
       if(res.success){
         setConfirmAppointment('Tu turno fue agendado exitosamente. ¡Gracias!')
-        confirmFormMail(data.patientId)
+        confirmFormMail(data.date, data.patientId, docName)
       }else{
         setConfirmAppointment('Lo sentimos, ha ocurrido un error. Por favor, intentá de nuevo más tarde.')
       }

@@ -2,7 +2,6 @@ import axios from "axios";
 
 const patientActions = {
   editProfilePatient: () => {
-    console.log("editando");
     return async () => {
       try {
         let res = await axios.put(`http://localhost:4000/api/patient`, {});
@@ -93,10 +92,10 @@ const patientActions = {
       }
     };
   },
-  confirmFormMail: (user) => {
+  confirmFormMail: (info, user, doc) => {
     return async () => {
       try {
-        let res = await axios.post("http://localhost:4000/api/mail",{}, {
+        let res = await axios.post("http://localhost:4000/api/mail",{info, doc}, {
             headers: {
               Authorization: "Bearer " + user,
             },

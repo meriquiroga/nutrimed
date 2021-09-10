@@ -64,41 +64,31 @@ const appointmentControllers = {
       }
    },
    sendMails:async(req, res)=>{
+      const {info,doc}= req.body
+      const {name, lastName, data}=req.user
       try{
          let options ={
             from:'NutriMed <nutrimed.centronutricional@gmail.com>',
-            to: req.user.data.mail,
+            to: data.mail,
             subject:'Confimarcion de Turno',
             html: `
             <img src="/assets/logo.png" alt="logo" />
             <div>
               <h1>Reserva de turno</h1>
               <h2>
-                Estimado/a ${req.user.name} ${req.user.lastName}:
+                Estimado/a ${name} ${lastName}:
               </h2>
               <p>
                 Te enviamos este e-mail para comunicarte que has reservado un turno en
                 el Centro Medico NutriMed
               </p>
             </div>
-            
-            <div>
-              <h3>Datos del paciente:</h3>
-              <p>Nombre: ${req.user.name} </p>
-              <p>Apellido: ${req.user.lastName}</p>
-              <p>Tipo Documento: D.N.I.</p>
-              <p>Nro. Doc. :</p>
-            </div>
-            
             <div>
               <h2>Constancia del Turno:</h2>
-              <p>Ubicación: Av Colón 150</p>
-              <p>Servicio: ${req.user.specialty}</p>
-              <p>Profesional: ${req.user.id}</p>
-              <p>Turno para el día ${req.user.date} </p>
-              <p>Preparaciones Previas:</p>
+              <p>Profesional: ${doc.name} ${doc.lastName} - ${doc.specialty} - MP${doc.registration} </p>
+              <p>Turno para el ${info.date}</p>
+              <p>Horario: ${info.hour}hs</p>
             </div>
-            
             <div>
               <h2>INFORMACION IMPORTANTE - MEDIDAS DE PROTECCIÓN:</h2>
               <p>
