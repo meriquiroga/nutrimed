@@ -61,53 +61,50 @@ const appointmentControllers = {
             to: data.mail,
             subject:'Confimarcion de Turno',
             html: `
-            <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" alt="logo"/>
-            <div>
-              <h1>Reserva de turno</h1>
-              <h2>
-                Estimado/a ${name} ${lastName}:
-              </h2>
-              <p>
-                Te enviamos este e-mail para comunicarte que has reservado un turno en
-                el Centro Medico NutriMed
-              </p>
-            </div>
-            <div>
-              <h2>Constancia del Turno:</h2>
-              <p>Profesional: ${doc.name} ${doc.lastName} - ${doc.specialty} - MP${doc.registration} </p>
-              <p>Turno para el ${info.date}</p>
-              <p>Horario: ${info.hour}hs</p>
-            </div>
-            <div>
-              <h2 style="color: #19b1bc;">INFORMACION IMPORTANTE - MEDIDAS DE PROTECCIÓN:</h2>
-              <p>
-                Nuestra institución cumple todos los protocolos, recomendaciones e
-                instrucciones sanitarias en torno al nuevo Coronavirus. Por esta
-                razón, le solicitamos respetar las siguientes medidas al concurrir a
-                su turno:
-              </p>
-              <ul>
-                <li>Asista solo. Cuando lo necesite, con 1 acompañante.</li>
-                <li>Utilice barbijo durante su permanencia en la institución.</li>
-                <li>Mantenga 2 metros de distancia con los demás.</li>
-                <li>
-                  Higienice sus manos al ingresar, antes de retirarse y las veces que
-                  lo considere necesario.
-                </li>
-              </ul>
-            </div>
-            
-            <div>
-              <h2 style="color: #19b1bc;">Importante:</h2>
-              <p>
-                Sr/a. Paciente: Solicitamos por favor que en caso de no poder asistir
-                al turno solicitado que cancele el mismo. 
-                0810-222-2424.
-              </p>
-            <div>
-            <img src="https://i.postimg.cc/Qt5rfMYm/footer1.png" />
-            </div>
-            
+        <table style="max-width: 700px; padding: 10px; margin:0 auto; border-collapse: collapse;">
+              <div style="width: 100%;margin:20px 0; text-align: center;">
+                  <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" />
+              </div>
+
+            <tr>
+              <td style="background-color: #F0F3F5">
+                <div style="color: #34495e; margin: 4% 10% 2%; text-align: justify;font-family: sans-serif">
+                  <h1 style="color: #19b1bc; margin: 0 0 7px">Reserva de turno</h1>
+                  <h2 style="color: #000; margin: 0 0 7px">Estimado/a ${name} ${lastName}:</h2>
+                  <p style="margin: 2px; font-size: 15px; color: #000">
+                             Te enviamos este e-mail para comunicarte que has reservado un turno en
+                             el Centro Medico NutriMed<br>
+                  </p>
+                  <h2 style="color: #19b1bc;">Constancia del Turno:</h2>
+                  <ul style="font-size: 15px;  margin: 10px 0">
+                    <li style="color: #000;">Profesional: ${doc.name} ${doc.lastName} - ${doc.specialty} - MP${doc.registration}</li>
+                    <li style="color: #000;">Turno para el ${info.date}</li>
+                    <li style="color: #000;">Horario: ${info.hour}hs</li>
+                  </ul>
+                    <h2 style="color: #19b1bc;">INFORMACION IMPORTANTE - MEDIDAS DE PROTECCIÓN:</h2>
+                    <p style="margin: 2px; font-size: 15px; color: #000">
+                        Nuestra institución cumple todos los protocolos, recomendaciones e
+                        instrucciones sanitarias en torno al nuevo Coronavirus. Por esta
+                        razón, le solicitamos respetar las siguientes medidas al concurrir a
+                        su turno:
+                    </p>
+                  <ul style="font-size: 15px;  margin: 10px 0; color: #000">
+                    
+                    <li>Asista solo. Cuando lo necesite, con 1 acompañante.</li>
+                    <li>Utilice barbijo durante su permanencia en la institución.</li>
+                    <li>Mantenga 2 metros de distancia con los demás.</li>
+                              <li>Higienice sus manos al ingresar, antes de retirarse y las veces que lo considere necesario.</li>
+                  </ul>
+                          <h2 style="margin: 0 0 7px; color: #19b1bc">Importante:</h2>
+                          <p style="margin: 2px; font-size: 15px; color: #000;">
+                            Sr/a. Paciente: Solicitamos por favor que en caso de no poder asistir
+                            al turno solicitado que cancele el mismo.</p>
+                  <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center; background-color: #19b1bc;">
+                    <a style="text-decoration: none; color: white;" href=""><p style="color: #fff; font-size: 14px; text-align: center;">© Copyright 2021 | NutriMed.</p></a>	
+                  </div>
+                </td>
+            </tr>
+        </table>
             `,
       };
       transport.sendMail(options, (err,info)=>{
