@@ -49,7 +49,8 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
       !views.view && setViews({...views, view:true})
       setAppointmentReady({...appointmentReady, [e.target.name]:e.target.value})
       getAppointementByDoctor(e.target.value)
-      .then(res=> setDiaryByDoc(res.res))
+      .then(res=> {
+        setDiaryByDoc(res.res)})
       setDocName(newDoctors.find(obj => obj._id === e.target.value))
     }
   }

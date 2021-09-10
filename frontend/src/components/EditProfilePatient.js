@@ -112,7 +112,7 @@ const EditProfilePatient = (props) => {
             name="dni"
             onChange={addDocHandler}
             defaultValue={token ? dni : actPat.dni}
-            disabled={!dni.toString().length ? false : (validEdit ? false :  true)}
+            disabled={!dni ? false : (validEdit ? false :  true)}
           />
           <input
             type="text"
@@ -120,7 +120,7 @@ const EditProfilePatient = (props) => {
             name="phoneNumber"
             onChange={addDocHandler}
             defaultValue={token ? data.phoneNumber : actPat.data.phoneNumber}
-            disabled={!data.phoneNumber.toString().length ? false : (validEdit ? false :  true)}
+            disabled={!data.phoneNumber ? false : (validEdit ? false :  true)}
           />
           <input
             type="text"
@@ -128,7 +128,7 @@ const EditProfilePatient = (props) => {
             name="street"
             onChange={addDocHandler}
             defaultValue={token ? data.direction.street : actPat.data.direction.street}
-            disabled={!data.direction.street.length ? false : (validEdit ? false :  true)}
+            disabled={!data.direction.street ? false : (validEdit ? false :  true)}
           />
           <input
             type="text"
@@ -136,7 +136,7 @@ const EditProfilePatient = (props) => {
             name="num"
             onChange={addDocHandler}
             defaultValue={token ? data.direction.num : actPat.data.direction.num}
-            disabled={!data.direction.num.length ? false : (validEdit ? false :  true)}
+            disabled={!data.direction.num ? false : (validEdit ? false :  true)}
           />
           <input
             type="text"
@@ -144,7 +144,7 @@ const EditProfilePatient = (props) => {
             name="city"
             onChange={addDocHandler}
             defaultValue={token ? data.direction.city : actPat.data.direction.city}
-            disabled={!data.direction.city.length ? false : (validEdit ? false :  true)}
+            disabled={!data.direction.city ? false : (validEdit ? false :  true)}
             onKeyPress={handleKeyPress}
           />
           <span onClick={editHandler}>{!validEdit ? "Editar ✏️" : "Cancelar ❌"}</span>

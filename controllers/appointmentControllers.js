@@ -45,18 +45,12 @@ const appointmentControllers = {
    },
    getAppointementByDoctor: async (req, res) => {
       try {
-        let appointments = await Appointment.find({
-          patientId: req.user._id,
-        }).populate("doctorId", {
-          name: 1,
-          lastName: 1,
-          src: 1,
-          registration: 1,
-          specialty: 1,
-        });
-        res.json({ success: true, res: appointments });
+         let appointmenDoctor = await Appointment.find({
+            doctorId: req.params.id,
+         })
+         res.json({ success: true, res: appointmenDoctor })
       } catch (err) {
-        res.json({ success: false, res: err.message });
+         res.json({ success: false, res: err.message })
       }
    },
    sendMails:async(req, res)=>{
@@ -68,7 +62,7 @@ const appointmentControllers = {
             to: data.mail,
             subject:'Confimarcion de Turno',
             html: `
-            <img src="/assets/logo.png" alt="logo" />
+            <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" alt="logo"/>
             <div>
               <h1>Reserva de turno</h1>
               <h2>
