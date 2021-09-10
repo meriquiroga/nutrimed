@@ -1,79 +1,78 @@
-const Appointment = require("../models/Appointment")
-const transport = require('../config/transport')
+const Appointment = require("../models/Appointment");
+const transport = require("../config/transport");
 
 const appointmentControllers = {
-
-   addAppointment: async (req, res) => {
+  addAppointment: async (req, res) => {
+    try {
+      const newAppointment = new Appointment({
+        date: req.body.date,
+        doctorId: req.params.id,
+        patientId: req.user._id,
+      });
+      await newAppointment.save();
+      res.json({ success: true, res: newAppointment });
+    } catch (err) {
+      res.json({ success: false, res: err.message });
+    }
+  },
+  getAppointments: async (req, res) => {
+    if (req.user.doc) {
       try {
-         const newAppointment = new Appointment({
-            date: req.body.date,
-            doctorId: req.params.id,
-            patientId: req.user._id,
-         })
-         await newAppointment.save()
-         res.json({ success: true, res: newAppointment })
+        let appointments = await Appointment.find({
+          doctorId: req.user._id,
+        }).populate("patientId");
+        res.json({ success: true, res: appointments });
       } catch (err) {
-         res.json({ success: false, res: err.message })
+        res.json({ success: false, res: err.message });
       }
-   },
-   getAppointments: async (req, res) => {
-      if (req.user.doc) {
-         try {
-            let appointments = await Appointment.find({
-               doctorId: req.user._id,
-            }).populate("patientId")
-            res.json({ success: true, res: appointments })
-         } catch (err) {
-            res.json({ success: false, res: err.message })
-         }
-      } else {
-         try {
-            let appointments = await Appointment.find({
-               patientId: req.user._id,
-            }).populate("doctorId", {
-               name: 1,
-               lastName: 1,
-               src: 1,
-               registration: 1,
-               specialty: 1,
-            })
-            res.json({ success: true, res: appointments })
-         } catch (err) {
-            res.json({ success: false, res: err.message })
-         }
-      }
-   },
-   deleteAppointment: async (req, res) => {
+    } else {
       try {
-         let appointmentToDelete = await Appointment.findOneAndDelete({
-            _id: req.params.id,
-         })
-         res.json({ success: true })
+        let appointments = await Appointment.find({
+          patientId: req.user._id,
+        }).populate("doctorId", {
+          name: 1,
+          lastName: 1,
+          src: 1,
+          registration: 1,
+          specialty: 1,
+        });
+        res.json({ success: true, res: appointments });
       } catch (err) {
-         res.json({ success: false, res: err.message })
+        res.json({ success: false, res: err.message });
       }
-   },
-   getAppointementByDoctor: async (req, res) => {
-      try {
-         let appointmenDoctor = await Appointment.find({
-            doctorId: req.params.id,
-         })
-         res.json({ success: true, res: appointmenDoctor })
-      } catch (err) {
-         res.json({ success: false, res: err.message })
-      }
-   },
-   sendMails:async(req, res)=>{
-      try{
-         let options ={
-            from:'NutriMed <nutrimed.centronutricional@gmail.com>',
-            to: req.user.data.mail,
-            subject:'Confimarcion de Turno',
-            // text:`Hola ${req.user.name} ${req.user.lastName}`
-            html: `
-            <img src="/assets/logo.png" alt="logo" />
-            <div>
-              <h1>Reserva de turno</h1>
+    }
+  },
+  deleteAppointment: async (req, res) => {
+    try {
+      let appointmentToDelete = await Appointment.findOneAndDelete({
+        _id: req.params.id,
+      });
+      res.json({ success: true });
+    } catch (err) {
+      res.json({ success: false, res: err.message });
+    }
+  },
+  getAppointementByDoctor: async (req, res) => {
+    try {
+      let appointmenDoctor = await Appointment.find({
+        doctorId: req.params.id,
+      });
+      res.json({ success: true, res: appointmenDoctor });
+    } catch (err) {
+      res.json({ success: false, res: err.message });
+    }
+  },
+  sendMails: async (req, res) => {
+    try {
+      let options = {
+        from: "NutriMed <nutrimed.centronutricional@gmail.com>",
+        to: req.user.data.mail,
+        subject: "Confimarcion de Turno",
+        // text:`Hola ${req.user.name} ${req.user.lastName}`
+        html: `
+        <div>
+        <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" alt="logo" />
+        </div>
               <h2>
                 Estimado/a ${req.user.name} ${req.user.lastName}:
               </h2>
@@ -81,10 +80,10 @@ const appointmentControllers = {
                 Te enviamos este e-mail para comunicarte que has reservado un turno en
                 el Centro Medico NutriMed
               </p>
-            </div>
+            
             
             <div>
-              <h3>Datos del paciente:</h3>
+              <h2 style="color: #19b1bc;">Datos del paciente:</h2>
               <p>Nombre: ${req.user.name} </p>
               <p>Apellido: ${req.user.lastName}</p>
               <p>Tipo Documento: D.N.I.</p>
@@ -92,16 +91,16 @@ const appointmentControllers = {
             </div>
             
             <div>
-              <h2>Constancia del Turno:</h2>
+              <h2 style="color: #19b1bc;">Constancia del Turno:</h2>
               <p>Ubicación: Av Colón 150</p>
               <p>Servicio: ${req.user.specialty}</p>
-              <p>Profesional: ${req.user.id}</p>
+              <p>Profesional: ${req.user.id.name}</p>
               <p>Turno para el día ${req.user.date} </p>
               <p>Preparaciones Previas:</p>
             </div>
             
             <div>
-              <h2>INFORMACION IMPORTANTE - MEDIDAS DE PROTECCIÓN:</h2>
+              <h2 style="color: #19b1bc;">INFORMACION IMPORTANTE - MEDIDAS DE PROTECCIÓN:</h2>
               <p>
                 Nuestra institución cumple todos los protocolos, recomendaciones e
                 instrucciones sanitarias en torno al nuevo Coronavirus. Por esta
@@ -120,24 +119,25 @@ const appointmentControllers = {
             </div>
             
             <div>
-              <h2>Importante:</h2>
+              <h2 style="color: #19b1bc;">Importante:</h2>
               <p>
                 Sr/a. Paciente: Solicitamos por favor que en caso de no poder asistir
-                al turno solicitado tenga bien avisarnos via Web o al teléfono
+                al turno solicitado que cancele el mismo. 
                 0810-222-2424.
               </p>
+            <div>
+            <img src="https://i.postimg.cc/Qt5rfMYm/footer1.png" />
             </div>
             
-            `
+            `,
+      };
+      transport.sendMail(options, (err, info) => {
+        console.log(err);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+};
 
-         }
-         transport.sendMail(options, (err,info)=>{
-            console.log(err)
-         })
-      }catch(err){
-         console.log(err)
-      }
-   }
-}
-
-module.exports = appointmentControllers
+module.exports = appointmentControllers;
