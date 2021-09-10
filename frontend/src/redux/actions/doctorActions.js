@@ -2,21 +2,24 @@ import axios from "axios"
 
 const doctorActions = {
    editProfile: (typeUser, profileEdited, token) => {
+      console.log(typeUser)
       let type = ""
       if (typeUser) type = "doctor"
       else type = "patient"
       return async () => {
          try {
-            let response = await axios.put(
+            let res = await axios.put(
                `http://localhost:4000/api/${type}`,
-               { ...profileEdited },
+               {...profileEdited},
                {
                   headers: {
                      Authorization: "Bearer " + token,
                   },
                }
             )
-            if (response.data.success) {
+            console.log(res)
+            if (res.data.success) {
+               
                return { success: true }
             }
          } catch (err) {

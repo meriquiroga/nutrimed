@@ -7,6 +7,7 @@ const EveryAppoinmet = ({hour,fullHour,bookAppointmentHandler,viewHandler,doctor
         if(fullHour[0]){
             fullHour[0].date.hour === hour && setView(false)
         }
+        // eslint-disable-next-line
     },[])
     const functionHandler= () =>{
         bookAppointmentHandler(hour,day,doctorName)

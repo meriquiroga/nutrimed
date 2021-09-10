@@ -1,10 +1,13 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import doctorActions from "../redux/actions/doctorActions";
 
 const EditProfilePatient = (props) => {
-  const mail = props.user.userExist.data.mail;
+  const {token} = props
+  const {data, dni} = props.user.userExist
+  const email = props.user.userExist.data.mail;
+  const [validEdit, setValidEdit] = useState(false)
   const [actPat, setActPat] = useState({
     dni: "",
     data: {
@@ -13,23 +16,35 @@ const EditProfilePatient = (props) => {
         num: "",
         city: "",
       },
+      mail: email,
       phoneNumber:"",
-      src:""
     },
+    src:"",
     socialWork: "",
   });
   const [previewImg, setPreviewImg] = useState(
     "https://pickaface.net/gallery/avatar/64431738_161013_0015_3fnpl.png"
   );
-
+    
   const addDocHandler = (e) => {
-    if (e.target.name === "street" || e.target.name === "num" || e.target.name === "city" ) {
+    if (e.target.name === "street") {
       setActPat({
         ...actPat,
-        data: {
-          direction: { ...actPat.data.direction, [e.target.name]: e.target.value },
+        data: {...actPat.data, 
+          direction: { ...actPat.data.direction, street: e.target.value },
         },
       });
+    } else if (e.target.name === "num") {
+      setActPat({
+        ...actPat,
+        data: {...actPat.data, direction: { ...actPat.data.direction, num: e.target.value } },
+      });
+    } else if (e.target.name === "city") {
+      setActPat({
+        ...actPat,
+        data: {...actPat.data, direction: { ...actPat.data.direction, city: e.target.value } },
+      });
+
     } else if (e.target.name === "phoneNumber") {
       setActPat({
         ...actPat,
@@ -40,8 +55,18 @@ const EditProfilePatient = (props) => {
     }
   };
 
+  const editHandler = () => {
+    setValidEdit(!validEdit)
+  }
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      submitHandler()
+    }
+  }
+  
   const submitHandler = () => {
-    props.upgradePat(props.user.doc, actPat, props.token);
+    props.upgradePat(props.user.userExist.doc, actPat, token);
   };
 
   const allSocialWork = [
@@ -93,36 +118,43 @@ const EditProfilePatient = (props) => {
             placeholder="DNI"
             name="dni"
             onChange={addDocHandler}
-            defaultValue={actPat.dni}
+            defaultValue={token ? dni : actPat.dni}
+            disabled={!dni.toString().length ? false : (validEdit ? false :  true)}
           />
           <input
             type="text"
             placeholder="Teléfono"
             name="phoneNumber"
             onChange={addDocHandler}
-            defaultValue={actPat.data.phoneNumber}
+            defaultValue={token ? data.phoneNumber : actPat.data.phoneNumber}
+            disabled={!data.phoneNumber.toString().length ? false : (validEdit ? false :  true)}
           />
           <input
             type="text"
             placeholder="Calle"
             name="street"
             onChange={addDocHandler}
-            defaultValue={actPat.data.direction.street}
+            defaultValue={token ? data.direction.street : actPat.data.direction.street}
+            disabled={!data.direction.street.length ? false : (validEdit ? false :  true)}
           />
           <input
             type="text"
             placeholder="Número"
             name="num"
             onChange={addDocHandler}
-            defaultValue={actPat.data.direction.num}
+            defaultValue={token ? data.direction.num : actPat.data.direction.num}
+            disabled={!data.direction.num.length ? false : (validEdit ? false :  true)}
           />
           <input
             type="text"
             placeholder="Ciudad"
             name="city"
             onChange={addDocHandler}
-            defaultValue={actPat.data.direction.city}
+            defaultValue={token ? data.direction.city : actPat.data.direction.city}
+            disabled={!data.direction.city.length ? false : (validEdit ? false :  true)}
+            onKeyPress={handleKeyPress}
           />
+          <span onClick={editHandler}>{!validEdit ? "Editar ✏️" : "Cancelar ❌"}</span>
           <select
             id="optionObraSocial"
             name="socialWork"

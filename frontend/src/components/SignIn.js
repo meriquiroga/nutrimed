@@ -3,6 +3,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import userActions from "../redux/actions/userActions";
 import { Link } from "react-router-dom";
+import ReactTooltip from "react-tooltip"
 
 const SignIn = ({logIn}) => {
   const [valueIn, setValueIn] = useState("");
@@ -62,13 +63,28 @@ const SignIn = ({logIn}) => {
         }
       })
     } 
-    
   };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      submitUserLog()
+    }
+  }
+
   let validUser = valueIn === "prof" ? "profesional" : "comun";
   let dispGo = valueIn === "prof" ? "none" : "block";
 
   return (
     <>
+
+      {valueIn === "" && <ReactTooltip id="button_Google"
+        place="right"
+        effect="solid"
+        className="buttonGoogle"
+      >
+        Debe seleccionar tipo de usuario
+      </ReactTooltip>}
+    
       <div className="container">
         <div className="grayContainer">
           <img src="/assets/login.png" alt="" />
@@ -109,6 +125,7 @@ const SignIn = ({logIn}) => {
               defaultValue={userLog.password}
               onChange={userLogin}
               className={((error.errorUno && !userLog.password.length) ? "errorY" : "errorN")}
+              onKeyPress={handleKeyPress}
             />
           </div>
           {error.errorUno && <p style={{fontSize:"1.3vmin"}} >*{errors}</p>}
@@ -116,8 +133,8 @@ const SignIn = ({logIn}) => {
           <button id="buttonSign" onClick={submitUserLog}>
             LOGIN
           </button>
-          <div style={{ display: dispGo }}>
-            <div >
+          <div style={{ display: dispGo, display:"flex", justifyContent:"center"}}>
+            <div  style={{width:"14%"}} data-tip data-for="button_Google">
               <GoogleLogin disabled={valueIn === "" ? true : false}
                 clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
                 buttonText="Ingresar con Google"

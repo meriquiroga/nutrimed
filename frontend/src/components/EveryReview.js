@@ -8,12 +8,12 @@ const EveryReview = ({review, user, userToken, deleteReviewHandler,actionReview,
   const [newText, setNewText]=useState({review:text , edit:false, editReview:text})
   const [edit, setEdit]= useState(false)
   const [enable, setEnable] = useState({edit:false, delete:false})
-  const [error, setError] = useState('')
 
   useEffect(()=>{
     if(userToken){
       userExist._id === patientId._id ? setEdit(true) : setEdit(false)
     }
+    // eslint-disable-next-line
   },[user])
 
   const enableEditHandler=(icon)=>{

@@ -8,22 +8,22 @@ const Information = () => {
         }}
       >
         <h1>CONTACTO</h1>
-        <img className="icon-contact" src="/assets/marcador.png" />
+        <img className="icon-contact" src="/assets/marcador.png" alt="..."/>
       </div>
 
       <div className="iconCardsContainer">
         <div className="iconCard">
-          <img src="/assets/icono-telefono.png" />
+          <img src="/assets/icono-telefono.png"alt="..." />
           <h3>Teléfono</h3>
           <h3> +54 9 351 802 2424</h3>
         </div>
         <div className="iconCard">
-          <img id="buttonSign" src="/assets/icono-map.png" />
+          <img id="buttonSign" src="/assets/icono-map.png" alt="..."/>
           <h3>Dirección</h3>
           <h3>Av Colón 150</h3>
         </div>
         <div className="iconCard">
-          <img src="/assets/icono-reloj.png" />
+          <img src="/assets/icono-reloj.png" alt="..."/>
           <h3>Lunes a Viernes</h3>
           <h3>9:00 a 20:30hs.</h3>
         </div>

@@ -4,10 +4,13 @@ import doctorActions from "../redux/actions/doctorActions";
 import { Link } from "react-router-dom";
 
 const EditProfileDoctor = (props) => {
-  const mail = props.user.userExist.data.mail;
+  console.log(props)
+  const {token} = props
+  const {data, dni, description, specialty, registration} = props.user.userExist
+  const email = props.user.userExist.data.mail;
   const [valueIn, setValueIn] = useState(true);
+  const [validEdit, setValidEdit] = useState(false)
   const [actDoc, setActDoc] = useState({
-    
     dni: "",
     description: "",
     registration: "",
@@ -18,13 +21,17 @@ const EditProfileDoctor = (props) => {
         num: "",
         city: "",
       },
-      mail,
+      mail: email,
       phoneNumber: "",
     },
     socialWork: "",
   });
 
   
+  const editHandler = () => {
+    setValidEdit(!validEdit)
+  }
+
 
   const addDocHandler = (e) => {
     // if (e.target.name === "socialWork"){  
@@ -35,7 +42,7 @@ const EditProfileDoctor = (props) => {
     if (e.target.name === "street") {
       setActDoc({
         ...actDoc,
-        data: {
+        data: {...actDoc.data, 
           direction: { ...actDoc.data.direction, street: e.target.value },
         },
       });
@@ -47,17 +54,18 @@ const EditProfileDoctor = (props) => {
     } else if (e.target.name === "num") {
       setActDoc({
         ...actDoc,
-        data: { direction: { ...actDoc.data.direction, num: e.target.value } },
+        data: {...actDoc.data, direction: { ...actDoc.data.direction, num: e.target.value } },
       });
     } else if (e.target.name === "city") {
       setActDoc({
         ...actDoc,
-        data: { direction: { ...actDoc.data.direction, city: e.target.value } },
+        data: {...actDoc.data, direction: { ...actDoc.data.direction, city: e.target.value } },
       });
     } else {
       setActDoc({ ...actDoc, [e.target.name]: e.target.value });
     }
   };
+
 
   const socialWorkHandler = (e) => {
     setValueIn(!valueIn)
@@ -65,23 +73,18 @@ const EditProfileDoctor = (props) => {
     
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      submitHandler()
+    }
+  }
+
   const submitHandler = () => {
-    props.upgradeDoc(props.user.doc, actDoc, props.token);
+    props.upgradeDoc(props.user.userExist.doc, actDoc, props.token)
+    .then((res)=> {console.log(res)})
   };
 
-  const allSocialWork = [
-    "MEDICAL",
-    "SWISS",
-    "APMA",
-    "OSDE",
-    "CARA",
-    "UDE",
-    "OSPIM",
-    "PREVENCIOON SALUD",
-    "SANCOR",
-    "LIAW",
-  ];
-  console.log(actDoc)
+
   return (
     <>
       <div className="container">
@@ -93,57 +96,76 @@ const EditProfileDoctor = (props) => {
               placeholder="DNI"
               name="dni"
               onChange={addDocHandler}
-              defaultValue={actDoc.dni}
+              // defaultValue={actDoc.dni}
+              defaultValue={token ? dni : actDoc.dni}
+              disabled={!dni ? false : (validEdit ? false :  true)}
+              
             />
             <input
               type="text"
               placeholder="Descripción"
               name="description"
               onChange={addDocHandler}
-              defaultValue={actDoc.description}
+              // defaultValue={actDoc.description}
+              defaultValue={token ? description : actDoc.description}
+              disabled={!description.join() ? false : (validEdit ? false :  true)}
             />
             <input
               type="text"
               placeholder="N° de matrícula"
               name="registration"
               onChange={addDocHandler}
-              defaultValue={actDoc.registration}
+              // defaultValue={actDoc.registration}
+              defaultValue={token ? registration : actDoc.registration}
+              disabled={!registration ? false : (validEdit ? false :  true)}
             />
             <input
               type="text"
               placeholder="Especialidad"
               name="specialty"
               onChange={addDocHandler}
-              defaultValue={actDoc.specialty}
+              // defaultValue={actDoc.specialty}
+              defaultValue={token ? specialty : actDoc.specialty}
+              disabled={!specialty ? false : (validEdit ? false :  true)}
             />
             <input
               type="text"
               placeholder="Teléfono"
               name="phoneNumber"
               onChange={addDocHandler}
-              defaultValue={actDoc.data.phoneNumber}
+              // defaultValue={actDoc.data.phoneNumber}
+              defaultValue={token ? data.phoneNumber : actDoc.data.phoneNumber}
+              disabled={!data.phoneNumber ? false : (validEdit ? false :  true)}
             />
             <input
               type="text"
               placeholder="Calle"
               name="street"
               onChange={addDocHandler}
-              defaultValue={actDoc.data.direction.street}
+              // defaultValue={actDoc.data.direction.street}
+              defaultValue={token ? data.direction.street : actDoc.data.direction.street}
+              disabled={!data.direction.street ? false : (validEdit ? false :  true)}
             />
             <input
               type="number"
               placeholder="Número"
               name="num"
               onChange={addDocHandler}
-              defaultValue={actDoc.data.direction.num}
+              // defaultValue={actDoc.data.direction.num}
+              defaultValue={token ? data.direction.num : actDoc.data.direction.num}
+              disabled={!data.direction.num ? false : (validEdit ? false :  true)}
             />
             <input
               type="text"
               placeholder="Ciudad"
               name="city"
               onChange={addDocHandler}
-              defaultValue={actDoc.data.direction.city}
+              // defaultValue={actDoc.data.direction.city}
+              defaultValue={token ? data.direction.city : actDoc.data.direction.city}
+              disabled={!data.direction.city ? false : (validEdit ? false :  true)}
+              onKeyPress={handleKeyPress}
             />
+            <span onClick={editHandler}>{!validEdit ? "Editar ✏️" : "Cancelar ❌"}</span>
           
             <h4>¿Acepta Obra Social? </h4>
             

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import EveryAppoinmet from "./EveryAppoinmet";
 
 const AppointmentDay =({day,timeTable,appointmentByDay,bookAppointmentHandler,fullDay})=>{

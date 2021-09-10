@@ -653,6 +653,11 @@ footer img {
   -moz-box-shadow: none;
 }
 
+.buttonGoogle {
+   background-color: #12A8C2!important;
+   color: rgb(255, 255, 255)!important;
+}
+
 /* ESTILOS QUE DEBEN SER CAMBIADOS */
 
 .containerPreview {

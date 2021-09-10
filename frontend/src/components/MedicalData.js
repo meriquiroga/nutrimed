@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import patientActions from "../redux/actions/patientActions"
 import Description from "./Description"
 
