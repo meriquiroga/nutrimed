@@ -58,63 +58,33 @@ const appointmentControllers = {
       } catch (err) {
         res.json({ success: false, res: err.message });
       }
-    },
-  deleteAppointment: async (req, res) => {
-    try {
-      let appointmentToDelete = await Appointment.findOneAndDelete({
-        _id: req.params.id,
-      });
-      res.json({ success: true });
-    } catch (err) {
-      res.json({ success: false, res: err.message });
-    }
-  },
-  getAppointementByDoctor: async (req, res) => {
-    try {
-      let appointmenDoctor = await Appointment.find({
-        doctorId: req.params.id,
-      });
-      res.json({ success: true, res: appointmenDoctor });
-    } catch (err) {
-      res.json({ success: false, res: err.message });
-    }
-  },
-  sendMails: async (req, res) => {
-    try {
-      let options = {
-        from: "NutriMed <nutrimed.centronutricional@gmail.com>",
-        to: req.user.data.mail,
-        subject: "Confimarcion de Turno",
-        html: `
-        <div>
-        <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" alt="logo" />
-        </div>
+   },
+   sendMails:async(req, res)=>{
+      const {info,doc}= req.body
+      const {name, lastName, data}=req.user
+      try{
+         let options ={
+            from:'NutriMed <nutrimed.centronutricional@gmail.com>',
+            to: data.mail,
+            subject:'Confimarcion de Turno',
+            html: `
+            <img src="/assets/logo.png" alt="logo" />
+            <div>
+              <h1>Reserva de turno</h1>
               <h2>
-                Estimado/a ${req.user.name} ${req.user.lastName}:
+                Estimado/a ${name} ${lastName}:
               </h2>
               <p>
                 Te enviamos este e-mail para comunicarte que has reservado un turno en
                 el Centro Medico NutriMed
               </p>
-            
-            
-            <div>
-              <h2 style="color: #19b1bc;">Datos del paciente:</h2>
-              <p>Nombre: ${req.user.name} </p>
-              <p>Apellido: ${req.user.lastName}</p>
-              <p>Tipo Documento: D.N.I.</p>
-              <p>Nro. Doc. :</p>
             </div>
-            
             <div>
-              <h2 style="color: #19b1bc;">Constancia del Turno:</h2>
-              <p>Ubicación: Av Colón 150</p>
-              <p>Servicio: ${req.user.specialty}</p>
-              <p>Profesional: ${req.user.id.name}</p>
-              <p>Turno para el día ${req.user.date} </p>
-              <p>Preparaciones Previas:</p>
+              <h2>Constancia del Turno:</h2>
+              <p>Profesional: ${doc.name} ${doc.lastName} - ${doc.specialty} - MP${doc.registration} </p>
+              <p>Turno para el ${info.date}</p>
+              <p>Horario: ${info.hour}hs</p>
             </div>
-            
             <div>
               <h2 style="color: #19b1bc;">INFORMACION IMPORTANTE - MEDIDAS DE PROTECCIÓN:</h2>
               <p>
@@ -147,13 +117,17 @@ const appointmentControllers = {
             
             `,
       };
-      transport.sendMail(options, (err, info) => {
-        console.log(err);
-      });
-    } catch (err) {
-      console.log(err);
+      transport.sendMail(options, (err,info)=>{
+        if(err){
+           throw Error()
+        }else{
+           res.json({success:true})
+        }
+        })
+        }catch(err){
+        res.json({success:false})
+      }
     }
-  },
-};
+}
 
 module.exports = appointmentControllers;

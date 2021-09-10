@@ -2,7 +2,6 @@ import axios from "axios"
 
 const patientActions = {
    editProfilePatient: () => {
-      console.log("editando")
       return async () => {
          try {
             let res = await axios.put(`http://localhost:4000/api/patient`, {})
@@ -96,33 +95,22 @@ const patientActions = {
             console.log(err)
          }
       }
-   },
-
-   confirmFormMail: (user) => {
-      return async () => {
-         try {
-            let resMail = await axios.post(
-               "http://localhost:4000/api/mail",
-               {},
-               {
-                  headers: {
-                     Authorization: "Bearer " + user,
-                  },
-               }
-            )
-            console.log(resMail)
-         } catch (err) {
-            console.log(err)
-         }
-      }
-    },
-  getAvatars: () => {
+  },
+  confirmFormMail: (info, user, doc) => {
     return async () => {
       try {
-        let res = await axios.get("http://localhost:4000/api/avatar");
-        return { success: true, res: res.data.res };
+        let res = await axios.post("http://localhost:4000/api/mail",{info, doc}, {
+            headers: {
+              Authorization: "Bearer " + user,
+            },
+          });
+        if(res.success){
+            return({success:true, res:'Recibiras un e-mail con la confirmación del turno'})
+        }else{
+          throw Error
+        }
       } catch (err) {
-        return { success: false, res: err };
+          return({success:false, res:''})
       }
     }
   }

@@ -11,10 +11,10 @@ const Footer = (props) => {
     return (
         <footer>
             <div>
-               <img src='/assets/instagram.png' alt=""/>
-               <img src='/assets/facebook.png' alt=""/>
-               <img src='/assets/twitter.png' alt=""/>
-               <img src='/assets/linkedin.png' alt=""/>
+               <a href='https://www.instagram.com/' target='_blank' rel='noreferrer'><img src='/assets/instagram.png' alt=""/></a>
+               <a href='https://www.facebook.com/' target='_blank' rel='noreferrer'><img src='/assets/facebook.png' alt=""/></a>
+               <a href='https://twitter.com/' target='_blank' rel='noreferrer'><img src='/assets/twitter.png' alt=""/></a>
+               <a href='https://ar.linkedin.com/' target='_blank' rel='noreferrer'><img src='/assets/linkedin.png' alt=""/></a>
             </div>
             <div className="footerNavbar">
             <ul>
