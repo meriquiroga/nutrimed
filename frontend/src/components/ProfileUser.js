@@ -10,15 +10,22 @@ import { Accordion, AccordionItem } from "react-sanfona"
 const ProfileUser = (props) => {
    const { doc, src, name, lastName, dni, data } = props.user.userExist
    const [appointments, setAppointments] = useState([])
+   const [loading, setLoading] = useState(true)
+   const [change, setChange] = useState([])
 
    useEffect(() => {
       props.getAppointments(props.token).then((res) => {
          if (res.success) {
             setAppointments(res.res)
+            setLoading(false)
             return false
          }
       })
-   }, [])
+   }, [change])
+
+   if (loading) {
+      return <h1>Loading</h1>
+   }
 
    const filterDays = (dayM) => {
       let day = appointments.filter((appointment) =>
@@ -27,7 +34,9 @@ const ProfileUser = (props) => {
       return day
    }
 
-   console.log(appointments)
+   const deleteAppoint = (id) => {
+      props.deleteAppointment(props.token, id).then((res) => setChange(res.res))
+   }
 
    const lunes = filterDays("Lunes")
    const martes = filterDays("Martes")
@@ -88,6 +97,11 @@ const ProfileUser = (props) => {
                            </div>
                            <h5>{appointment.date.date}</h5>
                            <h5>{appointment.date.hour} hs</h5>
+                           <button
+                              onClick={() => deleteAppoint(appointment._id)}
+                           >
+                              Borrar turno
+                           </button>
                         </div>
                      )
                   })
@@ -171,16 +185,11 @@ const ProfileUser = (props) => {
                            </div>
                            <h5>{appointment.date.date}</h5>
                            <h5>{appointment.date.hour} hs</h5>
-                           {/* <button
-                              onClick={() =>
-                                 props.deleteAppointment(
-                                    props.token,
-                                    appointment._id
-                                 )
-                              }
+                           <button
+                              onClick={() => deleteAppoint(appointment._id)}
                            >
                               Borrar turno
-                           </button> */}
+                           </button>
                         </div>
                      )
                   })
