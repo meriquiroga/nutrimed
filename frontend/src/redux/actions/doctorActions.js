@@ -10,7 +10,7 @@ const doctorActions = {
          try {
             let res = await axios.put(
                `http://localhost:4000/api/${type}`,
-               {...profileEdited},
+               { ...profileEdited },
                {
                   headers: {
                      Authorization: "Bearer " + token,
@@ -19,7 +19,6 @@ const doctorActions = {
             )
             console.log(res)
             if (res.data.success) {
-               
                return { success: true }
             }
          } catch (err) {
