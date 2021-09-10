@@ -61,6 +61,8 @@ const appointmentControllers = {
       }
    },
    sendMails:async(req, res)=>{
+      const {info,doc}= req.body
+      const {name, lastName, data}=req.user
       try{
          let options ={
             from:'NutriMed <nutrimed.centronutricional@gmail.com>',
@@ -114,6 +116,7 @@ const appointmentControllers = {
             `,
          }
          transport.sendMail(options, (err, info) => {
+            console.log(err)
             if (err) {
                throw Error()
             } else {
