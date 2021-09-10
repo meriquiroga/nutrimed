@@ -11,21 +11,22 @@ const Reviews = ({
   doctorId,
   userToken,
   actionReview,
-  getOneDoctorDB,
   socket,
+  getOneDoctorReviews,
 }) => {
   const [newReviews, setNewReview] = useState(reviews);
   const [text, setText] = useState("");
   const [refetch, setRefetch] = useState(false);
   const [escribiendo, setEscribiendo] = useState("");
-  console.log("esta prueba para el merge");
+
   useEffect(() => {
     if (socket) {
       socket.on("message", (mensaje) => {
         if (mensaje === "refetch") {
           setRefetch(!refetch);
-          getOneDoctorDB(doctorId).then((res) => {
+          getOneDoctorReviews(doctorId).then((res) => {
             if (res.success) {
+              console.log(res);
               setNewReview(res.res);
             } else {
               console.log("error");
@@ -40,7 +41,7 @@ const Reviews = ({
         }
       });
     }
-    return false
+    return false;
     // eslint-disable-next-line
   }, [socket]);
 
@@ -48,6 +49,7 @@ const Reviews = ({
     actionReview(userToken, doctorId, text, "deleteReview", reviewId).then(
       (res) => {
         if (res.success) {
+          socket.emit("message", `borrado`);
           setNewReview(res.res);
         } else {
           console.log(res);
@@ -124,6 +126,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   actionReview: doctorActions.actionReview,
   getSocket: patientActions.getSocket,
-  getOneDoctorDB: doctorActions.getOneDoctorDB,
+  getOneDoctorReviews: doctorActions.getOneDoctorReviews,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Reviews);
