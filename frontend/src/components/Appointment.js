@@ -40,17 +40,17 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
           }
         })
       }
-      // eslint-disable-next-line
-  }, []);
+  },[]);
 
   const appointmentValueHandler = (e) => {
     if(!e.target.value){
-      setViews({...views, view:false, ok:false})
+      setViews({...views, view:false})
     }else{
-      !views.view && setViews({...views, view:true, ok:false})
+      !views.view && setViews({...views, view:true})
       setAppointmentReady({...appointmentReady, [e.target.name]:e.target.value})
       getAppointementByDoctor(e.target.value)
-      .then(res=> setDiaryByDoc(res.res))
+      .then(res=> {
+        setDiaryByDoc(res.res)})
       setDocName(newDoctors.find(obj => obj._id === e.target.value))
     }
   }
@@ -77,17 +77,18 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
     .then(res=>{
       if(res.success){
         setConfirmAppointment('Tu turno fue agendado exitosamente. ¡Gracias!')
-        confirmFormMail(data.patientId)
+        confirmFormMail(data.date, data.patientId, docName)
       }else{
         setConfirmAppointment('Lo sentimos, ha ocurrido un error. Por favor, intentá de nuevo más tarde.')
       }
+      setAppointmentReady({...appointmentReady, doctorId:""})
       getAppointementByDoctor(appointmentReady.doctorId)
       .then(res=> setDiaryByDoc(res.res))
       setTimeout(() => {
         setViews({view:false,confirm:false, ok:false})
       }, 3000);
     })
-    setViews({view:false, confirm:false, ok:true})
+    setViews({view:false,confirm:false, ok:true})
   }
   return (
     <>
@@ -97,16 +98,14 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
         <h3>
           ¡Bienvenido! Seleccioná el profesional para ver sus turnos disponibles.
         </h3>
-        <form>
-          <select id="optionDoctor" name="doctorId"
-            defaultValue={appointmentReady.doctorId}
-            onChange={appointmentValueHandler}
-          >
+        <select id="optionDoctor" name="doctorId" defaultValue={appointmentReady.doctorId} onChange={appointmentValueHandler}>
             <option value="" >Seleccioná un profesional</option>
             {optionDoctor}
           </select>
-        </form>
-        {views.ok && <h2>{confirmAppointment}</h2>}
+        {views.ok && <div>
+        <h2>{confirmAppointment}</h2>
+        <span>Te llegara un mail con la informacion del turno</span>
+        </div>}
         {views.confirm && 
           <div>
             <h3>Confirmación de turno</h3>

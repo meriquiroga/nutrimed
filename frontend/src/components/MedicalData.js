@@ -4,7 +4,9 @@ import patientActions from "../redux/actions/patientActions"
 import Description from "./Description"
 
 const MedicalData = (props) => {
-   const [inputDescription, setInputDescription] = useState({ description: "" })
+   const [inputDescription, setInputDescription] = useState({
+      description: "",
+   })
    const { name, lastName, src, dni, data, medicalData, _id } =
       props.appointment.patientId
    const [descriptions, setDescriptions] = useState(medicalData)
@@ -35,7 +37,7 @@ const MedicalData = (props) => {
 
    return (
       <>
-         <div className="signUpForm">
+         <div>
             <div className="medicalData">
                <h3>Historial Médico</h3>
                <h3>Paciente</h3>
@@ -76,10 +78,10 @@ const MedicalData = (props) => {
                         })
                      )}
                   </div>
-                  <div>
-                     <input
+                  <div className="divEnviarNota">
+                     <textarea
                         className="medicalInput"
-                        type="text"
+                        value={inputDescription.description}
                         name="description"
                         placeholder="Ingresar nota"
                         onChange={inputHandler}

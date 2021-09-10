@@ -1,9 +1,10 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 
+
 export default class Home extends Component {
-  componentDidMount(){
-    window.scroll(0,0)
+  componentDidMount() {
+    window.scroll(0, 0);
   }
   render() {
     return (
@@ -15,32 +16,31 @@ export default class Home extends Component {
         <div className="insideHero">
           <h1>Enfocados en tu bienestar integral.</h1>
           <button id="buttonSign">
-            <Link to="/staff">CONOCENOS</Link>
+            <Link to="/staff">CONOCÉ NUESTRO STAFF</Link>
           </button>
         </div>
-      </div>
-      <div className="iconCardsContainer">
-        <div className="iconCard">
-          <img src="/assets/icoNutricion.png" alt="" />
-          <h3>NUTRICIÓN</h3>
         </div>
-        <div className="iconCard">
-          <img src="/assets/icoPsicologia.png" alt="" />
-          <h3>PSICOLOGÍA</h3>
+        <div className="iconCardsContainer">
+            <div className="iconCard">
+              <img src="/assets/icoNutricion.png" alt="" />
+              <h3>NUTRICIÓN</h3>
+            </div>
+            <div className="iconCard">
+              <img src="/assets/icoPsicologia.png" alt="" />
+              <h3>PSICOLOGÍA</h3>
+            </div>
+            <div className="iconCard">
+              <img src="/assets/icoMedicina.png" alt="" />
+              <h3>MEDICINA GENERAL</h3>
+            </div>
+            <div className="iconCard">
+              <img src="/assets/icoEntrenamiento.png" alt="" />
+              <h3>ENTRENAMIENTO</h3>
+            </div>
         </div>
-        <div className="iconCard">
-          <img src="/assets/icoMedicina.png" alt="" />
-          <h3>MEDICINA GENERAL</h3>
-        </div>
-        <div className="iconCard">
-          <img src="/assets/icoEntrenamiento.png" alt="" />
-          <h3>ENTRENAMIENTO</h3>
-        </div>
-      </div>
       <div
         className="description"
-        style={{ backgroundImage: "url('/assets/description2.jpg')" }}
-      >
+        style={{ backgroundImage: "url('/assets/description2.jpg')" }}>
         <div>
           <img src="/assets/logo.png" alt="" />
           <h3>¿Quiénes somos?</h3>

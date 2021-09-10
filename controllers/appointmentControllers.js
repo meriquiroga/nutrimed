@@ -1,8 +1,7 @@
 const Appointment = require("../models/Appointment")
-const transport = require('../config/transport')
+const transport = require("../config/transport")
 
 const appointmentControllers = {
-
    addAppointment: async (req, res) => {
       try {
          const newAppointment = new Appointment({
@@ -17,6 +16,7 @@ const appointmentControllers = {
       }
    },
    getAppointments: async (req, res) => {
+      console.log(req.user)
       if (req.user.doc) {
          try {
             let appointments = await Appointment.find({
@@ -43,16 +43,6 @@ const appointmentControllers = {
          }
       }
    },
-   deleteAppointment: async (req, res) => {
-      try {
-         let appointmentToDelete = await Appointment.findOneAndDelete({
-            _id: req.params.id,
-         })
-         res.json({ success: true })
-      } catch (err) {
-         res.json({ success: false, res: err.message })
-      }
-   },
    getAppointementByDoctor: async (req, res) => {
       try {
          let appointmenDoctor = await Appointment.find({
@@ -64,44 +54,33 @@ const appointmentControllers = {
       }
    },
    sendMails:async(req, res)=>{
+      const {info,doc}= req.body
+      const {name, lastName, data}=req.user
       try{
          let options ={
             from:'NutriMed <nutrimed.centronutricional@gmail.com>',
-            to: req.user.data.mail,
+            to: data.mail,
             subject:'Confimarcion de Turno',
-            // text:`Hola ${req.user.name} ${req.user.lastName}`
             html: `
-            <img src="/assets/logo.png" alt="logo" />
+            <img src="https://i.postimg.cc/s2Z5nX3q/logo.png" alt="logo"/>
             <div>
               <h1>Reserva de turno</h1>
               <h2>
-                Estimado/a ${req.user.name} ${req.user.lastName}:
+                Estimado/a ${name} ${lastName}:
               </h2>
               <p>
                 Te enviamos este e-mail para comunicarte que has reservado un turno en
                 el Centro Medico NutriMed
               </p>
             </div>
-            
-            <div>
-              <h3>Datos del paciente:</h3>
-              <p>Nombre: ${req.user.name} </p>
-              <p>Apellido: ${req.user.lastName}</p>
-              <p>Tipo Documento: D.N.I.</p>
-              <p>Nro. Doc. :</p>
-            </div>
-            
             <div>
               <h2>Constancia del Turno:</h2>
-              <p>Ubicación: Av Colón 150</p>
-              <p>Servicio: ${req.user.specialty}</p>
-              <p>Profesional: ${req.user.id}</p>
-              <p>Turno para el día ${req.user.date} </p>
-              <p>Preparaciones Previas:</p>
+              <p>Profesional: ${doc.name} ${doc.lastName} - ${doc.specialty} - MP${doc.registration} </p>
+              <p>Turno para el ${info.date}</p>
+              <p>Horario: ${info.hour}hs</p>
             </div>
-            
             <div>
-              <h2>INFORMACION IMPORTANTE - MEDIDAS DE PROTECCIÓN:</h2>
+              <h2 style="color: #19b1bc;">INFORMACION IMPORTANTE - MEDIDAS DE PROTECCIÓN:</h2>
               <p>
                 Nuestra institución cumple todos los protocolos, recomendaciones e
                 instrucciones sanitarias en torno al nuevo Coronavirus. Por esta
@@ -120,24 +99,29 @@ const appointmentControllers = {
             </div>
             
             <div>
-              <h2>Importante:</h2>
+              <h2 style="color: #19b1bc;">Importante:</h2>
               <p>
                 Sr/a. Paciente: Solicitamos por favor que en caso de no poder asistir
-                al turno solicitado tenga bien avisarnos via Web o al teléfono
+                al turno solicitado que cancele el mismo. 
                 0810-222-2424.
               </p>
+            <div>
+            <img src="https://i.postimg.cc/Qt5rfMYm/footer1.png" />
             </div>
             
-            `
-
-         }
-         transport.sendMail(options, (err,info)=>{
-            console.log(err)
-         })
-      }catch(err){
-         console.log(err)
+            `,
+      };
+      transport.sendMail(options, (err,info)=>{
+        if(err){
+           throw Error()
+        }else{
+           res.json({success:true})
+        }
+        })
+        }catch(err){
+        res.json({success:false})
       }
-   }
+    }
 }
 
-module.exports = appointmentControllers
+module.exports = appointmentControllers;

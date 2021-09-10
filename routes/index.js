@@ -54,10 +54,10 @@ router
     passport.authenticate("jwt", { session: false }),
     appointmentControllers.addAppointment
   )
-  .delete(
-    passport.authenticate("jwt", { session: false }),
-    appointmentControllers.deleteAppointment
-  );
+  // .delete(
+  //   passport.authenticate("jwt", { session: false }),
+  //   appointmentControllers.deleteAppointment
+  // );
 
 router
   .route("/appointments")
