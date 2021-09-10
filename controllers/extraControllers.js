@@ -1,7 +1,7 @@
 const Avatar = require('../models/Avatar')
 const Socialwork = require('../models/Avatar')
 
-const avatarControllers ={
+const extraControllers ={
     addAvatar:async(req, res)=>{
         let newavatar = new Avatar({...req.body})
         try{
@@ -37,4 +37,4 @@ const avatarControllers ={
         }
     }
 }
-module.exports = avatarControllers
+module.exports = extraControllers

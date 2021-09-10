@@ -96,18 +96,18 @@ const patientActions = {
   confirmFormMail: (user) => {
     return async () => {
       try {
-        let resMail = await axios.post(
-          "http://localhost:4000/api/mail",
-          {},
-          {
+        let res = await axios.post("http://localhost:4000/api/mail",{}, {
             headers: {
               Authorization: "Bearer " + user,
             },
-          }
-        );
-        console.log(resMail);
+          });
+        if(res.success){
+            return({success:true, res:'Recibiras un e-mail con la confirmación del turno'})
+        }else{
+          throw Error
+        }
       } catch (err) {
-        console.log(err);
+          return({success:false, res:''})
       }
     };
   },

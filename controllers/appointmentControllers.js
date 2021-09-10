@@ -69,7 +69,6 @@ const appointmentControllers = {
             from:'NutriMed <nutrimed.centronutricional@gmail.com>',
             to: req.user.data.mail,
             subject:'Confimarcion de Turno',
-            // text:`Hola ${req.user.name} ${req.user.lastName}`
             html: `
             <img src="/assets/logo.png" alt="logo" />
             <div>
@@ -121,21 +120,19 @@ const appointmentControllers = {
             
             <div>
               <h2>Importante:</h2>
-              <p>
-                Sr/a. Paciente: Solicitamos por favor que en caso de no poder asistir
-                al turno solicitado tenga bien avisarnos via Web o al teléfono
-                0810-222-2424.
-              </p>
+              <p>En caso de no poder asistir al turno solicitado tenga bien cancelarlo. Muchas Gracias!</p>
             </div>
-            
             `
-
          }
          transport.sendMail(options, (err,info)=>{
-            console.log(err)
+            if(err){
+               throw Error()
+            }else{
+               res.json({success:true})
+            }
          })
       }catch(err){
-         console.log(err)
+         res.json({success:false})
       }
    }
 }

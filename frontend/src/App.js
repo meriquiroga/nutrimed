@@ -19,38 +19,36 @@ import io from "socket.io-client";
 import SignIn from "./components/SignIn";
 
 
-const App = (props) => {
-  console.log(props.user)
+const App = ({logWithLs,getSocket,user,valid}) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
     setSocket(io("http://localhost:4000/"));
     if (localStorage.getItem("token")) {
-      props.logWithLs(localStorage.getItem("token"));
+      logWithLs(localStorage.getItem("token"));
     }
   }, []);
 
-  props.getSocket(socket);
-  console.log("BORRAME");
-  console.log("otro log");
+  getSocket(socket);
+
   return (
     <BrowserRouter>
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        {!props.valid && <Route path="/signup" component={SignUp} />}
+        {!valid && <Route path="/signup" component={SignUp} />}
         <Route exact path="/staff" component={Staff} />
         <Route path="/staff/:id" component={EachDoctor} />
         <Route path="/information" component={Information} />
         <Route path="/appointment" component={Appointment} />
-        {props.valid && props.user.userExist.doc && (
+        {valid && user.userExist.doc && (
           <Route exact path="/doc/profile" component={EditProfileDoctor} />
         )}
-        {props.valid && <Route exact path="/profile" component={Profile} />}
-        {props.valid && !props.user.userExist.doc && (
+        {valid && <Route exact path="/profile" component={Profile} />}
+        {valid && !user.userExist.doc && (
           <Route exact path="/patient/profile" component={EditProfilePatient} />
         )}
-        {!props.valid && <Route path="/signin" component={SignIn} />}
+        {!valid && <Route path="/signin" component={SignIn} />}
         <Redirect to="/" />
       </Switch>
       <Footer />
