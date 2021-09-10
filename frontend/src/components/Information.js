@@ -1,3 +1,5 @@
+// import Prueba from "../components/Prueba"
+
 const Information = () => {
   return (
     <div className="container">
@@ -37,6 +39,7 @@ const Information = () => {
         </div>
         </div>
       </div>
+      {/* <Prueba /> */}
     </div>
   );
 };

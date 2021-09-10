@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 
+
 export default class Home extends Component {
   componentDidMount(){
     window.scroll(0,0)
@@ -39,8 +40,7 @@ export default class Home extends Component {
       </div>
       <div
         className="description"
-        style={{ backgroundImage: "url('/assets/description2.jpg')" }}
-      >
+        style={{ backgroundImage: "url('/assets/description2.jpg')" }}>
         <div>
           <img src="/assets/logo.png" alt="" />
           <h3>¿Quiénes somos?</h3>
