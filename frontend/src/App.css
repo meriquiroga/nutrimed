@@ -1,14 +1,14 @@
 * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-   display: flex;
-   flex-direction: column;
-   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 header {
    width: 100%;
@@ -22,30 +22,30 @@ header {
 }
 
 header p {
-   padding: 0px 20px;
-   text-align: center;
-   line-height: 1.2;
+  padding: 0px 20px;
+  text-align: center;
+  line-height: 1.2;
 }
 .navbar {
-   display: flex;
-   align-items: center;
-   flex-wrap: wrap;
-   justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .navbar img {
-   margin: 20px;
+  margin: 20px;
 }
 ul {
-   display: flex;
-   list-style: none;
+  display: flex;
+  list-style: none;
 }
 ul li {
-   padding-left: 10px;
+  padding-left: 10px;
 }
 
 a {
-   text-decoration: none;
-   color: gray;
+  text-decoration: none;
+  color: gray;
 }
 
 a.active {
@@ -74,27 +74,27 @@ button {
 }
 
 button a {
-   color: white;
+  color: white;
 }
 
 .hero {
-   height: 60vh;
-   background-position: center;
-   background-size: cover;
-   display: flex;
-   align-items: center;
-   padding-left: 18vw;
+  height: 60vh;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  padding-left: 18vw;
 }
 
 .insideHero {
-   text-align: center;
+  text-align: center;
 }
 
 .insideHero button a {
-   color: white;
+  color: white;
 }
 .hero h1 {
-   color: gray;
+  color: gray;
 }
 
 footer {
@@ -109,71 +109,71 @@ footer {
 }
 
 footer img {
-   width: 45px;
-   margin: 10px;
+  width: 45px;
+  margin: 10px;
 }
 
 .iconCardsContainer {
-   display: flex;
-   justify-content: center;
-   flex-wrap: wrap;
-   padding: 20px 0px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px 0px;
 }
 
 .iconCard {
-   text-align: center;
-   padding: 20px;
-   border-radius: 20px;
-   margin: 20px;
-   width: 220px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 20px;
+  width: 220px;
 }
 
 .iconCard h3 {
-   color: gray;
+  color: gray;
 }
 
 .description {
-   align-items: center;
-   min-height: 400px;
-   background-position: center;
-   background-size: cover;
+  align-items: center;
+  min-height: 400px;
+  background-position: center;
+  background-size: cover;
 }
 
 .description div {
-   padding: 10vw;
-   text-align: center;
-   line-height: 2.3;
+  padding: 10vw;
+  text-align: center;
+  line-height: 2.3;
 }
 
 .contenedor {
-   min-height: 80vh;
+  min-height: 80vh;
 }
 
 .contenedor1 {
-   display: flex;
+  display: flex;
 }
 
 .section-doctors {
-   display: flex;
-   justify-content: space-evenly;
-   text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
 }
 .icono {
-   width: 2vw;
+  width: 2vw;
 }
 
 .container {
-   text-align: center;
-   align-self: center;
-   min-height: 80vh;
+  text-align: center;
+  align-self: center;
+  min-height: 80vh;
 }
 
 .containerLoading {
-   text-align: center;
-   align-self: center;
-   min-height: 80vh;
-   padding-top: 20vh;
-   background-color: #f0f3f5;
+  text-align: center;
+  align-self: center;
+  min-height: 80vh;
+  padding-top: 20vh;
+  background-color: #f0f3f5;
 }
 .grayContainer {
    text-align: center;
@@ -186,28 +186,28 @@ footer img {
    padding-top: 20px;
 }
 .radio {
-   display: flex;
-   justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .radio div {
-   padding: 10px;
+  padding: 10px;
 }
 
 .inputs {
-   text-align: center;
-   display: flex;
-   flex-direction: column;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .inputs input {
-   padding: 10px;
-   border-radius: 50px;
-   border: 2px gray solid;
-   margin: 10px;
-   width: 400px;
-   align-self: center;
-   outline: none;
+  padding: 10px;
+  border-radius: 50px;
+  border: 2px gray solid;
+  margin: 10px;
+  width: 400px;
+  align-self: center;
+  outline: none;
 }
 
 .inputs p {
@@ -227,44 +227,44 @@ footer img {
 }
 
 .footerNavbar li p {
-   color: white;
-   padding: 15px;
+  color: white;
+  padding: 15px;
 }
 
 .profile {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
 }
 
 .profileImg {
-   width: 160px;
-   height: 160px;
-   border-radius: 100px;
-   margin: 2rem;
-   background-position: center;
-   background-size: cover;
-   background-repeat: no-repeat;
+  width: 160px;
+  height: 160px;
+  border-radius: 100px;
+  margin: 2rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .leftProfile {
-   display: flex;
-   flex-direction: column;
-   background-color: #f0f3f5;
-   width: 300px;
-   align-items: center;
-   padding: 22px;
-   min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f3f5;
+  width: 300px;
+  align-items: center;
+  padding: 22px;
+  min-height: 70vh;
 }
 
 .leftProfile button a {
-   color: white;
+  color: white;
 }
 
 .leftProfile p {
-   text-align: center;
-   padding: 20px 0px;
+  text-align: center;
+  padding: 20px 0px;
 }
 
 .rightProfile {
@@ -277,48 +277,48 @@ footer img {
 }
 
 .centroProfile {
-   display: flex;
-   flex-direction: column;
-   min-width: 600px;
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
 }
 
 .proxTurnos {
-   color: white;
-   padding-top: 1rem;
+  color: white;
+  padding-top: 1rem;
 }
 
 .tituloProfile {
-   align-self: center;
+  align-self: center;
 }
 
 .turnos {
-   background-color: #f0f3f5;
-   padding: 5px 10px;
-   margin: 5px;
-   border-radius: 12px;
-   text-align: center;
+  background-color: #f0f3f5;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 12px;
+  text-align: center;
 }
 
 .turnos p {
-   font-size: small;
+  font-size: small;
 }
 
 .datosProfile {
-   text-align: left;
-   padding: 20px;
+  text-align: left;
+  padding: 20px;
 }
 
 .datosProfile p {
-   text-align: left;
+  text-align: left;
 }
 
 .dataClient {
-   height: 80vh;
-   display: flex;
-   justify-content: center;
-   flex-direction: column;
-   align-items: center;
-   background-color: rgb(255, 255, 255);
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
 }
 
 .doctorCardsContainer {
@@ -359,96 +359,96 @@ footer img {
 }
 
 .doc {
-   width: 200px;
-   height: 200px;
-   background-position: center;
-   background-size: cover;
-   background-repeat: no-repeat;
+  width: 200px;
+  height: 200px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .cvDoc {
-   display: flex;
-   flex-direction: column;
-   background-color: black;
-   width: 300px;
-   align-items: center;
-   padding: 22px;
-   min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  width: 300px;
+  align-items: center;
+  padding: 22px;
+  min-height: 70vh;
 }
 
 .containerDocCv {
-   background-color: #3b5363;
-   display: flex;
-   justify-content: center;
-   min-height: 80vh;
+  background-color: #3b5363;
+  display: flex;
+  justify-content: center;
+  min-height: 80vh;
 }
 .docDescription {
-   width: 800px;
-   padding: 20px 100px;
-   text-align: left;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
+  width: 800px;
+  padding: 20px 100px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .docInfo {
-   text-align: left;
-   padding-left: 20px;
+  text-align: left;
+  padding-left: 20px;
 }
 .divReview {
-   max-height: 50vh;
-   display: flex;
-   flex-direction: column;
-   align-content: center;
+  max-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
 
 .divReview input {
-   padding: 10px;
-   border-radius: 50px;
-   border: 2px gray solid;
-   margin: 10px;
-   width: 400px;
-   align-self: center;
-   outline: none;
+  padding: 10px;
+  border-radius: 50px;
+  border: 2px gray solid;
+  margin: 10px;
+  width: 400px;
+  align-self: center;
+  outline: none;
 }
 
 #optionObraSocial {
-   padding: 10px;
-   border-radius: 50px;
-   border: 2px gray solid;
-   margin: 10px;
-   width: 400px;
-   align-self: center;
-   outline: none;
-   color: gray;
-   appearance: none;
+  padding: 10px;
+  border-radius: 50px;
+  border: 2px gray solid;
+  margin: 10px;
+  width: 400px;
+  align-self: center;
+  outline: none;
+  color: gray;
+  appearance: none;
 }
 
 #optionDoctor {
-   padding: 10px;
-   border-radius: 50px;
-   border: 2px gray solid;
-   margin: 10px;
-   width: 400px;
-   align-self: center;
-   outline: none;
-   color: gray;
-   appearance: none;
+  padding: 10px;
+  border-radius: 50px;
+  border: 2px gray solid;
+  margin: 10px;
+  width: 400px;
+  align-self: center;
+  outline: none;
+  color: gray;
+  appearance: none;
 }
 
 #fileCharger {
-   background-color: white;
-   color: gray;
+  background-color: white;
+  color: gray;
 }
 
 .underConstruction {
-   height: 300px;
-   width: 300px;
-   margin-top: 40px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   align-self: center;
-   background-color: #f0f3f5;
-   border-radius: 20px;
+  height: 300px;
+  width: 300px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  background-color: #f0f3f5;
+  border-radius: 20px;
 }
 
 @media (max-width: 991px) {
@@ -512,49 +512,49 @@ footer img {
 }
 
 .pageDoctor {
-   display: flex;
+  display: flex;
 }
 
 .imgTurnos {
-   width: 50px;
+  width: 50px;
 }
 .iconCom {
-   width: 30px;
+  width: 30px;
 }
 
 .iconTurn {
-   width: 50px;
+  width: 50px;
 }
 
 .hour {
-   padding: 5px;
-   border-radius: 0;
-   width: 80px;
-   margin: 6px;
+  padding: 5px;
+  border-radius: 0;
+  width: 80px;
+  margin: 6px;
 }
 
 .textArea {
-   border: none;
-   min-width: 400px;
+  border: none;
+  min-width: 400px;
 }
 
 .commentBox {
-   display: flex;
-   flex-direction: column;
-   max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
 }
 
 .iconperfil {
-   width: 60px;
-   height: 60px;
-   border-radius: 50px;
-   margin: 0px 10px;
-   background-position: center;
-   background-size: cover;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  margin: 0px 10px;
+  background-position: center;
+  background-size: cover;
 }
 
 #buttonSign {
-   cursor: pointer;
+  cursor: pointer;
 }
 
 .medicalData {
@@ -565,16 +565,16 @@ footer img {
 }
 
 .divComentaries {
-   background-color: white;
-   /* width: 60%; */
-   align-self: left;
+  background-color: white;
+  /* width: 60%; */
+  align-self: left;
 }
 
 .comment {
-   display: flex;
-   align-content: center;
-   align-items: top;
-   padding: 10px;
+  display: flex;
+  align-content: center;
+  align-items: top;
+  padding: 10px;
 }
 
 .confirm {
@@ -582,29 +582,29 @@ footer img {
 }
 
 .container2 {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   align-items: auto;
-   align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: auto;
+  align-content: center;
 }
 
 .full,
 .noFull {
-   height: 45px;
-   flex: 0 0 auto;
-   margin: 10px;
-   padding: 10px;
-   color: white;
+  height: 45px;
+  flex: 0 0 auto;
+  margin: 10px;
+  padding: 10px;
+  color: white;
 }
 .full {
-   background-color: rgb(160, 160, 160);
+  background-color: rgb(160, 160, 160);
 }
 .noFull {
    background-color: #1BB6D1;
 }
 .noTurns {
-   max-width: 180px;
+  max-width: 180px;
 }
 .ABC {
   display: flex;
@@ -615,54 +615,54 @@ footer img {
 }
 
 .imgMD {
-   width: 150px;
+  width: 150px;
 }
 
 .descripcion {
-   overflow-y: scroll;
-   height: 40vh;
-   width: 60vw;
-   background-color: #f1f0f0;
-   text-align: left;
-   padding: 20px;
+  overflow-y: scroll;
+  height: 40vh;
+  width: 60vw;
+  background-color: #f1f0f0;
+  text-align: left;
+  padding: 20px;
 }
 
 .logOut {
-   display: flex;
-   align-content: center;
-   align-items: center;
-   height: 80px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 80px;
 }
 .DEF {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .icon-contact {
-   width: 7vw;
+  width: 7vw;
 }
 
 .icon-map {
-   width: 7vw;
+  width: 7vw;
 }
 
 .form-consulta {
-   width: 100%;
-   padding: 4vh;
-   display: flex;
-   justify-content: center;
+  width: 100%;
+  padding: 4vh;
+  display: flex;
+  justify-content: center;
 }
 .textarea {
-   width: 100%;
-   height: 25vh;
-   resize: none;
-   border-radius: 2vw;
-   outline: none;
-   border: 2px gray solid;
-   padding: 4vh;
-   display: flex;
-   align-self: center;
+  width: 100%;
+  height: 25vh;
+  resize: none;
+  border-radius: 2vw;
+  outline: none;
+  border: 2px gray solid;
+  padding: 4vh;
+  display: flex;
+  align-self: center;
 }
 .errorY {
    border: 2px red solid !important;
@@ -685,44 +685,92 @@ footer img {
 
 /* ESTILOS QUE DEBEN SER CAMBIADOS */
 
+input.inputAvatar {
+  background-color: transparent !important;
+  border: none !important;
+  color: transparent;
+  outline: none !important;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  font-size: 60px;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+}
+
+input.inputAvatar::placeholder {
+  background-color: transparent;
+  font-size: 16px;
+  text-align: start;
+}
+input.inputAvatar:focus {
+  background-color: transparent;
+  border: none !important;
+  outline: none !important;
+  color: transparent;
+}
+
+.thumbNails {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 30%;
+  height: 70%;
+  margin: 0 3vw;
+  background-color: white;
+}
+
+.thumbNail {
+  height: 50px;
+  width: 100%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .containerPreview {
-   border-radius: 50px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   align-self: center;
+  width: 60vw;
+  height: 40vh;
+  border-radius: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
 }
 
 .preview {
-   background-size: contain;
-   background-repeat: no-repeat;
-   background-position: top;
-   margin: 0 3vw;
-   width: 80px;
-   height: 80px;
-   border-radius: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top;
+  margin: 0 3vw;
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
 }
 
-.containerPreview select {
-   padding: 10px;
-   border-radius: 50px;
-   border: 2px gray solid;
-   margin: 10px;
-   align-self: center;
-   outline: none;
+/* .containerPreview select {
+  padding: 10px;
+  border-radius: 50px;
+  border: 2px gray solid;
+  margin: 10px;
+  align-self: center;
+  outline: none;
 }
 
 .avatarInput select {
-   width: 10vw;
-   box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
-   -webkit-box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
-   -moz-box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
-}
+  width: 10vw;
+  box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
+  -moz-box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
+} */
 
 .errorN {
-   box-shadow: none;
-   -webkit-box-shadow: none;
-   -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
 }
 
 .botonFichaMedica {
@@ -731,23 +779,23 @@ footer img {
 }
 
 .accordion {
-   background-color: white;
-   border-radius: 10px;
-   text-align: center;
-   padding: 5px 0px;
-   margin: 1rem;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px 0px;
+  margin: 1rem;
 }
 
 .historiaClinica {
-   width: 30px;
-   cursor: pointer;
+  width: 30px;
+  cursor: pointer;
 }
 
 .nombre-HC {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
 }
 
 .medicalInput {
