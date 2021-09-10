@@ -33,25 +33,25 @@ const doctorActions = {
       } catch (err) {
         return { success: false, res: err };
       }
-    };
-  },
-  getOneDoctor: (id) => {
-    return (dispatch, getState) => {
-      dispatch({ type: "GET_ONE_DOCTOR", payload: id });
-    };
-  },
-  getOneDoctorDB: (id) => {
-    return async (dispatch, getState) => {
-      try {
-        let res = await axios.get(`http://localhost:4000/api/doctor/${id}`);
-        if (res.data.success) {
-          dispatch({ type: "GET_ONE_DOCTOR_DB", payload: res.data.res });
-          return { success: true, res: res.data.res.review };
-        }
-      } catch (err) {
-        return { success: false, res: err };
+    }
+   },
+   getOneDoctor: (id) => {
+      return (dispatch, getState) => {
+         dispatch({ type: "GET_ONE_DOCTOR", payload: id })
       }
-    };
+   },
+   getOneDoctorDB: (id) => {
+      return async (dispatch, getState) => {
+         try {
+            let res = await axios.get(`http://localhost:4000/api/doctor/${id}`)
+            if (res.data.success) {
+               dispatch({ type: "GET_ONE_DOCTOR_DB", payload: res.data.res })
+               return {success: true, res: res.data.res}
+            }
+         } catch (err) {
+            return { success: false, res: err }
+         }
+      }
   },
   actionReview: (user, id, text, action, reviewId) => {
     return async () => {
@@ -132,8 +132,27 @@ const doctorActions = {
       } catch (err) {
         return { success: false, res: err };
       }
-    };
-  },
-};
+    }
+   },
+   sendScore: (data)=>{
+      const {doc, point, action, user} = data
+      return async ()=>{
+         try{
+            let res = await axios.put(`http://localhost:4000/api/doctor/${doc}`,{point, action},{
+               headers: {
+                  Authorization: "Bearer " + user,
+               },
+            })
+            if(res.data.success){
+               return { success:true, res: res.data.res}
+            }else{
+               throw Error
+            }
+         }catch(err){
+            return {success:false}
+         }
+      }
+   }
+}
 
 export default doctorActions;

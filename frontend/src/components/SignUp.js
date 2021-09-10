@@ -279,7 +279,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
           <p>
             ¿Ya tenés cuenta? <Link to="/signin">¡Ingresá aquí!</Link>
           </p>
-        </div>
+        </div>     
     </>
   );
 };

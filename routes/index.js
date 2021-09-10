@@ -1,15 +1,16 @@
-const express = require("express")
-const router = express.Router()
-const passport = require("passport")
-const userControllers = require("../controllers/userControllers")
-const doctorControllers = require("../controllers/doctorControllers")
-const patientControllers = require("../controllers/patientControllers")
-const appointmentControllers = require("../controllers/appointmentControllers")
-const calendarControllers = require("../controllers/calendarControllers")
-const extraControllers = require("../controllers/extraControllers")
-const validator = require("../controllers/validator")
+const express = require("express");
+const router = express.Router();
+const passport = require("passport");
+const userControllers = require("../controllers/userControllers");
+const doctorControllers = require("../controllers/doctorControllers");
+const patientControllers = require("../controllers/patientControllers");
+const appointmentControllers = require("../controllers/appointmentControllers");
+const calendarControllers = require("../controllers/calendarControllers");
+const extraControllers = require('../controllers/extraControllers')
+const validator = require("../controllers/validator");
 
-router.route("/user").post(validator, userControllers.addUser)
+router.route("/user")
+.post(validator, userControllers.addUser);
 
 router
    .route("/doctor")
@@ -22,12 +23,12 @@ router
 router.route("/doctors").get(doctorControllers.getDoctors)
 
 router
-   .route("/doctor/:id")
-   .get(doctorControllers.getDoctorById)
-   .put(
-      passport.authenticate("jwt", { session: false }),
-      doctorControllers.changedReview
-   )
+  .route("/doctor/:id")
+  .get(doctorControllers.getDoctorById)
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    doctorControllers.changedReviewAndScore
+  );
 
 router
 
@@ -48,16 +49,16 @@ router
    )
 
 router
-   .route("/appointment/:id")
-   .get(appointmentControllers.getAppointementByDoctor)
-   .post(
-      passport.authenticate("jwt", { session: false }),
-      appointmentControllers.addAppointment
-   )
-   .delete(
-      passport.authenticate("jwt", { session: false }),
-      appointmentControllers.deleteAppointement
-   )
+  .route("/appointment/:id")
+  .get(appointmentControllers.getAppointementByDoctor)
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    appointmentControllers.addAppointment
+  )
+  .delete(
+    passport.authenticate("jwt", { session: false }),
+    appointmentControllers.deleteAppointement
+  );
 
 router
    .route("/appointments")

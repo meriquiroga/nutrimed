@@ -17,7 +17,7 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
       hour: "",
       date: "",
     },
-    doctorId: "",
+    doctorId: "a",
     patientId: "",
   });
   useEffect(() => {
@@ -73,6 +73,7 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
     )
   })
   const confirmAppointmentHandler =(data)=>{
+    setAppointmentReady({...appointmentReady, doctorId:""})
     addAppointment(data)
     .then(res=>{
       if(res.success){
@@ -81,7 +82,6 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
       }else{
         setConfirmAppointment('Lo sentimos, ha ocurrido un error. Por favor, intentá de nuevo más tarde.')
       }
-      setAppointmentReady({...appointmentReady, doctorId:""})
       getAppointementByDoctor(appointmentReady.doctorId)
       .then(res=> setDiaryByDoc(res.res))
       setTimeout(() => {
@@ -93,6 +93,7 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
   return (
     <>
       <div className="container">
+        {console.log(appointmentReady)}
         <div className="grayContainer">
         <img src="/assets/appointment.png" alt="" />
         <h3>

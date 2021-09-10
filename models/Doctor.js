@@ -19,7 +19,10 @@ const doctorSchema = new mongoose.Schema({
         phoneNumber:{type:Number, default:null},
         mail:{type:String, default:null}
     },
-    score:Array,
+    score:[{
+        patientId:{type:mongoose.Types.ObjectId, ref:'patient'},
+        point:Number
+    }],
     review:[{
         patientId:{type:mongoose.Types.ObjectId, ref:'patient'},
         text:String,  
