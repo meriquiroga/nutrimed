@@ -16,7 +16,7 @@ const userActions = {
                })
                return { success: true, res: res }
             }else {
-               return res
+               return res.data
             }
          } catch (err) {
             return { success: false, res: err.message }

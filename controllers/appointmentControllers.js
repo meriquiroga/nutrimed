@@ -16,7 +16,6 @@ const appointmentControllers = {
       }
    },
    getAppointments: async (req, res) => {
-      console.log(req.user)
       if (req.user.doc) {
          try {
             let appointments = await Appointment.find({

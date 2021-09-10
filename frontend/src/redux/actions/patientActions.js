@@ -1,7 +1,6 @@
 import axios from "axios"
 
 const patientActions = {
-<<<<<<< HEAD
   // editProfilePatient: () => {
   //   console.log("editando");
   //   return async () => {
@@ -15,20 +14,6 @@ const patientActions = {
   //     }
   //   };
   // },
-=======
-   editProfilePatient: () => {
-      return async () => {
-         try {
-            let res = await axios.put(`http://localhost:4000/api/patient`, {})
-            if (res.data.response) {
-               return { success: true, response: res.data.response }
-            }
-         } catch (err) {
-            return { success: false, res: err }
-         }
-      }
-   },
->>>>>>> 91b37da61079cf791a0f1b787e7a27030f3a054b
 
    getPatients: () => {
       return async (dispatch, getState) => {

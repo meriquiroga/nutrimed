@@ -4,12 +4,14 @@ import { GoogleLogin } from "react-google-login";
 import userActions from "../redux/actions/userActions";
 import patientActions from "../redux/actions/patientActions";
 import { Link } from "react-router-dom";
+import ReactTooltip from "react-tooltip"
+
 
 const SignUp = ({ signUpUser, getAvatars }) => {
   let valor = null;
   const [valueIn, setValueIn] = useState("");
   const [errors, setErrors] = useState([]);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState({errorOne: false, errorTwo: false});
   const [newUser, setNewUser] = useState({
     name: "",
     lastName: "",
@@ -30,7 +32,6 @@ const SignUp = ({ signUpUser, getAvatars }) => {
       let response = await getAvatars();
       if (response.success) {
         setAvatars(response.res);
-        console.log(response.res);
       } else {
         console.log("no fetchea avatares");
       }
@@ -38,6 +39,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
     getAllAvatars();
 
     return false;
+    // eslint-disable-next-line
   }, []);
   const inputValue = (e) => {
     setPreviewImg(e.target.value);
@@ -51,11 +53,13 @@ const SignUp = ({ signUpUser, getAvatars }) => {
         !Object.values([i]).includes("passwordAdm")
       ) {
         valor = valor + 1;
-        setError(true);
+        (valor > 1 || errors.length > 1)  && setError({errorOne: true});
       }
     }
     return valor;
   };
+
+
 
   const responseGoogle = (res) => {
     let logWithGoogle = {
@@ -68,7 +72,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
     };
     signUpUser(logWithGoogle).then((res) => {
       if (!res.success) {
-        setError(true);
+        setError({errorOne: true});
         setErrors([{ message: res.res }]);
       }
     });
@@ -82,19 +86,22 @@ const SignUp = ({ signUpUser, getAvatars }) => {
       newUser.doc = false;
     }
     if (valor < 2) {
-      signUpUser({ ...newUser, doc: newUser.doc }).then((res) => {
+      signUpUser({ ...newUser, doc: newUser.doc }).then((res) => { console.log(res)
         if (!res.success) {
+          setError({errorOne: true})
+          setError({errorTwo: true})
           typeof res.res === "string"
             ? setErrors([{ message: "Ups! intentelo mas tarde" }])
-            : setErrors(res.res);
+            : setErrors(res.res)
         }
       });
-    }
-    setErrors([{ message: "Todos los campos debe estar completos" }]);
+    }else
+    setErrors([{ message: "Debe llenar este dato" }])
   };
 
   const addUserHandler = (e) => {
-    setError(false);
+    setError({errorOne: false});
+    setError({errorTwo: false})
     if (e.target.name === "data") {
       setNewUser({ ...newUser, data: { mail: e.target.value } });
     } else {
@@ -106,145 +113,136 @@ const SignUp = ({ signUpUser, getAvatars }) => {
     setValueIn(e.target.value);
   };
 
+
   let disp = valueIn === "prof" ? "block" : "none";
   let dispGo = valueIn === "prof" ? "none" : "block";
 
+
+
+      let mensaje1 = null
+      let mensaje2 = null
+      let mensaje3 = null
+      let mensaje4 = null
+      let mensaje5 = null
+      let mensaje6 = null
+
     return (
       <>
+      {  
+      errors.forEach(newError => 
+        newError.message.includes("dato") ? mensaje1 = newError.message 
+      : newError.message.includes("nombre") ? mensaje2 = newError.message
+      : newError.message.includes("apellido") ? mensaje3 = newError.message
+      : newError.message.includes("email") ? mensaje4 = newError.message
+      : newError.message.includes("contraseña") ? mensaje5 = newError.message
+      : newError.message.includes("validar") ? mensaje6 = "Las contraseñas deben coincidir" 
+      : console.log(error))
+      
+        }
+
+      <ReactTooltip id="buttonError1" place="top" effect="solid" className="buttonGoogle"> {mensaje1 ? mensaje1 : mensaje2 && mensaje2} </ReactTooltip>
+      <ReactTooltip id="buttonError2" place="top" effect="solid" className="buttonGoogle"> {mensaje1 ? mensaje1 : mensaje3 && mensaje3} </ReactTooltip>
+      <ReactTooltip id="buttonError3" place="top" effect="solid" className="buttonGoogle"> {mensaje1 ? mensaje1 : mensaje4 && mensaje4} </ReactTooltip>
+      <ReactTooltip id="buttonError4" place="top" effect="solid" className="buttonGoogle"> {mensaje1 ? mensaje1 : mensaje5 && mensaje5} </ReactTooltip>
+      <ReactTooltip id="buttonError5" place="top" effect="solid" className="buttonGoogle"> {mensaje1 ? mensaje1 : mensaje6 && mensaje6} </ReactTooltip>
+      <ReactTooltip id="buttonError6" place="top" effect="solid" className="buttonGoogle"> {mensaje1 ? mensaje1 : ""} </ReactTooltip>
+
         <div className="container">
           <div className="grayContainer">
             <img src='/assets/form.png' alt=""/>  
             <h3>¿Usted se registrará como paciente o profesional?</h3>
             <div className="radio">
-              <div>Paciente <input onClick={validInputHandler} type="radio" name="buttonRol" defaultValue="pat" defaultChecked/></div>
-              <div>Profesional <input onClick={validInputHandler} type="radio" name="buttonRol" defaultValue="prof"/></div>
+              <div>Paciente 
+                <input
+                 onClick={validInputHandler} 
+                 type="radio" 
+                 name="buttonRol" 
+                 defaultValue="pat" 
+                 defaultChecked/>
+              </div>
+              <div>Profesional 
+                <input 
+                onClick={validInputHandler} 
+                type="radio" 
+                name="buttonRol" 
+                defaultValue="prof"/>
+              </div>
             </div>
             <div className="inputs">
-              <input type="text" placeholder="Nombre" className={((error && !newUser.name.length) ? "errorY" : "errorN")}
-              name="name" onChange={addUserHandler}  defaultValue={newUser.name}  
-              />
-              <input type="text" placeholder="Apellido"
-              name="lastName"  className={((error && !newUser.lastName.length) ? "errorY" : "errorN")}
-              onChange={addUserHandler} defaultValue={newUser.lastName} 
-                />
-              <input type="email" placeholder="Email" 
-              name="data" className={((error && !newUser.data.mail.length) ? "errorY" : "errorN")}
-              onChange={addUserHandler} defaultValue={newUser.data.mail} 
-              />
-              <input type="password" placeholder="Contraseña"
-              name="password" className={((error && !newUser.password.length) ? "errorY" : "errorN")} 
-              onChange={addUserHandler}  defaultValue={newUser.password} 
-              />
-              <input type="password" placeholder="Repita su contraseña"
-              name="validPassword" className={((error && !newUser.validPassword.length) ? "errorY" : "errorN")}
-                onChange={addUserHandler}  defaultValue={newUser.validPassword} 
-                />
-              <input type="text" placeholder="Foto de perfil" 
-              name="src" className={((error && !newUser.src.length) ? "errorY" : "errorN")}
-                onChange={addUserHandler} defaultValue={newUser.src} 
-                />
-              <input type="password" placeholder="Clave profesional NutriMed" name="passwordAdm"
-              style={{display:disp}}  className={((error && !newUser.passwordAdm.length) ? "errorY" : "errorN")}
-              onChange={addUserHandler} defaultValue={newUser.passwordAdm} required={valueIn === "prof" ? true : false}
-              />
-            </div>
-            <div>
-              Profesional{" "}
-              <input
-                onClick={validInputHandler}
-                type="radio"
-                name="buttonRol"
-                defaultValue="prof"
-              />
-            </div>
-          </div>
-          <div className="inputs">
-            <input
-              type="text"
-              placeholder="Nombre"
-              className={error && !newUser.name.length ? "errorY" : "errorN"}
+              <input 
+              type="text" 
+              placeholder="Nombre" 
+              className={
+                ((error.errorOne && !newUser.name.length) ? "errorY" : "errorN")}
               name="name"
-              onChange={addUserHandler}
-              defaultValue={newUser.name}
-            />
-            <input
-              type="text"
+              onChange={addUserHandler}  
+              defaultValue={newUser.name}  
+              />
+              {<img data-tip data-for="buttonError1" style={{height:"40px", width:"40px", display: ((error.errorOne && !newUser.name.length) || error.errorTwo) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              <input 
+              type="text" 
               placeholder="Apellido"
-              name="lastName"
+              name="lastName"  
               className={
-                error && !newUser.lastName.length ? "errorY" : "errorN"
-              }
-              onChange={addUserHandler}
-              defaultValue={newUser.lastName}
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              name="data"
+                ((error.errorOne && !newUser.lastName.length) ? "errorY" : "errorN")}
+              onChange={addUserHandler} 
+              defaultValue={newUser.lastName} 
+              />
+              {<img data-tip data-for="buttonError2" style={{height:"40px", width:"40px", display:((error.errorOne && !newUser.lastName.length) || error.errorTwo) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              <input 
+              type="email" 
+              placeholder="Email" 
+              name="data" 
               className={
-                error && !newUser.data.mail.length ? "errorY" : "errorN"
-              }
-              onChange={addUserHandler}
-              defaultValue={newUser.data.mail}
-            />
-            <input
-              type="password"
+                ((error.errorOne && !newUser.data.mail.length) ? "errorY" : "errorN")}
+              onChange={addUserHandler} 
+              defaultValue={newUser.data.mail} 
+              />
+              {<img data-tip data-for="buttonError3"  style={{height:"40px", width:"40px", display:((error.errorOne && !newUser.data.mail.length) || error.errorTwo) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              <input 
+              type="password" 
               placeholder="Contraseña"
-              name="password"
+              name="password" 
               className={
-                error && !newUser.password.length ? "errorY" : "errorN"
-              }
-              onChange={addUserHandler}
-              defaultValue={newUser.password}
-            />
-            <input
-              type="password"
+                ((error.errorOne && !newUser.password.length) ? "errorY" : "errorN")} 
+              onChange={addUserHandler}  
+              defaultValue={newUser.password} 
+              />
+              {<img data-tip data-for="buttonError4" style={{height:"40px", width:"40px", display:((error.errorOne && !newUser.password.length) || error.errorTwo) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              <input 
+              type="password" 
               placeholder="Repita su contraseña"
-              name="validPassword"
+              name="validPassword" 
               className={
-                error && !newUser.validPassword.length ? "errorY" : "errorN"
-              }
+                ((error.errorOne && !newUser.validPassword.length) ? "errorY" : "errorN")}
               onChange={addUserHandler}
               defaultValue={newUser.validPassword}
-            />
-            <input
-              type="text"
-              placeholder="Foto de perfil"
-              name="src"
-              className={error && !newUser.src.length ? "errorY" : "errorN"}
-              onChange={addUserHandler}
-              defaultValue={newUser.src}
-            />
-            <input
-              type="password"
-              placeholder="Contraseña de profesional"
+                />
+              {<img data-tip data-for="buttonError5" style={{height:"40px", width:"40px", display:((error.errorOne && !newUser.validPassword.length) || error.errorTwo) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              <input 
+              type="password" 
+              placeholder="Clave profesional NutriMed" 
               name="passwordAdm"
-              style={{ display: disp }}
+              style={{display:disp}}  
               className={
-                error && !newUser.passwordAdm.length ? "errorY" : "errorN"
-              }
-              onChange={addUserHandler}
-              defaultValue={newUser.passwordAdm}
+                ((error.errorOne && !newUser.passwordAdm.length) ? "errorY" : "errorN")}
+              onChange={addUserHandler} 
+              defaultValue={newUser.passwordAdm} 
               required={valueIn === "prof" ? true : false}
-            />
+              />
+            </div>
           </div>
-          <div>
-            {error &&
-              errors.map((error) => (
-                <p key={error.message} style={{ fontSize: "1.3vmin" }}>
-                  *{error.message}
-                </p>
-              ))}
-          </div>
-          <div className="containerPreview">
-            <div
-              className="preview"
-              style={{
-                backgroundImage: `url("${previewImg}")`,
-              }}
-            ></div>
+          <h3>Elija su avatar para perfil</h3>
 
-            <div className="thumbNails">
+          <div className="containerPreview" >
+          {<img data-tip data-for="buttonError6" style={{height:"40px", width:"40px", display:(error.errorOne && errors.length) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              <div
+                className="preview"
+                style={{
+                  backgroundImage: `url("${previewImg}")`,
+                }}
+              ></div>
+            <div className={((error.errorOne && !newUser.src.length) ? "errorY thumbNails" : "errorN thumbNails")}>
               {avatars.map((div, index) => (
                 <div
                   onClick={inputValue}
@@ -254,11 +252,17 @@ const SignUp = ({ signUpUser, getAvatars }) => {
                     backgroundImage: `url("${div.src}")`,
                   }}
                 >
-                  <input className="inputAvatar" defaultValue={div.src}></input>
+                  <input className="inputAvatar" name="src" onClick={addUserHandler}  defaultValue={div.src}></input>
                 </div>
               ))}
             </div>
           </div>
+          {/* {error.errorOne &&
+              errors.map((error) => (
+                <p key={error.message} style={{ fontSize: "1.3vmin" }}>
+                  *{error.message}
+                </p>
+              ))} */}
           <button onClick={submitHandler}>REGISTRARSE</button>
 
           <div style={{ display: dispGo }}>
