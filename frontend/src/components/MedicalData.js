@@ -58,12 +58,12 @@ const MedicalData = (props) => {
                         {data.direction.num}
                         {data.direction.city}
                      </p>
-                     <p>Telefono: {data.phoneNumber}</p>
+                     <p>Teléfono: {data.phoneNumber}</p>
                      <p>E-mail: {data.mail}</p>
                   </div>
                </div>
                <div className="DEF">
-                  <h2>REGISTRO DE NOTAS</h2>
+                  <h3>Registro de notas</h3>
                   <div className="descripcion">
                      {descriptions.length === 0 ? (
                         <p>No hay notas aún</p>

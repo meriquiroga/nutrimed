@@ -128,8 +128,8 @@ const SignIn = ({logIn}) => {
               onKeyPress={handleKeyPress}
             />
           </div>
-          {error.errorUno && <p style={{fontSize:"1.3vmin"}} >*{errors}</p>}
-          {error.errorDos && <p style={{fontSize:"1.3vmin"}} >*{errors}</p>}
+          {error.errorUno && <p style={{fontSize:"small"}} >*{errors}</p>}
+          {error.errorDos && <p style={{fontSize:"small"}} >*{errors}</p>}
           <button id="buttonSign" onClick={submitUserLog}>
             LOGIN
           </button>

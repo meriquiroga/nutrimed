@@ -53,7 +53,7 @@ const ProfileUser = (props) => {
                expanded={day === 1}
             >
                {day2.length === 0 ? (
-                  <p>No hay turnos por el momento</p>
+                  <p>No hay turnos por el momento.</p>
                ) : (
                   day2.map((appointment, index) => {
                      return (
@@ -69,8 +69,7 @@ const ProfileUser = (props) => {
                                     <img
                                        className="historiaClinica"
                                        onClick={onClick}
-                                       src="https://i.postimg.cc/HLKYYRpM/historial-Clinico.png"
-                                       alt="historiaClinica"
+                                       src="/assets/historialClinico.png" alt=""
                                     />
                                  )}
                                  offsetX={0}
@@ -95,8 +94,8 @@ const ProfileUser = (props) => {
                                  )}
                               </ReactCircleModal>
                            </div>
-                           <h5>{appointment.date.date}</h5>
-                           <h5>{appointment.date.hour} hs</h5>
+                           <p>{appointment.date.date}</p>
+                           <p>{appointment.date.hour} hs</p>
                            <button
                               onClick={() => deleteAppoint(appointment._id)}
                            >
@@ -166,7 +165,7 @@ const ProfileUser = (props) => {
             {!doc ? (
                <h4 className="proxTurnos">PRÓXIMOS TURNOS</h4>
             ) : (
-               <h3 className="proxTurnos">PRÓXIMOS PACIENTES</h3>
+               <h4 className="proxTurnos">PRÓXIMOS PACIENTES</h4>
             )}
             {!doc ? (
                appointments.length === 0 ? (
@@ -177,14 +176,14 @@ const ProfileUser = (props) => {
                         <div key={index}>
                            <div>
                               <Link to={`/staff/${appointment.doctorId._id}`}>
-                                 <h4 className="linksDoctor">
+                                 <h3 className="linksDoctor">
                                     {appointment.doctorId.name}{" "}
                                     {appointment.doctorId.lastName}
-                                 </h4>
+                                 </h3>
                               </Link>
                            </div>
-                           <h5>{appointment.date.date}</h5>
-                           <h5>{appointment.date.hour} hs</h5>
+                           <p className="turnos">{appointment.date.date}</p>
+                           <p className="turnos">{appointment.date.hour} hs.</p>
                            <button
                               onClick={() => deleteAppoint(appointment._id)}
                            >

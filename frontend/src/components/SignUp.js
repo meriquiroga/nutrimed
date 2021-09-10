@@ -96,7 +96,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
         }
       });
     }else
-    setErrors([{ message: "Debe llenar este dato" }])
+    setErrors([{ message: "Todos los campos deben estar completos" }])
   };
 
   const addUserHandler = (e) => {
@@ -116,8 +116,6 @@ const SignUp = ({ signUpUser, getAvatars }) => {
 
   let disp = valueIn === "prof" ? "block" : "none";
   let dispGo = valueIn === "prof" ? "none" : "block";
-
-
 
       let mensaje1 = null
       let mensaje2 = null
