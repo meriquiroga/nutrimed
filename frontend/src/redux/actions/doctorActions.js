@@ -92,6 +92,27 @@ const doctorActions = {
          }
       }
    },
+
+   deleteAppointment: (token, id) => {
+      return async () => {
+         try {
+            let res = await axios.delete(
+               `http://localhost:4000/api/appointment/${id}`,
+               {
+                  headers: {
+                     Authorization: "Bearer " + token,
+                  },
+               }
+            )
+            if (res.data.success) {
+               return { success: true, res: res.data.res }
+            }
+         } catch (err) {
+            return { success: false, res: err }
+         }
+      }
+   },
+
    getAppointementByDoctor: (dorctorid) => {
       return async () => {
          try {

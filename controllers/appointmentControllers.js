@@ -1,8 +1,7 @@
 const Appointment = require("../models/Appointment")
-const transport = require('../config/transport')
+const transport = require("../config/transport")
 
 const appointmentControllers = {
-
    addAppointment: async (req, res) => {
       try {
          const newAppointment = new Appointment({
@@ -17,6 +16,7 @@ const appointmentControllers = {
       }
    },
    getAppointments: async (req, res) => {
+      console.log(req.user)
       if (req.user.doc) {
          try {
             let appointments = await Appointment.find({
@@ -43,6 +43,7 @@ const appointmentControllers = {
          }
       }
    },
+
    deleteAppointment: async (req, res) => {
       try {
          let appointmentToDelete = await Appointment.findOneAndDelete({
@@ -53,6 +54,26 @@ const appointmentControllers = {
          res.json({ success: false, res: err.message })
       }
    },
+
+   // deleteAppointment: async (req, res) => {
+   //    console.log(req)
+   //    try {
+   //       let appointmentToDelete = await Appointment.findOneAndUpdate(
+   //          { _id: req.params.id },
+   //          {
+   //             $pull: {
+   //                appointment: { _id: req.body.appointmentId },
+   //             },
+   //          },
+   //          { new: true }
+   //       )
+   //       // ).populate("review.patientId", { name: 1, lastName: 1, src: 1 });
+   //       res.json({ success: true, res: appointmentToDelete.date })
+   //    } catch (err) {
+   //       res.json({ success: false, res: err.message })
+   //    }
+   // },
+
    getAppointementByDoctor: async (req, res) => {
       try {
          let appointmenDoctor = await Appointment.find({
@@ -63,12 +84,12 @@ const appointmentControllers = {
          res.json({ success: false, res: err.message })
       }
    },
-   sendMails:async(req, res)=>{
-      try{
-         let options ={
-            from:'NutriMed <nutrimed.centronutricional@gmail.com>',
+   sendMails: async (req, res) => {
+      try {
+         let options = {
+            from: "NutriMed <nutrimed.centronutricional@gmail.com>",
             to: req.user.data.mail,
-            subject:'Confimarcion de Turno',
+            subject: "Confimarcion de Turno",
             // text:`Hola ${req.user.name} ${req.user.lastName}`
             html: `
             <img src="/assets/logo.png" alt="logo" />
@@ -128,16 +149,15 @@ const appointmentControllers = {
               </p>
             </div>
             
-            `
-
+            `,
          }
-         transport.sendMail(options, (err,info)=>{
+         transport.sendMail(options, (err, info) => {
             console.log(err)
          })
-      }catch(err){
+      } catch (err) {
          console.log(err)
       }
-   }
+   },
 }
 
 module.exports = appointmentControllers
