@@ -23,7 +23,7 @@ const userControllers = {
          })
          let repeatUser = await userType.findOne({ "data.mail": data.mail })
          if (repeatUser)
-            throw new Error("Mail is being used with another account")
+            throw new Error("El mail ya se encuentra en uso")
          await userExist.save()
          let token = jwt.sign({ ...userExist }, process.env.SECRETOKEN)
          res.json({ success: true, res:{userExist,token}})

@@ -35,6 +35,7 @@ const AppointmentDay = ({
       <>
          <div className="containerDay">
             <div className="days"
+            // eslint-disable-next-line
                className={fullDay ? "full" : "noFull"}
                onClick={!fullDay ? viewHandler : viewWarningHandler}
             >

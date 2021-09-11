@@ -9,9 +9,9 @@ import ReactTooltip from "react-tooltip"
 
 const SignUp = ({ signUpUser, getAvatars }) => {
   let valor = null;
-  const [valueIn, setValueIn] = useState("");
+  const [valueIn, setValueIn] = useState("pat");
   const [errors, setErrors] = useState([]);
-  const [error, setError] = useState({errorOne: false, errorTwo: false});
+  const [error, setError] = useState({errorOne: false, errorTwo: false, errorT: false});
   const [newUser, setNewUser] = useState({
     name: "",
     lastName: "",
@@ -37,7 +37,6 @@ const SignUp = ({ signUpUser, getAvatars }) => {
       }
     }
     getAllAvatars();
-
     return false;
     // eslint-disable-next-line
   }, []);
@@ -60,7 +59,6 @@ const SignUp = ({ signUpUser, getAvatars }) => {
   };
 
 
-
   const responseGoogle = (res) => {
     let logWithGoogle = {
       name: res.profileObj.givenName,
@@ -72,36 +70,39 @@ const SignUp = ({ signUpUser, getAvatars }) => {
     };
     signUpUser(logWithGoogle).then((res) => {
       if (!res.success) {
-        setError({errorOne: true});
+        setError({errorT: true});
         setErrors([{ message: res.res }]);
       }
     });
   };
 
   const submitHandler = () => {
-    validFields(newUser);
+    validFields(newUser)
     if (valueIn === "prof") {
       newUser.doc = true;
     } else {
       newUser.doc = false;
     }
-    if (valor < 2) {
+    if (valor < 2 && !errors.message) {
       signUpUser({ ...newUser, doc: newUser.doc }).then((res) => { console.log(res)
         if (!res.success) {
           setError({errorOne: true})
-          setError({errorTwo: true})
-          typeof res.res === "string"
-            ? setErrors([{ message: "Ups! intentelo mas tarde" }])
+          typeof res.res === "string" ?
+            (res.res.includes("uso") ? (setErrors([{message: res.res}]) && setError({errorTwo: true}))
+            : setErrors([{message: "Ups! intentelo mas tarde" }]))
             : setErrors(res.res)
         }
-      });
-    }else
-    setErrors([{ message: "Todos los campos deben estar completos" }])
+      })
+    }else if (valor > 1){ 
+      setErrors([{ message: "Debe completar este dato" }])
+    } else setErrors([{ message: "" }])
+
   };
 
   const addUserHandler = (e) => {
     setError({errorOne: false});
-    setError({errorTwo: false})
+    setError({errorT: false})
+    !mensaje6 && setErrors([{message: ""}])
     if (e.target.name === "data") {
       setNewUser({ ...newUser, data: { mail: e.target.value } });
     } else {
@@ -113,6 +114,19 @@ const SignUp = ({ signUpUser, getAvatars }) => {
     setValueIn(e.target.value);
   };
 
+  const verifyPassword = (e) => {
+   if (e.target.value !== newUser.password) { 
+      setErrors([{message: "validar"}])
+      setError({errorT: true})
+   }else {
+    setError({errorT: false})
+    setErrors([{message: ""}])
+   }
+   
+  }
+
+  
+  
 
   let disp = valueIn === "prof" ? "block" : "none";
   let dispGo = valueIn === "prof" ? "none" : "block";
@@ -123,27 +137,32 @@ const SignUp = ({ signUpUser, getAvatars }) => {
       let mensaje4 = null
       let mensaje5 = null
       let mensaje6 = null
+      let mensaje7 = null
+      let mensaje8 = null
 
     return (
       <>
       {  
       errors.forEach(newError => 
-        newError.message.includes("dato") ? mensaje1 = newError.message 
+        newError.message.includes("dato") ? mensaje1 = newError.message
       : newError.message.includes("nombre") ? mensaje2 = newError.message
       : newError.message.includes("apellido") ? mensaje3 = newError.message
       : newError.message.includes("email") ? mensaje4 = newError.message
       : newError.message.includes("contraseña") ? mensaje5 = newError.message
-      : newError.message.includes("validar") ? mensaje6 = "Las contraseñas deben coincidir" 
-      : console.log(error))
-      
+      : newError.message.includes("validar") ? mensaje6 = "Las contraseñas deben coincidir"
+      : newError.message.includes("uso") ? mensaje7 = newError.message
+      : newError.message.includes("uso") ? mensaje8 = newError.message
+      : console.log("")
+      )
         }
 
       <ReactTooltip id="buttonError1" place="top" effect="solid" className="buttonGoogle"> {mensaje1 ? mensaje1 : mensaje2 && mensaje2} </ReactTooltip>
       <ReactTooltip id="buttonError2" place="top" effect="solid" className="buttonGoogle"> {mensaje1 ? mensaje1 : mensaje3 && mensaje3} </ReactTooltip>
-      <ReactTooltip id="buttonError3" place="top" effect="solid" className="buttonGoogle"> {mensaje1 ? mensaje1 : mensaje4 && mensaje4} </ReactTooltip>
+      <ReactTooltip id="buttonError3" place="top" effect="solid" className="buttonGoogle"> {mensaje1 ? mensaje1 : (mensaje4 ? mensaje4 : mensaje7)} </ReactTooltip>
       <ReactTooltip id="buttonError4" place="top" effect="solid" className="buttonGoogle"> {mensaje1 ? mensaje1 : mensaje5 && mensaje5} </ReactTooltip>
       <ReactTooltip id="buttonError5" place="top" effect="solid" className="buttonGoogle"> {mensaje1 ? mensaje1 : mensaje6 && mensaje6} </ReactTooltip>
-      <ReactTooltip id="buttonError6" place="top" effect="solid" className="buttonGoogle"> {mensaje1 ? mensaje1 : ""} </ReactTooltip>
+      <ReactTooltip id="buttonError6" place="top" effect="solid" className="buttonGoogle"> {mensaje1 ? mensaje1 : "Debe seleccionar una foto"} </ReactTooltip>
+      <ReactTooltip id="buttonError7" place="top" effect="solid" className="buttonGoogle"> {mensaje7} </ReactTooltip>
 
         <div className="container">
           <div className="grayContainer">
@@ -176,7 +195,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
               onChange={addUserHandler}  
               defaultValue={newUser.name}  
               />
-              {<img data-tip data-for="buttonError1" style={{height:"40px", width:"40px", display: ((error.errorOne && !newUser.name.length) || error.errorTwo) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              {<img data-tip data-for="buttonError1" style={{height:"40px", width:"40px", display: (error.errorOne && (!newUser.name.length || mensaje2) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
               <input 
               type="text" 
               placeholder="Apellido"
@@ -186,7 +205,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
               onChange={addUserHandler} 
               defaultValue={newUser.lastName} 
               />
-              {<img data-tip data-for="buttonError2" style={{height:"40px", width:"40px", display:((error.errorOne && !newUser.lastName.length) || error.errorTwo) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              {<img data-tip data-for="buttonError2" style={{height:"40px", width:"40px", display:(error.errorOne && (!newUser.lastName.length || mensaje3) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
               <input 
               type="email" 
               placeholder="Email" 
@@ -196,7 +215,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
               onChange={addUserHandler} 
               defaultValue={newUser.data.mail} 
               />
-              {<img data-tip data-for="buttonError3"  style={{height:"40px", width:"40px", display:((error.errorOne && !newUser.data.mail.length) || error.errorTwo) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              {<img data-tip data-for="buttonError3"  style={{height:"40px", width:"40px", display:(error.errorOne && (!newUser.data.mail.length || mensaje4 || mensaje7) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
               <input 
               type="password" 
               placeholder="Contraseña"
@@ -206,17 +225,19 @@ const SignUp = ({ signUpUser, getAvatars }) => {
               onChange={addUserHandler}  
               defaultValue={newUser.password} 
               />
-              {<img data-tip data-for="buttonError4" style={{height:"40px", width:"40px", display:((error.errorOne && !newUser.password.length) || error.errorTwo) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              {<img data-tip data-for="buttonError4" style={{height:"40px", width:"40px", display:(error.errorOne && (!newUser.password.length || mensaje5) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
               <input 
               type="password" 
               placeholder="Repita su contraseña"
               name="validPassword" 
+              onBlur={verifyPassword}
               className={
-                ((error.errorOne && !newUser.validPassword.length) ? "errorY" : "errorN")}
+                (((error.errorOne && !newUser.validPassword.length) || mensaje6) ? "errorY" : "errorN")}
               onChange={addUserHandler}
               defaultValue={newUser.validPassword}
                 />
-              {<img data-tip data-for="buttonError5" style={{height:"40px", width:"40px", display:((error.errorOne && !newUser.validPassword.length) || error.errorTwo) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+
+              {<img data-tip data-for="buttonError5" style={{height:"40px", width:"40px", display:(((error.errorT && !newUser.validPassword.length && mensaje6) || mensaje6) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
               <input 
               type="password" 
               placeholder="Clave profesional NutriMed" 
@@ -224,43 +245,61 @@ const SignUp = ({ signUpUser, getAvatars }) => {
               style={{display:disp}}  
               className={
                 ((error.errorOne && !newUser.passwordAdm.length) ? "errorY" : "errorN")}
+                
               onChange={addUserHandler} 
               defaultValue={newUser.passwordAdm} 
               required={valueIn === "prof" ? true : false}
               />
+              {<img data-tip data-for="buttonError6" style={{height:"40px", width:"40px", display:(valueIn === "prof" && (error.errorOne && !newUser.src && errors.length) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              <input 
+              type="text" 
+              placeholder="Ingrese URL de imágen" 
+              name={valueIn === "prof" ? "src" : ""}
+              style={{display:disp}}  
+              className={
+                ((error.errorOne && !newUser.src.length) ? "errorY" : "errorN")}
+                
+              onChange={addUserHandler} 
+              defaultValue={newUser.src} 
+              required={valueIn === "prof" ? true : false}
+              />
             </div>
+            
             <h3>Elija su avatar para perfil</h3>
 
-<div className="containerPreview" >
-{<img data-tip data-for="buttonError6" style={{height:"40px", width:"40px", display:(error.errorOne && errors.length) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
-    <div
-      className="preview"
-      style={{
-        backgroundImage: `url("${previewImg}")`,
-      }}
-    ></div>
-  <div className={((error.errorOne && !newUser.src.length) ? "errorY thumbNails" : "errorN thumbNails")}>
-    {avatars.map((div, index) => (
-      <div
-        onClick={inputValue}
-        className="thumbNail"
-        key={index}
-        style={{
-          backgroundImage: `url("${div.src}")`,
-        }}
-      >
-        <input className="inputAvatar" name="src" onClick={addUserHandler}  defaultValue={div.src}></input>
-      </div>
-    ))}
-  </div>
-</div>
-{/* {error.errorOne &&
-    errors.map((error) => (
-      <p key={error.message} style={{ fontSize: "1.3vmin" }}>
-        *{error.message}
-      </p>
-    ))} */}
-<button onClick={submitHandler}>REGISTRARSE</button>
+          <div 
+            className="containerPreview"
+            style={{
+              display: valueIn === "pat" ? "flex" : "none",
+              justifyContent: valueIn === "pat" && "center",
+              alignItems: valueIn === "pat" && "center",
+              alignSelf: valueIn === "pat" && "center",
+              flexWrap: valueIn === "pat" && "wrap",
+              textAlign: valueIn === "pat" && "center"}} >
+            {<img data-tip data-for="buttonError6" style={{height:"40px", width:"40px", display:(valueIn === "pat" && (error.errorOne && !newUser.src && errors.length) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              <div
+                className="preview"
+                style={{
+                  backgroundImage: `url("${previewImg}")`,
+                }}
+              ></div>
+            <div className={((error.errorOne && !newUser.src.length) ? "errorY thumbNails" : "errorN thumbNails")}>
+              {avatars.map((div, index) => (
+                <div
+                  onClick={inputValue}
+                  className="thumbNail"
+                  key={index}
+                  style={{
+                    backgroundImage: `url("${div.src}")`,
+                  }}
+                >
+                  <input className="inputAvatar" name={valueIn === "pat" ? "src" : ""} onClick={addUserHandler}  defaultValue={div.src}></input>
+                </div>
+              ))}
+            </div>
+          </div>
+          <button onClick={submitHandler}>REGISTRARSE</button>
+          {<img data-tip data-for="buttonError7" style={{height:"40px", width:"40px", display:(error.errorT && mensaje7) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
 
 <div style={{ display: dispGo }}>
   <div>
@@ -271,14 +310,14 @@ const SignUp = ({ signUpUser, getAvatars }) => {
       onFailure={responseGoogle}
       cookiePolicy={"single_host_origin"}
     />
-  </div>
-</div>
-<p>
-  ¿Ya tenés cuenta? <Link to="/signin">¡Ingresá aquí!</Link>
-</p>
-</div>   
-          </div>
-           
+      </div>
+    </div>
+    <p>
+      ¿Ya tenés cuenta? <Link to="/signin">¡Ingresá aquí!</Link>
+    </p>
+    </div>       
+    </div>
+          
     </>
   );
 };

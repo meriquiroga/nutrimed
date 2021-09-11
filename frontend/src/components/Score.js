@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import ReactStars from 'react-stars'
 import { connect } from "react-redux"
 import doctorActions from "../redux/actions/doctorActions"
 
 const Score = ({scoreArray, staff,valid,doctorId,sendScore})=>{
+    // eslint-disable-next-line
     const [data, setData] = useState({
         action:'editScore',
         user:valid,
