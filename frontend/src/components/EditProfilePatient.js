@@ -6,8 +6,8 @@ import patientActions from "../redux/actions/patientActions";
 
 const EditProfilePatient = (props) => {
   const {token} = props
-  const {data, dni} = props.user.userExist
-  const email = props.user.userExist.data.mail;
+  const {data, dni} = props.user
+  const email = props.user.data.mail;
   const [validEdit, setValidEdit] = useState(false)
   const [actPat, setActPat] = useState({
     dni: "",
@@ -81,7 +81,7 @@ const EditProfilePatient = (props) => {
   }
   
   const submitHandler = () => {
-    props.upgradePat(props.user.userExist.doc, actPat, token);
+    props.upgradePat(props.user.doc, actPat, token);
   };
 
   const allSocialWork = [

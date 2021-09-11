@@ -8,7 +8,7 @@ import MedicalData from "./MedicalData"
 import { Accordion, AccordionItem } from "react-sanfona"
 
 const ProfileUser = (props) => {
-   const { doc, src, name, lastName, dni, data } = props.user.userExist
+   const { doc, src, name, lastName, dni, data } = props.user
    const [appointments, setAppointments] = useState([])
    const [loading, setLoading] = useState(true)
    const [change, setChange] = useState([])

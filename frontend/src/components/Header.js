@@ -38,15 +38,10 @@ const Header = (props) => {
                      </NavLink>
                   </li>
                )}
-               <li>
-                  <NavLink to="/information">
-                     <p>CONTACTO</p>
-                  </NavLink>
-               </li>
             </ul>
          </div>
          <div className="headerRigth">
-            {props.valid && <h4>Bienvenido/a, {props.user.userExist.name}</h4>}
+            {props.valid && <h4>Bienvenido/a, {props.user.name}</h4>}
             <div>
                {props.valid && (
                   <NavLink className="logOut" onClick={outHandler} to="/">
@@ -55,7 +50,7 @@ const Header = (props) => {
                   </NavLink>
                )}
             </div>
-            {/* {!props.user.userExist.doc && ( */}
+            {/* {!props.user.doc && ( */}
             <button>
                <Link to={props.valid ? "/appointment" : "/signin"}>
                   SOLICITAR TURNO

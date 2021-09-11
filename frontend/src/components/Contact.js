@@ -1,15 +1,5 @@
-const Information = () => {
+const Contact = () => {
   return (
-    <div className="container">
-      <div
-        className="hero"
-        style={{
-          backgroundImage: `url('/assets/map.png')`,
-        }}
-      >
-        <h1>CONTACTO</h1>
-        <img className="icon-contact" src="/assets/marcador.png" alt="..."/>
-      </div>
 
       <div className="iconCardsContainer">
         <div className="iconCard">
@@ -28,18 +18,10 @@ const Information = () => {
           <h3>Lunes a Viernes</h3>
           <h3>9:00 a 17:30hs.</h3>
         </div>
-        <div className="form-consulta">
-        <div className="inputs">
-          <h2> Envianos tu consulta:</h2>
-          <input type="email" placeholder="E-mail" />
-          <input type="text" placeholder="Nombre" />
-          <textarea className="textarea" type="text" placeholder="Escribe tu consulta.." />
-          <button>Enviar</button>
-        </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
-export default Information;
+      </div>
+
+  )
+}
+
+export default Contact;

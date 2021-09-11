@@ -5,12 +5,11 @@ const userActions = {
       return async (dispatch) => {
          try {
             let res = await axios.post("http://localhost:4000/api/user", user)
-            console.log(res.data)
             if (res.data.success) {
                dispatch({
                   type: "SIGN_UP",
                   payload: {
-                     userExist: res.data.res,
+                     userExist: res.data.res.userExist,
                      token: res.data.res.token,
                   },
                })
@@ -34,7 +33,7 @@ const userActions = {
             })
             dispatch({
                type: "SIGN_UP",
-               payload: { userExist: res.data, token },
+               payload: { userExist: res.data.userExist, token },
             })
          } catch (err) {
             return dispatch({ type: "LOG_OUT" })
@@ -59,7 +58,7 @@ const userActions = {
                dispatch({
                   type: "SIGN_UP",
                   payload: {
-                     userExist: res.data.res,
+                     userExist: res.data.res.userExist,
                      token: res.data.res.token,
                   },
                })
