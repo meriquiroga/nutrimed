@@ -146,7 +146,7 @@ const appointmentControllers = {
          let options ={
             from:'NutriMed <nutrimed.centronutricional@gmail.com>',
             to: !req.user.doc ? data.mail : doc.data.mail,
-            subject: "Confimarcion de Turno",
+            subject: action ? "Confimarcion de Turno" : "Cancelacion de Turno",
             html: action ? htmlConfirm : htmlCancel,
          }
          transport.sendMail(options, (err, info) => {

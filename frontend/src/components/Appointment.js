@@ -30,89 +30,72 @@ const Appointment = ({
       hour: "",
       date: "",
     },
-    doctorId: "a",
+    doctorId: "",
     patientId: "",
   });
   useEffect(() => {
-    window.scroll(0, 0);
-    if (!doctors.length) {
-      getDoctors().then((res) => {
-        if (res.success) {
-          setNewDoctors(res.res);
-        }
-      });
-    }
-    if (!calendar.length) {
-      getCalendar().then((res) => {
-        if (res.success) {
-          setNewCalendar(res.res);
-        } else {
-          console.log(res.res);
-        }
-      });
-    }
-
-    // eslint-disable-next-line
-  }, []);
-
+      window.scroll(0, 0)
+      if(!doctors.length){
+        getDoctors()
+        .then(res=>{
+          if(res.success){
+            setNewDoctors(res.res)
+          }
+        })
+      }
+      if(!calendar.length){
+        getCalendar()
+        .then(res=>{
+          if(res.success){
+            setNewCalendar(res.res)
+          }else{
+            console.log(res.res)
+          }
+        })
+      }
+      // eslint-disable-next-line
+  },[]);
+  
   const appointmentValueHandler = (e) => {
-    if (!e.target.value) {
-      setViews({ ...views, view: false });
-    } else {
-      !views.view && setViews({ ...views, view: true });
-      setAppointmentReady({
-        ...appointmentReady,
-        [e.target.name]: e.target.value,
-      });
-      getAppointementByDoctor(e.target.value).then((res) => {
-        setDiaryByDoc(res.res);
-      });
-      setDocName(newDoctors.find((obj) => obj._id === e.target.value));
+    console.log(e.target.value)
+    if(!e.target.value){
+      setViews({...views, view:false})
+    }else{
+      !views.view && setViews({...views, view:true})
+      setAppointmentReady({...appointmentReady, [e.target.name]:e.target.value})
+      getAppointementByDoctor(e.target.value)
+      .then(res=> {
+        setDiaryByDoc(res.res)})
+      setDocName(newDoctors.find(obj => obj._id === e.target.value))
     }
-  };
-  const bookAppointmentHandler = (hour, day) => {
-    setAppointmentReady({
-      ...appointmentReady,
+  }
+  const bookAppointmentHandler=(hour,day)=>{
+    setViews({view:false, confirm:true, ok:false})
+    setAppointmentReady({...appointmentReady,
       date: {
         hour: hour,
         date: day,
       },
       patientId: userToken,
-    });
-    setViews({ ...views, confirm: true, ok: false });
-  };
-  const optionDoctor = newDoctors.map((obj) => (
-    <option key={obj._id} value={obj._id}>
-      {obj.name} {obj.lastName}
-    </option>
-  ));
-
-  const inputDay = newCalendar.map((obj) => {
-    const appointmentByDay = !diaryByDoc.length
-      ? []
-      : diaryByDoc.filter((diary) => diary.date.date === obj.day);
-    return (
-      <AppointmentDay
-        key={obj._id}
-        day={obj.day}
-        docName={`${obj.name} ${obj.lastName}`}
-        fullDay={appointmentByDay.length === 18}
-        appointmentByDay={appointmentByDay}
-        bookAppointmentHandler={bookAppointmentHandler}
-        timeTable={obj.timeTable}
-      />
-    );
-  });
-  const confirmAppointmentHandler = (data) => {
-    setAppointmentReady({ ...appointmentReady, doctorId: "" });
-    addAppointment(data).then((res) => {
-      if (res.success) {
-        setConfirmAppointment("Tu turno fue agendado exitosamente. ¡Gracias!");
-        confirmFormMail(data.date, data.patientId, docName, true);
-      } else {
-        setConfirmAppointment(
-          "Lo sentimos, ha ocurrido un error. Por favor, intentá de nuevo más tarde."
-        );
+    })
+  }
+  const optionDoctor = newDoctors.map(obj => <option key={obj._id} value={obj._id}>{obj.name} {obj.lastName} - {obj.specialty}</option>)
+ 
+  const inputDay = newCalendar.map(obj =>{
+    const appointmentByDay = !diaryByDoc.length ? [] : diaryByDoc.filter(diary=>diary.date.date === obj.day)
+    return(
+      <AppointmentDay key={obj._id} day={obj.day} docName={`${obj.name} ${obj.lastName}`} fullDay={appointmentByDay.length === 18} appointmentByDay={appointmentByDay} bookAppointmentHandler={bookAppointmentHandler} timeTable={obj.timeTable}/>
+    )
+  })
+  const confirmAppointmentHandler =(data)=>{
+    // setAppointmentReady({...appointmentReady, doctorId:''})
+    addAppointment(data)
+    .then(res=>{
+      if(res.success){
+        setConfirmAppointment('Tu turno fue agendado exitosamente. ¡Gracias!')
+        confirmFormMail(data.date, data.patientId, docName, true)
+      }else{
+        setConfirmAppointment('Lo sentimos, ha ocurrido un error. Por favor, intentá de nuevo más tarde.')
       }
       getAppointementByDoctor(appointmentReady.doctorId).then((res) =>
         setDiaryByDoc(res.res)
@@ -127,18 +110,12 @@ const Appointment = ({
     <>
       <div className="container">
         <div className="grayContainer">
-          <img src="/assets/appointment.png" alt="" />
-          <h3>
-            ¡Bienvenido! Seleccioná el profesional para ver sus turnos
-            disponibles.
-          </h3>
-          <select
-            id="optionDoctor"
-            name="doctorId"
-            defaultValue={appointmentReady.doctorId}
-            onChange={appointmentValueHandler}
-          >
-            <option value="">Seleccioná un profesional</option>
+        <img src="/assets/appointment.png" alt="" />
+        <h3>
+          ¡Bienvenido! Seleccioná el profesional para ver sus turnos disponibles.
+        </h3>
+        <select id="optionDoctor" name="doctorId" defaultValue={appointmentReady.doctorId} onClick={appointmentValueHandler}>
+            <option value="" >Seleccioná un profesional</option>
             {optionDoctor}
           </select>
           {views.ok && (

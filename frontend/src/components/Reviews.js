@@ -18,7 +18,7 @@ const Reviews = ({
   const [text, setText] = useState("");
   const [refetch, setRefetch] = useState(false);
   const [escribiendo, setEscribiendo] = useState("");
-
+ 
   useEffect(() => {
     if (socket) {
       socket.on("message", (mensaje) => {
@@ -100,14 +100,14 @@ const Reviews = ({
               ? "Creá tu cuenta para dejar feedback al profesional"
               : "Dejale feedback al profesional"
           }
-          disabled={!userToken}
+          disabled={dataUser.doc || !userToken}
           onChange={editTextReviewHandler}
           value={text}
         />
         <button
           id="buttonSign"
           onClick={addReviewHandler}
-          disabled={!userToken}
+          disabled={dataUser.doc || !userToken}
         >
           ENVIAR
         </button>
