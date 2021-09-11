@@ -186,85 +186,98 @@ const SignUp = ({ signUpUser, getAvatars }) => {
               </div>
             </div>
             <div className="inputs">
-              <input 
-              type="text" 
-              placeholder="Nombre" 
-              className={
-                ((error.errorOne && !newUser.name.length) ? "errorY" : "errorN")}
-              name="name"
-              onChange={addUserHandler}  
-              defaultValue={newUser.name}  
-              />
-              {<img data-tip data-for="buttonError1" style={{height:"40px", width:"40px", display: (error.errorOne && (!newUser.name.length || mensaje2) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
-              <input 
-              type="text" 
-              placeholder="Apellido"
-              name="lastName"  
-              className={
-                ((error.errorOne && !newUser.lastName.length) ? "errorY" : "errorN")}
-              onChange={addUserHandler} 
-              defaultValue={newUser.lastName} 
-              />
-              {<img data-tip data-for="buttonError2" style={{height:"40px", width:"40px", display:(error.errorOne && (!newUser.lastName.length || mensaje3) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
-              <input 
-              type="email" 
-              placeholder="Email" 
-              name="data" 
-              className={
-                ((error.errorOne && !newUser.data.mail.length) ? "errorY" : "errorN")}
-              onChange={addUserHandler} 
-              defaultValue={newUser.data.mail} 
-              />
-              {<img data-tip data-for="buttonError3"  style={{height:"40px", width:"40px", display:(error.errorOne && (!newUser.data.mail.length || mensaje4 || mensaje7) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
-              <input 
-              type="password" 
-              placeholder="Contraseña"
-              name="password" 
-              className={
-                ((error.errorOne && !newUser.password.length) ? "errorY" : "errorN")} 
-              onChange={addUserHandler}  
-              defaultValue={newUser.password} 
-              />
-              {<img data-tip data-for="buttonError4" style={{height:"40px", width:"40px", display:(error.errorOne && (!newUser.password.length || mensaje5) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
-              <input 
-              type="password" 
-              placeholder="Repita su contraseña"
-              name="validPassword" 
-              onBlur={verifyPassword}
-              className={
-                (((error.errorOne && !newUser.validPassword.length) || mensaje6) ? "errorY" : "errorN")}
-              onChange={addUserHandler}
-              defaultValue={newUser.validPassword}
+              <div className="forError">
+                <input 
+                type="text" 
+                placeholder="Nombre" 
+                className={
+                  ((error.errorOne && !newUser.name.length) ? "errorY" : "errorN")}
+                name="name"
+                onChange={addUserHandler}  
+                defaultValue={newUser.name}  
                 />
+                {<img data-tip data-for="buttonError1" style={{height:"40px", width:"40px", display: (error.errorOne && (!newUser.name.length || mensaje2) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              </div>
+              <div className="forError">
+                <input 
+                type="text" 
+                placeholder="Apellido"
+                name="lastName"  
+                className={
+                  ((error.errorOne && !newUser.lastName.length) ? "errorY" : "errorN")}
+                onChange={addUserHandler} 
+                defaultValue={newUser.lastName} 
+                />
+                {<img data-tip data-for="buttonError2" style={{height:"40px", width:"40px", display:(error.errorOne && (!newUser.lastName.length || mensaje3) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              </div>
+              <div className="forError">
+                <input 
+                type="email" 
+                placeholder="Email" 
+                name="data" 
+                className={
+                  ((error.errorOne && !newUser.data.mail.length) ? "errorY" : "errorN")}
+                onChange={addUserHandler} 
+                defaultValue={newUser.data.mail} 
+                />
+                {<img data-tip data-for="buttonError3"  style={{height:"40px", width:"40px", display:(error.errorOne && (!newUser.data.mail.length || mensaje4 || mensaje7) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              </div>
+              <div className="forError">
+                <input 
+                type="password" 
+                placeholder="Contraseña"
+                name="password" 
+                className={
+                  ((error.errorOne && !newUser.password.length) ? "errorY" : "errorN")} 
+                onChange={addUserHandler}  
+                defaultValue={newUser.password} 
+                />
+                {<img data-tip data-for="buttonError4" style={{height:"40px", width:"40px", display:(error.errorOne && (!newUser.password.length || mensaje5) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              </div>
+              <div className="forError">
+                <input 
+                type="password" 
+                placeholder="Repita su contraseña"
+                name="validPassword" 
+                onBlur={verifyPassword}
+                className={
+                  (((error.errorOne && !newUser.validPassword.length) || mensaje6) ? "errorY" : "errorN")}
+                onChange={addUserHandler}
+                defaultValue={newUser.validPassword}
+                  />
 
-              {<img data-tip data-for="buttonError5" style={{height:"40px", width:"40px", display:(((error.errorT && !newUser.validPassword.length && mensaje6) || mensaje6) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
-              <input 
-              type="password" 
-              placeholder="Clave profesional NutriMed" 
-              name="passwordAdm"
-              style={{display:disp}}  
-              className={
-                ((error.errorOne && !newUser.passwordAdm.length) ? "errorY" : "errorN")}
-                
-              onChange={addUserHandler} 
-              defaultValue={newUser.passwordAdm} 
-              required={valueIn === "prof" ? true : false}
-              />
-              {<img data-tip data-for="buttonError6" style={{height:"40px", width:"40px", display:(valueIn === "prof" && (error.errorOne && !newUser.src && errors.length) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
-              <input 
-              type="text" 
-              placeholder="Ingrese URL de imágen" 
-              name={valueIn === "prof" ? "src" : ""}
-              style={{display:disp}}  
-              className={
-                ((error.errorOne && !newUser.src.length) ? "errorY" : "errorN")}
-                
-              onChange={addUserHandler} 
-              defaultValue={newUser.src} 
-              required={valueIn === "prof" ? true : false}
-              />
-            </div>
-            
+                {<img data-tip data-for="buttonError5" style={{height:"40px", width:"40px", display:(((error.errorT && !newUser.validPassword.length && mensaje6) || mensaje6) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              </div>
+              <div className="forError">
+                <input 
+                type="password" 
+                placeholder="Clave profesional NutriMed" 
+                name="passwordAdm"
+                style={{display:disp}}  
+                className={
+                  ((error.errorOne && !newUser.passwordAdm.length) ? "errorY" : "errorN")}
+                  
+                onChange={addUserHandler} 
+                defaultValue={newUser.passwordAdm} 
+                required={valueIn === "prof" ? true : false}
+                />
+                {<img data-tip data-for="buttonError6" style={{height:"40px", width:"40px", display:(valueIn === "prof" && (error.errorOne && !newUser.src && errors.length) && !mensaje8) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+              </div>
+              </div>
+              <div className="forError">
+                <input 
+                type="text" 
+                placeholder="Ingrese URL de imágen" 
+                name={valueIn === "prof" ? "src" : ""}
+                style={{display:disp}}  
+                className={
+                  ((error.errorOne && !newUser.src.length) ? "errorY" : "errorN")}
+                  
+                onChange={addUserHandler} 
+                defaultValue={newUser.src} 
+                required={valueIn === "prof" ? true : false}
+                />
+              </div>
             <h3>Elija su avatar para perfil</h3>
 
           <div 
@@ -301,22 +314,22 @@ const SignUp = ({ signUpUser, getAvatars }) => {
           <button onClick={submitHandler}>REGISTRARSE</button>
           {<img data-tip data-for="buttonError7" style={{height:"40px", width:"40px", display:(error.errorT && mensaje7) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
 
-<div style={{ display: dispGo }}>
-  <div>
-    <GoogleLogin
-      clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
-      buttonText="Registrarse con Google"
-      onSuccess={responseGoogle}
-      onFailure={responseGoogle}
-      cookiePolicy={"single_host_origin"}
-    />
-      </div>
-    </div>
-    <p>
-      ¿Ya tenés cuenta? <Link to="/signin">¡Ingresá aquí!</Link>
-    </p>
-    </div>       
-    </div>
+          <div style={{ display: dispGo }}>
+            <div>
+              <GoogleLogin
+                clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
+                buttonText="Registrarse con Google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={"single_host_origin"}
+              />
+            </div>
+          </div>
+          <p>
+            ¿Ya tenés cuenta? <Link to="/signin">¡Ingresá aquí!</Link>
+          </p>
+        </div>     
+          </div>
           
     </>
   );
@@ -333,4 +346,4 @@ const mapDispatchToProps = {
   getAvatars: patientActions.getAvatars,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

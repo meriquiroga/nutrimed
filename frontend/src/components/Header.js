@@ -39,11 +39,6 @@ const Header = (props) => {
                   </li>
                )}
                <li>
-                  <NavLink to="/information">
-                     <p>CONTACTO</p>
-                  </NavLink>
-               </li>
-               <li>
                   {props.valid && (
                      <Link onClick={outHandler} to="/">
                         <p>SALIR</p>

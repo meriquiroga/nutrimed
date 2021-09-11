@@ -117,7 +117,7 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
             <img className='iconTurn'  src='/assets/check.png' alt='edit' onClick={()=>confirmAppointmentHandler(appointmentReady)}/>
           </div>}
         {views.view && <div className="container2" >{inputDay}</div>}
-        {!views.view && <div>
+        {!views.view && <div className="protocolo">
           <h3>Protocolo COVID:</h3>
           <h4>Cuidémonos entre todos.</h4>
           <p>Por favor, asistir sólo con turno previamente acordado y ante cualquier síntoma, solicitá la reprogramación.</p></div>}

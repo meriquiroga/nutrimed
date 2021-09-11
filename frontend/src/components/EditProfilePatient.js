@@ -90,8 +90,8 @@ const EditProfilePatient = (props) => {
     if (e.key === "Enter") {
       submitHandler();
     }
-  };
-
+  }
+  
   const submitHandler = () => {
     props.editProfile(props.user.doc, actPat, token).then((res) => {
       if (res.success) {
@@ -100,9 +100,9 @@ const EditProfilePatient = (props) => {
     });
   };
 
-   const inputValue = (e) => {
-      setPreviewImg(e.target.value)
-   }
+  const inputValue = (e) => {
+    setPreviewImg(e.target.value)
+ }
 
    return (
       <div className="container">
@@ -169,9 +169,6 @@ const EditProfilePatient = (props) => {
                   }
                   onKeyPress={handleKeyPress}
                />
-               <span onClick={editHandler}>
-                  {!validEdit ? "Editar ✏️" : "Cancelar ❌"}
-               </span>
                <select
                   id="optionObraSocial"
                   name="socialWork"
@@ -209,6 +206,9 @@ const EditProfilePatient = (props) => {
                         </div>
                      ))}
                   </div>
+                  <span onClick={editHandler}>
+                  {!validEdit ? "Editar ✏️" : "Cancelar ❌"}
+               </span>
                </div>
             </form>
             <button type="submit" onClick={submitHandler}>

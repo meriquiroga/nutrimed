@@ -17,7 +17,7 @@ class Staff extends Component {
         : this.setState({
             loading: {
               ...this.state.loading,
-              text: "Lo sentimos, ha ocurrido un error, vuelva a intentarlo más tarde.",
+              text: "Lo sentimos, ha ocurrido un error, volvé a intentarlo más tarde.",
             },
           });
     });
@@ -47,8 +47,9 @@ class Staff extends Component {
                 </h4>
                 <p>M.P.: {obj.registration}</p>
                 <p>{obj.specialty}</p>
-                <Score scoreArray={obj.score} staff={true} doctorId={obj._id}/>
+                
               </div>
+              <div className="stars"><Score scoreArray={obj.score} staff={true} doctorId={obj._id}/></div>
             </div>
           </div>
         </Link>

@@ -72,6 +72,16 @@ button {
    cursor: pointer;
 }
 
+.buttonDelete {
+  background-color: #b8b8b8;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 50px;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+}
+
 button a {
    color: white;
 }
@@ -179,10 +189,10 @@ footer img {
    background-color: #f0f3f5;
 }
 .grayContainer {
-   text-align: center;
-   background-color: #f0f3f5;
-   padding: 30px 100px;
-   min-height: 80vh;
+  text-align: center;
+  background-color: #f0f3f5;
+  padding: 30px 150px;
+  min-height: 80vh;
 }
 .click {
    color: #1bb6d1;
@@ -202,7 +212,16 @@ footer img {
    display: flex;
    flex-direction: column;
 }
+.forError {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.forError img {
+  position:relative;
+  right: 50px;
+}
 .inputs input {
    padding: 10px;
    border-radius: 50px;
@@ -286,12 +305,13 @@ footer img {
 }
 
 .rightProfile {
-   display: flex;
-   flex-direction: column;
-   background-color: #71cbe3;
-   width: 300px;
-   padding: 22px;
-   align-items: center;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f3f5;
+  width: 300px;
+  padding: 22px;
+  align-items: center;
+  text-align: center;
 }
 
 .centroProfile {
@@ -301,8 +321,7 @@ footer img {
 }
 
 .proxTurnos {
-   color: white;
-   padding-top: 1rem;
+  padding-top: 1rem;
 }
 
 .tituloProfile {
@@ -310,9 +329,8 @@ footer img {
 }
 
 .turnos {
-   color: white;
-   text-align: center;
-   font-size: small;
+  text-align: center;
+  font-size: small;
 }
 
 .datosProfile {
@@ -342,13 +360,14 @@ footer img {
 }
 
 .doctorCard {
-   width: 200px;
-   height: 280px;
-   color: black;
-   position: relative;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
+  width: 200px;
+  height: 280px;
+  /*   color: black; */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* text-align: center; */
 }
 
 .doctor-image {
@@ -369,7 +388,11 @@ footer img {
    line-height: 1.5;
    padding: 15px;
 }
-
+.stars {
+  align-self: center;
+  position: absolute;
+  top: 80px;
+}
 .doc {
    width: 150px;
    height: 150px;
@@ -437,15 +460,15 @@ footer img {
 }
 
 #optionDoctor {
-   padding: 10px;
-   border-radius: 50px;
-   border: 2px gray solid;
-   margin: 10px;
-   width: 400px;
-   align-self: center;
-   outline: none;
-   color: gray;
-   appearance: none;
+  padding: 10px;
+  border-radius: 50px;
+  border: 2px gray solid;
+  margin: 10px 10px 30px 10px;
+  width: 400px;
+  align-self: center;
+  outline: none;
+  color: gray;
+  appearance: none;
 }
 
 #fileCharger {
@@ -482,10 +505,14 @@ footer img {
 }
 
 .hour {
-   padding: 5px;
-   border-radius: 0;
-   width: 80px;
-   margin: 6px;
+  padding: 3px;
+  border-radius: 20px;
+  border: 1px solid black;
+  width: 60px;
+  margin: 6px;
+  background-color: transparent;
+  color: black;
+  background-color: white;
 }
 
 .textArea {
@@ -513,10 +540,9 @@ footer img {
 }
 
 .medicalData {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .divComentaries {
@@ -526,10 +552,14 @@ footer img {
 }
 
 .comment {
-   display: flex;
-   align-content: center;
-   align-items: top;
-   padding: 10px;
+  display: flex;
+  align-content: center;
+  align-items: top;
+  padding: 10px;
+  background-color: #f4f5f7;
+  margin: 8px;
+  border-radius: 50px;
+  /* max-width: 60%; */
 }
 
 .confirm {
@@ -537,34 +567,44 @@ footer img {
 }
 
 .container2 {
-   display: flex;
-   flex-direction: column;
-   flex-wrap: wrap;
-   justify-content: center;
-   align-items: auto;
-   align-content: center;
-}
-/* .containerDay {
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: auto;
+  align-content: center;
+  padding-top: 30px;
+}
+.containerDay {
+  display: flex;
+  width: 70%;
+  justify-content: flex-start;
 }
 
 .days {
   display: flex;
-} */
+  flex-wrap: wrap;
+  margin: 10px;
+}
 .full,
 .noFull {
-   height: 45px;
-   flex: 0 0 auto;
-   margin: 10px;
-   padding: 10px;
-   color: white;
+  height: 45px;
+  width: 200px;
+  flex: 0 0 auto;
+  margin: 10px;
+  padding: 10px 3px;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
 }
+
 .full {
    background-color: rgb(160, 160, 160);
 }
 .noFull {
    background-color: #1bb6d1;
 }
+
 .noTurns {
    max-width: 180px;
 }
@@ -582,13 +622,21 @@ footer img {
 }
 
 .descripcion {
-   overflow-y: scroll;
-   height: 40vh;
-   width: 60vw;
-   background-color: #f1f0f0;
-   text-align: left;
-   padding: 20px;
+  overflow-y: scroll;
+  height: 40vh;
+  width: 60vw;
+  background-color: #D4EDF4;
+  text-align: left;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
 }
+.pin {
+  width:70px;
+  position: relative;
+  right: 10px;
+  top: -10px
+  }
 
 .logOut {
    display: flex;
@@ -697,21 +745,11 @@ input.inputAvatar:focus {
 }
 
 .containerPreview {
-<<<<<<< HEAD
-  
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  flex-wrap: wrap;
-  text-align: center;
-=======
-   display: flex;
    justify-content: center;
    align-items: center;
    align-self: center;
    flex-wrap: wrap;
    text-align: center;
->>>>>>> origin/franco
 }
 
 .preview {
@@ -745,23 +783,19 @@ input.inputAvatar:focus {
 }
 
 .accordion h3 {
-   background-color: #1bb6d1;
-   color: white;
-   padding: 5px 40px;
-   border-radius: 50px;
-   border: none;
-   margin: 10px;
-   cursor: pointer;
-}
-
-.accordion h3:hover {
-   color: #12a8c2;
+  background-color: #71cbe3;
+  color: white;
+  padding: 5px;
+  border-radius: 50px;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+  font-size: medium;
 }
 
 .accordion p {
-   color: white;
-   text-align: center;
-   font-size: small;
+  text-align: center;
+  font-size: small;
 }
 
 .historiaClinica {
@@ -770,18 +804,17 @@ input.inputAvatar:focus {
 }
 
 .nombre-HC {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   padding: 5px 10px;
-   color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
 }
 
-.nombre-HC p {
-   color: white;
-   text-align: center;
-   font-size: small;
-}
+/* .nombre-HC p {
+  color: white;
+  text-align: center;
+  font-size: small;
+} */
 
 .medicalInput {
    resize: none;
@@ -808,67 +841,82 @@ input.inputAvatar:focus {
 }
 
 .divEnviarNota {
-   display: flex;
-   align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .linksDoctor {
-   color: #ecf9fd;
-   border-radius: 10px;
-   padding: 5px 10px;
+  color: #1bb6d1;
+  border-radius: 10px;
+  padding: 5px 10px;
 }
 
 .linksDoctor:hover {
-   color: #12a8c2;
+  color: #12abc2;
+}
+
+.protocolo {
+  padding-top: 30px;
+}
+
+.divComentaries::-webkit-scrollbar, .descripcion::-webkit-scrollbar {
+  width: 10px;
+  background-color: white;
+}
+.divComentaries::-webkit-scrollbar-thumb, .descripcion::-webkit-scrollbar-thumb {
+  background-color: #1bb6d1;
+  border-radius: 5px;
 }
 
 @media (max-width: 576px) {
-   .inputs input {
-      padding: 10px;
-      border-radius: 50px;
-      border: 2px gray solid;
-      margin: 10px;
-      width: 85%;
-      align-self: center;
-      outline: none;
-   }
-   #optionObraSocial {
-      padding: 10px;
-      border-radius: 50px;
-      border: 2px gray solid;
-      margin: 10px;
-      width: 85%;
-      align-self: center;
-      outline: none;
-      color: gray;
-      appearance: none;
-   }
-   .hero {
-      height: 50vh;
-      background-position: center;
-      background-size: cover;
-      text-align: center;
-      padding: 20vw;
-   }
-   .insideHero {
-      padding: 0px 20px;
-   }
-   header p {
-      padding: 0px 10px;
-   }
-   .description div {
-      line-height: 2;
-   }
-   header {
-      width: 100%;
-      padding: 0vw 10%;
-      display: flex;
-      justify-content: center;
-   }
-   .grayContainer {
-      padding: 10%;
-   }
-   /* .profile {
+  .inputs input {
+    padding: 10px;
+    border-radius: 50px;
+    border: 2px gray solid;
+    margin: 10px;
+    width: 85%;
+    align-self: center;
+    outline: none;
+  }
+  #optionObraSocial {
+    padding: 10px;
+    border-radius: 50px;
+    border: 2px gray solid;
+    margin: 10px;
+    width: 85%;
+    align-self: center;
+    outline: none;
+    color: gray;
+    appearance: none;
+  }
+  .hero {
+    height: 60vh;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    padding: 20vw;
+  }
+  .insideHero {
+    padding: 0px 20px;
+  }
+  header p {
+    padding: 0px 10px;
+  }
+  .description div {
+    line-height: 2;
+  }
+  header {
+    width: 100%;
+    padding: 0vw 10%;
+    display: flex;
+    justify-content: center;
+  }
+  .grayContainer {
+    padding: 10%;
+  }
+  /* .profile {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -887,35 +935,50 @@ input.inputAvatar:focus {
       min-height: 1vh;
    }
 
-   .docDescription {
-      width: 80%;
-      padding: 20px 0px 20px 0px;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-   }
+  .docDescription {
+    width: 80%;
+    padding: 20px 0px 20px 0px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-   .leftProfile h4,
-   p {
-      padding: 0px 10px;
-   }
-   .rightProfile {
-      display: flex;
-      flex-direction: column;
-      background-color: #71cbe3;
-      width: 80%;
-      padding: 22px;
-      align-items: center;
-   }
-   .datosProfile {
-      text-align: left;
-      width: 80%;
-      align-self: center;
-   }
-   .tituloProfile {
-      padding-top: 10px;
-   }
+  .leftProfile h4,
+  p {
+    padding: 0px 10px;
+  }
+  .rightProfile {
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f3f5;
+    width: 80%;
+    padding: 22px;
+    align-items: center;
+  }
+  .datosProfile {
+    text-align: left;
+    width: 80%;
+    align-self: center;
+  }
+  .tituloProfile {
+    padding-top: 10px;
+  }
+  .containerDay {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  /* .comment {
+    display: flex;
+    align-content: center;
+    align-items: top;
+    padding: 10px;
+    background-color: #f4f5f7;
+    margin: 8px;
+    border-radius: 50px;
+    max-width: 100%;
+  } */
 }
 
 /* @media (max-width: 845px) {
@@ -925,146 +988,162 @@ input.inputAvatar:focus {
 } */
 
 @media (max-width: 992px) {
-   .inputs input {
-      padding: 10px;
-      border-radius: 50px;
-      border: 2px gray solid;
-      margin: 10px;
-      width: 85%;
-      align-self: center;
-      outline: none;
-   }
-   #optionObraSocial {
-      padding: 10px;
-      border-radius: 50px;
-      border: 2px gray solid;
-      margin: 10px;
-      width: 85%;
-      align-self: center;
-      outline: none;
-      color: gray;
-      appearance: none;
-   }
-   .hero {
-      height: 50vh;
-      background-position: center;
-      background-size: cover;
-      text-align: center;
-      padding: 20vw;
-   }
-   header p {
-      padding: 0px 10px;
-   }
-   .description div {
-      line-height: 2;
-   }
-   header {
-      width: 100%;
-      padding: 0vw 10vw;
-      display: flex;
-      justify-content: center;
-   }
-   .grayContainer {
-      padding: 10%;
-   }
+  .inputs input {
+    padding: 10px;
+    border-radius: 50px;
+    border: 2px gray solid;
+    margin: 10px;
+    width: 85%;
+    align-self: center;
+    outline: none;
+  }
+  #optionObraSocial {
+    padding: 10px;
+    border-radius: 50px;
+    border: 2px gray solid;
+    margin: 10px;
+    width: 85%;
+    align-self: center;
+    outline: none;
+    color: gray;
+    appearance: none;
+  }
+  .hero {
+    height: 60vh;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    padding: 20vw;
+  }
+  header p {
+    padding: 0px 10px;
+  }
+  .description div {
+    line-height: 2;
+  }
+  header {
+    width: 100%;
+    padding: 0vw 10vw;
+    display: flex;
+    justify-content: center;
+  }
 
-   .leftProfile {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      background-color: #f0f3f5;
-      width: 80%;
-      align-items: center;
-      padding: 22px;
-      min-height: 1vh;
-   }
-   .leftProfile p {
-      padding: 0px 10px;
-   }
+  header {
+    width: 100%;
+    padding: 0vw 5vw;
+    display: flex;
+    
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    color: #71cbe3;
+  }
+  .grayContainer {
+    padding: 10%;
+  }
 
-   .docDescription {
-      width: 80%;
-      padding: 20px 0px 20px 0px;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-   }
-   .centroProfile {
-      display: flex;
-      flex-direction: column;
-      min-width: 80%;
-      align-content: flex-start;
-   }
-   .rightProfile {
-      display: flex;
-      flex-direction: column;
-      background-color: #71cbe3;
-      width: 80%;
-      padding: 22px;
-      align-items: center;
-   }
-   .datosProfile {
-      text-align: left;
-      width: 80%;
-      align-self: center;
-   }
-   .tituloProfile {
-      padding-top: 10px;
-   }
-   .iconCardsContainer {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 20px 100px;
-   }
+  .leftProfile {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #f0f3f5;
+    width: 80%;
+    align-items: center;
+    padding: 22px;
+    min-height: 1vh;
+  }
+  .leftProfile p {
+    padding: 0px 10px;
+  }
+
+  .docDescription {
+    width: 80%;
+    padding: 20px 0px 20px 0px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .centroProfile {
+    display: flex;
+    flex-direction: column;
+    min-width: 80%;
+    align-content: flex-start;
+  }
+  .rightProfile {
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f3f5;
+    width: 80%;
+    padding: 22px;
+    align-items: center;
+  }
+  .datosProfile {
+    text-align: left;
+    width: 80%;
+    align-self: center;
+  }
+  .tituloProfile {
+    padding-top: 10px;
+  }
+  .iconCardsContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px 100px;
+  }
+  .containerDay {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 1200px) {
-   .inputs input {
-      padding: 10px;
-      border-radius: 50px;
-      border: 2px gray solid;
-      margin: 10px;
-      width: 60%;
-      align-self: center;
-      outline: none;
-   }
-   #optionObraSocial {
-      padding: 10px;
-      border-radius: 50px;
-      border: 2px gray solid;
-      margin: 10px;
-      width: 85%;
-      align-self: center;
-      outline: none;
-      color: gray;
-      appearance: none;
-   }
-   .hero {
-      height: 50vh;
-      background-position: center;
-      background-size: cover;
-      text-align: center;
-      padding: 10vw;
-   }
-   header p {
-      padding: 0px 10px;
-   }
-   .description div {
-      line-height: 2;
-   }
-   header {
-      width: 100%;
-      padding: 0vw 10vw;
-      display: flex;
-      justify-content: center;
-   }
-   .grayContainer {
-      padding: 10%;
-   }
-   /* .profile {
+  .inputs input {
+    padding: 10px;
+    border-radius: 50px;
+    border: 2px gray solid;
+    margin: 10px;
+    width: 60%;
+    align-self: center;
+    outline: none;
+  }
+  #optionObraSocial {
+    padding: 10px;
+    border-radius: 50px;
+    border: 2px gray solid;
+    margin: 10px;
+    width: 60%;
+    align-self: center;
+    outline: none;
+    color: gray;
+    appearance: none;
+  }
+  .hero {
+    height: 60vh;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    padding: 10vw;
+  }
+  header p {
+    padding: 0px 10px;
+  }
+  .description div {
+    line-height: 2;
+  }
+  header {
+    width: 100%;
+    padding: 0vw 5vw;
+    display: flex;
+    justify-content: space-between;
+  }
+  .grayContainer {
+    padding: 20%;
+  }
+  /* .profile {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -1082,22 +1161,22 @@ input.inputAvatar:focus {
     padding: 22px;
     min-height: 1vh;
   } */
-   .centroProfile {
-      display: flex;
-      flex-direction: column;
-      min-width: 450px;
-      max-width: 450px;
-      align-content: flex-start;
-   }
-   .docDescription {
-      width: 400px;
-      padding: 20px 0px 20px 50px;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-   }
-   /* .rightProfile {
+  .centroProfile {
+    display: flex;
+    flex-direction: column;
+    min-width: 450px;
+    max-width: 450px;
+    align-content: flex-start;
+  }
+  .docDescription {
+    width: 400px;
+    padding: 20px 0px 20px 50px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  /* .rightProfile {
     display: flex;
     flex-direction: column;
     background-color: #71cbe3;
@@ -1122,49 +1201,49 @@ input.inputAvatar:focus {
 }
 
 @media (max-width: 1416px) {
-   .inputs input {
-      padding: 10px;
-      border-radius: 50px;
-      border: 2px gray solid;
-      margin: 10px;
-      width: 60%;
-      align-self: center;
-      outline: none;
-   }
-   #optionObraSocial {
-      padding: 10px;
-      border-radius: 50px;
-      border: 2px gray solid;
-      margin: 10px;
-      width: 85%;
-      align-self: center;
-      outline: none;
-      color: gray;
-      appearance: none;
-   }
-   .hero {
-      height: 50vh;
-      background-position: center;
-      background-size: cover;
-      text-align: center;
-      padding: 10vw;
-   }
-   header p {
-      padding: 0px 10px;
-   }
-   .description div {
-      line-height: 2;
-   }
-   header {
-      width: 100%;
-      padding: 0vw 2vw;
-      display: flex;
-      justify-content: space-evenly;
-   }
-   .grayContainer {
-      padding: 3% 10%;
-   }
-   /* .profile {
+  .inputs input {
+    padding: 10px;
+    border-radius: 50px;
+    border: 2px gray solid;
+    margin: 10px;
+    width: 60%;
+    align-self: center;
+    outline: none;
+  }
+  #optionObraSocial {
+    padding: 10px;
+    border-radius: 50px;
+    border: 2px gray solid;
+    margin: 10px;
+    width: 60%;
+    align-self: center;
+    outline: none;
+    color: gray;
+    appearance: none;
+  }
+  .hero {
+    height: 60vh;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    padding: 10vw;
+  }
+  header p {
+    padding: 0px 10px;
+  }
+  .description div {
+    line-height: 2;
+  }
+  header {
+    width: 100%;
+    padding: 0vw 2vw;
+    display: flex;
+    justify-content: center;
+  }
+  .grayContainer {
+    padding: 3% 12%;
+  }
+  /* .profile {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;

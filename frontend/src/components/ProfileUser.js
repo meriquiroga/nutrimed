@@ -27,7 +27,7 @@ const ProfileUser = (props) => {
    }, [change])
 
    if (loading) {
-      return <h1>Loading...</h1>
+      return <h3 className="containerLoading">Loading...</h3>
    }
 
   const filterDays = (dayM) => {
@@ -106,10 +106,10 @@ const ProfileUser = (props) => {
                            </div>
                            <p>{appointment.date.date}</p>
                            <p>{appointment.date.hour} hs</p>
-                           <button
+                           <button className="buttonDelete"
                               onClick={() => setConfirmDelete(!confirmDelete)}
                            >
-                              Borrar turno
+                              BORRAR TURNO
                            </button>
                            {confirmDelete && (
                               <div>
@@ -214,10 +214,10 @@ const ProfileUser = (props) => {
                            </div>
                            <p className="turnos">{appointment.date.date}</p>
                            <p className="turnos">{appointment.date.hour} hs.</p>
-                           <button
+                           <button className="buttonDelete"
                               onClick={() => setConfirmDelete(!confirmDelete)}
                            >
-                              Borrar turno
+                              BORRAR TURNO
                            </button>
                            {confirmDelete && (
                               <div>
