@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import patientActions from "../redux/actions/patientActions";
 import userActions from "../redux/actions/userActions";
+
 const EditProfilePatient = (props) => {
   const { data, dni, src, socialWork } = props.user;
   const { direction, phoneNumber } = data;
   const { token } = props;
   const email = props.user.data.mail;
   const [validEdit, setValidEdit] = useState(false);
+  const [allSocialWork, setAllSocialWork] = useState([])
+  const [avatars, setAvatars] = useState([]);
   const [actPat, setActPat] = useState({
     dni: dni,
     data: {
@@ -23,20 +26,22 @@ const EditProfilePatient = (props) => {
     src: src,
     socialWork: socialWork,
   })
-
   const [previewImg, setPreviewImg] = useState(
     "https://i.postimg.cc/Hn7rq5TV/avatar5.png"
   )
 
-  const [avatars, setAvatars] = useState([]);
+  
 
   useEffect(() => {
     async function getAllAvatars() {
       let response = await props.getAvatars();
       if (response.success) {
         setAvatars(response.res);
-      }}
+      }
+   }
       getAllAvatars()
+      getSocialWork()
+      .then(res=> setAllSocialWork(res.res))
 
     return false;
     // eslint-disable-next-line
@@ -95,18 +100,6 @@ const EditProfilePatient = (props) => {
     });
   };
 
-   const allSocialWork = [
-      "MEDICAL",
-      "SWISS",
-      "APMA",
-      "OSDE",
-      "CARA",
-      "UDE",
-      "OSPIM",
-      "PREVENCIOON SALUD",
-      "SANCOR",
-      "LIAW",
-   ]
    const inputValue = (e) => {
       setPreviewImg(e.target.value)
    }
@@ -237,8 +230,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  editProfile: userActions.editProfile,
-  getAvatars: patientActions.getAvatars,
-};
+   editProfile: userActions.editProfile,
+   getAvatars: patientActions.getAvatars,
+   getSocialWork: patientActions.getSocialWork
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfilePatient)

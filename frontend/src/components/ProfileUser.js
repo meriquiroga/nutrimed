@@ -6,6 +6,7 @@ import React from "react";
 import ReactCircleModal from "react-circle-modal";
 import MedicalData from "./MedicalData";
 import { Accordion, AccordionItem } from "react-sanfona";
+import patientActions from "../redux/actions/patientActions"
 
 const ProfileUser = (props) => {
    const { doc, src, name, lastName, dni, data } = props.user
@@ -15,7 +16,7 @@ const ProfileUser = (props) => {
    const [confirmDelete, setConfirmDelete] = useState(false)
 
    useEffect(() => {
-      props.getAppointments(props.token).then((res) => {
+      props.getAppointments(token).then((res) => {
          if (res.success) {
             setAppointments(res.res)
             setLoading(false)
@@ -25,9 +26,9 @@ const ProfileUser = (props) => {
       // eslint-disable-next-line
    }, [change])
 
-  if (loading) {
-    return <h1>Loading</h1>;
-  }
+   if (loading) {
+      return <h1>Loading...</h1>
+   }
 
   const filterDays = (dayM) => {
     let day = appointments.filter((appointment) =>
@@ -36,9 +37,15 @@ const ProfileUser = (props) => {
     return day;
   };
 
-  const deleteAppoint = (id) => {
-    props.deleteAppointment(props.token, id).then((res) => setChange(res.res));
-  };
+   const deleteAppoint = (appointment) => {
+      props.deleteAppointment(token, appointment._id).then((res) => setChange(res.res))
+      if(typeof appointment.patientId == 'string'){
+         props.confirmFormMail(appointment.date, token, appointment.doctorId, false)
+      }else{
+         props.confirmFormMail(appointment.date, token, appointment.patientId, false)
+      }
+  
+   }
 
   const lunes = filterDays("Lunes");
   const martes = filterDays("Martes");
@@ -120,7 +127,7 @@ const ProfileUser = (props) => {
                                     src="/assets/check2.png"
                                     alt="edit"
                                     onClick={() =>
-                                       deleteAppoint(appointment._id)
+                                       deleteAppoint(appointment)
                                     }
                                  />
                               </div>
@@ -265,6 +272,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   getAppointments: doctorActions.getAppointments,
   deleteAppointment: doctorActions.deleteAppointment,
+  confirmFormMail:patientActions.confirmFormMail
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileUser);

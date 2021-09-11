@@ -22,14 +22,13 @@ const Score = ({scoreArray, staff,valid,doctorId,sendScore})=>{
         .then(res =>{
             if(res.success){
                 setNewScoreArray(res.res)
-                console.log(res.res)
             }
         })
     }
     
     if(!staff && valid){
         return(
-            <ReactStars count={5} size={24} value={AddScores()} onChange={changeScoreHandler} color2={'#ffd700'} half={true}/>
+            <ReactStars count={5} size={24} value={AddScores()} onChange={changeScoreHandler} color2={'#ffd700'} half={true}/> 
         )
     }
     return(

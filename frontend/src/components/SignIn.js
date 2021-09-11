@@ -34,7 +34,6 @@ const SignIn = ({logIn}) => {
     .then((res) => {if (!res.success){
       setErrors("Debe estar registrado con Google para utilizar este botón")
       setError({errorDos: true})
-
       }else 
         console.log("k");
       });

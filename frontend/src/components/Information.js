@@ -1,6 +1,5 @@
-const Contact = () => {
+const Information = () => {
   return (
-
       <div className="iconCardsContainer">
         <div className="iconCard">
           <img src="/assets/icono-telefono.png"alt="..." />
@@ -20,8 +19,6 @@ const Contact = () => {
         </div>
 
       </div>
-
-  )
-}
-
-export default Contact;
+  );
+};
+export default Information;

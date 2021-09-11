@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import Contact from "../components/Contact"
+import Information from '../components/Information'
 
 export default class Home extends Component {
   componentDidMount() {
@@ -51,7 +51,7 @@ export default class Home extends Component {
             </p>
           </div> 
         </div>
-        <Contact />
+        <Information/>
       </main>
     )
   }

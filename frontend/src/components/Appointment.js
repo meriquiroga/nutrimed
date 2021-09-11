@@ -79,7 +79,7 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
     .then(res=>{
       if(res.success){
         setConfirmAppointment('Tu turno fue agendado exitosamente. ¡Gracias!')
-        confirmFormMail(data.date, data.patientId, docName)
+        confirmFormMail(data.date, data.patientId, docName, true)
       }else{
         setConfirmAppointment('Lo sentimos, ha ocurrido un error. Por favor, intentá de nuevo más tarde.')
       }
@@ -94,7 +94,6 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
   return (
     <>
       <div className="container">
-        {console.log(appointmentReady)}
         <div className="grayContainer">
         <img src="/assets/appointment.png" alt="" />
         <h3>

@@ -132,5 +132,17 @@ const doctorControllers = {
       res.json({ success: false, res: err.message });
     }
   },
+  deleteDoctor: async (req,res)=>{
+    try{
+      let docDelete = await Doctor.findOneAndDelete({_id : req.user._id})
+            if(docDelete){
+                res.json({success: true, res: docDelete})
+            }else{
+                throw new Error()
+            }
+    }catch(err){
+      res.json({success:false})
+    }
+  }
 };
 module.exports = doctorControllers;

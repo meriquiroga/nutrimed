@@ -17,21 +17,21 @@ const Header = (props) => {
                      <p>HOME</p>
                   </NavLink>
                </li>
-               {!props.valid && (
+               {!valid && (
                   <li>
                      <NavLink to="/signup">
                         <p>CREAR CUENTA</p>
                      </NavLink>
                   </li>
                )}
-               {!props.valid && (
+               {!valid && (
                   <li>
                      <NavLink to="/signin">
                         <p>INGRESAR</p>
                      </NavLink>
                   </li>
                )}
-               {props.valid && (
+               {valid && (
                   <li>
                      <NavLink to="/profile">
                         <p>PERFIL</p>
@@ -53,11 +53,13 @@ const Header = (props) => {
             </ul>
          </div>
          <div className="headerRigth">
+         {((props.valid && !props.user.doc) || !props.valid)  &&
             <button>
-               <Link to={props.valid ? "/appointment" : "/signin"}>
+               <Link to={valid ? "/appointment" : "/signin"}>
                   SOLICITAR TURNO
                </Link>
             </button>
+            }
             {props.valid && <h4 className="nameHeader">{props.user.name}</h4>}
             <div
                className="logoUser"
