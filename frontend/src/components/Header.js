@@ -43,25 +43,34 @@ const Header = (props) => {
                      <p>CONTACTO</p>
                   </NavLink>
                </li>
+               <li>
+                  {props.valid && (
+                     <Link onClick={outHandler} to="/">
+                        <p>SALIR</p>
+                     </Link>
+                  )}
+               </li>
             </ul>
          </div>
          <div className="headerRigth">
-            {props.valid && <h4>Bienvenido/a, {props.user.userExist.name}</h4>}
-            <div>
-               {props.valid && (
-                  <NavLink className="logOut" onClick={outHandler} to="/">
-                     SALIR
-                     <img src="/assets/salir.png" alt="" />
-                  </NavLink>
-               )}
-            </div>
-            {/* {!props.user.userExist.doc && ( */}
             <button>
                <Link to={props.valid ? "/appointment" : "/signin"}>
                   SOLICITAR TURNO
                </Link>
             </button>
-            {/* )} */}
+            {props.valid && (
+               <h4 className="nameHeader">{props.user.userExist.name}</h4>
+            )}
+            <div
+               className="logoUser"
+               style={{
+                  backgroundImage: `url('${
+                     props.valid
+                        ? props.user.userExist.src
+                        : "https://i.postimg.cc/DzGJCrT8/customer-icon-23.png"
+                  }')`,
+               }}
+            ></div>
          </div>
       </header>
    )
