@@ -1,27 +1,27 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import doctorActions from "../redux/actions/doctorActions";
 import patientActions from "../redux/actions/patientActions";
-
+import userActions from "../redux/actions/userActions";
 const EditProfilePatient = (props) => {
-  const {token} = props
-  const {data, dni} = props.user.userExist
-  const email = props.user.userExist.data.mail;
-  const [validEdit, setValidEdit] = useState(false)
+  const { data, dni, src, socialWork } = props.user;
+  const { direction, phoneNumber } = data;
+  const { token } = props;
+  const email = props.user.data.mail;
+  const [validEdit, setValidEdit] = useState(false);
   const [actPat, setActPat] = useState({
-    dni: "",
+    dni: dni,
     data: {
       direction: {
-        street: "",
-        num: "",
-        city: "",
+        street: direction.street,
+        num: direction.num,
+        city: direction.city,
       },
       mail: email,
-      phoneNumber:"",
+      phoneNumber: phoneNumber,
     },
-    src:"",
-    socialWork: "",
+    src: src,
+    socialWork: socialWork,
   });
   const [previewImg, setPreviewImg] = useState(
     "https://i.postimg.cc/Hn7rq5TV/avatar5.png"
@@ -33,9 +33,6 @@ const EditProfilePatient = (props) => {
       let response = await props.getAvatars();
       if (response.success) {
         setAvatars(response.res);
-        console.log(response.res);
-      } else {
-        console.log("no fetchea avatares");
       }
     }
     getAllAvatars();
@@ -47,19 +44,27 @@ const EditProfilePatient = (props) => {
     if (e.target.name === "street") {
       setActPat({
         ...actPat,
-        data: {...actPat.data, 
-          direction: { ...actPat.data.direction, street: e.target.value }}})
+        data: {
+          ...actPat.data,
+          direction: { ...actPat.data.direction, street: e.target.value },
+        },
+      });
     } else if (e.target.name === "num") {
       setActPat({
         ...actPat,
-        data: {...actPat.data, direction: { ...actPat.data.direction, num: e.target.value } },
+        data: {
+          ...actPat.data,
+          direction: { ...actPat.data.direction, num: e.target.value },
+        },
       });
     } else if (e.target.name === "city") {
       setActPat({
         ...actPat,
-        data: {...actPat.data, direction: { ...actPat.data.direction, city: e.target.value } },
+        data: {
+          ...actPat.data,
+          direction: { ...actPat.data.direction, city: e.target.value },
+        },
       });
-
     } else if (e.target.name === "phoneNumber") {
       setActPat({
         ...actPat,
@@ -71,17 +76,21 @@ const EditProfilePatient = (props) => {
   };
 
   const editHandler = () => {
-    setValidEdit(!validEdit)
-  }
+    setValidEdit(!validEdit);
+  };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      submitHandler()
+    if (e.key === "Enter") {
+      submitHandler();
     }
-  }
-  
+  };
+
   const submitHandler = () => {
-    props.upgradePat(props.user.userExist.doc, actPat, token);
+    props.editProfile(props.user.doc, actPat, token).then((res) => {
+      if (res.success) {
+        props.history.push("/profile");
+      }
+    });
   };
 
   const allSocialWork = [
@@ -112,7 +121,7 @@ const EditProfilePatient = (props) => {
             name="dni"
             onChange={addDocHandler}
             defaultValue={token ? dni : actPat.dni}
-            disabled={!dni ? false : (validEdit ? false :  true)}
+            disabled={!dni ? false : validEdit ? false : true}
           />
           <input
             type="text"
@@ -120,34 +129,42 @@ const EditProfilePatient = (props) => {
             name="phoneNumber"
             onChange={addDocHandler}
             defaultValue={token ? data.phoneNumber : actPat.data.phoneNumber}
-            disabled={!data.phoneNumber ? false : (validEdit ? false :  true)}
+            disabled={!data.phoneNumber ? false : validEdit ? false : true}
           />
           <input
             type="text"
             placeholder="Calle"
             name="street"
             onChange={addDocHandler}
-            defaultValue={token ? data.direction.street : actPat.data.direction.street}
-            disabled={!data.direction.street ? false : (validEdit ? false :  true)}
+            defaultValue={
+              token ? data.direction.street : actPat.data.direction.street
+            }
+            disabled={!data.direction.street ? false : validEdit ? false : true}
           />
           <input
             type="text"
             placeholder="Número"
             name="num"
             onChange={addDocHandler}
-            defaultValue={token ? data.direction.num : actPat.data.direction.num}
-            disabled={!data.direction.num ? false : (validEdit ? false :  true)}
+            defaultValue={
+              token ? data.direction.num : actPat.data.direction.num
+            }
+            disabled={!data.direction.num ? false : validEdit ? false : true}
           />
           <input
             type="text"
             placeholder="Ciudad"
             name="city"
             onChange={addDocHandler}
-            defaultValue={token ? data.direction.city : actPat.data.direction.city}
-            disabled={!data.direction.city ? false : (validEdit ? false :  true)}
+            defaultValue={
+              token ? data.direction.city : actPat.data.direction.city
+            }
+            disabled={!data.direction.city ? false : validEdit ? false : true}
             onKeyPress={handleKeyPress}
           />
-          <span onClick={editHandler}>{!validEdit ? "Editar ✏️" : "Cancelar ❌"}</span>
+          <span onClick={editHandler}>
+            {!validEdit ? "Editar ✏️" : "Cancelar ❌"}
+          </span>
           <select
             id="optionObraSocial"
             name="socialWork"
@@ -178,7 +195,12 @@ const EditProfilePatient = (props) => {
                     backgroundImage: `url("${div.src}")`,
                   }}
                 >
-                  <input className="inputAvatar" defaultValue={div.src}></input>
+                  <input
+                    className="inputAvatar"
+                    name="src"
+                    onClick={addDocHandler}
+                    defaultValue={div.src}
+                  ></input>
                 </div>
               ))}
             </div>
@@ -203,7 +225,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  upgradePat: doctorActions.editProfile,
+  editProfile: userActions.editProfile,
   getAvatars: patientActions.getAvatars,
 };
 

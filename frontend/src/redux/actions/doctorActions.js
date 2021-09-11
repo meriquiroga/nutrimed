@@ -1,29 +1,6 @@
 import axios from "axios";
 
 const doctorActions = {
-   editProfile: (typeUser, profileEdited, token) => {
-      let type = ""
-      if (typeUser) type = "doctor"
-      else type = "patient"
-      return async () => {
-         try {
-            let res = await axios.put(
-               `http://localhost:4000/api/${type}`,
-               { ...profileEdited },
-               {
-                  headers: {
-                     Authorization: "Bearer " + token,
-                  },
-               }
-            )
-            if (res.data.success) {
-               return { success: true }
-            }
-         } catch (err) {
-            return { success: false, res: err }
-         }
-      }
-  },
   getDoctors: () => {
     return async (dispatch, getState) => {
       try {
@@ -33,25 +10,25 @@ const doctorActions = {
       } catch (err) {
         return { success: false, res: err };
       }
-    }
-   },
-   getOneDoctor: (id) => {
-      return (dispatch, getState) => {
-         dispatch({ type: "GET_ONE_DOCTOR", payload: id })
+    };
+  },
+  getOneDoctor: (id) => {
+    return (dispatch, getState) => {
+      dispatch({ type: "GET_ONE_DOCTOR", payload: id });
+    };
+  },
+  getOneDoctorDB: (id) => {
+    return async (dispatch, getState) => {
+      try {
+        let res = await axios.get(`http://localhost:4000/api/doctor/${id}`);
+        if (res.data.success) {
+          dispatch({ type: "GET_ONE_DOCTOR_DB", payload: res.data.res });
+          return { success: true, res: res.data.res };
+        }
+      } catch (err) {
+        return { success: false, res: err };
       }
-   },
-   getOneDoctorDB: (id) => {
-      return async (dispatch, getState) => {
-         try {
-            let res = await axios.get(`http://localhost:4000/api/doctor/${id}`)
-            if (res.data.success) {
-               dispatch({ type: "GET_ONE_DOCTOR_DB", payload: res.data.res })
-               return {success: true, res: res.data.res}
-            }
-         } catch (err) {
-            return { success: false, res: err }
-         }
-      }
+    };
   },
   actionReview: (user, id, text, action, reviewId) => {
     return async () => {
@@ -132,27 +109,31 @@ const doctorActions = {
       } catch (err) {
         return { success: false, res: err };
       }
-    }
-   },
-   sendScore: (data)=>{
-      const {doc, point, action, user} = data
-      return async ()=>{
-         try{
-            let res = await axios.put(`http://localhost:4000/api/doctor/${doc}`,{point, action},{
-               headers: {
-                  Authorization: "Bearer " + user,
-               },
-            })
-            if(res.data.success){
-               return { success:true, res: res.data.res}
-            }else{
-               throw Error
-            }
-         }catch(err){
-            return {success:false}
-         }
+    };
+  },
+  sendScore: (data) => {
+    const { doc, point, action, user } = data;
+    return async () => {
+      try {
+        let res = await axios.put(
+          `http://localhost:4000/api/doctor/${doc}`,
+          { point, action },
+          {
+            headers: {
+              Authorization: "Bearer " + user,
+            },
+          }
+        );
+        if (res.data.success) {
+          return { success: true, res: res.data.res };
+        } else {
+          throw Error;
+        }
+      } catch (err) {
+        return { success: false };
       }
-   }
-}
+    };
+  },
+};
 
 export default doctorActions;
