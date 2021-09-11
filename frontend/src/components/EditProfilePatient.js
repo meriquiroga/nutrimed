@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 import patientActions from "../redux/actions/patientActions";
 import userActions from "../redux/actions/userActions";
 
-const EditProfilePatient = (props) => {
-  const { data, dni, src, socialWork } = props.user;
+const EditProfilePatient = ({user,token,getAvatars,getSocialWork,editProfile,history}) => {
+  const { data, dni, src, socialWork } = user;
   const { direction, phoneNumber } = data;
-  const { token } = props;
-  const email = props.user.data.mail;
+  const email = user.data.mail;
   const [validEdit, setValidEdit] = useState(false);
   const [allSocialWork, setAllSocialWork] = useState([])
   const [avatars, setAvatars] = useState([]);
+  const [previewImg, setPreviewImg] = useState(src)
   const [actPat, setActPat] = useState({
     dni: dni,
     data: {
@@ -26,15 +26,13 @@ const EditProfilePatient = (props) => {
     src: src,
     socialWork: socialWork,
   })
-  const [previewImg, setPreviewImg] = useState(
-    "https://i.postimg.cc/Hn7rq5TV/avatar5.png"
-  )
+ 
 
   
 
   useEffect(() => {
     async function getAllAvatars() {
-      let response = await props.getAvatars();
+      let response = await getAvatars();
       if (response.success) {
         setAvatars(response.res);
       }
@@ -93,9 +91,9 @@ const EditProfilePatient = (props) => {
   }
   
   const submitHandler = () => {
-    props.editProfile(props.user.doc, actPat, token).then((res) => {
+    editProfile(user.doc, actPat, token).then((res) => {
       if (res.success) {
-        props.history.push("/profile");
+        history.push("/profile");
       }
     });
   };
@@ -201,12 +199,14 @@ const EditProfilePatient = (props) => {
                         >
                            <input
                               className="inputAvatar"
+                              name="src"
+                              onClick={addDocHandler}
                               defaultValue={div.src}
                            ></input>
                         </div>
                      ))}
                   </div>
-                  <span onClick={editHandler}>
+                  <span className='editProfile' onClick={editHandler}>
                   {!validEdit ? "Editar ✏️" : "Cancelar ❌"}
                </span>
                </div>

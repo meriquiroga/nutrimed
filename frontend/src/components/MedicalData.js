@@ -3,12 +3,12 @@ import { useState } from "react";
 import patientActions from "../redux/actions/patientActions";
 import Description from "./Description";
 
-const MedicalData = (props) => {
+const MedicalData = ({appointment,postDescription,token}) => {
   const [inputDescription, setInputDescription] = useState({
     description: "",
   });
   const { name, lastName, src, dni, data, medicalData, _id } =
-    props.appointment.patientId;
+    appointment.patientId;
   const [descriptions, setDescriptions] = useState(medicalData);
   const [change, setChange] = useState(false);
 
@@ -20,8 +20,7 @@ const MedicalData = (props) => {
   };
 
   const submitHandler = () => {
-    props
-      .postDescription(_id, props.token, inputDescription.description)
+      postDescription(_id, token, inputDescription.description)
       .then((res) => {
         setDescriptions(res.res);
       });
@@ -46,69 +45,23 @@ const MedicalData = (props) => {
                      <img className="imgMD" src={src} alt="fotoPaciente" />
                   </div>
                   <div>
-                     {" "}
-                     <p>Nombre: {name}</p>
-                     <p>Apellido: {lastName}</p>
-                     <p>DNI: {dni}</p>
+                    {" "}
+                    <p>Nombre: {name}</p>
+                    <p>Apellido: {lastName}</p>
+                    <p>DNI: {dni}</p>
                   </div>
                   <div>
-                     {" "}
-                     <p>
-                        Domicilio: {data.direction.street}
-                        {data.direction.num}
-                        {data.direction.city}
-                     </p>
-                     <p>Teléfono: {data.phoneNumber}</p>
-                     <p>E-mail: {data.mail}</p>
+                    {" "}
+                    <p>
+                      Domicilio: {data.direction.street}
+                      {data.direction.num}
+                      {data.direction.city}
+                    </p>
+                    <p>Teléfono: {data.phoneNumber}</p>
+                    <p>E-mail: {data.mail}</p>
                   </div>
                </div>
-               <div className="DEF">
-                  <h3>Registro de notas</h3>
-                  <div className="descripcion">
-                     {descriptions.length === 0 ? (
-                        <p>No hay notas aún</p>
-                     ) : (
-                        descriptions.map((description, index) => {
-                           return (
-                              <Description
-                                 description={description}
-                                 key={index}
-                              />
-                           )
-                        })
-                     )}
-                  </div>
-                  <div className="divEnviarNota">
-                     <textarea
-                        className="medicalInput"
-                        value={inputDescription.description}
-                        name="description"
-                        placeholder="Ingresar fecha (dd/mm/aaaa) : nota correspondiente"
-                        onChange={inputHandler}
-                        onKeyPress={pressEnter}
-                     />
-                     <button id="buttonSign" onClick={submitHandler}>
-                        ENVIAR
-                     </button>
-                  </div>
-               </div>
-            </div>
-            <div>
-              {" "}
-              <p>Nombre: {name}</p>
-              <p>Apellido: {lastName}</p>
-              <p>DNI: {dni}</p>
-            </div>
-            <div>
-              {" "}
-              <p>
-                Domicilio: {data.direction.street}
-                {data.direction.num}
-                {data.direction.city}
-              </p>
-              <p>Teléfono: {data.phoneNumber}</p>
-              <p>E-mail: {data.mail}</p>
-            </div>
+            </div>  
           </div>
           <div className="DEF">
             <h3>Registro de notas</h3>
@@ -133,7 +86,7 @@ const MedicalData = (props) => {
                 className="medicalInput"
                 value={inputDescription.description}
                 name="description"
-                placeholder="Ingresar nota"
+                placeholder="Ingresar fecha (dd/mm/aaaa) : nota correspondiente"
                 onChange={inputHandler}
                 onKeyPress={pressEnter}
               />

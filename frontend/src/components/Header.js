@@ -2,9 +2,9 @@ import { connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import userActions from "../redux/actions/userActions";
 
-const Header = (props) => {
+const Header = ({logOut,valid,user}) => {
   const outHandler = () => {
-    props.logOut();
+    logOut();
   };
 
    return (
@@ -39,7 +39,7 @@ const Header = (props) => {
                   </li>
                )}
                <li>
-                  {props.valid && (
+                  {valid && (
                      <Link onClick={outHandler} to="/">
                         <p>SALIR</p>
                      </Link>
@@ -48,20 +48,20 @@ const Header = (props) => {
             </ul>
          </div>
          <div className="headerRigth">
-         {((props.valid && !props.user.doc) || !props.valid)  &&
+         {((valid && !user.doc) || !valid)  &&
             <button>
                <Link to={valid ? "/appointment" : "/signin"}>
                   SOLICITAR TURNO
                </Link>
             </button>
             }
-            {props.valid && <h4 className="nameHeader">{props.user.name}</h4>}
+            {valid && <h4 className="nameHeader">{user.name}</h4>}
             <div
                className="logoUser"
                style={{
                   backgroundImage: `url('${
-                     props.valid
-                        ? props.user.src
+                     valid
+                        ? user.src
                         : "https://i.postimg.cc/DzGJCrT8/customer-icon-23.png"
                   }')`,
                }}

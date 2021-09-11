@@ -8,15 +8,15 @@ import MedicalData from "./MedicalData";
 import { Accordion, AccordionItem } from "react-sanfona";
 import patientActions from "../redux/actions/patientActions"
 
-const ProfileUser = (props) => {
-   const { doc, src, name, lastName, dni, data } = props.user
+const ProfileUser = ({user,getAppointments,deleteAppointment,confirmFormMail,token}) => {
+   const { doc, src, name, lastName, dni, data } = user
    const [appointments, setAppointments] = useState([])
    const [loading, setLoading] = useState(true)
    const [change, setChange] = useState([])
    const [confirmDelete, setConfirmDelete] = useState(false)
 
    useEffect(() => {
-      props.getAppointments(token).then((res) => {
+      getAppointments(token).then((res) => {
          if (res.success) {
             setAppointments(res.res)
             setLoading(false)
@@ -38,13 +38,13 @@ const ProfileUser = (props) => {
   };
 
    const deleteAppoint = (appointment) => {
-      props.deleteAppointment(token, appointment._id).then((res) => setChange(res.res))
+      deleteAppointment(token, appointment._id).then((res) => setChange(res.res))
       if(typeof appointment.patientId == 'string'){
-         props.confirmFormMail(appointment.date, token, appointment.doctorId, false)
+         confirmFormMail(appointment.date, token, appointment.doctorId, false)
       }else{
-         props.confirmFormMail(appointment.date, token, appointment.patientId, false)
+         confirmFormMail(appointment.date, token, appointment.patientId, false)
       }
-  
+      setConfirmDelete(!confirmDelete)
    }
 
   const lunes = filterDays("Lunes");
@@ -235,7 +235,7 @@ const ProfileUser = (props) => {
                                     src="/assets/check2.png"
                                     alt="edit"
                                     onClick={() =>
-                                       deleteAppoint(appointment._id)
+                                       deleteAppoint(appointment)
                                     }
                                  />
                               </div>
@@ -245,7 +245,7 @@ const ProfileUser = (props) => {
                   })
                )
             ) : appointments.length === 0 ? (
-               <p className="turnos">No tenés pacientes agendados para hoy.</p>
+               <p className="turnos">No tenés pacientes agendados esta semana.</p>
             ) : (
                <div>
                   {drawAccordion("Lunes", lunes)}

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import doctorActions from "../redux/actions/doctorActions";
 
 const EveryReview = ({review, user, userToken, deleteReviewHandler,actionReview, doctorId}) => {
-  const {userExist} = user
   const {text, patientId, _id}=review
   const [newText, setNewText]=useState({review:text , edit:false, editReview:text})
   const [edit, setEdit]= useState(false)
@@ -11,7 +10,7 @@ const EveryReview = ({review, user, userToken, deleteReviewHandler,actionReview,
 
   useEffect(()=>{
     if(userToken){
-      userExist._id === patientId._id ? setEdit(true) : setEdit(false)
+      user._id === patientId._id ? setEdit(true) : setEdit(false)
     }
     // eslint-disable-next-line
   },[user])
