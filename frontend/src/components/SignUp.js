@@ -229,55 +229,56 @@ const SignUp = ({ signUpUser, getAvatars }) => {
               required={valueIn === "prof" ? true : false}
               />
             </div>
-          </div>
-          <h3>Elija su avatar para perfil</h3>
+            <h3>Elija su avatar para perfil</h3>
 
-          <div className="containerPreview" >
-          {<img data-tip data-for="buttonError6" style={{height:"40px", width:"40px", display:(error.errorOne && errors.length) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
-              <div
-                className="preview"
-                style={{
-                  backgroundImage: `url("${previewImg}")`,
-                }}
-              ></div>
-            <div className={((error.errorOne && !newUser.src.length) ? "errorY thumbNails" : "errorN thumbNails")}>
-              {avatars.map((div, index) => (
-                <div
-                  onClick={inputValue}
-                  className="thumbNail"
-                  key={index}
-                  style={{
-                    backgroundImage: `url("${div.src}")`,
-                  }}
-                >
-                  <input className="inputAvatar" name="src" onClick={addUserHandler}  defaultValue={div.src}></input>
-                </div>
-              ))}
-            </div>
-          </div>
-          {/* {error.errorOne &&
-              errors.map((error) => (
-                <p key={error.message} style={{ fontSize: "1.3vmin" }}>
-                  *{error.message}
-                </p>
-              ))} */}
-          <button onClick={submitHandler}>REGISTRARSE</button>
+<div className="containerPreview" >
+{<img data-tip data-for="buttonError6" style={{height:"40px", width:"40px", display:(error.errorOne && errors.length) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+    <div
+      className="preview"
+      style={{
+        backgroundImage: `url("${previewImg}")`,
+      }}
+    ></div>
+  <div className={((error.errorOne && !newUser.src.length) ? "errorY thumbNails" : "errorN thumbNails")}>
+    {avatars.map((div, index) => (
+      <div
+        onClick={inputValue}
+        className="thumbNail"
+        key={index}
+        style={{
+          backgroundImage: `url("${div.src}")`,
+        }}
+      >
+        <input className="inputAvatar" name="src" onClick={addUserHandler}  defaultValue={div.src}></input>
+      </div>
+    ))}
+  </div>
+</div>
+{/* {error.errorOne &&
+    errors.map((error) => (
+      <p key={error.message} style={{ fontSize: "1.3vmin" }}>
+        *{error.message}
+      </p>
+    ))} */}
+<button onClick={submitHandler}>REGISTRARSE</button>
 
-          <div style={{ display: dispGo }}>
-            <div>
-              <GoogleLogin
-                clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
-                buttonText="Registrarse con Google"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy={"single_host_origin"}
-              />
-            </div>
+<div style={{ display: dispGo }}>
+  <div>
+    <GoogleLogin
+      clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
+      buttonText="Registrarse con Google"
+      onSuccess={responseGoogle}
+      onFailure={responseGoogle}
+      cookiePolicy={"single_host_origin"}
+    />
+  </div>
+</div>
+<p>
+  ¿Ya tenés cuenta? <Link to="/signin">¡Ingresá aquí!</Link>
+</p>
+</div>   
           </div>
-          <p>
-            ¿Ya tenés cuenta? <Link to="/signin">¡Ingresá aquí!</Link>
-          </p>
-        </div>     
+           
     </>
   );
 };
