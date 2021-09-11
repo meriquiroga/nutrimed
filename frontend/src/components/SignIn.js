@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import ReactTooltip from "react-tooltip"
 
 const SignIn = ({logIn}) => {
-  const [valueIn, setValueIn] = useState("");
+  const [valueIn, setValueIn] = useState("pat");
   const [errors, setErrors] = useState("")
   const [error, setError] = useState({errorUno: false, errorDos: false})
   const [userLog, setUserLog] = useState({
@@ -25,7 +25,6 @@ const SignIn = ({logIn}) => {
         setUserLog({ ...userLog, [e.target.name]: e.target.value });
     }
   };
-
 
 
   const responseGoogle = (res) => {
@@ -65,6 +64,8 @@ const SignIn = ({logIn}) => {
     } 
   };
 
+  console.log(valueIn)
+
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       submitUserLog()
@@ -76,14 +77,16 @@ const SignIn = ({logIn}) => {
 
   return (
     <>
+      {
+      <ReactTooltip id="buttonError" place="top" effect="solid" className="buttonGoogle"> {errors} </ReactTooltip>}
 
-      {valueIn === "" && <ReactTooltip id="button_Google"
+      {/* {valueIn === "" && <ReactTooltip id="button_Google"
         place="right"
         effect="solid"
         className="buttonGoogle"
       >
         Debe seleccionar tipo de usuario
-      </ReactTooltip>}
+      </ReactTooltip>} */}
     
       <div className="container">
         <div className="grayContainer">
@@ -96,7 +99,8 @@ const SignIn = ({logIn}) => {
                 onClick={validInputHandler}
                 type="radio"
                 name="buttonRol"
-                defaultValue="pat"
+                value="pat"
+                defaultChecked
               />
             </div>
             <div>
@@ -105,7 +109,7 @@ const SignIn = ({logIn}) => {
                 onClick={validInputHandler}
                 type="radio"
                 name="buttonRol"
-                defaultValue="prof"
+                value="prof"
               />
             </div>
           </div>
@@ -128,19 +132,20 @@ const SignIn = ({logIn}) => {
               onKeyPress={handleKeyPress}
             />
           </div>
-          {error.errorUno && <p style={{fontSize:"small"}} >*{errors}</p>}
-          {error.errorDos && <p style={{fontSize:"small"}} >*{errors}</p>}
+          {<img data-tip data-for="buttonError" style={{height:"40px", width:"40px", display: (error.errorUno || error.errorDos) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+
           <button id="buttonSign" onClick={submitUserLog}>
             LOGIN
           </button>
-          <div style={{ display: dispGo, display:"flex", justifyContent:"center"}}>
-            <div  style={{width:"14%"}} data-tip data-for="button_Google">
-              <GoogleLogin disabled={valueIn === "" ? true : false}
+          <div style={{ display: dispGo }}>
+            <div>
+              <GoogleLogin 
                 clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
                 buttonText="Ingresar con Google"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
                 cookiePolicy={"single_host_origin"}
+                
               />
             </div>
           </div>
