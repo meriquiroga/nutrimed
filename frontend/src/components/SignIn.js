@@ -15,8 +15,6 @@ const SignIn = ({logIn}) => {
     google: false,
   });
 
-  // console.log(error1)
-
   const userLogin = (e) => {
     setError({errorUno: false})
     if (e.target.name === "data") {
@@ -25,8 +23,6 @@ const SignIn = ({logIn}) => {
         setUserLog({ ...userLog, [e.target.name]: e.target.value });
     }
   };
-
-
 
   const responseGoogle = (res) => {
     let newUserWithGoogle = {
@@ -38,7 +34,6 @@ const SignIn = ({logIn}) => {
     .then((res) => {if (!res.success){
       setErrors("Debe estar registrado con Google para utilizar este botón")
       setError({errorDos: true})
-
       }else 
         console.log("k");
       });

@@ -229,8 +229,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
               required={valueIn === "prof" ? true : false}
               />
             </div>
-          </div>
-          <h3>Elija su avatar para perfil</h3>
+            <h3>Elija su avatar para perfil</h3>
 
           <div className="containerPreview" >
           {<img data-tip data-for="buttonError6" style={{height:"40px", width:"40px", display:(error.errorOne && errors.length) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
@@ -277,7 +276,9 @@ const SignUp = ({ signUpUser, getAvatars }) => {
           <p>
             ¿Ya tenés cuenta? <Link to="/signin">¡Ingresá aquí!</Link>
           </p>
-        </div>     
+        </div>
+          </div>
+               
     </>
   );
 };

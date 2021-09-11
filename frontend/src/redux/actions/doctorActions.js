@@ -152,6 +152,42 @@ const doctorActions = {
             return {success:false}
          }
       }
+   },
+   deleteProfileDoctor:(token)=>{
+     return async ()=>{
+       try{
+         let res = await axios.delete('http://localhost:4000/api/doctor',{
+           headers: {
+             Authorization:" Bearer" + token,
+           }
+         })
+         if(res.data.success){
+           return{success:true}
+         }else{
+           throw new Error
+         }
+       }catch(err){
+         return{success:false}
+       }
+     }
+   },
+   deleteAllAppointmentByDoctor:(token)=>{
+     return async ()=>{
+      try{
+        let res = await axios.delete('http://localhost:4000/api/appointments',{
+          headers: {
+            Authorization:" Bearer" + token,
+          }
+        })
+        if(res.data.success){
+          return{success:true}
+        }else{
+          throw new Error
+        }
+      }catch(err){
+        return{success:false}
+      }
+    }
    }
 }
 

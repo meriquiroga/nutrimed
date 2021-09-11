@@ -14,7 +14,6 @@ import { connect } from "react-redux"
 import { useEffect, useState } from "react"
 import userActions from "./redux/actions/userActions"
 import patientActions from "./redux/actions/patientActions"
-import Information from "./components/Information"
 import io from "socket.io-client"
 import SignIn from "./components/SignIn"
 
@@ -39,15 +38,14 @@ const App = ({ logWithLs, getSocket, user, valid }) => {
             {!valid && <Route path="/signup" component={SignUp} />}
             <Route exact path="/staff" component={Staff} />
             <Route path="/staff/:id" component={EachDoctor} />
-            {valid && !user.userExist.doc && (
+            {valid && !user.doc && (
                <Route path="/appointment" component={Appointment} />
             )}
-            <Route path="/information" component={Information} />
-            {valid && user.userExist.doc && (
+            {valid && user.doc && (
                <Route exact path="/doc/profile" component={EditProfileDoctor} />
             )}
             {valid && <Route exact path="/profile" component={Profile} />}
-            {valid && !user.userExist.doc && (
+            {valid && !user.doc && (
                <Route
                   exact
                   path="/patient/profile"

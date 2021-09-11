@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const EditProfileDoctor = (props) => {
   console.log(props)
   const {token} = props
-  const {data, dni, description, specialty, registration} = props.user.userExist
-  const email = props.user.userExist.data.mail;
+  const {data, dni, description, specialty, registration} = props.user
+  const email = props.user.data.mail;
   const [valueIn, setValueIn] = useState(true);
   const [validEdit, setValidEdit] = useState(false)
   const [actDoc, setActDoc] = useState({
@@ -79,7 +79,7 @@ const EditProfileDoctor = (props) => {
   }
 
   const submitHandler = () => {
-    props.upgradeDoc(props.user.userExist.doc, actDoc, props.token)
+    props.upgradeDoc(props.user.doc, actDoc, props.token)
     .then((res)=> {console.log(res)})
   };
 

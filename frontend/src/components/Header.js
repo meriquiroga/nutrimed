@@ -2,11 +2,10 @@ import { connect } from "react-redux"
 import { NavLink, Link } from "react-router-dom"
 import userActions from "../redux/actions/userActions"
 
-const Header = (props) => {
+const Header = ({valid,user,logOut}) => {
    const outHandler = () => {
-      props.logOut()
+      logOut()
    }
-
    return (
       <header>
          <div className="navbar">
@@ -17,51 +16,46 @@ const Header = (props) => {
                      <p>HOME</p>
                   </NavLink>
                </li>
-               {!props.valid && (
+               {!valid && (
                   <li>
                      <NavLink to="/signup">
                         <p>CREAR CUENTA</p>
                      </NavLink>
                   </li>
                )}
-               {!props.valid && (
+               {!valid && (
                   <li>
                      <NavLink to="/signin">
                         <p>INGRESAR</p>
                      </NavLink>
                   </li>
                )}
-               {props.valid && (
+               {valid && (
                   <li>
                      <NavLink to="/profile">
                         <p>PERFIL</p>
                      </NavLink>
                   </li>
                )}
-               <li>
-                  <NavLink to="/information">
-                     <p>CONTACTO</p>
-                  </NavLink>
-               </li>
             </ul>
          </div>
          <div className="headerRigth">
-            {props.valid && <h4>Bienvenido/a, {props.user.userExist.name}</h4>}
+            {valid && <h4>Bienvenido/a, {user.name}</h4>}
             <div>
-               {props.valid && (
+               {valid && (
                   <NavLink className="logOut" onClick={outHandler} to="/">
                      SALIR
                      <img src="/assets/salir.png" alt="" />
                   </NavLink>
                )}
             </div>
-            {/* {!props.user.userExist.doc && ( */}
+            {((valid && !user.doc) || !valid)  &&
             <button>
-               <Link to={props.valid ? "/appointment" : "/signin"}>
+               <Link to={valid ? "/appointment" : "/signin"}>
                   SOLICITAR TURNO
                </Link>
             </button>
-            {/* )} */}
+            }
          </div>
       </header>
    )

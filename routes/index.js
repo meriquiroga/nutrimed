@@ -19,8 +19,12 @@ router
       passport.authenticate("jwt", { session: false }),
       doctorControllers.editProfile
    )
+   .delete(passport.authenticate("jwt", { session: false }),
+   doctorControllers.deleteDoctor)
 
-router.route("/doctors").get(doctorControllers.getDoctors)
+router.route("/doctors")
+.get(doctorControllers.getDoctors)
+
 
 router
   .route("/doctor/:id")
@@ -28,7 +32,7 @@ router
   .put(
     passport.authenticate("jwt", { session: false }),
     doctorControllers.changedReviewAndScore
-  );
+  )
 
 router
 
@@ -39,7 +43,8 @@ router
       patientControllers.editProfile
    )
 
-router.route("/patients").get(patientControllers.getPatients)
+router.route("/patients")
+.get(patientControllers.getPatients)
 
 router
    .route("/patient/:id")
@@ -66,6 +71,7 @@ router
       passport.authenticate("jwt", { session: false }),
       appointmentControllers.getAppointments
    )
+   .delete( passport.authenticate("jwt", { session: false }),appointmentControllers.deleteAllAppointmentByDoctor)
 
 router
    .route("/verifyToken")

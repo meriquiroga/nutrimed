@@ -26,7 +26,6 @@ const Reviews = ({
           setRefetch(!refetch);
           getOneDoctorReviews(doctorId).then((res) => {
             if (res.success) {
-              console.log(res);
               setNewReview(res.res);
             } else {
               console.log("error");

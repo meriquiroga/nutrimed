@@ -97,15 +97,15 @@ const patientActions = {
          }
       }
   },
-  confirmFormMail: (info, user, doc) => {
+  confirmFormMail: (info, user, doc, action) => {
     return async () => {
       try {
-        let res = await axios.post("http://localhost:4000/api/mail",{info, doc}, {
+        let res = await axios.post("http://localhost:4000/api/mail",{info, doc, action}, {
             headers: {
               Authorization: "Bearer " + user,
             },
           });
-        if(res.success){
+        if(res.data.success){
             return({success:true, res:'Recibiras un e-mail con la confirmación del turno'})
         }else{
           throw Error
@@ -125,6 +125,17 @@ const patientActions = {
      }
    };
  },
+ getSocialWork:()=>{
+   return async () => {
+      try {
+        let res = await axios.get("http://localhost:4000/api/socialwork");
+        return { success: true, res: res.data.res[0].names};
+      } catch (err) {
+        return { success: false, res: err };
+      }
+    }
+
+ }
 };
 
 export default patientActions

@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 import doctorActions from "../redux/actions/doctorActions";
 import patientActions from "../redux/actions/patientActions";
 
-const EditProfilePatient = (props) => {
-  const {token} = props
-  const {data, dni} = props.user.userExist
-  const email = props.user.userExist.data.mail;
+const EditProfilePatient = ({getSocialWork,token,user,upgradePat,getAvatars}) => {
+  const {data, dni} = user
+  const email = user.data.mail;
   const [validEdit, setValidEdit] = useState(false)
+  const [allSocialWork, setAllSocialWork] = useState([])
   const [actPat, setActPat] = useState({
     dni: "",
     data: {
@@ -30,16 +30,16 @@ const EditProfilePatient = (props) => {
 
   useEffect(() => {
     async function getAllAvatars() {
-      let response = await props.getAvatars();
+      let response = await getAvatars();
       if (response.success) {
-        setAvatars(response.res);
-        console.log(response.res);
+        setAvatars(response.res)
       } else {
         console.log("no fetchea avatares");
       }
     }
     getAllAvatars();
-
+    getSocialWork()
+    .then(res=> setAllSocialWork(res.res))
     return false;
   }, []);
 
@@ -81,21 +81,9 @@ const EditProfilePatient = (props) => {
   }
   
   const submitHandler = () => {
-    props.upgradePat(props.user.userExist.doc, actPat, token);
-  };
+    upgradePat(user.doc, actPat, token);
+  }
 
-  const allSocialWork = [
-    "MEDICAL",
-    "SWISS",
-    "APMA",
-    "OSDE",
-    "CARA",
-    "UDE",
-    "OSPIM",
-    "PREVENCIOON SALUD",
-    "SANCOR",
-    "LIAW",
-  ];
   const inputValue = (e) => {
     setPreviewImg(e.target.value);
   };
@@ -205,6 +193,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   upgradePat: doctorActions.editProfile,
   getAvatars: patientActions.getAvatars,
+  getSocialWork: patientActions.getSocialWork
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfilePatient);

@@ -6,15 +6,16 @@ import React from "react"
 import ReactCircleModal from "react-circle-modal"
 import MedicalData from "./MedicalData"
 import { Accordion, AccordionItem } from "react-sanfona"
+import patientActions from "../redux/actions/patientActions"
 
-const ProfileUser = (props) => {
-   const { doc, src, name, lastName, dni, data } = props.user.userExist
+const ProfileUser = ({getAppointments,token,user,deleteAppointment,confirmFormMail}) => {
+   const { doc, src, name, lastName, dni, data } = user
    const [appointments, setAppointments] = useState([])
    const [loading, setLoading] = useState(true)
    const [change, setChange] = useState([])
 
    useEffect(() => {
-      props.getAppointments(props.token).then((res) => {
+      getAppointments(token).then((res) => {
          if (res.success) {
             setAppointments(res.res)
             setLoading(false)
@@ -24,7 +25,7 @@ const ProfileUser = (props) => {
    }, [change])
 
    if (loading) {
-      return <h1>Loading</h1>
+      return <h1>Loading...</h1>
    }
 
    const filterDays = (dayM) => {
@@ -34,8 +35,14 @@ const ProfileUser = (props) => {
       return day
    }
 
-   const deleteAppoint = (id) => {
-      props.deleteAppointment(props.token, id).then((res) => setChange(res.res))
+   const deleteAppoint = (appointment) => {
+      deleteAppointment(token, appointment._id).then((res) => setChange(res.res))
+      if(typeof appointment.patientId == 'string'){
+         confirmFormMail(appointment.date, token, appointment.doctorId, false)
+      }else{
+         confirmFormMail(appointment.date, token, appointment.patientId, false)
+      }
+  
    }
 
    const lunes = filterDays("Lunes")
@@ -97,7 +104,7 @@ const ProfileUser = (props) => {
                            <p>{appointment.date.date}</p>
                            <p>{appointment.date.hour} hs</p>
                            <button
-                              onClick={() => deleteAppoint(appointment._id)}
+                              onClick={() => deleteAppoint(appointment)}
                            >
                               Borrar turno
                            </button>
@@ -185,7 +192,7 @@ const ProfileUser = (props) => {
                            <p className="turnos">{appointment.date.date}</p>
                            <p className="turnos">{appointment.date.hour} hs.</p>
                            <button
-                              onClick={() => deleteAppoint(appointment._id)}
+                              onClick={() => deleteAppoint(appointment)}
                            >
                               Borrar turno
                            </button>
@@ -221,6 +228,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
    getAppointments: doctorActions.getAppointments,
    deleteAppointment: doctorActions.deleteAppointment,
+   confirmFormMail:patientActions.confirmFormMail
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileUser)
