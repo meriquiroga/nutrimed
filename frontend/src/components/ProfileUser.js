@@ -8,7 +8,7 @@ import MedicalData from "./MedicalData"
 import { Accordion, AccordionItem } from "react-sanfona"
 
 const ProfileUser = (props) => {
-   const { doc, src, name, lastName, dni, data } = props.user.userExist
+   const { doc, src, name, lastName, dni, data } = props.user
    const [appointments, setAppointments] = useState([])
    const [loading, setLoading] = useState(true)
    const [change, setChange] = useState([])
@@ -24,7 +24,7 @@ const ProfileUser = (props) => {
    }, [change])
 
    if (loading) {
-      return <h1>Loading</h1>
+      return <h3 className="containerLoading">Loading...</h3>
    }
 
    const filterDays = (dayM) => {
@@ -96,10 +96,10 @@ const ProfileUser = (props) => {
                            </div>
                            <p>{appointment.date.date}</p>
                            <p>{appointment.date.hour} hs</p>
-                           <button
+                           <button className="buttonDelete"
                               onClick={() => deleteAppoint(appointment._id)}
                            >
-                              Borrar turno
+                              BORRAR TURNO
                            </button>
                         </div>
                      )
@@ -184,10 +184,10 @@ const ProfileUser = (props) => {
                            </div>
                            <p className="turnos">{appointment.date.date}</p>
                            <p className="turnos">{appointment.date.hour} hs.</p>
-                           <button
+                           <button className="buttonDelete"
                               onClick={() => deleteAppoint(appointment._id)}
                            >
-                              Borrar turno
+                              BORRAR TURNO
                            </button>
                         </div>
                      )

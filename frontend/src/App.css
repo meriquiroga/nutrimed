@@ -72,6 +72,16 @@ button {
   cursor: pointer;
 }
 
+.buttonDelete {
+  background-color: #b8b8b8;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 50px;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+}
+
 button a {
   color: white;
 }
@@ -177,7 +187,7 @@ footer img {
 .grayContainer {
   text-align: center;
   background-color: #f0f3f5;
-  padding: 30px 100px;
+  padding: 30px 150px;
   min-height: 80vh;
 }
 .click {
@@ -198,7 +208,16 @@ footer img {
   display: flex;
   flex-direction: column;
 }
+.forError {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.forError img {
+  position:relative;
+  right: 50px;
+}
 .inputs input {
   padding: 10px;
   border-radius: 50px;
@@ -284,10 +303,11 @@ footer img {
 .rightProfile {
   display: flex;
   flex-direction: column;
-  background-color: #71cbe3;
+  background-color: #f0f3f5;
   width: 300px;
   padding: 22px;
   align-items: center;
+  text-align: center;
 }
 
 .centroProfile {
@@ -297,7 +317,6 @@ footer img {
 }
 
 .proxTurnos {
-  color: white;
   padding-top: 1rem;
 }
 
@@ -306,7 +325,6 @@ footer img {
 }
 
 .turnos {
-  color: white;
   text-align: center;
   font-size: small;
 }
@@ -340,11 +358,12 @@ footer img {
 .doctorCard {
   width: 200px;
   height: 280px;
-  color: black;
+  /*   color: black; */
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* text-align: center; */
 }
 
 .doctor-image {
@@ -365,7 +384,11 @@ footer img {
   line-height: 1.5;
   padding: 15px;
 }
-
+.stars {
+  align-self: center;
+  position: absolute;
+  top: 80px;
+}
 .doc {
   width: 150px;
   height: 150px;
@@ -436,7 +459,7 @@ footer img {
   padding: 10px;
   border-radius: 50px;
   border: 2px gray solid;
-  margin: 10px;
+  margin: 10px 10px 30px 10px;
   width: 400px;
   align-self: center;
   outline: none;
@@ -477,10 +500,14 @@ footer img {
 }
 
 .hour {
-  padding: 5px;
-  border-radius: 0;
-  width: 80px;
+  padding: 3px;
+  border-radius: 20px;
+  border: 1px solid black;
+  width: 60px;
   margin: 6px;
+  background-color: transparent;
+  color: black;
+  background-color: white;
 }
 
 .textArea {
@@ -511,7 +538,6 @@ footer img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 85vh;
 }
 
 .divComentaries {
@@ -525,6 +551,10 @@ footer img {
   align-content: center;
   align-items: top;
   padding: 10px;
+  background-color: #f4f5f7;
+  margin: 8px;
+  border-radius: 50px;
+  /* max-width: 60%; */
 }
 
 .confirm {
@@ -538,28 +568,38 @@ footer img {
   justify-content: center;
   align-items: auto;
   align-content: center;
+  padding-top: 30px;
 }
-/* .containerDay {
+.containerDay {
   display: flex;
+  width: 70%;
+  justify-content: flex-start;
 }
 
 .days {
   display: flex;
-} */
+  flex-wrap: wrap;
+  margin: 10px;
+}
 .full,
 .noFull {
   height: 45px;
+  width: 200px;
   flex: 0 0 auto;
   margin: 10px;
-  padding: 10px;
+  padding: 10px 3px;
   color: white;
+  border-radius: 50px;
+  cursor: pointer;
 }
+
 .full {
   background-color: rgb(160, 160, 160);
 }
 .noFull {
   background-color: #1bb6d1;
 }
+
 .noTurns {
   max-width: 180px;
 }
@@ -580,10 +620,18 @@ footer img {
   overflow-y: scroll;
   height: 40vh;
   width: 60vw;
-  background-color: #f1f0f0;
+  background-color: #D4EDF4;
   text-align: left;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
 }
+.pin {
+  width:70px;
+  position: relative;
+  right: 10px;
+  top: -10px
+  }
 
 .logOut {
   display: flex;
@@ -731,21 +779,17 @@ input.inputAvatar:focus {
 }
 
 .accordion h3 {
-  background-color: #1bb6d1;
+  background-color: #71cbe3;
   color: white;
-  padding: 5px 40px;
+  padding: 5px;
   border-radius: 50px;
   border: none;
   margin: 10px;
   cursor: pointer;
-}
-
-.accordion h3:hover {
-  color: #12a8c2;
+  font-size: medium;
 }
 
 .accordion p {
-  color: white;
   text-align: center;
   font-size: small;
 }
@@ -760,14 +804,13 @@ input.inputAvatar:focus {
   justify-content: space-between;
   align-items: center;
   padding: 5px 10px;
-  color: white;
 }
 
-.nombre-HC p {
+/* .nombre-HC p {
   color: white;
   text-align: center;
   font-size: small;
-}
+} */
 
 .medicalInput {
   resize: none;
@@ -795,17 +838,32 @@ input.inputAvatar:focus {
 
 .divEnviarNota {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
 }
 
 .linksDoctor {
-  color: #ecf9fd;
+  color: #1bb6d1;
   border-radius: 10px;
   padding: 5px 10px;
 }
 
 .linksDoctor:hover {
-  color: #12a8c2;
+  color: #12abc2;
+}
+
+.protocolo {
+  padding-top: 30px;
+}
+
+.divComentaries::-webkit-scrollbar, .descripcion::-webkit-scrollbar {
+  width: 10px;
+  background-color: white;
+}
+.divComentaries::-webkit-scrollbar-thumb, .descripcion::-webkit-scrollbar-thumb {
+  background-color: #1bb6d1;
+  border-radius: 5px;
 }
 
 @media (max-width: 576px) {
@@ -830,7 +888,7 @@ input.inputAvatar:focus {
     appearance: none;
   }
   .hero {
-    height: 50vh;
+    height: 60vh;
     background-position: center;
     background-size: cover;
     text-align: center;
@@ -873,14 +931,14 @@ input.inputAvatar:focus {
     min-height: 1vh;
   }
 
-    .docDescription {
-      width: 80%;
-      padding: 20px 0px 20px 0px;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+  .docDescription {
+    width: 80%;
+    padding: 20px 0px 20px 0px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
   .leftProfile h4,
   p {
@@ -889,7 +947,7 @@ input.inputAvatar:focus {
   .rightProfile {
     display: flex;
     flex-direction: column;
-    background-color: #71cbe3;
+    background-color: #f0f3f5;
     width: 80%;
     padding: 22px;
     align-items: center;
@@ -902,6 +960,21 @@ input.inputAvatar:focus {
   .tituloProfile {
     padding-top: 10px;
   }
+  .containerDay {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  /* .comment {
+    display: flex;
+    align-content: center;
+    align-items: top;
+    padding: 10px;
+    background-color: #f4f5f7;
+    margin: 8px;
+    border-radius: 50px;
+    max-width: 100%;
+  } */
 }
 
 /* @media (max-width: 845px) {
@@ -932,7 +1005,7 @@ input.inputAvatar:focus {
     appearance: none;
   }
   .hero {
-    height: 50vh;
+    height: 60vh;
     background-position: center;
     background-size: cover;
     text-align: center;
@@ -950,6 +1023,17 @@ input.inputAvatar:focus {
     display: flex;
     justify-content: center;
   }
+
+  header {
+    width: 100%;
+    padding: 0vw 5vw;
+    display: flex;
+    
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    color: #71cbe3;
+  }
   .grayContainer {
     padding: 10%;
   }
@@ -965,9 +1049,9 @@ input.inputAvatar:focus {
     padding: 22px;
     min-height: 1vh;
   }
-.leftProfile p {
-  padding: 0px 10px
-}
+  .leftProfile p {
+    padding: 0px 10px;
+  }
 
   .docDescription {
     width: 80%;
@@ -986,7 +1070,7 @@ input.inputAvatar:focus {
   .rightProfile {
     display: flex;
     flex-direction: column;
-    background-color: #71cbe3;
+    background-color: #f0f3f5;
     width: 80%;
     padding: 22px;
     align-items: center;
@@ -1005,6 +1089,11 @@ input.inputAvatar:focus {
     flex-wrap: wrap;
     padding: 20px 100px;
   }
+  .containerDay {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -1022,14 +1111,14 @@ input.inputAvatar:focus {
     border-radius: 50px;
     border: 2px gray solid;
     margin: 10px;
-    width: 85%;
+    width: 60%;
     align-self: center;
     outline: none;
     color: gray;
     appearance: none;
   }
   .hero {
-    height: 50vh;
+    height: 60vh;
     background-position: center;
     background-size: cover;
     text-align: center;
@@ -1043,12 +1132,12 @@ input.inputAvatar:focus {
   }
   header {
     width: 100%;
-    padding: 0vw 10vw;
+    padding: 0vw 5vw;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
   }
   .grayContainer {
-    padding: 10%;
+    padding: 20%;
   }
   /* .profile {
     display: flex;
@@ -1076,13 +1165,13 @@ input.inputAvatar:focus {
     align-content: flex-start;
   }
   .docDescription {
-      width: 400px;
-      padding: 20px 0px 20px 50px;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+    width: 400px;
+    padding: 20px 0px 20px 50px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   /* .rightProfile {
     display: flex;
     flex-direction: column;
@@ -1122,14 +1211,14 @@ input.inputAvatar:focus {
     border-radius: 50px;
     border: 2px gray solid;
     margin: 10px;
-    width: 85%;
+    width: 60%;
     align-self: center;
     outline: none;
     color: gray;
     appearance: none;
   }
   .hero {
-    height: 50vh;
+    height: 60vh;
     background-position: center;
     background-size: cover;
     text-align: center;
@@ -1148,7 +1237,7 @@ input.inputAvatar:focus {
     justify-content: center;
   }
   .grayContainer {
-    padding: 3% 10%;
+    padding: 3% 12%;
   }
   /* .profile {
     display: flex;

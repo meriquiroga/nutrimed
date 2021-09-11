@@ -36,7 +36,7 @@ const SignIn = ({logIn}) => {
     };
     logIn(newUserWithGoogle, validUser)
     .then((res) => {if (!res.success){
-      setErrors("Debe estar registrado con Google para utilizar este botón")
+      setErrors("Debe estar registrado con Google para utilizar este botón.")
       setError({errorDos: true})
 
       }else 
@@ -52,13 +52,13 @@ const SignIn = ({logIn}) => {
   const submitUserLog = () => {
     if(!userLog.password.length || !userLog.data.mail.length){
         setError({errorUno: true})
-        setErrors("Todos los campos deben estar completos")
+        setErrors("Todos los campos deben estar completos.")
         return false
     }
     if(!error.errorUno){
       logIn(userLog, validUser)
       .then((res) => {if (!res.success) {
-        setErrors("Error de autenticación. Verifique correctamente")
+        setErrors("Error de autenticación. Por favor, verificá los datos ingresados.")
         setError({errorUno: true})
         }
       })

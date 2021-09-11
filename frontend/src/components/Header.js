@@ -38,24 +38,22 @@ const Header = (props) => {
                      </NavLink>
                   </li>
                )}
-               <li>
+               {/* <li>
                   <NavLink to="/information">
                      <p>CONTACTO</p>
                   </NavLink>
-               </li>
+               </li> */}
             </ul>
          </div>
          <div className="headerRigth">
-            {props.valid && <h4>Bienvenido/a, {props.user.userExist.name}</h4>}
+            {props.valid && <h4>Hola, {props.user.name}</h4>}
             <div>
                {props.valid && (
                   <NavLink className="logOut" onClick={outHandler} to="/">
-                     SALIR
                      <img src="/assets/salir.png" alt="" />
                   </NavLink>
                )}
             </div>
-            {/* {!props.user.userExist.doc && ( */}
             <button>
                <Link to={props.valid ? "/appointment" : "/signin"}>
                   SOLICITAR TURNO

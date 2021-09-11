@@ -10,7 +10,7 @@ const userActions = {
                dispatch({
                   type: "SIGN_UP",
                   payload: {
-                     userExist: res.data.res,
+                     userExist: res.data.res.userExist,
                      token: res.data.res.token,
                   },
                })
@@ -34,7 +34,7 @@ const userActions = {
             })
             dispatch({
                type: "SIGN_UP",
-               payload: { userExist: res.data, token },
+               payload: { userExist: res.data.userExist, token },
             })
          } catch (err) {
             return dispatch({ type: "LOG_OUT" })
@@ -59,7 +59,7 @@ const userActions = {
                dispatch({
                   type: "SIGN_UP",
                   payload: {
-                     userExist: res.data.res,
+                     userExist: res.data.res.userExist,
                      token: res.data.res.token,
                   },
                })

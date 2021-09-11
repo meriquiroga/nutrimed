@@ -39,15 +39,15 @@ const App = ({ logWithLs, getSocket, user, valid }) => {
             {!valid && <Route path="/signup" component={SignUp} />}
             <Route exact path="/staff" component={Staff} />
             <Route path="/staff/:id" component={EachDoctor} />
-            {valid && !user.userExist.doc && (
+            {valid && !user.doc && (
                <Route path="/appointment" component={Appointment} />
             )}
             <Route path="/information" component={Information} />
-            {valid && user.userExist.doc && (
+            {valid && user.doc && (
                <Route exact path="/doc/profile" component={EditProfileDoctor} />
             )}
             {valid && <Route exact path="/profile" component={Profile} />}
-            {valid && !user.userExist.doc && (
+            {valid && !user.doc && (
                <Route
                   exact
                   path="/patient/profile"

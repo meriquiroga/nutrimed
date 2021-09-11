@@ -34,13 +34,13 @@ const AppointmentDay = ({
    return (
       <>
          <div className="containerDay">
-            <div className="days"
+            <div
                className={fullDay ? "full" : "noFull"}
                onClick={!fullDay ? viewHandler : viewWarningHandler}
             >
                <p>{day}</p>
             </div>
-            <div>
+            <div className="days">
                {view.turn && turn}
                {view.warning && (
                   <div className="noTurns">
