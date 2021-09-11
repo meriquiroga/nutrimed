@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 
 const userActions = {
    signUpUser: (user) => {
@@ -21,7 +21,7 @@ const userActions = {
             return { success: false, res: err.message }
          }
       }
-   },
+  },
 
    logUserWithLs: (token) => {
       return async (dispatch) => {
@@ -39,7 +39,7 @@ const userActions = {
             return dispatch({ type: "LOG_OUT" })
          }
       }
-   },
+    },
 
    logIn: (user, validUser) => {
       let typeUser = null
@@ -70,13 +70,44 @@ const userActions = {
             return { success: false, res: err.message }
          }
       }
-   },
+    },
 
-   logOut: () => {
-      return (dispatch) => {
-         dispatch({ type: "LOG_OUT" })
+  logOut: () => {
+    return (dispatch) => {
+      dispatch({ type: "LOG_OUT" });
+    };
+  },
+
+  editProfile: (typeUser, profileEdited, token) => {
+    let type = "";
+    if (typeUser) type = "doctor";
+    else type = "patient";
+    return async (dispatch) => {
+      try {
+        let res = await axios.put(
+          `http://localhost:4000/api/${type}`,
+          { ...profileEdited },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+
+        if (res.data.success) {
+          dispatch({
+            type: "EDIT_PROFILE",
+            payload: {
+              userExist: res.data.res,
+            },
+          });
+          return { success: true };
+        }
+      } catch (err) {
+        return { success: false, res: err };
       }
-   },
-}
+    };
+  },
+};
 
-export default userActions
+export default userActions;

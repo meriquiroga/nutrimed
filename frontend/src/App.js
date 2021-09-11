@@ -18,17 +18,17 @@ import io from "socket.io-client"
 import SignIn from "./components/SignIn"
 
 const App = ({ logWithLs, getSocket, user, valid }) => {
-   const [socket, setSocket] = useState(null)
+  const [socket, setSocket] = useState(null);
 
-   useEffect(() => {
-      setSocket(io("http://localhost:4000/"))
-      if (localStorage.getItem("token")) {
-         logWithLs(localStorage.getItem("token"))
-      }
-      // eslint-disable-next-line
-   }, [])
+  useEffect(() => {
+    setSocket(io("http://localhost:4000/"));
+    if (localStorage.getItem("token")) {
+      logWithLs(localStorage.getItem("token"));
+    }
+    // eslint-disable-next-line
+  }, []);
 
-   getSocket(socket)
+  getSocket(socket);
 
    return (
       <BrowserRouter>
@@ -61,15 +61,15 @@ const App = ({ logWithLs, getSocket, user, valid }) => {
 }
 
 const mapStateToProps = (state) => {
-   return {
-      valid: state.users.token,
-      user: state.users.dataUser,
-   }
-}
+  return {
+    valid: state.users.token,
+    user: state.users.dataUser,
+  };
+};
 
 const mapDispatchToProps = {
-   logWithLs: userActions.logUserWithLs,
-   getSocket: patientActions.getSocket,
-}
+  logWithLs: userActions.logUserWithLs,
+  getSocket: patientActions.getSocket,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App);

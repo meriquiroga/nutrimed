@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom"
-import { connect } from "react-redux"
-import { useEffect, useState } from "react"
-import doctorActions from "../redux/actions/doctorActions"
-import React from "react"
-import ReactCircleModal from "react-circle-modal"
-import MedicalData from "./MedicalData"
-import { Accordion, AccordionItem } from "react-sanfona"
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { useEffect, useState } from "react";
+import doctorActions from "../redux/actions/doctorActions";
+import React from "react";
+import ReactCircleModal from "react-circle-modal";
+import MedicalData from "./MedicalData";
+import { Accordion, AccordionItem } from "react-sanfona";
 
 const ProfileUser = (props) => {
    const { doc, src, name, lastName, dni, data } = props.user
@@ -25,26 +25,26 @@ const ProfileUser = (props) => {
       // eslint-disable-next-line
    }, [change])
 
-   if (loading) {
-      return <h1>Loading</h1>
-   }
+  if (loading) {
+    return <h1>Loading</h1>;
+  }
 
-   const filterDays = (dayM) => {
-      let day = appointments.filter((appointment) =>
-         appointment.date.date.includes(dayM)
-      )
-      return day
-   }
+  const filterDays = (dayM) => {
+    let day = appointments.filter((appointment) =>
+      appointment.date.date.includes(dayM)
+    );
+    return day;
+  };
 
-   const deleteAppoint = (id) => {
-      props.deleteAppointment(props.token, id).then((res) => setChange(res.res))
-   }
+  const deleteAppoint = (id) => {
+    props.deleteAppointment(props.token, id).then((res) => setChange(res.res));
+  };
 
-   const lunes = filterDays("Lunes")
-   const martes = filterDays("Martes")
-   const miercoles = filterDays("Miercoles")
-   const jueves = filterDays("Jueves")
-   const viernes = filterDays("Viernes")
+  const lunes = filterDays("Lunes");
+  const martes = filterDays("Martes");
+  const miercoles = filterDays("Miercoles");
+  const jueves = filterDays("Jueves");
+  const viernes = filterDays("Viernes");
 
    const drawAccordion = (day, day2) => {
       return (
@@ -125,34 +125,33 @@ const ProfileUser = (props) => {
                                  />
                               </div>
                            )}
-                        </div>
-                     )
-                  })
-               )}
-            </AccordionItem>
-         </Accordion>
-      )
-   }
+                  </div>
+              );
+            })
+          )}
+        </AccordionItem>
+      </Accordion>
+    );
+  };
 
-   return (
-      <div className="profile">
-         <div className="leftProfile">
-            <div
-               className="profileImg"
-               style={{ backgroundImage: `url('${src}')` }}
-            ></div>
-            <h4>Bienvenido/a, {name}</h4>
-            {!doc ? (
-               <p>
-                  Para poder sacar turno es necesario que completes tus datos.
-                  Hacelo en el siguiente botón.
-               </p>
-            ) : (
-               <p>
-                  Completá tus datos y mantenelos actualizados en el siguiente
-                  botón.
-               </p>
-            )}
+  return (
+    <div className="profile">
+      <div className="leftProfile">
+        <div
+          className="profileImg"
+          style={{ backgroundImage: `url('${src}')` }}
+        ></div>
+        <h4>Bienvenido/a, {name}</h4>
+        {!doc ? (
+          <p>
+            Para poder sacar turno es necesario que completes tus datos. Hacelo
+            en el siguiente botón.
+          </p>
+        ) : (
+          <p>
+            Completá tus datos y mantenelos actualizados en el siguiente botón.
+          </p>
+        )}
 
             <button>
                <Link
@@ -251,21 +250,21 @@ const ProfileUser = (props) => {
             )}
          </div>
       </div>
-   )
-}
+  );
+};
 
 const mapStateToProps = (state) => {
-   return {
-      user: state.users.dataUser,
-      token: state.users.token,
-      patients: state.patients.patients,
-      doctors: state.doctors.doctors,
-   }
-}
+  return {
+    user: state.users.dataUser,
+    token: state.users.token,
+    patients: state.patients.patients,
+    doctors: state.doctors.doctors,
+  };
+};
 
 const mapDispatchToProps = {
-   getAppointments: doctorActions.getAppointments,
-   deleteAppointment: doctorActions.deleteAppointment,
-}
+  getAppointments: doctorActions.getAppointments,
+  deleteAppointment: doctorActions.deleteAppointment,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileUser)
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileUser);

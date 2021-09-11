@@ -1,97 +1,99 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import doctorActions from "../redux/actions/doctorActions";
 import patientActions from "../redux/actions/patientActions";
-
+import userActions from "../redux/actions/userActions";
 const EditProfilePatient = (props) => {
-  const {token} = props
-  const {data, dni} = props.user
+  const { data, dni, src, socialWork } = props.user;
+  const { direction, phoneNumber } = data;
+  const { token } = props;
   const email = props.user.data.mail;
-  const [validEdit, setValidEdit] = useState(false)
+  const [validEdit, setValidEdit] = useState(false);
   const [actPat, setActPat] = useState({
-    dni: "",
+    dni: dni,
     data: {
       direction: {
-        street: "",
-        num: "",
-        city: "",
+        street: direction.street,
+        num: direction.num,
+        city: direction.city,
       },
       mail: email,
-      phoneNumber: "",
-      },
-      src: "",
-      socialWork: "",
-   })
-   const [previewImg, setPreviewImg] = useState(
-      "https://i.postimg.cc/Hn7rq5TV/avatar5.png"
-   )
-   const [avatars, setAvatars] = useState([])
+      phoneNumber: phoneNumber,
+    },
+    src: src,
+    socialWork: socialWork,
+  })
 
-   useEffect(() => {
-      async function getAllAvatars() {
-         let response = await props.getAvatars()
-         if (response.success) {
-            setAvatars(response.res)
-            console.log(response.res)
-         } else {
-            console.log("no fetchea avatares")
-         }
-      }
+  const [previewImg, setPreviewImg] = useState(
+    "https://i.postimg.cc/Hn7rq5TV/avatar5.png"
+  )
+
+  const [avatars, setAvatars] = useState([]);
+
+  useEffect(() => {
+    async function getAllAvatars() {
+      let response = await props.getAvatars();
+      if (response.success) {
+        setAvatars(response.res);
+      }}
       getAllAvatars()
 
     return false;
     // eslint-disable-next-line
   }, []);
 
-   const addDocHandler = (e) => {
-      if (e.target.name === "street") {
-         setActPat({
-            ...actPat,
-            data: {
-               ...actPat.data,
-               direction: { ...actPat.data.direction, street: e.target.value },
-            },
-         })
-      } else if (e.target.name === "num") {
-         setActPat({
-            ...actPat,
-            data: {
-               ...actPat.data,
-               direction: { ...actPat.data.direction, num: e.target.value },
-            },
-         })
-      } else if (e.target.name === "city") {
-         setActPat({
-            ...actPat,
-            data: {
-               ...actPat.data,
-               direction: { ...actPat.data.direction, city: e.target.value },
-            },
-         })
-      } else if (e.target.name === "phoneNumber") {
-         setActPat({
-            ...actPat,
-            data: { ...actPat.data, phoneNumber: e.target.value },
-         })
-      } else {
-         setActPat({ ...actPat, [e.target.name]: e.target.value })
+  const addDocHandler = (e) => {
+    if (e.target.name === "street") {
+      setActPat({
+        ...actPat,
+        data: {
+          ...actPat.data,
+          direction: { ...actPat.data.direction, street: e.target.value },
+        },
+      });
+    } else if (e.target.name === "num") {
+      setActPat({
+        ...actPat,
+        data: {
+          ...actPat.data,
+          direction: { ...actPat.data.direction, num: e.target.value },
+        },
+      });
+    } else if (e.target.name === "city") {
+      setActPat({
+        ...actPat,
+        data: {
+          ...actPat.data,
+          direction: { ...actPat.data.direction, city: e.target.value },
+        },
+      });
+    } else if (e.target.name === "phoneNumber") {
+      setActPat({
+        ...actPat,
+        data: { ...actPat.data, phoneNumber: e.target.value },
+      });
+    } else {
+      setActPat({ ...actPat, [e.target.name]: e.target.value });
+    }
+  };
+
+  const editHandler = () => {
+    setValidEdit(!validEdit);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      submitHandler();
+    }
+  };
+
+  const submitHandler = () => {
+    props.editProfile(props.user.doc, actPat, token).then((res) => {
+      if (res.success) {
+        props.history.push("/profile");
       }
-   }
-
-   const editHandler = () => {
-      setValidEdit(!validEdit)
-   }
-
-   const handleKeyPress = (e) => {
-      if (e.key === "Enter") {
-         submitHandler()
-      }
-   }
-
-   const submitHandler = () => {
-      props.upgradePat(props.user.doc, actPat, token)
-   }
+    });
+  };
 
    const allSocialWork = [
       "MEDICAL",
@@ -235,8 +237,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-   upgradePat: doctorActions.editProfile,
-   getAvatars: patientActions.getAvatars,
-}
+  editProfile: userActions.editProfile,
+  getAvatars: patientActions.getAvatars,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfilePatient)
