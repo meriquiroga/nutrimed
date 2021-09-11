@@ -97,8 +97,8 @@ const Reviews = ({
         <input
           placeholder={
             !userToken
-              ? "Creá tu cuenta para dejar feedback al profesional"
-              : "Dejale feedback al profesional"
+              ? "Creá tu cuenta para dejar feedback al profesional."
+              : "Dejale feedback al profesional."
           }
           disabled={!userToken}
           onChange={editTextReviewHandler}

@@ -1,75 +1,75 @@
 * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-   display: flex;
-   flex-direction: column;
-   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 header {
-   width: 100%;
-   padding: 0vw 10vw;
-   display: flex;
-   justify-content: space-between;
-   align-content: center;
-   align-items: center;
-   flex-wrap: wrap;
-   color: #71cbe3;
+  width: 100%;
+  padding: 0vw 10vw;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #71cbe3;
 }
 
 header p {
-   padding: 0px 20px;
-   text-align: center;
-   line-height: 1.2;
+  padding: 0px 20px;
+  text-align: center;
+  line-height: 1.2;
 }
 .navbar {
-   display: flex;
-   align-items: center;
-   flex-wrap: wrap;
-   justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .navbar img {
-   margin: 20px;
+  margin: 20px;
 }
 ul {
-   display: flex;
-   list-style: none;
+  display: flex;
+  list-style: none;
 }
 ul li {
-   padding-left: 10px;
+  padding-left: 10px;
 }
 
 a {
-   text-decoration: none;
-   color: gray;
+  text-decoration: none;
+  color: gray;
 }
 
 a.active {
-   color: #1bb6d1;
+  color: #1bb6d1;
 }
 
 .logOut {
-   padding-left: 30px;
+  padding-left: 30px;
 }
 
 .headerRigth {
-   display: flex;
-   align-items: center;
-   flex-wrap: wrap;
-   justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 button {
-   background-color: #1bb6d1;
-   color: white;
-   padding: 10px 40px;
-   border-radius: 50px;
-   border: none;
-   margin: 10px;
-   cursor: pointer;
+  background-color: #1bb6d1;
+  color: white;
+  padding: 10px 40px;
+  border-radius: 50px;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
 }
 
 .buttonDelete {
@@ -83,110 +83,111 @@ button {
 }
 
 button a {
-   color: white;
+  color: white;
 }
 
 .nameHeader {
-   margin-left: 2rem;
+  margin-left: 2rem;
 }
 
 .hero {
-   height: 60vh;
-   background-position: center;
-   background-size: cover;
-   display: flex;
-   align-items: center;
-   padding-left: 18vw;
+  height: 60vh;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  padding-left: 18vw;
 }
 
 .insideHero {
-   text-align: center;
+  text-align: center;
 }
 
 .insideHero button a {
-   color: white;
+  color: white;
 }
 .hero h1 {
-   color: gray;
+  color: gray;
 }
 
 footer {
-   width: 100%;
-   background-color: #1bb6d1;
-   padding: 2em;
-   display: flex;
-   flex-direction: column;
-   align-content: center;
-   align-items: center;
-   color: white;
+  width: 100%;
+  background-color: #1bb6d1;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  color: white;
 }
 
 footer img {
-   width: 45px;
-   margin: 10px;
+  width: 45px;
+  margin: 10px;
 }
 
 .iconCardsContainer {
-   display: flex;
-   justify-content: center;
-   flex-wrap: wrap;
-   padding: 20px 0px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px 0px;
 }
 
 .iconCard {
-   text-align: center;
-   padding: 20px;
-   border-radius: 20px;
-   margin: 20px;
-   width: 220px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 20px;
+  width: 220px;
 }
 
-.iconCard h3 {
-   color: gray;
+.iconCard h3,
+h4 {
+  color: gray;
 }
 
 .description {
-   align-items: center;
-   min-height: 400px;
-   background-position: center;
-   background-size: cover;
+  align-items: center;
+  min-height: 400px;
+  background-position: center;
+  background-size: cover;
 }
 
 .description div {
-   padding: 10vw;
-   text-align: center;
-   line-height: 2.3;
+  padding: 10vw;
+  text-align: center;
+  line-height: 2.3;
 }
 
 .contenedor {
-   min-height: 80vh;
+  min-height: 80vh;
 }
 
 .contenedor1 {
-   display: flex;
+  display: flex;
 }
 
 .section-doctors {
-   display: flex;
-   justify-content: space-evenly;
-   text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
 }
 .icono {
-   width: 2vw;
+  width: 2vw;
 }
 
 .container {
-   text-align: center;
-   align-self: center;
-   min-height: 80vh;
+  text-align: center;
+  align-self: center;
+  min-height: 80vh;
 }
 
 .containerLoading {
-   text-align: center;
-   align-self: center;
-   min-height: 80vh;
-   padding-top: 20vh;
-   background-color: #f0f3f5;
+  text-align: center;
+  align-self: center;
+  min-height: 80vh;
+  padding-top: 20vh;
+  background-color: #f0f3f5;
 }
 .grayContainer {
   text-align: center;
@@ -195,113 +196,108 @@ footer img {
   min-height: 80vh;
 }
 .click {
-   color: #1bb6d1;
-   padding-top: 20px;
+  color: #1bb6d1;
+  padding-top: 20px;
 }
 .radio {
-   display: flex;
-   justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .radio div {
-   padding: 10px;
+  padding: 10px;
 }
 
 .inputs {
-   text-align: center;
-   display: flex;
-   flex-direction: column;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 .forError {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 50px;
+  border: 2px gray solid;
+  margin: 10px;
+  width: 400px;
+  align-self: center;
+  outline: none;
+  background-color: white;
 }
 
-.forError img {
-  position:relative;
-  right: 50px;
+.forError input {
+  border: none;
+  width: 80%;
+  outline: none;
+  background-color: transparent;
 }
-.inputs input {
-   padding: 10px;
-   border-radius: 50px;
-   border: 2px gray solid;
-   margin: 10px;
-   width: 400px;
-   align-self: center;
-   outline: none;
+
+#optionObraSocial {
+  border: none;
+  width: 80%;
+  outline: none;
+  color: gray;
+  appearance: none;
+  background-color: transparent;
 }
 
 .inputs p {
-   font-size: small;
+  font-size: small;
 }
 
 .commentsMedicalData {
-   display: flex;
-   width: 100%;
-   justify-content: space-between;
-   padding-top: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-top: 10px;
 }
 
 .commentsMedicalData textarea {
-   width: 90%;
-   padding: 10px;
+  width: 90%;
+  padding: 10px;
 }
 
 .footerNavbar li p {
-   color: white;
-   padding: 15px;
+  color: white;
+  padding: 15px;
 }
-
-/* .profile {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-} */
 
 .profile {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   padding: 20px;
-}
-
-/* .profile {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 50px 300px;
-  align-self: center;
-} */
+  justify-content: center;
+  padding: 20px;
+}
 
 .profileImg {
-   width: 150px;
-   height: 150px;
-   border-radius: 100px;
-   margin: 2rem;
-   background-position: center;
-   background-size: cover;
-   background-repeat: no-repeat;
-   background-color: white;
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+  margin: 2rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: white;
 }
 
 .leftProfile {
-   display: flex;
-   flex-direction: column;
-   background-color: #f0f3f5;
-   width: 300px;
-   align-items: center;
-   padding: 22px;
-   min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f3f5;
+  width: 300px;
+  align-items: center;
+  padding: 22px;
+  min-height: 70vh;
 }
 
 .leftProfile button a {
-   color: white;
+  color: white;
 }
 
 .leftProfile p {
-   text-align: center;
-   padding: 20px 0px;
+  text-align: center;
+  padding: 20px 0px;
 }
 
 .rightProfile {
@@ -315,9 +311,9 @@ footer img {
 }
 
 .centroProfile {
-   display: flex;
-   flex-direction: column;
-   min-width: 600px;
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
 }
 
 .proxTurnos {
@@ -325,7 +321,7 @@ footer img {
 }
 
 .tituloProfile {
-   align-self: center;
+  align-self: center;
 }
 
 .turnos {
@@ -334,129 +330,119 @@ footer img {
 }
 
 .datosProfile {
-   text-align: left;
-   padding: 20px;
+  text-align: left;
+  padding: 20px;
 }
 
 .datosProfile p {
-   text-align: left;
+  text-align: left;
 }
 
 .dataClient {
-   height: 80vh;
-   display: flex;
-   justify-content: center;
-   flex-direction: column;
-   align-items: center;
-   background-color: rgb(255, 255, 255);
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
 }
 
 .doctorCardsContainer {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-wrap: wrap;
-   padding: 20px 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px 60px;
 }
 
 .doctorCard {
   width: 200px;
   height: 280px;
-  /*   color: black; */
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* text-align: center; */
 }
 
 .doctor-image {
-   width: 180px;
-   height: 180px;
-   background-position: center;
-   background-size: cover;
-   border-radius: 100px;
-   position: absolute;
-   top: 120px;
-   border: solid #f0f3f5 10px;
+  width: 180px;
+  height: 180px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 100px;
+  position: absolute;
+  top: 120px;
+  border: solid #f0f3f5 10px;
 }
 .docCardText {
-   background-color: #71cbe3;
-   width: 240px;
-   color: white;
-   height: 200px;
-   line-height: 1.5;
-   padding: 15px;
+  background-color: #71cbe3;
+  width: 240px;
+  color: white;
+  height: 200px;
+  line-height: 1.5;
+  padding: 15px;
 }
+.docCardText h4 {
+  color: white;
+}
+
 .stars {
   align-self: center;
   position: absolute;
   top: 80px;
 }
 .doc {
-   width: 150px;
-   height: 150px;
-   border-radius: 100px;
-   margin: 2rem;
-   background-position: center;
-   background-size: cover;
-   background-repeat: no-repeat;
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+  margin: 2rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .cvDoc {
-   display: flex;
-   flex-direction: column;
-   background-color: black;
-   width: 300px;
-   align-items: center;
-   padding: 22px;
-   min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  width: 300px;
+  align-items: center;
+  padding: 22px;
+  min-height: 70vh;
 }
 
 .containerDocCv {
-   background-color: #3b5363;
-   display: flex;
-   justify-content: center;
-   min-height: 80vh;
+  background-color: #3b5363;
+  display: flex;
+  justify-content: center;
+  min-height: 80vh;
 }
 .docDescription {
-   width: 900px;
-   padding: 20px 80px 20px 20px;
-   text-align: left;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
+  width: 900px;
+  padding: 20px 80px 20px 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .docInfo {
-   text-align: left;
-   padding-left: 20px;
+  text-align: left;
+  padding-left: 20px;
 }
 .divReview {
-   max-height: 50vh;
-   display: flex;
-   flex-direction: column;
-   align-content: center;
+  max-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
 
 .divReview input {
-   padding: 10px;
-   border-radius: 50px;
-   border: 2px gray solid;
-   margin: 10px;
-   width: 400px;
-   align-self: center;
-   outline: none;
-}
-
-#optionObraSocial {
-   padding: 10px;
-   border-radius: 50px;
-   border: 2px gray solid;
-   margin: 10px;
-   width: 400px;
-   align-self: center;
-   outline: none;
-   color: gray;
-   appearance: none;
+  padding: 10px;
+  border-radius: 50px;
+  border: 2px gray solid;
+  margin: 10px;
+  width: 90%;
+  align-self: center;
+  outline: none;
 }
 
 #optionDoctor {
@@ -472,36 +458,36 @@ footer img {
 }
 
 #fileCharger {
-   background-color: white;
-   color: gray;
+  background-color: white;
+  color: gray;
 }
 
 .underConstruction {
-   height: 300px;
-   width: 300px;
-   margin-top: 40px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   align-self: center;
-   background-color: #f0f3f5;
-   border-radius: 20px;
+  height: 300px;
+  width: 300px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  background-color: #f0f3f5;
+  border-radius: 20px;
 }
 
 .pageDoctor {
-   display: flex;
+  display: flex;
 }
 
 .imgTurnos {
-   width: 50px;
+  width: 50px;
 }
 .iconCom {
-   width: 30px;
-   cursor: pointer;
+  width: 30px;
+  cursor: pointer;
 }
 
 .iconTurn {
-   width: 50px;
+  width: 50px;
 }
 
 .hour {
@@ -516,27 +502,27 @@ footer img {
 }
 
 .textArea {
-   border: none;
-   min-width: 400px;
+  border: none;
+  min-width: 400px;
 }
 
 .commentBox {
-   display: flex;
-   flex-direction: column;
-   max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
 }
 
 .iconperfil {
-   width: 60px;
-   height: 60px;
-   border-radius: 50px;
-   margin: 0px 10px;
-   background-position: center;
-   background-size: cover;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  margin: 0px 10px;
+  background-position: center;
+  background-size: cover;
 }
 
 #buttonSign {
-   cursor: pointer;
+  cursor: pointer;
 }
 
 .medicalData {
@@ -546,9 +532,8 @@ footer img {
 }
 
 .divComentaries {
-   background-color: white;
-   /* width: 60%; */
-   align-self: left;
+  background-color: white;
+  align-self: left;
 }
 
 .comment {
@@ -559,11 +544,10 @@ footer img {
   background-color: #f4f5f7;
   margin: 8px;
   border-radius: 50px;
-  /* max-width: 60%; */
 }
 
 .confirm {
-   color: #71cbe3;
+  color: #71cbe3;
 }
 
 .container2 {
@@ -599,187 +583,179 @@ footer img {
 }
 
 .full {
-   background-color: rgb(160, 160, 160);
+  background-color: rgb(160, 160, 160);
 }
 .noFull {
-   background-color: #1bb6d1;
+  background-color: #1bb6d1;
 }
 
 .noTurns {
-   max-width: 180px;
+  max-width: 180px;
 }
 .ABC {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   flex-wrap: wrap;
-   width: 60vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 60vw;
 }
 
 .imgMD {
-   width: 150px;
-   border-radius: 100px;
+  width: 150px;
+  border-radius: 100px;
 }
 
 .descripcion {
   overflow-y: scroll;
   height: 40vh;
   width: 60vw;
-  background-color: #D4EDF4;
+  background-color: #e2f5fa;
   text-align: left;
   padding: 20px;
   display: flex;
   justify-content: space-between;
 }
 .pin {
-  width:70px;
+  width: 70px;
   position: relative;
   right: 10px;
-  top: -10px
-  }
+  top: -10px;
+}
 
 .logOut {
-   display: flex;
-   align-content: center;
-   align-items: center;
-   height: 80px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 80px;
 }
 .DEF {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .icon-contact {
-   width: 7vw;
+  width: 7vw;
 }
 
 .icon-map {
-   width: 7vw;
+  width: 7vw;
 }
 
 .form-consulta {
-   width: 100%;
-   padding: 4vh;
-   display: flex;
-   justify-content: center;
-}
-/* .textarea {
   width: 100%;
-  height: 25vh;
-  resize: none;
-  border-radius: 2vw;
-  outline: none;
-  border: 2px gray solid;
   padding: 4vh;
   display: flex;
-  align-self: center;
-} */
+  justify-content: center;
+}
+
 .errorY {
-   border: 2px red solid !important;
-   box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
-   -webkit-box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
-   -moz-box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
+  border: 2px red solid !important;
+  box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
+  -moz-box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
 }
 
 .errorN {
-   border: 2px gray solid;
-   box-shadow: none;
-   -webkit-box-shadow: none;
-   -moz-box-shadow: none;
+  border: 2px gray solid;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
 }
 
 .buttonGoogle {
-   background-color: #12a8c2 !important;
-   color: rgb(255, 255, 255) !important;
+  background-color: #12a8c2 !important;
+  color: rgb(255, 255, 255) !important;
 }
 
-/* ESTILOS QUE DEBEN SER CAMBIADOS */
-
 input.inputAvatar {
-   background-color: transparent !important;
-   border: none !important;
-   color: transparent;
-   outline: none !important;
-   cursor: pointer;
-   height: 100%;
-   width: 100%;
-   font-size: 60px;
-   opacity: 0;
-   margin: 0;
-   padding: 0;
+  background-color: transparent !important;
+  border: none !important;
+  color: transparent;
+  outline: none !important;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  font-size: 60px;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
 }
 
 input.inputAvatar::placeholder {
-   background-color: transparent;
-   font-size: 16px;
-   text-align: center;
+  background-color: transparent;
+  font-size: 16px;
+  text-align: center;
 }
 input.inputAvatar:focus {
-   background-color: transparent;
-   border: none !important;
-   outline: none !important;
-   color: transparent;
+  background-color: transparent;
+  border: none !important;
+  outline: none !important;
+  color: transparent;
 }
 
 .thumbNails {
-   display: grid;
-   grid-template-columns: repeat(4, 1fr);
-   grid-template-rows: repeat(3, 1fr);
-   grid-column-gap: 0px;
-   grid-row-gap: 0px;
-   align-items: center;
-   margin: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  align-items: center;
+  margin: 10px;
 }
 
 .thumbNail {
-   background-position: center;
-   background-size: contain;
-   background-repeat: no-repeat;
-   margin: 5px;
-   background-color: white;
-   border-radius: 100px;
-   align-self: center;
-   height: 60px;
-   width: 60px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 5px;
+  background-color: white;
+  border-radius: 100px;
+  align-self: center;
+  height: 60px;
+  width: 60px;
 }
 
 .containerPreview {
-   justify-content: center;
-   align-items: center;
-   align-self: center;
-   flex-wrap: wrap;
-   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  flex-wrap: wrap;
+  text-align: center;
 }
 
 .preview {
-   background-size: contain;
-   background-repeat: no-repeat;
-   background-position: top;
-   width: 130px;
-   height: 130px;
-   background-color: white;
-   border-radius: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top;
+  width: 130px;
+  height: 130px;
+  background-color: white;
+  border-radius: 100px;
+}
+
+.univ {
+  display: flex;
+  align-items: center;
 }
 
 .errorN {
-   border: none;
-   box-shadow: none;
-   -webkit-box-shadow: none;
-   -moz-box-shadow: none;
+  border: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
 }
 
 .botonFichaMedica {
-   background-color: white;
-   color: #12a8c2;
+  background-color: white;
+  color: #12a8c2;
 }
 
 .accordion {
-   /* background-color: white; */
-   /* border-radius: 10px; */
-   text-align: center;
-   padding: 5px 0px;
-   margin: 1rem;
+  text-align: center;
+  padding: 5px 0px;
+  margin: 1rem;
 }
 
 .accordion h3 {
@@ -799,8 +775,8 @@ input.inputAvatar:focus {
 }
 
 .historiaClinica {
-   width: 30px;
-   cursor: pointer;
+  width: 30px;
+  cursor: pointer;
 }
 
 .nombre-HC {
@@ -810,34 +786,28 @@ input.inputAvatar:focus {
   padding: 5px 10px;
 }
 
-/* .nombre-HC p {
-  color: white;
-  text-align: center;
-  font-size: small;
-} */
-
 .medicalInput {
-   resize: none;
-   outline: none;
-   width: 40vw;
-   height: 8vh;
-   border: 2px gray solid;
-   padding: 0.5rem 1rem;
-   margin: 1rem;
-   overflow: auto;
-   font-size: 15px;
+  resize: none;
+  outline: none;
+  width: 40vw;
+  height: 8vh;
+  border: 1px gray solid;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  overflow: auto;
+  font-size: 15px;
 }
 
 .textarea {
-   width: 100%;
-   height: 25vh;
-   resize: none;
-   border-radius: 2vw;
-   outline: none;
-   border: 2px gray solid;
-   padding: 4vh;
-   display: flex;
-   align-self: center;
+  width: 100%;
+  height: 25vh;
+  resize: none;
+  border-radius: 2vw;
+  outline: none;
+  border: 2px gray solid;
+  padding: 4vh;
+  display: flex;
+  align-self: center;
 }
 
 .divEnviarNota {
@@ -861,17 +831,41 @@ input.inputAvatar:focus {
   padding-top: 30px;
 }
 
-.divComentaries::-webkit-scrollbar, .descripcion::-webkit-scrollbar {
+.divComentaries::-webkit-scrollbar,
+.descripcion::-webkit-scrollbar,
+.medicalInput::-webkit-scrollbar {
   width: 10px;
   background-color: white;
 }
-.divComentaries::-webkit-scrollbar-thumb, .descripcion::-webkit-scrollbar-thumb {
-  background-color: #1bb6d1;
+.divComentaries::-webkit-scrollbar-thumb,
+.descripcion::-webkit-scrollbar-thumb,
+.medicalInput::-webkit-scrollbar-thumb {
+  background-color: #d4edf4;
   border-radius: 5px;
 }
 
+.registroNotas {
+  display: flex;
+}
+
+.logoUser {
+  background-position: center;
+  width: 2.4em;
+  height: 2.4em;
+  background-size: cover;
+  border-radius: 100%;
+  margin-left: 1rem;
+}
+
+.editProfile {
+  cursor: pointer;
+  padding: 7px;
+}
+
 @media (max-width: 576px) {
-  .inputs input {
+  .forError {
+    display: flex;
+    justify-content: space-between;
     padding: 10px;
     border-radius: 50px;
     border: 2px gray solid;
@@ -879,17 +873,23 @@ input.inputAvatar:focus {
     width: 85%;
     align-self: center;
     outline: none;
+    background-color: white;
   }
-  #optionObraSocial {
-    padding: 10px;
-    border-radius: 50px;
-    border: 2px gray solid;
-    margin: 10px;
+
+  .forError input {
+    border: none;
     width: 85%;
-    align-self: center;
+    outline: none;
+    background-color: transparent;
+  }
+
+  #optionObraSocial {
+    border: none;
+    width: 85%;
     outline: none;
     color: gray;
     appearance: none;
+    background-color: transparent;
   }
   .hero {
     height: 60vh;
@@ -916,28 +916,21 @@ input.inputAvatar:focus {
   .grayContainer {
     padding: 10%;
   }
-  /* .profile {
+  .leftProfile {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 50px;
-    align-self: center;
-  } */
-   .leftProfile {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      background-color: #f0f3f5;
-      width: 80%;
-      align-items: center;
-      padding: 22px;
-      min-height: 1vh;
-   }
+    justify-content: center;
+    background-color: #f0f3f5;
+    width: 80%;
+    align-items: center;
+    padding: 22px;
+    min-height: 1vh;
+  }
 
   .docDescription {
-    width: 80%;
-    padding: 20px 0px 20px 0px;
+    width: 100%;
+    padding: 0px;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -969,26 +962,12 @@ input.inputAvatar:focus {
     width: 100%;
     justify-content: flex-start;
   }
-  /* .comment {
-    display: flex;
-    align-content: center;
-    align-items: top;
-    padding: 10px;
-    background-color: #f4f5f7;
-    margin: 8px;
-    border-radius: 50px;
-    max-width: 100%;
-  } */
 }
 
-/* @media (max-width: 845px) {
-  .insideHero {
-    padding: 0px 20%;
-  }
-} */
-
 @media (max-width: 992px) {
-  .inputs input {
+  .forError {
+    display: flex;
+    justify-content: space-between;
     padding: 10px;
     border-radius: 50px;
     border: 2px gray solid;
@@ -996,17 +975,23 @@ input.inputAvatar:focus {
     width: 85%;
     align-self: center;
     outline: none;
+    background-color: white;
   }
-  #optionObraSocial {
-    padding: 10px;
-    border-radius: 50px;
-    border: 2px gray solid;
-    margin: 10px;
+
+  .forError input {
+    border: none;
     width: 85%;
-    align-self: center;
+    outline: none;
+    background-color: transparent;
+  }
+
+  #optionObraSocial {
+    border: none;
+    width: 85%;
     outline: none;
     color: gray;
     appearance: none;
+    background-color: transparent;
   }
   .hero {
     height: 60vh;
@@ -1032,7 +1017,7 @@ input.inputAvatar:focus {
     width: 100%;
     padding: 0vw 5vw;
     display: flex;
-    
+
     align-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -1058,7 +1043,7 @@ input.inputAvatar:focus {
   }
 
   .docDescription {
-    width: 80%;
+    width: 70%;
     padding: 20px 0px 20px 0px;
     text-align: left;
     display: flex;
@@ -1101,7 +1086,9 @@ input.inputAvatar:focus {
 }
 
 @media (max-width: 1200px) {
-  .inputs input {
+  .forError {
+    display: flex;
+    justify-content: space-between;
     padding: 10px;
     border-radius: 50px;
     border: 2px gray solid;
@@ -1109,58 +1096,28 @@ input.inputAvatar:focus {
     width: 60%;
     align-self: center;
     outline: none;
+    background-color: white;
   }
-  #optionObraSocial {
-    padding: 10px;
-    border-radius: 50px;
-    border: 2px gray solid;
-    margin: 10px;
+
+  .forError input {
+    border: none;
     width: 60%;
-    align-self: center;
+    outline: none;
+    background-color: transparent;
+  }
+
+  #optionObraSocial {
+    border: none;
+    width: 60%;
     outline: none;
     color: gray;
     appearance: none;
+    background-color: transparent;
   }
-  .hero {
-    height: 60vh;
-    background-position: center;
-    background-size: cover;
-    text-align: center;
-    padding: 10vw;
-  }
-  header p {
-    padding: 0px 10px;
-  }
-  .description div {
-    line-height: 2;
-  }
-  header {
-    width: 100%;
-    padding: 0vw 5vw;
-    display: flex;
-    justify-content: space-between;
-  }
+  
   .grayContainer {
     padding: 20%;
   }
-  /* .profile {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    padding: 20px;
-    align-self: center;
-  } */
-   /* .leftProfile {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: #f0f3f5;
-    width: 80%;
-    align-items: center;
-    padding: 22px;
-    min-height: 1vh;
-  } */
   .centroProfile {
     display: flex;
     flex-direction: column;
@@ -1168,40 +1125,12 @@ input.inputAvatar:focus {
     max-width: 450px;
     align-content: flex-start;
   }
-  .docDescription {
-    width: 400px;
-    padding: 20px 0px 20px 50px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  /* .rightProfile {
-    display: flex;
-    flex-direction: column;
-    background-color: #71cbe3;
-    width: 80%;
-    padding: 22px;
-    align-items: center;
-  } */
-   .datosProfile {
-      text-align: left;
-      width: 80%;
-      align-self: center;
-   }
-   .tituloProfile {
-      padding-top: 10px;
-   }
-   .iconCardsContainer {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 20px 10px;
-   }
 }
 
 @media (max-width: 1416px) {
-  .inputs input {
+  .forError {
+    display: flex;
+    justify-content: space-between;
     padding: 10px;
     border-radius: 50px;
     border: 2px gray solid;
@@ -1209,17 +1138,23 @@ input.inputAvatar:focus {
     width: 60%;
     align-self: center;
     outline: none;
+    background-color: white;
   }
+
+  .forError input {
+    border: none;
+    width: 80%;
+    outline: none;
+    background-color: transparent;
+  }
+
   #optionObraSocial {
-    padding: 10px;
-    border-radius: 50px;
-    border: 2px gray solid;
-    margin: 10px;
+    border: none;
     width: 60%;
-    align-self: center;
     outline: none;
     color: gray;
     appearance: none;
+    background-color: transparent;
   }
   .hero {
     height: 60vh;
@@ -1236,76 +1171,41 @@ input.inputAvatar:focus {
   }
   header {
     width: 100%;
-    padding: 0vw 2vw;
+    padding: 0vw 15vw;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
   }
   .grayContainer {
     padding: 3% 12%;
   }
-  /* .profile {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    padding: 50px;
-    align-self: center;
-  } */
-   /* .leftProfile {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: #f0f3f5;
-    width: 80%;
-    align-items: center;
-    padding: 22px;
-    min-height: 1vh;
-  } */
-   .centroProfile {
-      display: flex;
-      flex-direction: column;
-      min-width: 450px;
-      max-width: 600px;
-      align-content: flex-start;
-   }
-   /* .rightProfile {
+  .centroProfile {
     display: flex;
     flex-direction: column;
-    background-color: #71cbe3;
+    min-width: 450px;
+    max-width: 600px;
+    align-content: flex-start;
+  }
+
+  .datosProfile {
+    text-align: left;
     width: 80%;
-    padding: 22px;
-    align-items: center;
-  } */
-   .datosProfile {
-      text-align: left;
-      width: 80%;
-      align-self: center;
-   }
-   .tituloProfile {
-      padding-top: 10px;
-   }
-   .iconCardsContainer {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 20px 10px;
-   }
-}
-
-.registroNotas {
-   display: flex;
-}
-
-.logoUser {
-   background-position: center;
-   width: 2.4em;
-   height: 2.4em;
-   background-size: cover;
-   border-radius: 100%;
-   margin-left: 1rem;
-}
-
-.editProfile {
-   cursor: pointer;
-   padding: 7px;
+    align-self: center;
+  }
+  .tituloProfile {
+    padding-top: 10px;
+  }
+  .iconCardsContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px 10px;
+  }
+  .docDescription {
+    width: 60%;
+    padding: 20px 0px 20px 50px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }

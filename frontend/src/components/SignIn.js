@@ -100,6 +100,7 @@ const SignIn = ({logIn}) => {
             </div>
           </div>
           <div className="inputs">
+            <div className="forError">
             <input
               type="email"
               placeholder="E-mail"
@@ -108,6 +109,8 @@ const SignIn = ({logIn}) => {
               onChange={userLogin}
               className={((error.errorUno && !userLog.data.mail.length) ? "errorY" : "errorN")}
             />
+            </div>
+            <div className="forError">
             <input
               type="password"
               placeholder="Contraseña"
@@ -117,8 +120,10 @@ const SignIn = ({logIn}) => {
               className={((error.errorUno && !userLog.password.length) ? "errorY" : "errorN")}
               onKeyPress={handleKeyPress}
             />
+            {<img data-tip data-for="buttonError" style={{height:"40px", width:"40px", display: (error.errorUno || error.errorDos) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+
+            </div>
           </div>
-          {<img data-tip data-for="buttonError" style={{height:"40px", width:"40px", display: (error.errorUno || error.errorDos) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
 
           <button id="buttonSign" onClick={submitUserLog}>
             LOGIN

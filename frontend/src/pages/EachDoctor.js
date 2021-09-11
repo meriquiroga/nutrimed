@@ -60,7 +60,10 @@ class EachDoctor extends Component {
         <div className="docDescription">
           <div>
             <Score scoreArray={this.props.doctor.score} staff={false} valid={this.props.valid} doctorId={this.props.doctor._id}/>
+            <div className="univ">
+            <img src="/assets/univ.png" alt="" />
             <p>{this.props.doctor.description}</p>
+            </div>
           </div>
           <div>
             <Reviews

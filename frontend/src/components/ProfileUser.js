@@ -113,7 +113,7 @@ const ProfileUser = ({user,getAppointments,deleteAppointment,confirmFormMail,tok
                            </button>
                            {confirmDelete && (
                               <div>
-                                 <h4>Confirmar eliminacion</h4>
+                                 <h4>Confirmar eliminación</h4>
                                  <img
                                     className="iconCom"
                                     src="/assets/cross.png"
@@ -221,7 +221,7 @@ const ProfileUser = ({user,getAppointments,deleteAppointment,confirmFormMail,tok
                            </button>
                            {confirmDelete && (
                               <div>
-                                 <h4>Confirmar eliminacion</h4>
+                                 <h4>Confirmar eliminación</h4>
                                  <img
                                     className="iconCom"
                                     src="/assets/cross.png"

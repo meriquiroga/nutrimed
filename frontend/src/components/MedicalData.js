@@ -86,7 +86,7 @@ const MedicalData = ({appointment,postDescription,token}) => {
                 className="medicalInput"
                 value={inputDescription.description}
                 name="description"
-                placeholder="Ingresar fecha (dd/mm/aaaa) : nota correspondiente"
+                placeholder="Ingresar fecha (dd/mm/aaaa) : nota correspondiente."
                 onChange={inputHandler}
                 onKeyPress={pressEnter}
               />
