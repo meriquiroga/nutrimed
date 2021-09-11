@@ -15,8 +15,6 @@ const SignIn = ({logIn}) => {
     google: false,
   });
 
-  // console.log(error1)
-
   const userLogin = (e) => {
     setError({errorUno: false})
     if (e.target.name === "data") {
@@ -25,7 +23,6 @@ const SignIn = ({logIn}) => {
         setUserLog({ ...userLog, [e.target.name]: e.target.value });
     }
   };
-
 
   const responseGoogle = (res) => {
     let newUserWithGoogle = {
@@ -64,7 +61,6 @@ const SignIn = ({logIn}) => {
     } 
   };
 
-  console.log(valueIn)
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -77,17 +73,8 @@ const SignIn = ({logIn}) => {
 
   return (
     <>
-      {
-      <ReactTooltip id="buttonError" place="top" effect="solid" className="buttonGoogle"> {errors} </ReactTooltip>}
-
-      {/* {valueIn === "" && <ReactTooltip id="button_Google"
-        place="right"
-        effect="solid"
-        className="buttonGoogle"
-      >
-        Debe seleccionar tipo de usuario
-      </ReactTooltip>} */}
-    
+      
+      <ReactTooltip id="buttonError" place="top" effect="solid" className="buttonGoogle"> {errors} </ReactTooltip>
       <div className="container">
         <div className="grayContainer">
           <img src="/assets/login.png" alt="" />

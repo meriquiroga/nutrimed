@@ -83,7 +83,7 @@ const MedicalData = (props) => {
                         className="medicalInput"
                         value={inputDescription.description}
                         name="description"
-                        placeholder="Ingresar nota"
+                        placeholder="Ingresar fecha (dd/mm/aaaa) : nota correspondiente"
                         onChange={inputHandler}
                         onKeyPress={pressEnter}
                      />

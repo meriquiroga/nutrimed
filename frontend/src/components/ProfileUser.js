@@ -12,6 +12,7 @@ const ProfileUser = (props) => {
    const [appointments, setAppointments] = useState([])
    const [loading, setLoading] = useState(true)
    const [change, setChange] = useState([])
+   const [confirmDelete, setConfirmDelete] = useState(false)
 
    useEffect(() => {
       props.getAppointments(props.token).then((res) => {
@@ -70,7 +71,8 @@ const ProfileUser = (props) => {
                                     <img
                                        className="historiaClinica"
                                        onClick={onClick}
-                                       src="/assets/historialClinico.png" alt=""
+                                       src="/assets/historialClinico.png"
+                                       alt=""
                                     />
                                  )}
                                  offsetX={0}
@@ -98,10 +100,31 @@ const ProfileUser = (props) => {
                            <p>{appointment.date.date}</p>
                            <p>{appointment.date.hour} hs</p>
                            <button
-                              onClick={() => deleteAppoint(appointment._id)}
+                              onClick={() => setConfirmDelete(!confirmDelete)}
                            >
                               Borrar turno
                            </button>
+                           {confirmDelete && (
+                              <div>
+                                 <h4>Confirmar eliminacion</h4>
+                                 <img
+                                    className="iconCom"
+                                    src="/assets/cross.png"
+                                    alt="edit"
+                                    onClick={() =>
+                                       setConfirmDelete(!confirmDelete)
+                                    }
+                                 />
+                                 <img
+                                    className="iconCom"
+                                    src="/assets/check2.png"
+                                    alt="edit"
+                                    onClick={() =>
+                                       deleteAppoint(appointment._id)
+                                    }
+                                 />
+                              </div>
+                           )}
                         </div>
                      )
                   })
@@ -186,10 +209,31 @@ const ProfileUser = (props) => {
                            <p className="turnos">{appointment.date.date}</p>
                            <p className="turnos">{appointment.date.hour} hs.</p>
                            <button
-                              onClick={() => deleteAppoint(appointment._id)}
+                              onClick={() => setConfirmDelete(!confirmDelete)}
                            >
                               Borrar turno
                            </button>
+                           {confirmDelete && (
+                              <div>
+                                 <h4>Confirmar eliminacion</h4>
+                                 <img
+                                    className="iconCom"
+                                    src="/assets/cross.png"
+                                    alt="edit"
+                                    onClick={() =>
+                                       setConfirmDelete(!confirmDelete)
+                                    }
+                                 />
+                                 <img
+                                    className="iconCom"
+                                    src="/assets/check2.png"
+                                    alt="edit"
+                                    onClick={() =>
+                                       deleteAppoint(appointment._id)
+                                    }
+                                 />
+                              </div>
+                           )}
                         </div>
                      )
                   })

@@ -14,7 +14,7 @@ const userActions = {
                   },
                })
                return { success: true, res: res }
-            }else {
+            } else {
                return res.data
             }
          } catch (err) {
@@ -62,9 +62,9 @@ const userActions = {
                      token: res.data.res.token,
                   },
                })
-               return {res: res.data.res}
+               return { res: res.data.res }
             } else {
-               return {success: false, res: res.data.res}
+               return { success: false, res: res.data.res }
             }
          } catch (err) {
             return { success: false, res: err.message }
