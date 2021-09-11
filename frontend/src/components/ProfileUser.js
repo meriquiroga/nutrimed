@@ -1,19 +1,32 @@
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { useEffect, useState } from "react";
-import doctorActions from "../redux/actions/doctorActions";
-import React from "react";
-import ReactCircleModal from "react-circle-modal";
-import MedicalData from "./MedicalData";
-import { Accordion, AccordionItem } from "react-sanfona";
+import { Link } from "react-router-dom"
+import { connect } from "react-redux"
+import { useEffect, useState } from "react"
+import doctorActions from "../redux/actions/doctorActions"
+import React from "react"
+import { Accordion, AccordionItem } from "react-sanfona"
 import patientActions from "../redux/actions/patientActions"
+import Appoint from "./Appoint"
+import AppointUser from "./AppointUser"
+import userActions from "../redux/actions/userActions"
 
-const ProfileUser = ({user,getAppointments,deleteAppointment,confirmFormMail,token}) => {
-   const { doc, src, name, lastName, dni, data } = user
+const ProfileUser = ({
+   user,
+   getAppointments,
+   deleteAppointment,
+   confirmFormMail,
+   token,
+   deleteAllAppointmentByDoctor,
+   deleteProfileDoctor,
+   history,
+   logOut,
+}) => {
+   const { doc, src, name, lastName, dni, data, socialWork } = user
    const [appointments, setAppointments] = useState([])
    const [loading, setLoading] = useState(true)
    const [change, setChange] = useState([])
    const [confirmDelete, setConfirmDelete] = useState(false)
+   const [deleteDoctor, setDeleteDoctor] = useState(false)
+   // const [deletedDoc, setDeletedDoc] = useState(false)
 
    useEffect(() => {
       getAppointments(token).then((res) => {
@@ -30,28 +43,30 @@ const ProfileUser = ({user,getAppointments,deleteAppointment,confirmFormMail,tok
       return <h3 className="containerLoading">Loading...</h3>
    }
 
-  const filterDays = (dayM) => {
-    let day = appointments.filter((appointment) =>
-      appointment.date.date.includes(dayM)
-    );
-    return day;
-  };
+   const filterDays = (dayM) => {
+      let day = appointments.filter((appointment) =>
+         appointment.date.date.includes(dayM)
+      )
+      return day
+   }
 
    const deleteAppoint = (appointment) => {
-      deleteAppointment(token, appointment._id).then((res) => setChange(res.res))
-      if(typeof appointment.patientId == 'string'){
+      deleteAppointment(token, appointment._id).then((res) =>
+         setChange(res.res)
+      )
+      if (typeof appointment.patientId == "string") {
          confirmFormMail(appointment.date, token, appointment.doctorId, false)
-      }else{
+      } else {
          confirmFormMail(appointment.date, token, appointment.patientId, false)
       }
       setConfirmDelete(!confirmDelete)
    }
 
-  const lunes = filterDays("Lunes");
-  const martes = filterDays("Martes");
-  const miercoles = filterDays("Miercoles");
-  const jueves = filterDays("Jueves");
-  const viernes = filterDays("Viernes");
+   const lunes = filterDays("Lunes")
+   const martes = filterDays("Martes")
+   const miercoles = filterDays("Miercoles")
+   const jueves = filterDays("Jueves")
+   const viernes = filterDays("Viernes")
 
    const drawAccordion = (day, day2) => {
       return (
@@ -64,101 +79,45 @@ const ProfileUser = ({user,getAppointments,deleteAppointment,confirmFormMail,tok
                {day2.length === 0 ? (
                   <p>No hay turnos por el momento.</p>
                ) : (
-                  day2.map((appointment, index) => {
+                  day2.map((appointment) => {
                      return (
-                        <div key={index}>
-                           <div className="nombre-HC">
-                              <h4>
-                                 {appointment.patientId.name}{" "}
-                                 {appointment.patientId.lastName}
-                              </h4>
-                              <ReactCircleModal
-                                 backgroundColor="#36B0B4"
-                                 toogleComponent={(onClick) => (
-                                    <img
-                                       className="historiaClinica"
-                                       onClick={onClick}
-                                       src="/assets/historialClinico.png"
-                                       alt=""
-                                    />
-                                 )}
-                                 offsetX={0}
-                                 offsetY={0}
-                              >
-                                 {(onClick) => (
-                                    <div
-                                       style={{
-                                          backgroundColor: "#fff",
-                                          padding: "1em",
-                                          width: "75vw",
-                                          alignSelf: "center",
-                                          display: "flex",
-                                          flexDirection: "column",
-                                          justifyContent: "center",
-                                          alignItems: "center",
-                                       }}
-                                    >
-                                       <MedicalData appointment={appointment} />
-                                       <button onClick={onClick}>VOLVER</button>
-                                    </div>
-                                 )}
-                              </ReactCircleModal>
-                           </div>
-                           <p>{appointment.date.date}</p>
-                           <p>{appointment.date.hour} hs</p>
-                           <button className="buttonDelete"
-                              onClick={() => setConfirmDelete(!confirmDelete)}
-                           >
-                              BORRAR TURNO
-                           </button>
-                           {confirmDelete && (
-                              <div>
-                                 <h4>Confirmar eliminacion</h4>
-                                 <img
-                                    className="iconCom"
-                                    src="/assets/cross.png"
-                                    alt="edit"
-                                    onClick={() =>
-                                       setConfirmDelete(!confirmDelete)
-                                    }
-                                 />
-                                 <img
-                                    className="iconCom"
-                                    src="/assets/check2.png"
-                                    alt="edit"
-                                    onClick={() =>
-                                       deleteAppoint(appointment)
-                                    }
-                                 />
-                              </div>
-                           )}
-                  </div>
-              );
-            })
-          )}
-        </AccordionItem>
-      </Accordion>
-    );
-  };
+                        <Appoint
+                           key={appointment._id}
+                           appointment={appointment}
+                           deleteAppoint={deleteAppoint}
+                        />
+                     )
+                  })
+               )}
+            </AccordionItem>
+         </Accordion>
+      )
+   }
 
-  return (
-    <div className="profile">
-      <div className="leftProfile">
-        <div
-          className="profileImg"
-          style={{ backgroundImage: `url('${src}')` }}
-        ></div>
-        <h4>Bienvenido/a, {name}</h4>
-        {!doc ? (
-          <p>
-            Para poder sacar turno es necesario que completes tus datos. Hacelo
-            en el siguiente botón.
-          </p>
-        ) : (
-          <p>
-            Completá tus datos y mantenelos actualizados en el siguiente botón.
-          </p>
-        )}
+   const deletDoctor = () => {
+      deleteAllAppointmentByDoctor(token).then((res) => {
+         if (res.success) {
+            deleteProfileDoctor(token).then(() => {
+               logOut()
+               history.push("/")
+            })
+            return false
+         }
+      })
+   }
+
+   return (
+      <div className="profile">
+         <div className="leftProfile">
+            <div
+               className="profileImg"
+               style={{ backgroundImage: `url('${src}')` }}
+            ></div>
+            <h4>Bienvenido/a, {name}</h4>
+            <p>
+               Completá tus datos y mantenelos actualizados en el siguiente
+               botón.
+            </p>
 
             <button>
                <Link
@@ -168,26 +127,82 @@ const ProfileUser = ({user,getAppointments,deleteAppointment,confirmFormMail,tok
                   COMPLETAR PERFIL
                </Link>
             </button>
+            {doc && !deleteDoctor && (
+               <button onClick={() => setDeleteDoctor(!deleteDoctor)}>
+                  ELIMINAR CUENTA
+               </button>
+            )}
+            {deleteDoctor && (
+               <div>
+                  <h3>Esta seguro de eliminar su cuenta ?</h3>
+                  <p>Se borraran los siguientes datos:</p>
+                  <li>Informacion personal</li>
+                  <li>
+                     Informacion relacionada a pacientes y turnos
+                     correspondientes
+                  </li>
+                  <button onClick={() => setDeleteDoctor(!deleteDoctor)}>
+                     Cancelar
+                  </button>
+                  <button
+                     onClick={() => {
+                        deletDoctor()
+                     }}
+                  >
+                     Eliminar de todos modos
+                  </button>
+               </div>
+            )}
          </div>
          <div>
             <div className="centroProfile">
                <h3 className="tituloProfile">Mis datos</h3>
                <div className="datosProfile">
-                  <p>Nombre: {name}</p>
-                  <p>Apellido: {lastName}</p>
-                  <p>DNI: {!dni ? " - " : dni}</p>
                   <p>
-                     Domicilio:{" "}
-                     {!data.direction.street
-                        ? " - "
-                        : `${data.direction.street} ${data.direction.num}`}
+                     <span className="datosBold">Nombre:</span>
+                     {name}
                   </p>
-                  {
+                  <p>
+                     <span className="datosBold">Apellido:</span> {lastName}
+                  </p>
+                  <p>
+                     <span className="datosBold">DNI:</span>{" "}
+                     {!dni ? (
+                        <span className="sinCompletar">Sin completar</span>
+                     ) : (
+                        dni
+                     )}
+                  </p>
+                  <p>
+                     <span className="datosBold">Domicilio:</span>{" "}
+                     {!data.direction.street ? (
+                        <span className="sinCompletar">Sin completar</span>
+                     ) : (
+                        `${data.direction.street} ${data.direction.num}`
+                     )}
+                  </p>
+                  <p>
+                     <span className="datosBold">Telefono:</span>{" "}
+                     {!data.phoneNumber ? (
+                        <span className="sinCompletar">Sin completar</span>
+                     ) : (
+                        data.phoneNumber
+                     )}
+                  </p>
+                  <p>
+                     <span className="datosBold">E-mail: </span>
+                     {data.mail}
+                  </p>
+                  {!doc && (
                      <p>
-                        Telefono: {!data.phoneNumber ? " - " : data.phoneNumber}
+                        <span className="datosBold">Obra Social:</span>{" "}
+                        {!socialWork ? (
+                           <span className="sinCompletar">Sin completar</span>
+                        ) : (
+                           { socialWork }
+                        )}
                      </p>
-                  }
-                  {<p>E-mail: {data.mail}</p>}
+                  )}
                </div>
             </div>
          </div>
@@ -201,51 +216,20 @@ const ProfileUser = ({user,getAppointments,deleteAppointment,confirmFormMail,tok
                appointments.length === 0 ? (
                   <p className="turnos">No tenés turnos programados.</p>
                ) : (
-                  appointments.map((appointment, index) => {
+                  appointments.map((appointment) => {
                      return (
-                        <div key={index}>
-                           <div>
-                              <Link to={`/staff/${appointment.doctorId._id}`}>
-                                 <h3 className="linksDoctor">
-                                    {appointment.doctorId.name}{" "}
-                                    {appointment.doctorId.lastName}
-                                 </h3>
-                              </Link>
-                           </div>
-                           <p className="turnos">{appointment.date.date}</p>
-                           <p className="turnos">{appointment.date.hour} hs.</p>
-                           <button className="buttonDelete"
-                              onClick={() => setConfirmDelete(!confirmDelete)}
-                           >
-                              BORRAR TURNO
-                           </button>
-                           {confirmDelete && (
-                              <div>
-                                 <h4>Confirmar eliminacion</h4>
-                                 <img
-                                    className="iconCom"
-                                    src="/assets/cross.png"
-                                    alt="edit"
-                                    onClick={() =>
-                                       setConfirmDelete(!confirmDelete)
-                                    }
-                                 />
-                                 <img
-                                    className="iconCom"
-                                    src="/assets/check2.png"
-                                    alt="edit"
-                                    onClick={() =>
-                                       deleteAppoint(appointment)
-                                    }
-                                 />
-                              </div>
-                           )}
-                        </div>
+                        <AppointUser
+                           key={appointment._id}
+                           appointment={appointment}
+                           deleteAppoint={deleteAppoint}
+                        />
                      )
                   })
                )
             ) : appointments.length === 0 ? (
-               <p className="turnos">No tenés pacientes agendados esta semana.</p>
+               <p className="turnos">
+                  No tenés pacientes agendados esta semana.
+               </p>
             ) : (
                <div>
                   {drawAccordion("Lunes", lunes)}
@@ -257,22 +241,25 @@ const ProfileUser = ({user,getAppointments,deleteAppointment,confirmFormMail,tok
             )}
          </div>
       </div>
-  );
-};
+   )
+}
 
 const mapStateToProps = (state) => {
-  return {
-    user: state.users.dataUser,
-    token: state.users.token,
-    patients: state.patients.patients,
-    doctors: state.doctors.doctors,
-  };
-};
+   return {
+      user: state.users.dataUser,
+      token: state.users.token,
+      patients: state.patients.patients,
+      doctors: state.doctors.doctors,
+   }
+}
 
 const mapDispatchToProps = {
-  getAppointments: doctorActions.getAppointments,
-  deleteAppointment: doctorActions.deleteAppointment,
-  confirmFormMail:patientActions.confirmFormMail
-};
+   getAppointments: doctorActions.getAppointments,
+   deleteAppointment: doctorActions.deleteAppointment,
+   confirmFormMail: patientActions.confirmFormMail,
+   deleteAllAppointmentByDoctor: doctorActions.deleteAllAppointmentByDoctor,
+   deleteProfileDoctor: doctorActions.deleteProfileDoctor,
+   logOut: userActions.logOut,
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileUser);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileUser)

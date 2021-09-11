@@ -1,15 +1,14 @@
 import { Component } from "react"
 import ProfileUser from "../components/ProfileUser"
 
-
 export default class Profile extends Component {
-   componentDidMount(){
-      window.scroll(0,0)
+   componentDidMount() {
+      window.scroll(0, 0)
    }
    render() {
       return (
          <>
-            <ProfileUser />
+            <ProfileUser history={this.props.history} />
          </>
       )
    }
