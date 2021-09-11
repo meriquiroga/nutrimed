@@ -58,15 +58,13 @@ const Header = (props) => {
                   SOLICITAR TURNO
                </Link>
             </button>
-            {props.valid && (
-               <h4 className="nameHeader">{props.user.userExist.name}</h4>
-            )}
+            {props.valid && <h4 className="nameHeader">{props.user.name}</h4>}
             <div
                className="logoUser"
                style={{
                   backgroundImage: `url('${
                      props.valid
-                        ? props.user.userExist.src
+                        ? props.user.src
                         : "https://i.postimg.cc/DzGJCrT8/customer-icon-23.png"
                   }')`,
                }}

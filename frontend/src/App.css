@@ -474,6 +474,7 @@ footer img {
 }
 .iconCom {
    width: 30px;
+   cursor: pointer;
 }
 
 .iconTurn {
@@ -1214,4 +1215,9 @@ input.inputAvatar:focus {
    background-size: cover;
    border-radius: 100%;
    margin-left: 1rem;
+}
+
+.editProfile {
+   cursor: pointer;
+   padding: 7px;
 }
