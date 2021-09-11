@@ -38,11 +38,6 @@ const Header = (props) => {
                      </NavLink>
                   </li>
                )}
-               <li>
-                  <NavLink to="/information">
-                     <p>CONTACTO</p>
-                  </NavLink>
-               </li>
             </ul>
          </div>
          <div className="headerRigth">
