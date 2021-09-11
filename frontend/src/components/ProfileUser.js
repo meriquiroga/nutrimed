@@ -28,20 +28,21 @@ const ProfileUser = ({
    const [deleteDoctor, setDeleteDoctor] = useState(false)
    // const [deletedDoc, setDeletedDoc] = useState(false)
 
-   useEffect(() => {
-      getAppointments(token).then((res) => {
-         if (res.success) {
-            setAppointments(res.res)
-            setLoading(false)
-            return false
-         }
-      })
-      // eslint-disable-next-line
-   }, [change])
+  useEffect(() => {
+    getAppointments(token).then((res) => {
+      if (res.success) {
+        setAppointments(res.res);
+        setLoading(false);
+        return false;
+      }
+    });
 
-   if (loading) {
-      return <h3 className="containerLoading">Loading...</h3>
-   }
+    // eslint-disable-next-line
+  }, [change]);
+
+  if (loading) {
+    return <h3 className="containerLoading">Loading...</h3>;
+  }
 
    const filterDays = (dayM) => {
       let day = appointments.filter((appointment) =>
