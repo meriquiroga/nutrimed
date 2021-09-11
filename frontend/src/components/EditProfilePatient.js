@@ -82,6 +82,7 @@ const EditProfilePatient = ({user,token,getAvatars,getSocialWork,editProfile,his
 
   const editHandler = () => {
     setValidEdit(!validEdit);
+    
   };
 
   const handleKeyPress = (e) => {
@@ -107,13 +108,15 @@ const EditProfilePatient = ({user,token,getAvatars,getSocialWork,editProfile,his
          <div className="grayContainer">
             <img src="/assets/form.png" alt="" />
             <h3>Por favor, completá tus datos</h3>
+            {!validEdit ? <span className='editProfile' onClick={editHandler}>Editar</span> : <Link to = "/profile">Cancelar y volver al perfil</Link>}
+
             <form className="inputs">
                <input
                   type="text"
                   placeholder="DNI"
                   name="dni"
                   onChange={addDocHandler}
-                  defaultValue={token ? dni : actPat.dni}
+                  defaultValue={dni}
                   disabled={!dni ? false : validEdit ? false : true}
                />
                <input
@@ -122,7 +125,7 @@ const EditProfilePatient = ({user,token,getAvatars,getSocialWork,editProfile,his
                   name="phoneNumber"
                   onChange={addDocHandler}
                   defaultValue={
-                     token ? data.phoneNumber : actPat.data.phoneNumber
+                     data.phoneNumber
                   }
                   disabled={
                      !data.phoneNumber ? false : validEdit ? false : true
@@ -134,9 +137,7 @@ const EditProfilePatient = ({user,token,getAvatars,getSocialWork,editProfile,his
                   name="street"
                   onChange={addDocHandler}
                   defaultValue={
-                     token
-                        ? data.direction.street
-                        : actPat.data.direction.street
+                     data.direction.street
                   }
                   disabled={
                      !data.direction.street ? false : validEdit ? false : true
@@ -148,7 +149,7 @@ const EditProfilePatient = ({user,token,getAvatars,getSocialWork,editProfile,his
                   name="num"
                   onChange={addDocHandler}
                   defaultValue={
-                     token ? data.direction.num : actPat.data.direction.num
+                     data.direction.num
                   }
                   disabled={
                      !data.direction.num ? false : validEdit ? false : true
@@ -160,26 +161,29 @@ const EditProfilePatient = ({user,token,getAvatars,getSocialWork,editProfile,his
                   name="city"
                   onChange={addDocHandler}
                   defaultValue={
-                     token ? data.direction.city : actPat.data.direction.city
+                     data.direction.city
                   }
                   disabled={
                      !data.direction.city ? false : validEdit ? false : true
                   }
                   onKeyPress={handleKeyPress}
                />
-               <select
+               {<select
                   id="optionObraSocial"
                   name="socialWork"
                   onChange={addDocHandler}
                   defaultValue={actPat.socialWork}
+                  disabled={
+                     !socialWork ? false : validEdit ? false : true
+                  }
                >
                   <option>Seleccioná tu obra social </option>
-                  {allSocialWork.map((social, index) => (
+                  {(socialWork.length && validEdit) ? allSocialWork.map((social, index) => (
                      <option key={index}>{social}</option>
-                  ))}
+                  )) : <option defaultValue>{socialWork}</option>}
                   <option>Otra</option>
-               </select>
-               <div className="containerPreview">
+               </select>}
+               {(src.length && validEdit) && <div className="containerPreview">
                   <div
                      className="preview"
                      style={{
@@ -206,10 +210,10 @@ const EditProfilePatient = ({user,token,getAvatars,getSocialWork,editProfile,his
                         </div>
                      ))}
                   </div>
-                  <span className='editProfile' onClick={editHandler}>
-                  {!validEdit ? "Editar ✏️" : "Cancelar ❌"}
-               </span>
-               </div>
+                  
+               </div>}
+               
+               
             </form>
             <button type="submit" onClick={submitHandler}>
                ENVIAR

@@ -278,7 +278,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
                 required={valueIn === "prof" ? true : false}
                 />
               </div>
-            <h3>Elija su avatar para perfil</h3>
+            {valueIn === "pat" && <h3>Elija su avatar para perfil</h3>}
 
           <div 
             className="containerPreview"

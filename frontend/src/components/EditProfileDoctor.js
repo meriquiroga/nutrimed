@@ -4,8 +4,9 @@ import userActions from "../redux/actions/userActions";
 import { Link } from "react-router-dom"
 
 const EditProfileDoctor = (props) => {
+  console.log(props)
   const {token} = props
-  const {data, dni, description, specialty, registration} = props.user
+  const {data, dni, description, specialty, registration, src} = props.user
   const { direction, phoneNumber } = data;
   const email = props.user.data.mail;
   const [valueIn, setValueIn] = useState(true);
@@ -24,6 +25,7 @@ const EditProfileDoctor = (props) => {
       mail: email,
       phoneNumber: phoneNumber,
    },
+   src: src,
    socialWork: "",
 })
  
@@ -91,6 +93,7 @@ const EditProfileDoctor = (props) => {
       <div className="container">
         <div className="grayContainer">
           <h3>Completá o actualizá tus datos</h3>
+          {!validEdit ? <span className='editProfile' onClick={editHandler}>Editar</span> : <Link to = "/profile">Cancelar y volver al perfil</Link>}
           <form className="inputs">
             <input
               type="text"
@@ -171,13 +174,22 @@ const EditProfileDoctor = (props) => {
                 token ? data.direction.city : actDoc.data.direction.city
               }
               disabled={!data.direction.city ? false : validEdit ? false : true}
-              onKeyPress={handleKeyPress}
+              
             />
-            <span onClick={editHandler}>
-              {!validEdit ? "Editar ✏️" : "Cancelar ❌"}
-            </span>
+            {<input
+              type="text"
+              placeholder="Url de imágen"
+              name="src"
+              onChange={addDocHandler}
+              // defaultValue={actDoc.data.direction.city}
+              defaultValue={src}
+              disabled={validEdit ? false : true}
+              onKeyPress={handleKeyPress}
+            />}
+            
           </form>
-          <h4>¿Acepta Obra Social? </h4>
+          {(!props.socialWork && validEdit) && <h4>¿Acepta Obra Social? </h4>}
+          {(!props.socialWork && validEdit) && 
           <div className="radio">
             <div>
               Si{" "}
@@ -199,7 +211,7 @@ const EditProfileDoctor = (props) => {
                 value={false}
               />
               </div>
-               </div>
+            </div>}
                <button onClick={submitHandler}>Actualizar datos</button>
                <div>
                   <Link to="/profile">Volver al perfil</Link>
