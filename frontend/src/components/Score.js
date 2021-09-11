@@ -28,7 +28,11 @@ const Score = ({scoreArray, staff,valid,doctorId,sendScore})=>{
     
     if(!staff && valid){
         return(
-            <ReactStars count={5} size={24} value={AddScores()} onChange={changeScoreHandler} color2={'#ffd700'} half={true}/> 
+            <div className='score'>
+                <ReactStars count={5} size={27} value={AddScores()} onChange={changeScoreHandler} color2={'#ffd700'} half={true}/>
+                <p>{AddScores()}/5</p>
+            </div>
+             
         )
     }
     return(

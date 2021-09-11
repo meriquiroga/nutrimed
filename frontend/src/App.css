@@ -1309,3 +1309,10 @@ input.inputAvatar:focus {
    cursor: pointer;
    padding: 7px;
 }
+.score{
+   display:flex;
+   align-items: center;
+}
+.score p{
+   padding-left:1vw;
+}

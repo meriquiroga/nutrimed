@@ -17,7 +17,7 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
       hour: "",
       date: "",
     },
-    doctorId: "a",
+    doctorId: "",
     patientId: "",
   });
   useEffect(() => {
@@ -42,8 +42,9 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
       }
       // eslint-disable-next-line
   },[]);
-
+  
   const appointmentValueHandler = (e) => {
+    console.log(e.target.value)
     if(!e.target.value){
       setViews({...views, view:false})
     }else{
@@ -56,6 +57,7 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
     }
   }
   const bookAppointmentHandler=(hour,day)=>{
+    setViews({view:false, confirm:true, ok:false})
     setAppointmentReady({...appointmentReady,
       date: {
       hour: hour,
@@ -63,9 +65,8 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
       },
       patientId: userToken,
     })
-    setViews({...views, confirm:true, ok:false})
   }
-  const optionDoctor = newDoctors.map(obj => <option key={obj._id} value={obj._id}>{obj.name} {obj.lastName}</option>)
+  const optionDoctor = newDoctors.map(obj => <option key={obj._id} value={obj._id}>{obj.name} {obj.lastName} - {obj.specialty}</option>)
  
   const inputDay = newCalendar.map(obj =>{
     const appointmentByDay = !diaryByDoc.length ? [] : diaryByDoc.filter(diary=>diary.date.date === obj.day)
@@ -74,7 +75,7 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
     )
   })
   const confirmAppointmentHandler =(data)=>{
-    setAppointmentReady({...appointmentReady, doctorId:""})
+    // setAppointmentReady({...appointmentReady, doctorId:''})
     addAppointment(data)
     .then(res=>{
       if(res.success){
@@ -99,7 +100,7 @@ const Appointment = ({doctors,getDoctors, userToken,addAppointment,confirmFormMa
         <h3>
           ¡Bienvenido! Seleccioná el profesional para ver sus turnos disponibles.
         </h3>
-        <select id="optionDoctor" name="doctorId" defaultValue={appointmentReady.doctorId} onChange={appointmentValueHandler}>
+        <select id="optionDoctor" name="doctorId" defaultValue={appointmentReady.doctorId} onClick={appointmentValueHandler}>
             <option value="" >Seleccioná un profesional</option>
             {optionDoctor}
           </select>

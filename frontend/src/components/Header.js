@@ -56,16 +56,18 @@ const Header = ({logOut,valid,user}) => {
             </button>
             }
             {valid && <h4 className="nameHeader">{user.name}</h4>}
-            <div
-               className="logoUser"
-               style={{
-                  backgroundImage: `url('${
-                     valid
-                        ? user.src
-                        : "https://i.postimg.cc/DzGJCrT8/customer-icon-23.png"
-                  }')`,
-               }}
-            ></div>
+            <NavLink to="/profile">
+               <div
+                  className="logoUser"
+                  style={{
+                     backgroundImage: `url('${
+                        valid
+                           ? user.src
+                           : "https://i.postimg.cc/DzGJCrT8/customer-icon-23.png"
+                     }')`,
+                  }}
+               ></div>
+            </NavLink>
          </div>
       </header>
    )
