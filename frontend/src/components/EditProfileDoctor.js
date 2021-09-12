@@ -84,7 +84,7 @@ const EditProfileDoctor = (props) => {
       if (res.success) {
         props.history.push("/profile");
       }else{
-        setTextError('No se pudieron actualizar los datos, intentelo mas tarde')
+        setTextError('No se pudieron actualizar los datos. Por favor, intentalo más tarde.')
       }
     });
   };
@@ -94,7 +94,7 @@ const EditProfileDoctor = (props) => {
       <div className="container">
         <div className="grayContainer">
           <h3>Completá o actualizá tus datos</h3>
-          {!validEdit ? <span className='editProfile' onClick={editHandler}>EDITAR</span> : <Link to = "/profile">Cancelar y volver al perfil</Link>}
+          {!validEdit ? <span id='editProfile' onClick={editHandler}>EDITAR</span> : <Link to = "/profile">Cancelar y volver al perfil</Link>}
           <form className="inputs">
             <div className="forError">
               <input
