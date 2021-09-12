@@ -19,6 +19,7 @@ const EditProfilePatient = ({
   const [allSocialWork, setAllSocialWork] = useState([]);
   const [avatars, setAvatars] = useState([]);
   const [previewImg, setPreviewImg] = useState(src);
+  const [textError, setTextError]= useState('')
   const [actPat, setActPat] = useState({
     dni: dni,
     data: {
@@ -100,7 +101,9 @@ const EditProfilePatient = ({
     editProfile(doc, actPat, token).then((res) => {
       if (res.success) {
         history.push("/profile");
-      }else console.log("error")
+      }else{
+        setTextError('No se pudieron actualizar los datos, intentelo mas tarde')
+      }
     });
   };
 
@@ -226,6 +229,7 @@ const EditProfilePatient = ({
         <div>
           <Link to="/profile">Volver al perfil</Link>
         </div>
+        <span className='red'>{textError}</span>
       </div>
     </div>
   );

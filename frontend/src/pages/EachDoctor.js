@@ -7,7 +7,7 @@ import Score from "../components/Score";
 
 class EachDoctor extends Component {
   state = {
-    loading: { condition: true, text: "", back: "" },
+    loading: { condition: true, text: "", back: "" , gif:true},
     socket: null,
     newScore: [],
   };
@@ -20,10 +20,11 @@ class EachDoctor extends Component {
             loading: {
               ...this.state.loading,
               text: "Ocurrió un error. Por favor, inténtalo de nuevo más tarde",
-              link: "Home",
+              link: "Volver a Home",
+              gif:false
             },
           });
-    });
+    })
   }
   render() {
     if (this.state.loading.condition) {
@@ -31,7 +32,7 @@ class EachDoctor extends Component {
         <>
           (
           <div className="containerLoading">
-            <img src="/assets/loader.gif"/>
+            {this.state.loading.gif && <img src="/assets/loader.gif" alt='loading'/>}
             <h3>{this.state.loading.text}</h3>
           </div>
           )<Link to="/">{this.state.loading.back}</Link>
@@ -84,7 +85,6 @@ const mapStateTopProps = (state) => {
   };
 };
 const mapDispatchToProps = {
-  getOneDoctor: doctorActions.getOneDoctor,
-  getOneDoctorDB: doctorActions.getOneDoctorDB,
+  getOneDoctorDB: doctorActions.getOneDoctorDB
 };
 export default connect(mapStateTopProps, mapDispatchToProps)(EachDoctor);

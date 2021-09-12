@@ -577,22 +577,26 @@ h4 {
   margin: 10px;
 }
 .full,
-.noFull {
-  height: 45px;
-  width: 200px;
-  flex: 0 0 auto;
-  margin: 10px;
-  padding: 10px 3px;
-  color: white;
-  border-radius: 50px;
-  cursor: pointer;
+.noFull,
+.clickDay {
+   height: 45px;
+   width: 200px;
+   flex: 0 0 auto;
+   margin: 10px;
+   padding: 10px 3px;
+   color: white;
+   border-radius: 50px;
+   cursor: pointer;
 }
 
 .full {
   background-color: rgb(160, 160, 160);
 }
-.noFull {
+.clickDay {
   background-color: #1bb6d1;
+}
+.noFull{
+  background-color: #71cbe3
 }
 
 .noTurns {
@@ -653,20 +657,6 @@ h4 {
   padding: 4vh;
   display: flex;
   justify-content: center;
-}
-
-.errorY {
-  border: 2px red solid !important;
-  box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
-  -webkit-box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
-  -moz-box-shadow: 0px 0px 2px 2px rgba(255, 0, 0, 0.49);
-}
-
-.errorN {
-  border: 2px gray solid;
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
 }
 
 .buttonGoogle {
@@ -1235,10 +1225,19 @@ input.inputAvatar:focus {
   display: flex;
   align-items: center;
 }
+<<<<<<< HEAD
 .score p {
   padding-left: 1vw;
 }
 .isWriting {
   height: 1.5vh;
   padding-left: 5vw;
+=======
+.score p{
+  padding-left:1vw;
+}
+.red{
+  color: red;
+  font-size: small;
+>>>>>>> origin/carla
 }

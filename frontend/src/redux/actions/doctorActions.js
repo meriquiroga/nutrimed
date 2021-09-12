@@ -12,11 +12,6 @@ const doctorActions = {
          }
       }
    },
-   getOneDoctor: (id) => {
-      return (dispatch, getState) => {
-         dispatch({ type: "GET_ONE_DOCTOR", payload: id })
-      }
-   },
    getOneDoctorDB: (id) => {
       return async (dispatch, getState) => {
          try {
@@ -35,7 +30,7 @@ const doctorActions = {
          try {
             let res = await axios.put(
                `http://localhost:4000/api/doctor/${id}`,
-               { text, action: action, reviewId: reviewId },
+               {text, action, reviewId},
                {
                   headers: {
                      Authorization: "Bearer " + user,
@@ -49,7 +44,6 @@ const doctorActions = {
          }
       }
    },
-
    getAppointments: (token) => {
       return async () => {
          try {
@@ -63,13 +57,14 @@ const doctorActions = {
             )
             if (res.data.success) {
                return { success: true, res: res.data.res }
+            }else{
+               throw new Error
             }
          } catch (err) {
             return { success: false, res: err }
          }
       }
    },
-
    deleteAppointment: (token, id) => {
       return async () => {
          try {
@@ -83,20 +78,25 @@ const doctorActions = {
             )
             if (res.data.success) {
                return { success: true, res: res.data.res }
+            }else{
+               throw new Error
             }
          } catch (err) {
-            return { success: false, res: err }
+            return { success: false, res: err.message }
          }
       }
    },
-
    getAppointementByDoctor: (dorctorid) => {
       return async () => {
          try {
             let res = await axios.get(
                `http://localhost:4000/api/appointment/${dorctorid}`
             )
-            return { success: true, res: res.data.res }
+            if(res.data.success){
+               return { success: true, res: res.data.res }
+            }else{
+               throw new Error
+            }
          } catch (err) {
             return { success: false }
          }

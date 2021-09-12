@@ -35,17 +35,13 @@ router
   )
 
 router
-
    .route("/patient")
    .post(patientControllers.signIn)
    .put(
       passport.authenticate("jwt", { session: false }),
       patientControllers.editProfile
    )
-
-router.route("/patients")
-.get(patientControllers.getPatients)
-
+   
 router
    .route("/patient/:id")
    .put(
