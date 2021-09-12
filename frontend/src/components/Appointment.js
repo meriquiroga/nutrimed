@@ -38,7 +38,6 @@ const Appointment = ({
       if(!doctors.length){
         getDoctors()
         .then(res=>{
-          console.log(res.res)
           if(res.success){
             setNewDoctors(res.res)
           }

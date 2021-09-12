@@ -99,12 +99,12 @@ const EditProfileDoctor = (props) => {
             <div className="forError">
               <input
                 type="text"
-                placeholder="DNI"
+                placeholder="INGRESE DNI SIN PUNTOS NI ESPACIOS"
                 name="dni"
                 onChange={addDocHandler}
                 // defaultValue={actDoc.dni}
                 defaultValue={dni}
-                disabled={!dni ? false : validEdit ? false : true}
+                disabled={validEdit ? false : true}
               />
             </div>
             <div className="forError">
@@ -114,9 +114,7 @@ const EditProfileDoctor = (props) => {
                 name="description"
                 onChange={addDocHandler}
                 defaultValue={description}
-                disabled={
-                  !description ? false : validEdit ? false : true
-                }
+                disabled={validEdit ? false : true}
               />
             </div>
             <div className="forError">
@@ -126,7 +124,7 @@ const EditProfileDoctor = (props) => {
                 name="registration"
                 onChange={addDocHandler}
                 defaultValue={registration}
-                disabled={!registration ? false : validEdit ? false : true}
+                disabled={validEdit ? false : true}
               />
             </div>
             <div className="forError">
@@ -136,7 +134,7 @@ const EditProfileDoctor = (props) => {
                 name="specialty"
                 onChange={addDocHandler}
                 defaultValue={specialty}
-                disabled={!specialty ? false : validEdit ? false : true}
+                disabled={validEdit ? false : true}
               />
             </div>
             <div className="forError">
@@ -146,7 +144,7 @@ const EditProfileDoctor = (props) => {
                 name="phoneNumber"
                 onChange={addDocHandler}
                 defaultValue={data.phoneNumber}
-                disabled={!data.phoneNumber ? false : validEdit ? false : true}
+                disabled={validEdit ? false : true}
               />
             </div>
             <div className="forError">
@@ -156,9 +154,7 @@ const EditProfileDoctor = (props) => {
                 name="street"
                 onChange={addDocHandler}
                 defaultValue={data.direction.street}
-                disabled={
-                  !data.direction.street ? false : validEdit ? false : true
-                }
+                disabled={validEdit ? false : true}
               />
             </div>
             <div className="forError">
@@ -169,9 +165,7 @@ const EditProfileDoctor = (props) => {
                 onChange={addDocHandler}
                 // defaultValue={actDoc.data.direction.num}
                 defaultValue={data.direction.num}
-                disabled={
-                  !data.direction.num ? false : validEdit ? false : true
-                }
+                disabled={validEdit ? false : true}
               />
             </div>
             <div className="forError">
@@ -184,9 +178,7 @@ const EditProfileDoctor = (props) => {
                 defaultValue={
                   token ? data.direction.city : actDoc.data.direction.city
                 }
-                disabled={
-                  !data.direction.city ? false : validEdit ? false : true
-                }
+                disabled={validEdit ? false : true}
               />
             </div>
             <div className="forError">

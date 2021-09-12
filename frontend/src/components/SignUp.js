@@ -127,8 +127,6 @@ const SignUp = ({ signUpUser, getAvatars }) => {
     }
   };
 
-  let disp = valueIn === "prof" ? "block" : "none";
-
   let mensaje1 = null;
   let mensaje2 = null;
   let mensaje3 = null;
@@ -156,20 +154,20 @@ return(
             : newError.message.includes("uso")
             ? (mensaje7 = newError.message)
             : newError.message.includes("uso")
-            ? (mensaje8 = newError.message)
-            : console.log("")
+            && (mensaje8 = newError.message)
         )}
-        <ReactTooltip id="buttonError1" place="top" effect="solid" className="buttonGoogle">
+        <ReactTooltip id="buttonError1" place="top" effect="solid" className={(!mensaje1 && !mensaje2) ? 'notError' : "toolTip"} arrowColor='transparent'>
           {mensaje1 ? mensaje1 : mensaje2 && mensaje2}
         </ReactTooltip>
-        <ReactTooltip id="buttonError2"  place="top" effect="solid" className="buttonGoogle">
+        <ReactTooltip id="buttonError2"  place="top" effect="solid" className={(!mensaje1 && !mensaje3) ? 'notError' : "toolTip"} arrowColor='transparent'>
           {mensaje1 ? mensaje1 : mensaje3 && mensaje3}
         </ReactTooltip>
         <ReactTooltip
         id="buttonError3"
         place="top"
         effect="solid"
-        className="buttonGoogle"
+        className={(!mensaje1 && !mensaje4 && !mensaje7) ? 'notError' : "toolTip"}
+        arrowColor='transparent'
       >
        
         {mensaje1 ? mensaje1 : mensaje4 ? mensaje4 : mensaje7}
@@ -178,7 +176,8 @@ return(
         id="buttonError4"
         place="top"
         effect="solid"
-        className="buttonGoogle"
+        className={(!mensaje1 && !mensaje5) ? 'notError' : "toolTip"}
+        arrowColor='transparent'
       >
         
         {mensaje1 ? mensaje1 : mensaje5 && mensaje5}
@@ -187,7 +186,8 @@ return(
         id="buttonError5"
         place="top"
         effect="solid"
-        className="buttonGoogle"
+        className={(!mensaje1 && !mensaje6) ? 'notError' : "toolTip"}
+        arrowColor='transparent'
       >
         
         {mensaje1 ? mensaje1 : mensaje6 && mensaje6}
@@ -196,7 +196,8 @@ return(
         id="buttonError6"
         place="top"
         effect="solid"
-        className="buttonGoogle"
+        className={!mensaje1 ? 'notError' : "toolTip"}
+        arrowColor='transparent'
       >
        
         {mensaje1 ? mensaje1 : "Debes seleccionar una foto."}
@@ -205,7 +206,8 @@ return(
         id="buttonError7"
         place="top"
         effect="solid"
-        className="buttonGoogle"
+        className={!mensaje7 ? 'notError' : "toolTip"}
+        arrowColor='transparent'
       >
         
         {mensaje7}
@@ -244,16 +246,20 @@ return(
                 onChange={addUserHandler}
                 defaultValue={newUser.name}
               />
-              {error.errorOne &&
+              <div data-tip
+                  data-for="buttonError1"
+                  className='cross2'
+                  >
+                  {error.errorOne &&
                       (!newUser.name.length || mensaje2) &&
                       !mensaje8 &&
                 <img className='cross2'
-                  data-tip
-                  data-for="buttonError1"
                   src="/assets/cross2.png"
                   alt="..."
                 />
               }
+              </div>
+              
             </div>
             <div className="forError">
               <input
@@ -263,15 +269,16 @@ return(
                 onChange={addUserHandler}
                 defaultValue={newUser.lastName}
               />
-            {(error.errorOne && (!newUser.lastName.length || mensaje3) && !mensaje8)
+              <div data-tip
+                  data-for="buttonError2" className='cross2'>
+              {(error.errorOne && (!newUser.lastName.length || mensaje3) && !mensaje8)
                &&  <img
-                  data-tip
-                  data-for="buttonError2"
                   className='cross2'
                   src="/assets/cross2.png"
                   alt="..."
                 />
               }
+              </div>
             </div>
             <div className="forError">
               <input
@@ -281,15 +288,16 @@ return(
                 onChange={addUserHandler}
                 defaultValue={newUser.data.mail}
               />
+              <div data-tip
+                  data-for="buttonError3" className='cross2'>
               {(error.errorOne && (!newUser.data.mail.length || mensaje4 || mensaje7) && !mensaje8)
                && <img
-                  data-tip
-                  data-for="buttonError3"
                   className='cross2'
                   src="/assets/cross2.png"
                   alt="..."
                 />
               }
+              </div>
             </div>
             <div className="forError">
               <input
@@ -299,36 +307,36 @@ return(
                 onChange={addUserHandler}
                 defaultValue={newUser.password}
               />
+              <div data-tip
+                  data-for="buttonError4" className='cross2'>
               {(error.errorOne && (!newUser.password.length || mensaje5) && !mensaje8) &&
                 <img
-                  data-tip
-                  data-for="buttonError4"
                   className='cross2'
                   src="/assets/cross2.png"
                   alt="..."
                 />
               }
+              </div>
             </div>
             <div className="forError">
-              <input
-                type="password"
-                placeholder="Repita su contraseña"
-                name="validPassword"
-                onBlur={verifyPassword}
-                onChange={addUserHandler}
-                defaultValue={newUser.validPassword}
-              />
-              {(((error.errorT && !newUser.validPassword.length && mensaje6) ||  mensaje6) && !mensaje8 )
-                && <img
-                  data-tip
-                  data-for="buttonError5"
-                  className='cross2'
-                  src="/assets/cross2.png"
-                  alt="..."
-                />
-              }
+              <input type="password" placeholder="Repita su contraseña" name="validPassword" onBlur={verifyPassword} onChange={addUserHandler} defaultValue={newUser.validPassword}/>
+              <div data-tip data-for="buttonError5" className='cross2'>
+                  {(((error.errorT && !newUser.validPassword.length && mensaje6) ||  mensaje6) && !mensaje8 )
+                  && <img className='cross2' src="/assets/cross2.png" alt="..."/>}
+              </div>
             </div>
-            <div className="forError" style={{display:disp}}>
+            {valueIn === 'prof' && <div className="forError">
+                <input
+                  type="text"
+                  placeholder="URL de imagen"
+                  name={valueIn === "prof" ? "src" : ""}
+                  onChange={addUserHandler}
+                  defaultValue={newUser.src}
+                  required={valueIn === "prof" ? true : false}
+                  />
+                </div>}
+            {valueIn === 'prof' && 
+            <div className="forError">
               <input
                 type="password"
                 placeholder="Clave profesional NutriMed"
@@ -337,26 +345,17 @@ return(
                 defaultValue={newUser.passwordAdm}
                 required={valueIn === "prof" ? true : false}
               />
+              <div  data-tip
+                  data-for="buttonError6" className='cross2'>
               { valueIn === "prof" && error.errorOne && !newUser.src && errors.length && !mensaje8
                 && <img
-                  data-tip
-                  data-for="buttonError6"
                   className='cross2'
                   src="/assets/cross2.png"
                   alt="..."
                 />
               }
-            </div>
-            <div className="forError" style={{display:disp}}  >
-              <input
-                type="text"
-                placeholder="URL de imagen"
-                name={valueIn === "prof" ? "src" : ""}
-                onChange={addUserHandler}
-                defaultValue={newUser.src}
-                required={valueIn === "prof" ? true : false}
-                />
               </div>
+            </div>}
             {valueIn === "pat" && <h3>Elegí tu avatar para perfil</h3>}
           </div>
           <div className="containerPreview"
@@ -428,7 +427,7 @@ return(
               />
             </div>
           </div>}
-          <p>
+            <p>
               ¿Ya tenés cuenta? <Link to="/signin">¡Ingresá aquí!</Link>
             </p>
         </div>

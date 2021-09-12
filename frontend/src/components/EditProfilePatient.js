@@ -85,7 +85,6 @@ const EditProfilePatient = ({
     }
   };
 
-  console.log()
 
   const editHandler = () => {
     setValidEdit(!validEdit);
@@ -110,6 +109,7 @@ const EditProfilePatient = ({
   const inputValue = (e) => {
     setPreviewImg(e.target.value);
   };
+  const optionSocialWork=allSocialWork.map((social, index) => <option key={index}>{social}</option>)
   return (
     <div className="container">
       <div className="grayContainer">
@@ -126,11 +126,11 @@ const EditProfilePatient = ({
           <div className="forError">
             <input
               type="text"
-              placeholder="DNI"
+              placeholder="Ingrese DNI sin puntos ni espacios"
               name="dni"
               onChange={addDocHandler}
               defaultValue={dni}
-              disabled={!dni ? false : validEdit ? false : true}
+              disabled={validEdit ? false : true}
             />
           </div>
           <div className="forError">
@@ -140,7 +140,7 @@ const EditProfilePatient = ({
               name="phoneNumber"
               onChange={addDocHandler}
               defaultValue={data.phoneNumber}
-              disabled={!data.phoneNumber ? false : validEdit ? false : true}
+              disabled={validEdit ? false : true}
             />
           </div>
 
@@ -151,7 +151,7 @@ const EditProfilePatient = ({
             name="street"
             onChange={addDocHandler}
             defaultValue={data.direction.street}
-            disabled={!data.direction.street ? false : validEdit ? false : true}
+            disabled={validEdit ? false : true}
           />
           </div>
           <div className="forError">
@@ -161,7 +161,7 @@ const EditProfilePatient = ({
               name="num"
               onChange={addDocHandler}
               defaultValue={data.direction.num}
-              disabled={!data.direction.num ? false : validEdit ? false : true}
+              disabled={validEdit ? false : true}
             />
           </div>
 
@@ -172,7 +172,7 @@ const EditProfilePatient = ({
               name="city"
               onChange={addDocHandler}
               defaultValue={data.direction.city}
-              disabled={!data.direction.city ? false : validEdit ? false : true}
+              disabled={validEdit ? false : true}
               onKeyPress={handleKeyPress}
             />
           </div>
@@ -183,14 +183,11 @@ const EditProfilePatient = ({
                   name="socialWork"
                   onChange={addDocHandler}
                   defaultValue={socialWork}
-                  disabled={
-                     !socialWork ? false : validEdit ? false : true
-                  }
+                  disabled={validEdit ? false : true}
                >
                   <option>Seleccioná tu obra social </option>
-                  {(socialWork && validEdit) ? allSocialWork.map((social, index) => (
-                     <option key={index}>{social}</option>
-                  )) : <option defaultValue>{socialWork}</option>}
+                  {(!socialWork && validEdit) ? optionSocialWork
+                  : <option defaultValue>{socialWork}</option>}
                   <option>Otra</option>
                </select>}
           </div>

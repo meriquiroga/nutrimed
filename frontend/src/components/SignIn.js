@@ -68,8 +68,8 @@ let validUser = valueIn === "prof" ? "profesional" : "comun";
 
 return(
    <>
-   {valueIn === "" && <ReactTooltip id="button_Google" place="right" effect="solid" className="buttonGoogle"> Debe seleccionar tipo de usuario </ReactTooltip>}
-   <ReactTooltip id="buttonError" place="top" effect="solid" className="buttonGoogle"> {errors} </ReactTooltip>
+   {valueIn === "" && <ReactTooltip id="button_Google" place="right" effect="solid" className={ !errors ? 'notError' : "toolTip"} arrowColor='transparent'> Debe seleccionar tipo de usuario </ReactTooltip>}
+   <ReactTooltip id="buttonError" place="top" effect="solid" className={ !errors ? 'notError' : "toolTip"} arrowColor='transparent'> {errors} </ReactTooltip>
    <div className="container">
       <div className="grayContainer">
          <img src="/assets/login.png" alt="" />
@@ -104,6 +104,9 @@ return(
               defaultValue={userLog.data.mail}
               onChange={userLogin}
             />
+            <div data-tip data-for="buttonError"  className='cross2'>
+            {(error.errorUno || error.errorDos) && <img  className='cross2' src="/assets/cross2.png" alt="..."/>}
+            </div>
             </div>
             <div className="forError">
             <input
@@ -114,7 +117,9 @@ return(
               onChange={userLogin}
               onKeyPress={handleKeyPress}
             />
-            {(error.errorUno || error.errorDos) && <img data-tip data-for="buttonError" className='cross2' src="/assets/cross2.png" alt="..."/>}
+            <div data-tip data-for="buttonError"  className='cross2'>
+            {(error.errorUno || error.errorDos) && <img  className='cross2' src="/assets/cross2.png" alt="..."/>}
+            </div>
             </div>
           </div>
          <button id="buttonSign" onClick={submitUserLog}>LOGIN</button>

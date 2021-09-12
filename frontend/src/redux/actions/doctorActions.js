@@ -19,6 +19,8 @@ const doctorActions = {
             if (res.data.success) {
                dispatch({ type: "GET_ONE_DOCTOR_DB", payload: res.data.res })
                return { success: true, res: res.data.res }
+            }else{
+               throw new Error()
             }
          } catch (err) {
             return { success: false, res: err }

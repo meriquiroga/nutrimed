@@ -20,7 +20,7 @@ class EachDoctor extends Component {
             loading: {
               ...this.state.loading,
               text: "Ocurrió un error. Por favor, inténtalo de nuevo más tarde",
-              link: "Volver a Home",
+              back: "Volver a Home",
               gif:false
             },
           });
@@ -34,8 +34,8 @@ class EachDoctor extends Component {
           <div className="containerLoading">
             {this.state.loading.gif && <img src="/assets/loader.gif" alt='loading'/>}
             <h3>{this.state.loading.text}</h3>
+            <Link to="/">{this.state.loading.back}</Link>
           </div>
-          )<Link to="/">{this.state.loading.back}</Link>
         </>
       );
     }
