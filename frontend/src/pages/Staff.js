@@ -6,27 +6,35 @@ import Score from "../components/Score"
 
 class Staff extends Component {
   state = {
-    loading: { condition: true, text: "Loading..." },
+    loading: { condition: true, text:'', back:''},
   };
 
   componentDidMount() {
     window.scroll(0, 0);
-    this.props.getDoctors().then((res) => {
-      res.success
-        ? this.setState({ loading: { condition: false } })
-        : this.setState({
-            loading: {
-              ...this.state.loading,
-              text: "Lo sentimos, ha ocurrido un error, volvé a intentarlo más tarde.",
-            },
-          });
-    });
+    if(!this.props.doctors.length){
+      this.props.getDoctors()
+      .then((res) => {
+        res.success
+          ? this.setState({ loading: { condition: false } })
+          : this.setState({
+              loading: {
+                ...this.state.loading,
+                text: "Lo sentimos, ha ocurrido un error, volvé a intentarlo más tarde.",
+                back: "Volver a Home"
+              },
+            });
+      });
+    }else{
+      this.setState({ loading: { condition: false } })
+    }
   }
 
   render() {
     if (this.state.loading.condition) {
       return ( 
-      <div className="containerLoading"><h3>{this.state.loading.text}</h3>
+      <div className="containerLoading">
+        <h3>{this.state.loading.text}</h3>
+        <Link to='/'>{this.state.loading.back}</Link>
       </div>
       )
     }

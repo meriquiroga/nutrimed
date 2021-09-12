@@ -3,7 +3,6 @@ import EveryReview from "./EveryReview";
 import doctorActions from "../redux/actions/doctorActions";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
-import patientActions from "../redux/actions/patientActions";
 
 const Reviews = ({
   reviews,
@@ -90,10 +89,10 @@ const Reviews = ({
   return (
     <div className="divReview">
       <ScrollableFeed className="divComentaries">{everyReview}</ScrollableFeed>
+      <div>
       <span style={{ fontSize: 10, color: "gray", marginTop: 10 }}>
         {escribiendo}
       </span>
-      <div>
         <input
           placeholder={
             !userToken
@@ -124,7 +123,6 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = {
   actionReview: doctorActions.actionReview,
-  getSocket: patientActions.getSocket,
   getOneDoctorReviews: doctorActions.getOneDoctorReviews,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Reviews);

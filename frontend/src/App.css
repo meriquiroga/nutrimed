@@ -571,7 +571,8 @@ h4 {
    margin: 10px;
 }
 .full,
-.noFull {
+.noFull,
+.clickDay {
    height: 45px;
    width: 200px;
    flex: 0 0 auto;
@@ -585,8 +586,11 @@ h4 {
 .full {
   background-color: rgb(160, 160, 160);
 }
-.noFull {
+.clickDay {
   background-color: #1bb6d1;
+}
+.noFull{
+  background-color: #71cbe3
 }
 
 .noTurns {
@@ -1232,4 +1236,8 @@ input.inputAvatar:focus {
 }
 .score p{
   padding-left:1vw;
+}
+.red{
+  color: red;
+  font-size: small;
 }

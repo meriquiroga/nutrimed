@@ -19,6 +19,7 @@ const EditProfilePatient = ({
   const [allSocialWork, setAllSocialWork] = useState([]);
   const [avatars, setAvatars] = useState([]);
   const [previewImg, setPreviewImg] = useState(src);
+  const [textError, setTextError]= useState('')
   const [actPat, setActPat] = useState({
     dni: dni,
     data: {
@@ -98,14 +99,20 @@ const EditProfilePatient = ({
     editProfile(user.doc, actPat, token).then((res) => {
       if (res.success) {
         history.push("/profile");
+      }else{
+        setTextError('No se pudieron actualizar los datos, intentelo mas tarde')
       }
     });
   };
 
   const inputValue = (e) => {
-
     setPreviewImg(e.target.value)
  }
+// const optionSocialWork = allSocialWork.map((obj,index)=>{
+//   return(
+//     <option key={index} value={obj}>{obj}</option>
+//   )
+// })
   return (
     <div className="container">
       <div className="grayContainer">
@@ -178,13 +185,13 @@ const EditProfilePatient = ({
                   id="optionObraSocial"
                   name="socialWork"
                   onChange={addDocHandler}
-                  defaultValue={actPat.socialWork}
+                  defaultValue={socialWork}
                   disabled={
                      !socialWork ? false : validEdit ? false : true
                   }
                >
                   <option>Seleccioná tu obra social </option>
-                  {(socialWork.length && validEdit) ? allSocialWork.map((social, index) => (
+                  {(socialWork && validEdit) ? allSocialWork.map((social, index) => (
                      <option key={index}>{social}</option>
                   )) : <option defaultValue>{socialWork}</option>}
                   <option>Otra</option>
@@ -217,7 +224,6 @@ const EditProfilePatient = ({
                         </div>
                      ))}
                   </div>
-                  
                </div>}
         </form>
         <button type="submit" onClick={submitHandler}>
@@ -226,6 +232,7 @@ const EditProfilePatient = ({
         <div>
           <Link to="/profile">Volver al perfil</Link>
         </div>
+        <span className='red'>{textError}</span>
       </div>
     </div>
   );

@@ -5,11 +5,6 @@ const doctorReducer = (state={doctors:[], doctor:{}}, action) => {
                   ...state,
                   doctors: action.payload,
                 }
-            case "GET_ONE_DOCTOR":
-                return{
-                    ...state,
-                    doctor:state.doctors.find(obj => obj._id === action.payload)
-                }
             case "GET_ONE_DOCTOR_DB":
                 return{
                     ...state,

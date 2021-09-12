@@ -38,6 +38,7 @@ const Appointment = ({
       if(!doctors.length){
         getDoctors()
         .then(res=>{
+          console.log(res.res)
           if(res.success){
             setNewDoctors(res.res)
           }
@@ -57,7 +58,6 @@ const Appointment = ({
   },[]);
   
   const appointmentValueHandler = (e) => {
-    console.log(e.target.value)
     if(!e.target.value){
       setViews({...views, view:false})
     }else{
@@ -70,7 +70,7 @@ const Appointment = ({
     }
   }
   const bookAppointmentHandler=(hour,day)=>{
-    setViews({view:false, confirm:true, ok:false})
+    setViews({...views, view:false, confirm:true, ok:false})
     setAppointmentReady({...appointmentReady,
       date: {
         hour: hour,
@@ -101,10 +101,10 @@ const Appointment = ({
         setDiaryByDoc(res.res)
       );
       setTimeout(() => {
-        setViews({ view: false, confirm: false, ok: false });
+        setViews({ view: false, confirm: false, ok:false});
       }, 3000);
     });
-    setViews({ view: false, confirm: false, ok: true });
+    setViews({ view: false, confirm: false, ok:true});
   };
   return (
     <>
@@ -114,7 +114,7 @@ const Appointment = ({
         <h3>
           ¡Bienvenido! Seleccioná el profesional para ver sus turnos disponibles.
         </h3>
-        <select id="optionDoctor" name="doctorId" defaultValue={appointmentReady.doctorId} onClick={appointmentValueHandler}>
+        <select id="optionDoctor" name="doctorId" defaultValue={appointmentReady.doctorId} disabled={views.ok} onClick={appointmentValueHandler}>
             <option value="" >Seleccioná un profesional</option>
             {optionDoctor}
           </select>

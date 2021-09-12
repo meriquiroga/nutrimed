@@ -87,13 +87,12 @@ const userActions = {
         let res = await axios.put(
           `http://localhost:4000/api/${type}`,
           { ...profileEdited },
-          {
+            {
             headers: {
               Authorization: "Bearer " + token,
             },
           }
         );
-
         if (res.data.success) {
           dispatch({
             type: "EDIT_PROFILE",
@@ -102,6 +101,8 @@ const userActions = {
             },
           });
           return { success: true };
+        }else{
+           throw new Error()
         }
       } catch (err) {
         return { success: false, res: err };

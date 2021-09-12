@@ -65,18 +65,5 @@ const patientControllers = {
          res.json({ success: false, res: err.message })
       }
    },
-
-   getPatients: async (req, res) => {
-      try {
-         let patients = await Patient.find()
-         if (patients) {
-            res.json({ success: true, res: patients })
-         } else {
-            throw new Error()
-         }
-      } catch (err) {
-         res.json({ success: false, res: err.message })
-      }
-   }
 }
 module.exports = patientControllers

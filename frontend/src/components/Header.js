@@ -17,6 +17,11 @@ const Header = ({logOut,valid,user}) => {
                      <p>HOME</p>
                   </NavLink>
                </li>
+               <li>
+                  <NavLink exact to="/staff">
+                     <p>STAFF</p>
+                  </NavLink>
+               </li>
                {!valid && (
                   <li>
                      <NavLink to="/signup">

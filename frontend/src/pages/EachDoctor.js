@@ -13,22 +13,17 @@ class EachDoctor extends Component {
   };
   componentDidMount() {
     window.scroll(0, 0);
-    if (!this.props.doctors.length) {
-      this.props.getOneDoctorDB(this.props.match.params.id).then((res) => {
-        res.success
-          ? this.setState({ loading: { condition: false } })
-          : this.setState({
-              loading: {
-                ...this.state.loading,
-                text: "Ocurrió un error. Por favor, inténtalo de nuevo más tarde",
-                link: "Home",
-              },
-            });
-      });
-    } else {
-      this.props.getOneDoctor(this.props.match.params.id);
-      this.setState({ loading: { condition: false } });
-    }
+    this.props.getOneDoctorDB(this.props.match.params.id).then((res) => {
+      res.success
+        ? this.setState({ loading: { condition: false } })
+        : this.setState({
+            loading: {
+              ...this.state.loading,
+              text: "Ocurrió un error. Por favor, inténtalo de nuevo más tarde",
+              link: "Home",
+            },
+          });
+    })
   }
   render() {
     
@@ -84,7 +79,6 @@ const mapStateTopProps = (state) => {
   };
 };
 const mapDispatchToProps = {
-  getOneDoctor: doctorActions.getOneDoctor,
   getOneDoctorDB: doctorActions.getOneDoctorDB
 };
 export default connect(mapStateTopProps, mapDispatchToProps)(EachDoctor);
