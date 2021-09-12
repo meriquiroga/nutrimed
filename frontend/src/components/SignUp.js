@@ -99,7 +99,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
         }
       });
     } else if (valor > 1) {
-      setErrors([{ message: "Debe completar este dato" }]);
+      setErrors([{ message: "Debes completar este dato" }]);
     } else setErrors([{ message: "" }]);
   };
 
@@ -201,7 +201,7 @@ return(
         className="buttonGoogle"
       >
        
-        {mensaje1 ? mensaje1 : "Debe seleccionar una foto"}
+        {mensaje1 ? mensaje1 : "Debes seleccionar una foto."}
       </ReactTooltip>
       <ReactTooltip
         id="buttonError7"
@@ -215,7 +215,7 @@ return(
       <div className="container">
         <div className="grayContainer">
           <img src="/assets/form.png" alt="" />
-            <h3>¿Usted se registrará como paciente o profesional?</h3>
+            <h3>¿Te registrarás como paciente o profesional?</h3>
             <div className="radio">
             <div>
               <p>Paciente </p>
@@ -242,9 +242,6 @@ return(
               <input
                 type="text"
                 placeholder="Nombre"
-                className={
-                  error.errorOne && !newUser.name.length ? "errorY" : "errorN"
-                }
                 name="name"
                 onChange={addUserHandler}
                 defaultValue={newUser.name}
@@ -254,8 +251,8 @@ return(
                   data-tip
                   data-for="buttonError1"
                   style={{
-                    height: "40px",
-                    width: "40px",
+                    height: "20px",
+                    width: "20px",
                     display:
                       error.errorOne &&
                       (!newUser.name.length || mensaje2) &&
@@ -263,7 +260,7 @@ return(
                         ? "block"
                         : "none",
                   }}
-                  src="/assets/cross.png"
+                  src="/assets/cross2.png"
                   alt="..."
                 />
               }
@@ -273,11 +270,6 @@ return(
                 type="text"
                 placeholder="Apellido"
                 name="lastName"
-                className={
-                  error.errorOne && !newUser.lastName.length
-                    ? "errorY"
-                    : "errorN"
-                }
                 onChange={addUserHandler}
                 defaultValue={newUser.lastName}
               />
@@ -286,8 +278,8 @@ return(
                   data-tip
                   data-for="buttonError2"
                   style={{
-                    height: "40px",
-                    width: "40px",
+                    height: "20px",
+                    width: "20px",
                     display:
                       error.errorOne &&
                       (!newUser.lastName.length || mensaje3) &&
@@ -295,7 +287,7 @@ return(
                         ? "block"
                         : "none",
                   }}
-                  src="/assets/cross.png"
+                  src="/assets/cross2.png"
                   alt="..."
                 />
               }
@@ -305,11 +297,6 @@ return(
                 type="email"
                 placeholder="E-mail"
                 name="data"
-                className={
-                  error.errorOne && !newUser.data.mail.length
-                    ? "errorY"
-                    : "errorN"
-                }
                 onChange={addUserHandler}
                 defaultValue={newUser.data.mail}
               />
@@ -318,8 +305,8 @@ return(
                   data-tip
                   data-for="buttonError3"
                   style={{
-                    height: "40px",
-                    width: "40px",
+                    height: "20px",
+                    width: "20px",
                     display:
                       error.errorOne &&
                       (!newUser.data.mail.length || mensaje4 || mensaje7) &&
@@ -327,7 +314,7 @@ return(
                         ? "block"
                         : "none",
                   }}
-                  src="/assets/cross.png"
+                  src="/assets/cross2.png"
                   alt="..."
                 />
               }
@@ -337,11 +324,6 @@ return(
                 type="password"
                 placeholder="Contraseña"
                 name="password"
-                className={
-                  error.errorOne && !newUser.password.length
-                    ? "errorY"
-                    : "errorN"
-                }
                 onChange={addUserHandler}
                 defaultValue={newUser.password}
               />
@@ -350,8 +332,8 @@ return(
                   data-tip
                   data-for="buttonError4"
                   style={{
-                    height: "40px",
-                    width: "40px",
+                    height: "20px",
+                    width: "20px",
                     display:
                       error.errorOne &&
                       (!newUser.password.length || mensaje5) &&
@@ -359,7 +341,7 @@ return(
                         ? "block"
                         : "none",
                   }}
-                  src="/assets/cross.png"
+                  src="/assets/cross2.png"
                   alt="..."
                 />
               }
@@ -370,11 +352,6 @@ return(
                 placeholder="Repita su contraseña"
                 name="validPassword"
                 onBlur={verifyPassword}
-                className={
-                  (error.errorOne && !newUser.validPassword.length) || mensaje6
-                    ? "errorY"
-                    : "errorN"
-                }
                 onChange={addUserHandler}
                 defaultValue={newUser.validPassword}
               />
@@ -383,8 +360,8 @@ return(
                   data-tip
                   data-for="buttonError5"
                   style={{
-                    height: "40px",
-                    width: "40px",
+                    height: "20px",
+                    width: "20px",
                     display:
                       ((error.errorT &&
                         !newUser.validPassword.length &&
@@ -394,7 +371,7 @@ return(
                         ? "block"
                         : "none",
                   }}
-                  src="/assets/cross.png"
+                  src="/assets/cross2.png"
                   alt="..."
                 />
               }
@@ -404,11 +381,6 @@ return(
                 type="password"
                 placeholder="Clave profesional NutriMed"
                 name="passwordAdm"
-                className={
-                  error.errorOne && !newUser.passwordAdm.length
-                    ? "errorY"
-                    : "errorN"
-                }
                 onChange={addUserHandler}
                 defaultValue={newUser.passwordAdm}
                 required={valueIn === "prof" ? true : false}
@@ -418,8 +390,8 @@ return(
                   data-tip
                   data-for="buttonError6"
                   style={{
-                    height: "40px",
-                    width: "40px",
+                    height: "20px",
+                    width: "20px",
                     display:
                       valueIn === "prof" &&
                       error.errorOne &&
@@ -429,7 +401,7 @@ return(
                         ? "block"
                         : "none",
                   }}
-                  src="/assets/cross.png"
+                  src="/assets/cross2.png"
                   alt="..."
                 />
               }
@@ -437,17 +409,14 @@ return(
             <div className="forError" style={{display:disp}}  >
               <input
                 type="text"
-                placeholder="Ingrese URL de imágen"
+                placeholder="URL de imagen"
                 name={valueIn === "prof" ? "src" : ""}
-                className={
-                  error.errorOne && !newUser.src.length ? "errorY" : "errorN"
-                }
                 onChange={addUserHandler}
                 defaultValue={newUser.src}
                 required={valueIn === "prof" ? true : false}
                 />
               </div>
-            {valueIn === "pat" && <h3>Elija su avatar para perfil</h3>}
+            {valueIn === "pat" && <h3>Elegí tu avatar para perfil</h3>}
           </div>
           <div className="containerPreview"
             style={{
@@ -463,8 +432,8 @@ return(
                 data-tip
                 data-for="buttonError6"
                 style={{
-                  height: "40px",
-                  width: "40px",
+                  height: "20px",
+                  width: "20px",
                   display:
                     valueIn === "pat" &&
                     error.errorOne &&
@@ -474,7 +443,7 @@ return(
                       ? "block"
                       : "none",
                 }}
-                src="/assets/cross.png"
+                src="/assets/cross2.png"
                 alt="..."
               />
             }
@@ -518,11 +487,11 @@ return(
               data-tip
               data-for="buttonError7"
               style={{
-                height: "40px",
-                width: "40px",
+                height: "20px",
+                width: "20px",
                 display: error.errorT && mensaje7 ? "block" : "none",
               }}
-              src="/assets/cross.png"
+              src="/assets/cross2.png"
               alt="..."
             />
           }

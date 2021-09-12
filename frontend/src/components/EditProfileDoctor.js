@@ -92,7 +92,7 @@ const EditProfileDoctor = (props) => {
       <div className="container">
         <div className="grayContainer">
           <h3>Completá o actualizá tus datos</h3>
-          {!validEdit ? <span className='editProfile' onClick={editHandler}>Editar</span> : <Link to = "/profile">Cancelar y volver al perfil</Link>}
+          {!validEdit ? <span className='editProfile' onClick={editHandler}>EDITAR</span> : <Link to = "/profile">Cancelar y volver al perfil</Link>}
           <form className="inputs">
             <div className="forError">
               <input
@@ -190,7 +190,7 @@ const EditProfileDoctor = (props) => {
             <div className="forError">
             {<input
               type="text"
-              placeholder="Url de imágen"
+              placeholder="URL de imagen"
               name="src"
               onChange={addDocHandler}
               // defaultValue={actDoc.data.direction.city}
@@ -200,7 +200,7 @@ const EditProfileDoctor = (props) => {
             />}
             </div>
           </form>
-          {(!props.socialWork && validEdit) && <h4>¿Acepta Obra Social? </h4>}
+          {(!props.socialWork && validEdit) && <h4>¿Aceptás Obra Social? </h4>}
           {(!props.socialWork && validEdit) && 
           <div className="radio">
             <div>
@@ -224,7 +224,7 @@ const EditProfileDoctor = (props) => {
               />
               </div>
             </div>}
-               <button onClick={submitHandler}>Actualizar datos</button>
+               <button onClick={submitHandler}>ACTUALIZAR DATOS</button>
                <div>
                   <Link to="/profile">Volver al perfil</Link>
                </div>

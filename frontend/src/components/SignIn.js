@@ -52,7 +52,7 @@ const submitUserLog = ()=>{
       logIn(userLog, validUser)
       .then(res=>{
          if(!res.success){
-            setErrors("Error de autenticación. Verifique correctamente")
+            setErrors("Error de autenticación. Por favor, verificar.")
             setError({ errorUno: true })
          }
       })
@@ -104,7 +104,6 @@ return(
               name="data"
               defaultValue={userLog.data.mail}
               onChange={userLogin}
-              className={((error.errorUno && !userLog.data.mail.length) ? "errorY" : "errorN")}
             />
             </div>
             <div className="forError">
@@ -114,10 +113,9 @@ return(
               name="password"
               defaultValue={userLog.password}
               onChange={userLogin}
-              className={((error.errorUno && !userLog.password.length) ? "errorY" : "errorN")}
               onKeyPress={handleKeyPress}
             />
-            {<img data-tip data-for="buttonError" style={{height:"40px", width:"40px", display: (error.errorUno || error.errorDos) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+            {<img data-tip data-for="buttonError" style={{height:"20px", width:"20px", display: (error.errorUno || error.errorDos) ? "block" : "none"}} src="/assets/cross2.png" alt="..."/>}
             </div>
           </div>
          <button id="buttonSign" onClick={submitUserLog}>LOGIN</button>
