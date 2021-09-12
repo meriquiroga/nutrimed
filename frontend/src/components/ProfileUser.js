@@ -26,7 +26,7 @@ const ProfileUser = ({
    const [change, setChange] = useState([])
    const [confirmDelete, setConfirmDelete] = useState(false)
    const [deleteDoctor, setDeleteDoctor] = useState(false)
-   console.log(user)
+   
 
   useEffect(() => {
     getAppointments(token).then((res) => {
@@ -41,7 +41,9 @@ const ProfileUser = ({
   }, [change]);
 
   if (loading) {
-    return <h3 className="containerLoading">Loading...</h3>;
+    return <div className="containerLoading">
+       <img src="/assets/loader.gif" alt ="..."/>
+    </div>
   }
 
    const filterDays = (dayM) => {

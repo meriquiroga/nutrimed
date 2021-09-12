@@ -6,7 +6,7 @@ import Score from "../components/Score"
 
 class Staff extends Component {
   state = {
-    loading: { condition: true, text: "Loading..." },
+    loading: { condition: true, text: "" },
   };
 
   componentDidMount() {
@@ -26,7 +26,9 @@ class Staff extends Component {
   render() {
     if (this.state.loading.condition) {
       return ( 
-      <div className="containerLoading"><h3>{this.state.loading.text}</h3>
+      <div className="containerLoading">
+        <img src="/assets/loader.gif"/>
+        <h3>{this.state.loading.text}</h3>
       </div>
       )
     }

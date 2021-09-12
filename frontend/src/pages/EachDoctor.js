@@ -7,7 +7,7 @@ import Score from "../components/Score";
 
 class EachDoctor extends Component {
   state = {
-    loading: { condition: true, text: "Loading...", link: "" },
+    loading: { condition: true, text: "", back: "" },
     socket: null,
     newScore: [],
   };
@@ -31,9 +31,10 @@ class EachDoctor extends Component {
         <>
           (
           <div className="containerLoading">
+            <img src="/assets/loader.gif"/>
             <h3>{this.state.loading.text}</h3>
           </div>
-          )<Link to="/">{this.state.loading.link}</Link>
+          )<Link to="/">{this.state.loading.back}</Link>
         </>
       );
     }

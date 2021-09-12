@@ -12,7 +12,7 @@ const EditProfilePatient = ({
   editProfile,
   history,
 }) => {
-  const { data, dni, src, socialWork } = user;
+  const { data, dni, src, socialWork, doc } = user;
   const { direction, phoneNumber } = data;
   const email = user.data.mail;
   const [validEdit, setValidEdit] = useState(false);
@@ -33,6 +33,7 @@ const EditProfilePatient = ({
     src: src,
     socialWork: socialWork,
   });
+  
 
   useEffect(() => {
     async function getAllAvatars() {
@@ -83,6 +84,8 @@ const EditProfilePatient = ({
     }
   };
 
+  console.log()
+
   const editHandler = () => {
     setValidEdit(!validEdit);
   };
@@ -94,10 +97,10 @@ const EditProfilePatient = ({
   };
 
   const submitHandler = () => {
-    editProfile(user.doc, actPat, token).then((res) => {
+    editProfile(doc, actPat, token).then((res) => {
       if (res.success) {
         history.push("/profile");
-      }
+      }else console.log("error")
     });
   };
 
@@ -123,7 +126,7 @@ const EditProfilePatient = ({
               placeholder="DNI"
               name="dni"
               onChange={addDocHandler}
-              defaultValue={token ? dni : actPat.dni}
+              defaultValue={dni}
               disabled={!dni ? false : validEdit ? false : true}
             />
           </div>
@@ -133,24 +136,20 @@ const EditProfilePatient = ({
               placeholder="Teléfono"
               name="phoneNumber"
               onChange={addDocHandler}
-              defaultValue={token ? data.phoneNumber : actPat.data.phoneNumber}
+              defaultValue={data.phoneNumber}
               disabled={!data.phoneNumber ? false : validEdit ? false : true}
             />
           </div>
 
           <div className="forError">
-            <input
-              type="text"
-              placeholder="Calle"
-              name="street"
-              onChange={addDocHandler}
-              defaultValue={
-                token ? data.direction.street : actPat.data.direction.street
-              }
-              disabled={
-                !data.direction.street ? false : validEdit ? false : true
-              }
-            />
+          <input
+            type="text"
+            placeholder="Calle"
+            name="street"
+            onChange={addDocHandler}
+            defaultValue={data.direction.street}
+            disabled={!data.direction.street ? false : validEdit ? false : true}
+          />
           </div>
           <div className="forError">
             <input
@@ -158,9 +157,7 @@ const EditProfilePatient = ({
               placeholder="Número"
               name="num"
               onChange={addDocHandler}
-              defaultValue={
-                token ? data.direction.num : actPat.data.direction.num
-              }
+              defaultValue={data.direction.num}
               disabled={!data.direction.num ? false : validEdit ? false : true}
             />
           </div>
@@ -171,34 +168,28 @@ const EditProfilePatient = ({
               placeholder="Ciudad"
               name="city"
               onChange={addDocHandler}
-              defaultValue={
-                token ? data.direction.city : actPat.data.direction.city
-              }
+              defaultValue={data.direction.city}
               disabled={!data.direction.city ? false : validEdit ? false : true}
               onKeyPress={handleKeyPress}
             />
           </div>
 
           <div className="forError">
-            {
-              <select
-                id="optionObraSocial"
-                name="socialWork"
-                onChange={addDocHandler}
-                defaultValue={actPat.socialWork}
-                disabled={!socialWork ? false : validEdit ? false : true}
-              >
-                <option>Seleccioná tu obra social </option>
-                {socialWork && validEdit ? (
-                  allSocialWork.map((social, index) => (
-                    <option key={index}>{social}</option>
-                  ))
-                ) : (
-                  <option defaultValue>{socialWork}</option>
-                )}
-                <option>Otra</option>
-              </select>
-            }
+          {<select
+                  id="optionObraSocial"
+                  name="socialWork"
+                  onChange={addDocHandler}
+                  defaultValue={socialWork}
+                  disabled={
+                     !socialWork ? false : validEdit ? false : true
+                  }
+               >
+                  <option>Seleccioná tu obra social </option>
+                  {(socialWork && validEdit) ? allSocialWork.map((social, index) => (
+                     <option key={index}>{social}</option>
+                  )) : <option defaultValue>{socialWork}</option>}
+                  <option>Otra</option>
+               </select>}
           </div>
           {src.length && validEdit && (
             <div className="containerPreview">
@@ -231,9 +222,7 @@ const EditProfilePatient = ({
             </div>
           )}
         </form>
-        <button type="submit" onClick={submitHandler}>
-          ENVIAR
-        </button>
+        {validEdit && <button onClick={submitHandler}>Actualizar datos</button>}
         <div>
           <Link to="/profile">Volver al perfil</Link>
         </div>

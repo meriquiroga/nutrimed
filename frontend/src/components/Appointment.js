@@ -57,7 +57,6 @@ const Appointment = ({
   },[]);
   
   const appointmentValueHandler = (e) => {
-    console.log(e.target.value)
     if(!e.target.value){
       setViews({...views, view:false})
     }else{

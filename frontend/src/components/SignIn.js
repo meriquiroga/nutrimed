@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import ReactTooltip from "react-tooltip"
 
 const SignIn = ({ logIn }) => {
-   const [valueIn, setValueIn] = useState("")
+   const [valueIn, setValueIn] = useState("pat")
    const [errors, setErrors] = useState("")
    const [error, setError] = useState({ errorUno: false, errorDos: false })
    const [userLog, setUserLog] = useState({
@@ -65,7 +65,6 @@ const handleKeyPress = (e) => {
 }
 
 let validUser = valueIn === "prof" ? "profesional" : "comun";
-let dispGo = valueIn === "prof" ? "none" : "block";
 
 return(
    <>
@@ -104,7 +103,6 @@ return(
               name="data"
               defaultValue={userLog.data.mail}
               onChange={userLogin}
-              className={((error.errorUno && !userLog.data.mail.length) ? "errorY" : "errorN")}
             />
             </div>
             <div className="forError">
@@ -114,15 +112,14 @@ return(
               name="password"
               defaultValue={userLog.password}
               onChange={userLogin}
-              className={((error.errorUno && !userLog.password.length) ? "errorY" : "errorN")}
               onKeyPress={handleKeyPress}
             />
-            {<img data-tip data-for="buttonError" style={{height:"40px", width:"40px", display: (error.errorUno || error.errorDos) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+            {(error.errorUno || error.errorDos) && <img data-tip data-for="buttonError" style={{height:"40px", width:"40px"}} src="/assets/cross.png" alt="..."/>}
             </div>
           </div>
          <button id="buttonSign" onClick={submitUserLog}>LOGIN</button>
 
-         <div style={{ display: dispGo }}>
+         {valueIn === "pat" && <div >
             <div>
               <GoogleLogin 
                 clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
@@ -133,7 +130,7 @@ return(
                 
               />
             </div>
-          </div>
+          </div>}
                <p>
                   ¿No tenés cuenta? <Link to="/signup">¡Creala aquí!</Link>
                </p>

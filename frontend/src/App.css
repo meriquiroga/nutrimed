@@ -183,12 +183,18 @@ h4 {
 }
 
 .containerLoading {
-  text-align: center;
-  align-self: center;
+  display: flex;
+  background-repeat: no-repeat;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   min-height: 80vh;
-  padding-top: 20vh;
-  background-color: #f0f3f5;
 }
+
+.containerLoading img {
+  width: 20vh;
+}
+
 .grayContainer {
   text-align: center;
   background-color: #f0f3f5;

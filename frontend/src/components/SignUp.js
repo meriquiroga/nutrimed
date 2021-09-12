@@ -35,14 +35,13 @@ const SignUp = ({ signUpUser, getAvatars }) => {
       let response = await getAvatars();
       if (response.success) {
         setAvatars(response.res);
-      } else {
-        console.log("no fetchea avatares");
-      }
+      } 
     }
     getAllAvatars();
     return false;
     // eslint-disable-next-line
   }, []);
+  
   const inputValue = (e) => {
     setPreviewImg(e.target.value);
   };
@@ -60,6 +59,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
     }
     return valor;
   };
+
 
   const responseGoogle = (res) => {
     let logWithGoogle = {
@@ -87,7 +87,6 @@ const SignUp = ({ signUpUser, getAvatars }) => {
     }
     if (valor < 2 && !errors.message) {
       signUpUser({ ...newUser, doc: newUser.doc }).then((res) => {
-        console.log(res);
         if (!res.success) {
           setError({ errorOne: true });
           typeof res.res === "string"
@@ -129,7 +128,6 @@ const SignUp = ({ signUpUser, getAvatars }) => {
   };
 
   let disp = valueIn === "prof" ? "block" : "none";
-  let dispGo = valueIn === "prof" ? "none" : "block";
 
   let mensaje1 = null;
   let mensaje2 = null;
@@ -242,9 +240,6 @@ return(
               <input
                 type="text"
                 placeholder="Nombre"
-                className={
-                  error.errorOne && !newUser.name.length ? "errorY" : "errorN"
-                }
                 name="name"
                 onChange={addUserHandler}
                 defaultValue={newUser.name}
@@ -273,27 +268,16 @@ return(
                 type="text"
                 placeholder="Apellido"
                 name="lastName"
-                className={
-                  error.errorOne && !newUser.lastName.length
-                    ? "errorY"
-                    : "errorN"
-                }
                 onChange={addUserHandler}
                 defaultValue={newUser.lastName}
               />
-            {
-                <img
+            {(error.errorOne && (!newUser.lastName.length || mensaje3) && !mensaje8)
+               &&  <img
                   data-tip
                   data-for="buttonError2"
                   style={{
                     height: "40px",
                     width: "40px",
-                    display:
-                      error.errorOne &&
-                      (!newUser.lastName.length || mensaje3) &&
-                      !mensaje8
-                        ? "block"
-                        : "none",
                   }}
                   src="/assets/cross.png"
                   alt="..."
@@ -305,27 +289,16 @@ return(
                 type="email"
                 placeholder="E-mail"
                 name="data"
-                className={
-                  error.errorOne && !newUser.data.mail.length
-                    ? "errorY"
-                    : "errorN"
-                }
                 onChange={addUserHandler}
                 defaultValue={newUser.data.mail}
               />
-              {
-                <img
+              {(error.errorOne && (!newUser.data.mail.length || mensaje4 || mensaje7) && !mensaje8)
+               && <img
                   data-tip
                   data-for="buttonError3"
                   style={{
                     height: "40px",
                     width: "40px",
-                    display:
-                      error.errorOne &&
-                      (!newUser.data.mail.length || mensaje4 || mensaje7) &&
-                      !mensaje8
-                        ? "block"
-                        : "none",
                   }}
                   src="/assets/cross.png"
                   alt="..."
@@ -337,27 +310,17 @@ return(
                 type="password"
                 placeholder="Contraseña"
                 name="password"
-                className={
-                  error.errorOne && !newUser.password.length
-                    ? "errorY"
-                    : "errorN"
-                }
                 onChange={addUserHandler}
                 defaultValue={newUser.password}
               />
-              {
+              {(error.errorOne && (!newUser.password.length || mensaje5) && !mensaje8) &&
                 <img
                   data-tip
                   data-for="buttonError4"
                   style={{
                     height: "40px",
                     width: "40px",
-                    display:
-                      error.errorOne &&
-                      (!newUser.password.length || mensaje5) &&
-                      !mensaje8
-                        ? "block"
-                        : "none",
+                    
                   }}
                   src="/assets/cross.png"
                   alt="..."
@@ -370,29 +333,17 @@ return(
                 placeholder="Repita su contraseña"
                 name="validPassword"
                 onBlur={verifyPassword}
-                className={
-                  (error.errorOne && !newUser.validPassword.length) || mensaje6
-                    ? "errorY"
-                    : "errorN"
-                }
                 onChange={addUserHandler}
                 defaultValue={newUser.validPassword}
               />
-              {
-                <img
+              {(((error.errorT && !newUser.validPassword.length && mensaje6) ||  mensaje6) && !mensaje8 )
+                && <img
                   data-tip
                   data-for="buttonError5"
                   style={{
                     height: "40px",
                     width: "40px",
-                    display:
-                      ((error.errorT &&
-                        !newUser.validPassword.length &&
-                        mensaje6) ||
-                        mensaje6) &&
-                      !mensaje8
-                        ? "block"
-                        : "none",
+                    
                   }}
                   src="/assets/cross.png"
                   alt="..."
@@ -404,30 +355,18 @@ return(
                 type="password"
                 placeholder="Clave profesional NutriMed"
                 name="passwordAdm"
-                className={
-                  error.errorOne && !newUser.passwordAdm.length
-                    ? "errorY"
-                    : "errorN"
-                }
                 onChange={addUserHandler}
                 defaultValue={newUser.passwordAdm}
                 required={valueIn === "prof" ? true : false}
               />
-              {
-                <img
+              { valueIn === "prof" && error.errorOne && !newUser.src && errors.length && !mensaje8
+                && <img
                   data-tip
                   data-for="buttonError6"
                   style={{
                     height: "40px",
                     width: "40px",
-                    display:
-                      valueIn === "prof" &&
-                      error.errorOne &&
-                      !newUser.src &&
-                      errors.length &&
-                      !mensaje8
-                        ? "block"
-                        : "none",
+                    
                   }}
                   src="/assets/cross.png"
                   alt="..."
@@ -439,9 +378,6 @@ return(
                 type="text"
                 placeholder="Ingrese URL de imágen"
                 name={valueIn === "prof" ? "src" : ""}
-                className={
-                  error.errorOne && !newUser.src.length ? "errorY" : "errorN"
-                }
                 onChange={addUserHandler}
                 defaultValue={newUser.src}
                 required={valueIn === "prof" ? true : false}
@@ -458,21 +394,14 @@ return(
               flexWrap: valueIn === "pat" && "wrap",
               textAlign: valueIn === "pat" && "center",
             }}>
-               {
-              <img
+               {valueIn === "pat" && error.errorOne &&  !newUser.src &&  errors.length && !mensaje8
+                &&  <img
                 data-tip
                 data-for="buttonError6"
                 style={{
                   height: "40px",
                   width: "40px",
-                  display:
-                    valueIn === "pat" &&
-                    error.errorOne &&
-                    !newUser.src &&
-                    errors.length &&
-                    !mensaje8
-                      ? "block"
-                      : "none",
+                  
                 }}
                 src="/assets/cross.png"
                 alt="..."
@@ -484,12 +413,8 @@ return(
                 backgroundImage: `url("${previewImg}")`,
               }}
             ></div>
-            <div
-              className={
-                error.errorOne && !newUser.src.length
-                  ? "errorY thumbNails"
-                  : "errorN thumbNails"
-              }
+            {<div
+              className="thumbNails"
             >
               {avatars.map((div, index) => (
                 <div
@@ -508,25 +433,25 @@ return(
                   ></input>
                 </div>
               ))}
-            </div>
+            </div>}
            
         
           </div>
           <button onClick={submitHandler}>REGISTRARSE</button>
-          {
-            <img
+          {error.errorT && mensaje7
+            &&  <img
               data-tip
               data-for="buttonError7"
               style={{
                 height: "40px",
                 width: "40px",
-                display: error.errorT && mensaje7 ? "block" : "none",
+                
               }}
               src="/assets/cross.png"
               alt="..."
             />
           }
-          <div style={{ display: dispGo }}>
+          {valueIn === "pat" && <div>
             <div>
               <GoogleLogin
                 clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
@@ -536,7 +461,7 @@ return(
                 cookiePolicy={"single_host_origin"}
               />
             </div>
-          </div>
+          </div>}
           <p>
               ¿Ya tenés cuenta? <Link to="/signin">¡Ingresá aquí!</Link>
             </p>
