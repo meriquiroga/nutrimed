@@ -1,9 +1,11 @@
-import { GoogleLogin } from "react-google-login"
+import { GoogleLogin} from 'react-google-login'
 import { useState } from "react"
+import { connect } from "react-redux"
 import { connect } from "react-redux"
 import userActions from "../redux/actions/userActions"
 import { Link } from "react-router-dom"
 import ReactTooltip from "react-tooltip"
+import { set } from 'mongoose'
 
 const SignIn = ({ logIn }) => {
    const [valueIn, setValueIn] = useState("")
@@ -15,9 +17,7 @@ const SignIn = ({ logIn }) => {
       google: false,
    })
 
-   // console.log(error1)
-
-   const userLogin = (e) => {
+const userLogin = (e) => {
       setError({ errorUno: false })
       if (e.target.name === "data") {
          setUserLog({ ...userLog, data: { mail: e.target.value } })
@@ -25,126 +25,105 @@ const SignIn = ({ logIn }) => {
          setUserLog({ ...userLog, [e.target.name]: e.target.value })
       }
    }
-
-   const responseGoogle = (res) => {
-      let newUserWithGoogle = {
-         data: { mail: res.profileObj.email },
+const responseGoogle = (res)=>{
+   let newUserWithGoogle ={
+      data: { mail: res.profileObj.email },
          password: res.profileObj.googleId,
-         flagGoogle: true,
+         flagGoogle: true
+   }
+   logIn(newUserWithGoogle, validUser)
+   .then(res=>{
+      if(!res.success){
+         set("Debe estar registrado con Google para utilizar este botón")
+         setError({ errorDos: true })
       }
-      logIn(newUserWithGoogle, validUser).then((res) => {
-         if (!res.success) {
-            setErrors(
-               "Debe estar registrado con Google para utilizar este botón"
-            )
-            setError({ errorDos: true })
-         } else console.log("k")
+   })
+}
+
+const validInputHandler = (e)=>{
+   setError({ errorUno: false })
+      setValueIn(e.target.value)
+}
+
+const submitUserLog = ()=>{
+   if(!userLog.password.length || !userLog.data.mail.length){
+      setError({ errorUno: true })
+      setErrors("Todos los campos deben estar completos")
+   }
+   if(!error.errorUno){
+      logIn(userLog, validUser)
+      .then(res=>{
+         if(!res.success){
+            setErrors("Error de autenticación. Verifique correctamente")
+            setError({ errorUno: true })
+         }
       })
    }
-
-   const validInputHandler = (e) => {
-      setError({ errorUno: false })
-      setValueIn(e.target.value)
+}
+const handleKeyPress = (e) => {
+   if (e.key === "Enter") {
+      submitUserLog()
    }
+}
 
-   const submitUserLog = () => {
-      if (!userLog.password.length || !userLog.data.mail.length) {
-         setError({ errorUno: true })
-         setErrors("Todos los campos deben estar completos")
-         return false
-      }
-      if (!error.errorUno) {
-         logIn(userLog, validUser).then((res) => {
-            if (!res.success) {
-               setErrors("Error de autenticación. Verifique correctamente")
-               setError({ errorUno: true })
-            }
-         })
-      }
-   }
+let validUser = valueIn === "prof" ? "profesional" : "comun";
+let dispGo = valueIn === "prof" ? "none" : "block";
 
-   const handleKeyPress = (e) => {
-      if (e.key === "Enter") {
-         submitUserLog()
-      }
-   }
-
-   let validUser = valueIn === "prof" ? "profesional" : "comun"
-
-   return (
-      <>
-         {valueIn === "" && (
-            <ReactTooltip
-               id="button_Google"
-               place="right"
-               effect="solid"
-               className="buttonGoogle"
-            >
-               Debe seleccionar tipo de usuario
-            </ReactTooltip>
-         )}
-
-         <div className="container">
-            <div className="grayContainer">
-               <img src="/assets/login.png" alt="" />
-               <h3>Por favor, seleccioná si sos paciente o profesional</h3>
-               <div className="radio">
-                  <div>
-                     Paciente{" "}
-                     <input
-                        onClick={validInputHandler}
-                        type="radio"
-                        name="buttonRol"
-                        defaultValue="pat"
-                     />
-                  </div>
-                  <div>
-                     Profesional{" "}
-                     <input
-                        onClick={validInputHandler}
-                        type="radio"
-                        name="buttonRol"
-                        defaultValue="prof"
-                     />
-                  </div>
-               </div>
-               <div className="inputs">
-                  <input
-                     type="email"
-                     placeholder="E-mail"
-                     name="data"
-                     defaultValue={userLog.data.mail}
-                     onChange={userLogin}
-                     className={
-                        error.errorUno && !userLog.data.mail.length
-                           ? "errorY"
-                           : "errorN"
-                     }
-                  />
-                  <input
-                     type="password"
-                     placeholder="Contraseña"
-                     name="password"
-                     defaultValue={userLog.password}
-                     onChange={userLogin}
-                     className={
-                        error.errorUno && !userLog.password.length
-                           ? "errorY"
-                           : "errorN"
-                     }
-                     onKeyPress={handleKeyPress}
-                  />
-               </div>
-               {error.errorUno && (
-                  <p style={{ fontSize: "small" }}>*{errors}</p>
-               )}
-               {error.errorDos && (
-                  <p style={{ fontSize: "small" }}>*{errors}</p>
-               )}
-               <button id="buttonSign" onClick={submitUserLog}>
-                  LOGIN
-               </button>
-               <div
+return(
+   <>
+   {valueIn === "" && <ReactTooltip id="button_Google" place="right" effect="solid" className="buttonGoogle"> Debe seleccionar tipo de usuario </ReactTooltip>}
+   <ReactTooltip id="buttonError" place="top" effect="solid" className="buttonGoogle"> {errors} </ReactTooltip>
+   <div className="container">
+      <div className="grayContainer">
+         <img src="/assets/login.png" alt="" />
+          <h3>Por favor, seleccioná si sos paciente o profesional</h3>
+          <div className="radio">
+             <div>
+                <p>Paciente </p>
+                <input
+                onClick={validInputHandler}
+                type="radio"
+                name="buttonRol"
+                value="pat"
+                defaultChecked
+              />
+             </div>
+             <div>
+                <p>Profesional </p>
+                <input
+                onClick={validInputHandler}
+                type="radio"
+                name="buttonRol"
+                value="prof"
+              />
+             </div>
+          </div>
+          <div className="inputs">
+            <div className="forError">
+            <input
+              type="email"
+              placeholder="E-mail"
+              name="data"
+              defaultValue={userLog.data.mail}
+              onChange={userLogin}
+              className={((error.errorUno && !userLog.data.mail.length) ? "errorY" : "errorN")}
+            />
+            </div>
+            <div className="forError">
+            <input
+              type="password"
+              placeholder="Contraseña"
+              name="password"
+              defaultValue={userLog.password}
+              onChange={userLogin}
+              className={((error.errorUno && !userLog.password.length) ? "errorY" : "errorN")}
+              onKeyPress={handleKeyPress}
+            />
+            {<img data-tip data-for="buttonError" style={{height:"40px", width:"40px", display: (error.errorUno || error.errorDos) ? "block" : "none"}} src="/assets/cross.png" alt="..."/>}
+            </div>
+          </div>
+         <button id="buttonSign" onClick={submitUserLog}>LOGIN</button>
+         <div
                   style={{
                      display: valueIn === "prof" ? "none" : "block flex",
                      justifyContent: "center",
@@ -162,10 +141,12 @@ const SignIn = ({ logIn }) => {
                <p>
                   ¿No tenés cuenta? <Link to="/signup">¡Creala aquí!</Link>
                </p>
-            </div>
-         </div>
-      </>
-   )
+
+      </div>
+   </div>
+   </>
+)
+
 }
 
 const mapDispatchToProps = {

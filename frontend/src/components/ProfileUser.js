@@ -26,7 +26,6 @@ const ProfileUser = ({
    const [change, setChange] = useState([])
    const [confirmDelete, setConfirmDelete] = useState(false)
    const [deleteDoctor, setDeleteDoctor] = useState(false)
-   // const [deletedDoc, setDeletedDoc] = useState(false)
 
   useEffect(() => {
     getAppointments(token).then((res) => {

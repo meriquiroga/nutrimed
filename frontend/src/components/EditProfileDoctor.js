@@ -1,7 +1,7 @@
-import { useState } from "react"
-import { connect } from "react-redux"
+import { useState } from "react";
+import { connect } from "react-redux";
 import userActions from "../redux/actions/userActions";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const EditProfileDoctor = (props) => {
   console.log(props)
@@ -34,7 +34,6 @@ const EditProfileDoctor = (props) => {
   };
 
   const addDocHandler = (e) => {
-  
     if (e.target.name === "street") {
       setActDoc({
         ...actDoc,
@@ -95,87 +94,100 @@ const EditProfileDoctor = (props) => {
           <h3>Completá o actualizá tus datos</h3>
           {!validEdit ? <span className='editProfile' onClick={editHandler}>Editar</span> : <Link to = "/profile">Cancelar y volver al perfil</Link>}
           <form className="inputs">
-            <input
-              type="text"
-              placeholder="DNI"
-              name="dni"
-              onChange={addDocHandler}
-              // defaultValue={actDoc.dni}
-              defaultValue={token ? dni : actDoc.dni}
-              disabled={!dni ? false : validEdit ? false : true}
-            />
-            <input
-              type="text"
-              placeholder="Descripción"
-              name="description"
-              onChange={addDocHandler}
-              // defaultValue={actDoc.description}
-              defaultValue={token ? description : actDoc.description}
-              disabled={!description.join() ? false : validEdit ? false : true}
-            />
-            <input
-              type="text"
-              placeholder="N° de matrícula"
-              name="registration"
-              onChange={addDocHandler}
-              // defaultValue={actDoc.registration}
-              defaultValue={token ? registration : actDoc.registration}
-              disabled={!registration ? false : validEdit ? false : true}
-            />
-            <input
-              type="text"
-              placeholder="Especialidad"
-              name="specialty"
-              onChange={addDocHandler}
-              // defaultValue={actDoc.specialty}
-              defaultValue={token ? specialty : actDoc.specialty}
-              disabled={!specialty ? false : validEdit ? false : true}
-            />
-            <input
-              type="text"
-              placeholder="Teléfono"
-              name="phoneNumber"
-              onChange={addDocHandler}
-              // defaultValue={actDoc.data.phoneNumber}
-              defaultValue={token ? data.phoneNumber : actDoc.data.phoneNumber}
-              disabled={!data.phoneNumber ? false : validEdit ? false : true}
-            />
-            <input
-              type="text"
-              placeholder="Calle"
-              name="street"
-              onChange={addDocHandler}
-              // defaultValue={actDoc.data.direction.street}
-              defaultValue={
-                token ? data.direction.street : actDoc.data.direction.street
-              }
-              disabled={
-                !data.direction.street ? false : validEdit ? false : true
-              }
-            />
-            <input
-              type="text"
-              placeholder="Número"
-              name="num"
-              onChange={addDocHandler}
-              // defaultValue={actDoc.data.direction.num}
-              defaultValue={
-                token ? data.direction.num : actDoc.data.direction.num
-              }
-              disabled={!data.direction.num ? false : validEdit ? false : true}
-            />
-            <input
-              type="text"
-              placeholder="Ciudad"
-              name="city"
-              onChange={addDocHandler}
-              // defaultValue={actDoc.data.direction.city}
-              defaultValue={
-                token ? data.direction.city : actDoc.data.direction.city
-              }
-              disabled={!data.direction.city ? false : validEdit ? false : true}
-              
-            />
+            <div className="forError">
+              <input
+                type="text"
+                placeholder="DNI"
+                name="dni"
+                onChange={addDocHandler}
+                // defaultValue={actDoc.dni}
+                defaultValue={dni}
+                disabled={!dni ? false : validEdit ? false : true}
+              />
+            </div>
+            <div className="forError">
+              <input
+                type="text"
+                placeholder="Descripción"
+                name="description"
+                onChange={addDocHandler}
+                defaultValue={description}
+                disabled={
+                  !description.join() ? false : validEdit ? false : true
+                }
+              />
+            </div>
+            <div className="forError">
+              <input
+                type="text"
+                placeholder="N° de matrícula"
+                name="registration"
+                onChange={addDocHandler}
+                defaultValue={registration}
+                disabled={!registration ? false : validEdit ? false : true}
+              />
+            </div>
+            <div className="forError">
+              <input
+                type="text"
+                placeholder="Especialidad"
+                name="specialty"
+                onChange={addDocHandler}
+                defaultValue={specialty}
+                disabled={!specialty ? false : validEdit ? false : true}
+              />
+            </div>
+            <div className="forError">
+              <input
+                type="text"
+                placeholder="Teléfono"
+                name="phoneNumber"
+                onChange={addDocHandler}
+                defaultValue={data.phoneNumber}
+                disabled={!data.phoneNumber ? false : validEdit ? false : true}
+              />
+            </div>
+            <div className="forError">
+              <input
+                type="text"
+                placeholder="Calle"
+                name="street"
+                onChange={addDocHandler}
+                defaultValue={data.direction.street}
+                disabled={
+                  !data.direction.street ? false : validEdit ? false : true
+                }
+              />
+            </div>
+            <div className="forError">
+              <input
+                type="text"
+                placeholder="Número"
+                name="num"
+                onChange={addDocHandler}
+                // defaultValue={actDoc.data.direction.num}
+                defaultValue={data.direction.num}
+                disabled={
+                  !data.direction.num ? false : validEdit ? false : true
+                }
+              />
+            </div>
+            <div className="forError">
+              <input
+                type="text"
+                placeholder="Ciudad"
+                name="city"
+                onChange={addDocHandler}
+                // defaultValue={actDoc.data.direction.city}
+                defaultValue={
+                  token ? data.direction.city : actDoc.data.direction.city
+                }
+                disabled={
+                  !data.direction.city ? false : validEdit ? false : true
+                }
+              />
+            </div>
+            <div className="forError">
             {<input
               type="text"
               placeholder="Url de imágen"
@@ -186,7 +198,7 @@ const EditProfileDoctor = (props) => {
               disabled={validEdit ? false : true}
               onKeyPress={handleKeyPress}
             />}
-            
+            </div>
           </form>
           {(!props.socialWork && validEdit) && <h4>¿Acepta Obra Social? </h4>}
           {(!props.socialWork && validEdit) && 
@@ -216,21 +228,21 @@ const EditProfileDoctor = (props) => {
                <div>
                   <Link to="/profile">Volver al perfil</Link>
                </div>
-            </div>
+        </div>
       </div>
     </>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
-   return {
-      user: state.users.dataUser,
-      token: state.users.token,
-   }
-}
+  return {
+    user: state.users.dataUser,
+    token: state.users.token,
+  };
+};
 
 const mapDispatchToProps = {
   editProfile: userActions.editProfile,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfileDoctor)
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfileDoctor);

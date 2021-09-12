@@ -96,17 +96,17 @@ const MedicalData = ({ appointment, postDescription, token }) => {
                </div>
             </div>
             <div className="divEnviarNota">
-               <textarea
-                  className="medicalInput"
-                  value={inputDescription.description}
-                  name="description"
-                  placeholder="Ingresar fecha (dd/mm/aaaa) : nota correspondiente"
-                  onChange={inputHandler}
-                  onKeyPress={pressEnter}
-               />
-               <button id="buttonSign" onClick={submitHandler}>
-                  ENVIAR
-               </button>
+              <textarea
+                className="medicalInput"
+                value={inputDescription.description}
+                name="description"
+                placeholder="Ingresar fecha (dd/mm/aaaa) : nota correspondiente."
+                onChange={inputHandler}
+                onKeyPress={pressEnter}
+              />
+              <button id="buttonSign" onClick={submitHandler}>
+                ENVIAR
+              </button>
             </div>
          </div>
       </>
