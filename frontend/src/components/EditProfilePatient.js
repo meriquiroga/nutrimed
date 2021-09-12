@@ -178,13 +178,13 @@ const EditProfilePatient = ({
                   id="optionObraSocial"
                   name="socialWork"
                   onChange={addDocHandler}
-                  defaultValue={actPat.socialWork}
+                  defaultValue={socialWork}
                   disabled={
                      !socialWork ? false : validEdit ? false : true
                   }
                >
                   <option>Seleccioná tu obra social </option>
-                  {(socialWork.length && validEdit) ? allSocialWork.map((social, index) => (
+                  {(socialWork && validEdit) ? allSocialWork.map((social, index) => (
                      <option key={index}>{social}</option>
                   )) : <option defaultValue>{socialWork}</option>}
                   <option>Otra</option>
