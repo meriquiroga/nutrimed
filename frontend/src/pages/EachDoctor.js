@@ -3,35 +3,45 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import doctorActions from "../redux/actions/doctorActions";
 import Reviews from "../components/Reviews";
-import Score from '../components/Score'
+import Score from "../components/Score";
 
 class EachDoctor extends Component {
   state = {
     loading: { condition: true, text: "Loading...", link: "" },
     socket: null,
-    newScore: []
+    newScore: [],
   };
   componentDidMount() {
     window.scroll(0, 0);
-    if (!this.props.doctors.length) {
-      this.props.getOneDoctorDB(this.props.match.params.id).then((res) => {
-        res.success
-          ? this.setState({ loading: { condition: false } })
-          : this.setState({
-              loading: {
-                ...this.state.loading,
-                text: "Ocurrió un error. Por favor, inténtalo de nuevo más tarde",
-                link: "Home",
-              },
-            });
-      });
-    } else {
-      this.props.getOneDoctor(this.props.match.params.id);
-      this.setState({ loading: { condition: false } });
-    }
+    // if (!this.props.doctors.length) {
+    //   this.props.getOneDoctorDB(this.props.match.params.id).then((res) => {
+    //     res.success
+    //       ? this.setState({ loading: { condition: false } })
+    //       : this.setState({
+    //           loading: {
+    //             ...this.state.loading,
+    //             text: "Ocurrió un error. Por favor, inténtalo de nuevo más tarde",
+    //             link: "Home",
+    //           },
+    //         });
+    //   });
+    // } else {
+    //   this.props.getOneDoctor(this.props.match.params.id);
+    //   this.setState({ loading: { condition: false } });
+    // }
+    this.props.getOneDoctorDB(this.props.match.params.id).then((res) => {
+      res.success
+        ? this.setState({ loading: { condition: false } })
+        : this.setState({
+            loading: {
+              ...this.state.loading,
+              text: "Ocurrió un error. Por favor, inténtalo de nuevo más tarde",
+              link: "Home",
+            },
+          });
+    });
   }
   render() {
-    
     if (this.state.loading.condition) {
       return (
         <>
@@ -59,10 +69,15 @@ class EachDoctor extends Component {
         </div>
         <div className="docDescription">
           <div>
-            <Score scoreArray={this.props.doctor.score} staff={false} valid={this.props.valid} doctorId={this.props.doctor._id}/>
+            <Score
+              scoreArray={this.props.doctor.score}
+              staff={false}
+              valid={this.props.valid}
+              doctorId={this.props.doctor._id}
+            />
             <div className="univ">
-            <img src="/assets/univ.png" alt="" />
-            <p>{this.props.doctor.description}</p>
+              <img src="/assets/univ.png" alt="" />
+              <p>{this.props.doctor.description}</p>
             </div>
           </div>
           <div>
@@ -80,11 +95,11 @@ const mapStateTopProps = (state) => {
   return {
     doctor: state.doctors.doctor,
     doctors: state.doctors.doctors,
-    valid: state.users.token
+    valid: state.users.token,
   };
 };
 const mapDispatchToProps = {
   getOneDoctor: doctorActions.getOneDoctor,
-  getOneDoctorDB: doctorActions.getOneDoctorDB
+  getOneDoctorDB: doctorActions.getOneDoctorDB,
 };
 export default connect(mapStateTopProps, mapDispatchToProps)(EachDoctor);

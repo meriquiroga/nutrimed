@@ -85,7 +85,6 @@ const EditProfilePatient = ({
 
   const editHandler = () => {
     setValidEdit(!validEdit);
-    
   };
 
   const handleKeyPress = (e) => {
@@ -103,15 +102,20 @@ const EditProfilePatient = ({
   };
 
   const inputValue = (e) => {
-
-    setPreviewImg(e.target.value)
- }
+    setPreviewImg(e.target.value);
+  };
   return (
     <div className="container">
       <div className="grayContainer">
         <img src="/assets/form.png" alt="" />
         <h3>Por favor, completá tus datos</h3>
-        {!validEdit ? <span className='editProfile' onClick={editHandler}>Editar</span> : <Link to = "/profile">Cancelar y volver al perfil</Link>}
+        {!validEdit ? (
+          <span className="editProfile" onClick={editHandler}>
+            Editar
+          </span>
+        ) : (
+          <Link to="/profile">Cancelar y volver al perfil</Link>
+        )}
         <form className="inputs">
           <div className="forError">
             <input
@@ -135,16 +139,18 @@ const EditProfilePatient = ({
           </div>
 
           <div className="forError">
-          <input
-            type="text"
-            placeholder="Calle"
-            name="street"
-            onChange={addDocHandler}
-            defaultValue={
-              token ? data.direction.street : actPat.data.direction.street
-            }
-            disabled={!data.direction.street ? false : validEdit ? false : true}
-          />
+            <input
+              type="text"
+              placeholder="Calle"
+              name="street"
+              onChange={addDocHandler}
+              defaultValue={
+                token ? data.direction.street : actPat.data.direction.street
+              }
+              disabled={
+                !data.direction.street ? false : validEdit ? false : true
+              }
+            />
           </div>
           <div className="forError">
             <input
@@ -174,51 +180,56 @@ const EditProfilePatient = ({
           </div>
 
           <div className="forError">
-          {<select
-                  id="optionObraSocial"
-                  name="socialWork"
-                  onChange={addDocHandler}
-                  defaultValue={actPat.socialWork}
-                  disabled={
-                     !socialWork ? false : validEdit ? false : true
-                  }
-               >
-                  <option>Seleccioná tu obra social </option>
-                  {(socialWork.length && validEdit) ? allSocialWork.map((social, index) => (
-                     <option key={index}>{social}</option>
-                  )) : <option defaultValue>{socialWork}</option>}
-                  <option>Otra</option>
-               </select>}
+            {
+              <select
+                id="optionObraSocial"
+                name="socialWork"
+                onChange={addDocHandler}
+                defaultValue={actPat.socialWork}
+                disabled={!socialWork ? false : validEdit ? false : true}
+              >
+                <option>Seleccioná tu obra social </option>
+                {socialWork && validEdit ? (
+                  allSocialWork.map((social, index) => (
+                    <option key={index}>{social}</option>
+                  ))
+                ) : (
+                  <option defaultValue>{socialWork}</option>
+                )}
+                <option>Otra</option>
+              </select>
+            }
           </div>
-          {(src.length && validEdit) && <div className="containerPreview">
-                  <div
-                     className="preview"
-                     style={{
-                        backgroundImage: `url("${previewImg}")`,
-                     }}
-                  ></div>
+          {src.length && validEdit && (
+            <div className="containerPreview">
+              <div
+                className="preview"
+                style={{
+                  backgroundImage: `url("${previewImg}")`,
+                }}
+              ></div>
 
-                  <div className="thumbNails">
-                     {avatars.map((div, index) => (
-                        <div
-                           onClick={inputValue}
-                           className="thumbNail"
-                           key={index}
-                           style={{
-                              backgroundImage: `url("${div.src}")`,
-                           }}
-                        >
-                           <input
-                              className="inputAvatar"
-                              name="src"
-                              onClick={addDocHandler}
-                              defaultValue={div.src}
-                           ></input>
-                        </div>
-                     ))}
+              <div className="thumbNails">
+                {avatars.map((div, index) => (
+                  <div
+                    onClick={inputValue}
+                    className="thumbNail"
+                    key={index}
+                    style={{
+                      backgroundImage: `url("${div.src}")`,
+                    }}
+                  >
+                    <input
+                      className="inputAvatar"
+                      name="src"
+                      onClick={addDocHandler}
+                      defaultValue={div.src}
+                    ></input>
                   </div>
-                  
-               </div>}
+                ))}
+              </div>
+            </div>
+          )}
         </form>
         <button type="submit" onClick={submitHandler}>
           ENVIAR
