@@ -43,7 +43,7 @@ const AppointmentDay = ({
             <div className="days">
                {view.turn && turn}
                {view.warning && (
-                  <div className="noTurns">
+                  <div>
                      Sin turnos disponibles, por favor seleccioná otra fecha.
                   </div>
                )}

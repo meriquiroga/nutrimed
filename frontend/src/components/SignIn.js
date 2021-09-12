@@ -52,7 +52,7 @@ const submitUserLog = ()=>{
       logIn(userLog, validUser)
       .then(res=>{
          if(!res.success){
-            setErrors("Error de autenticación. Verifique correctamente")
+            setErrors("Error de autenticación. Por favor, verificar.")
             setError({ errorUno: true })
          }
       })
@@ -114,7 +114,7 @@ return(
               onChange={userLogin}
               onKeyPress={handleKeyPress}
             />
-            {(error.errorUno || error.errorDos) && <img data-tip data-for="buttonError" style={{height:"40px", width:"40px"}} src="/assets/cross.png" alt="..."/>}
+            {(error.errorUno || error.errorDos) && <img data-tip data-for="buttonError" className='cross2' src="/assets/cross2.png" alt="..."/>}
             </div>
           </div>
          <button id="buttonSign" onClick={submitUserLog}>LOGIN</button>

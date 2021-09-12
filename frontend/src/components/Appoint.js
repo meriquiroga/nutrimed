@@ -55,7 +55,7 @@ const Appoint = ({ appointment, deleteAppoint }) => {
             )}
             {confirmDelete && (
                <div className="borrarTurno">
-                  <span className="confirmDelete">Seguro ?</span>
+                  <span className="confirmDelete">Confirmar</span>
                   <img
                      className="iconCom"
                      src="/assets/cross.png"

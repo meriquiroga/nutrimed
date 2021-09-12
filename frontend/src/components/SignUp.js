@@ -98,7 +98,7 @@ const SignUp = ({ signUpUser, getAvatars }) => {
         }
       });
     } else if (valor > 1) {
-      setErrors([{ message: "Debe completar este dato" }]);
+      setErrors([{ message: "Debes completar este dato" }]);
     } else setErrors([{ message: "" }]);
   };
 
@@ -199,7 +199,7 @@ return(
         className="buttonGoogle"
       >
        
-        {mensaje1 ? mensaje1 : "Debe seleccionar una foto"}
+        {mensaje1 ? mensaje1 : "Debes seleccionar una foto."}
       </ReactTooltip>
       <ReactTooltip
         id="buttonError7"
@@ -213,7 +213,7 @@ return(
       <div className="container">
         <div className="grayContainer">
           <img src="/assets/form.png" alt="" />
-            <h3>¿Usted se registrará como paciente o profesional?</h3>
+            <h3>¿Te registrarás como paciente o profesional?</h3>
             <div className="radio">
             <div>
               <p>Paciente </p>
@@ -244,21 +244,13 @@ return(
                 onChange={addUserHandler}
                 defaultValue={newUser.name}
               />
-              {
-                <img
+              {error.errorOne &&
+                      (!newUser.name.length || mensaje2) &&
+                      !mensaje8 &&
+                <img className='cross2'
                   data-tip
                   data-for="buttonError1"
-                  style={{
-                    height: "40px",
-                    width: "40px",
-                    display:
-                      error.errorOne &&
-                      (!newUser.name.length || mensaje2) &&
-                      !mensaje8
-                        ? "block"
-                        : "none",
-                  }}
-                  src="/assets/cross.png"
+                  src="/assets/cross2.png"
                   alt="..."
                 />
               }
@@ -275,11 +267,8 @@ return(
                &&  <img
                   data-tip
                   data-for="buttonError2"
-                  style={{
-                    height: "40px",
-                    width: "40px",
-                  }}
-                  src="/assets/cross.png"
+                  className='cross2'
+                  src="/assets/cross2.png"
                   alt="..."
                 />
               }
@@ -296,11 +285,8 @@ return(
                && <img
                   data-tip
                   data-for="buttonError3"
-                  style={{
-                    height: "40px",
-                    width: "40px",
-                  }}
-                  src="/assets/cross.png"
+                  className='cross2'
+                  src="/assets/cross2.png"
                   alt="..."
                 />
               }
@@ -317,12 +303,8 @@ return(
                 <img
                   data-tip
                   data-for="buttonError4"
-                  style={{
-                    height: "40px",
-                    width: "40px",
-                    
-                  }}
-                  src="/assets/cross.png"
+                  className='cross2'
+                  src="/assets/cross2.png"
                   alt="..."
                 />
               }
@@ -340,12 +322,8 @@ return(
                 && <img
                   data-tip
                   data-for="buttonError5"
-                  style={{
-                    height: "40px",
-                    width: "40px",
-                    
-                  }}
-                  src="/assets/cross.png"
+                  className='cross2'
+                  src="/assets/cross2.png"
                   alt="..."
                 />
               }
@@ -363,12 +341,8 @@ return(
                 && <img
                   data-tip
                   data-for="buttonError6"
-                  style={{
-                    height: "40px",
-                    width: "40px",
-                    
-                  }}
-                  src="/assets/cross.png"
+                  className='cross2'
+                  src="/assets/cross2.png"
                   alt="..."
                 />
               }
@@ -376,14 +350,14 @@ return(
             <div className="forError" style={{display:disp}}  >
               <input
                 type="text"
-                placeholder="Ingrese URL de imágen"
+                placeholder="URL de imagen"
                 name={valueIn === "prof" ? "src" : ""}
                 onChange={addUserHandler}
                 defaultValue={newUser.src}
                 required={valueIn === "prof" ? true : false}
                 />
               </div>
-            {valueIn === "pat" && <h3>Elija su avatar para perfil</h3>}
+            {valueIn === "pat" && <h3>Elegí tu avatar para perfil</h3>}
           </div>
           <div className="containerPreview"
             style={{
@@ -398,12 +372,8 @@ return(
                 &&  <img
                 data-tip
                 data-for="buttonError6"
-                style={{
-                  height: "40px",
-                  width: "40px",
-                  
-                }}
-                src="/assets/cross.png"
+                className='cross2'
+                src="/assets/cross2.png"
                 alt="..."
               />
             }
@@ -442,12 +412,8 @@ return(
             &&  <img
               data-tip
               data-for="buttonError7"
-              style={{
-                height: "40px",
-                width: "40px",
-                
-              }}
-              src="/assets/cross.png"
+              className='cross2'
+              src="/assets/cross2.png"
               alt="..."
             />
           }

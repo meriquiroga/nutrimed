@@ -12,7 +12,7 @@ body {
 }
 header {
   width: 100%;
-  padding: 0vw 10vw;
+  padding: 0vw 150px;
   display: flex;
   justify-content: space-between;
   align-content: center;
@@ -280,7 +280,7 @@ h4 {
   width: 150px;
   height: 150px;
   border-radius: 100px;
-  margin: 2rem;
+  margin: 1rem;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -317,9 +317,13 @@ h4 {
 }
 
 .centroProfile {
-  display: flex;
-  flex-direction: column;
-  min-width: 600px;
+  width: 600px;
+  text-align: center;
+}
+
+.centroProfile img {
+  width: 90%;
+  padding-top:40px
 }
 
 .proxTurnos {
@@ -336,8 +340,10 @@ h4 {
 }
 
 .datosProfile {
-  text-align: left;
+  text-align: center;
   padding: 20px;
+/*   display: flex;
+  flex-wrap: wrap; */
 }
 
 .datosProfile p {
@@ -398,14 +404,15 @@ h4 {
   top: 80px;
 }
 .doc {
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   border-radius: 100px;
-  margin: 2rem;
+  margin: 1rem;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 .cvDoc {
   display: flex;
   flex-direction: column;
@@ -599,9 +606,6 @@ h4 {
   background-color: #71cbe3
 }
 
-.noTurns {
-  max-width: 180px;
-}
 .ABC {
   display: flex;
   justify-content: space-between;
@@ -750,8 +754,7 @@ input.inputAvatar:focus {
 
 .accordion {
   text-align: center;
-  padding: 5px 0px;
-  /*paddind 10px*/
+  padding: 5px 0px; 
   margin: 1rem;
 }
 
@@ -856,7 +859,68 @@ input.inputAvatar:focus {
 
 .editProfile {
   cursor: pointer;
-  padding: 7px;
+  padding: 3px 15px;
+  margin: 5px;
+  border-radius: 30px;
+  background-color: #71cbe3;
+  color: white;
+  font-size: smaller;
+}
+
+.deleteAccount {
+text-align: center;
+}
+
+.deleteAccount li {
+  text-align: left;
+  font-size: smaller;
+}
+
+#buttonDeleteProfile {
+  padding: 4px 16px;
+  margin-top: 6px
+}
+
+.registroNotas {
+  display: flex;
+}
+
+.logoUser {
+  background-position: center;
+  width: 2.4em;
+  height: 2.4em;
+  background-size: cover;
+  border-radius: 100%;
+  margin-left: 1rem;
+}
+
+.sinCompletar {
+  color: red;
+}
+
+.datosBold {
+  font-weight: bold;
+}
+
+.borrarTurno {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0px;
+}
+
+.confirmDelete {
+  font-weight: bold;
+  color: #1bb6d1;
+  font-size: 16px;
+  padding-right: 10px;
+}
+.score{
+  display:flex;
+  align-items: center;
+}
+.score p{
+  padding-left:1vw;
 }
 
 @media (max-width: 576px) {
@@ -906,7 +970,7 @@ input.inputAvatar:focus {
   }
   header {
     width: 100%;
-    padding: 0vw 10%;
+    padding: 0vw 20px;
     display: flex;
     justify-content: center;
   }
@@ -924,7 +988,6 @@ input.inputAvatar:focus {
     padding: 22px;
     min-height: 1vh;
   }
-
   .docDescription {
     width: 100%;
     padding: 0px;
@@ -933,9 +996,7 @@ input.inputAvatar:focus {
     flex-direction: column;
     justify-content: space-between;
   }
-
-  .leftProfile h4,
-  p {
+  .leftProfile p {
     padding: 0px 10px;
   }
   .rightProfile {
@@ -946,11 +1007,17 @@ input.inputAvatar:focus {
     padding: 22px;
     align-items: center;
   }
-  .datosProfile {
-    text-align: left;
-    width: 80%;
-    align-self: center;
+ 
+  .centroProfile {
+    width: 500px;
+    text-align: center;
   }
+ 
+  .centroProfile img {
+    width: 90%;
+    padding-top:40px
+  }
+
   .tituloProfile {
     padding-top: 10px;
   }
@@ -974,14 +1041,12 @@ input.inputAvatar:focus {
     outline: none;
     background-color: white;
   }
-
   .forError input {
     border: none;
     width: 85%;
     outline: none;
     background-color: transparent;
   }
-
   #optionObraSocial {
     border: none;
     width: 85%;
@@ -997,23 +1062,21 @@ input.inputAvatar:focus {
     text-align: center;
     padding: 20vw;
   }
+  header {
+    width: 100%;
+    padding: 0vw 10px;
+    display: flex;
+    justify-content: center;
+  }
   header p {
     padding: 0px 10px;
   }
   .description div {
     line-height: 2;
   }
-  header {
-    width: 100%;
-    padding: 0vw 10vw;
-    display: flex;
-    justify-content: center;
-  }
-
   .grayContainer {
     padding: 10%;
   }
-
   .docDescription {
     width: 70%;
     padding: 20px 0px 20px 0px;
@@ -1022,12 +1085,30 @@ input.inputAvatar:focus {
     flex-direction: column;
     justify-content: space-between;
   }
-  .centroProfile {
+  .leftProfile {
     display: flex;
-    flex-direction: column;
-    min-width: 80%;
-    align-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #f0f3f5;
+    width: 80%;
+    align-items: center;
+    padding: 22px;
+    min-height: 1vh;
   }
+  .leftProfile p {
+    padding: 0px 10px;
+  }
+  .centroProfile {
+    min-width: 80%;
+    text-align: center
+  }
+  
+  .centroProfile img {
+    width: 90%;
+    padding-top:40px
+  }
+
   .rightProfile {
     display: flex;
     flex-direction: column;
@@ -1036,11 +1117,7 @@ input.inputAvatar:focus {
     padding: 22px;
     align-items: center;
   }
-  .datosProfile {
-    text-align: left;
-    width: 80%;
-    align-self: center;
-  }
+
   .tituloProfile {
     padding-top: 10px;
   }
@@ -1056,6 +1133,7 @@ input.inputAvatar:focus {
     justify-content: flex-start;
   }
 }
+
 @media (max-width: 1200px) {
   .forError {
     display: flex;
@@ -1085,16 +1163,27 @@ input.inputAvatar:focus {
     appearance: none;
     background-color: transparent;
   }
-
+  header {
+    width: 100%;
+    padding: 0vw 30px;
+    display: flex;
+    justify-content: space-between;
+  }
   .grayContainer {
-    padding: 20%;
+    padding: 15%;
   }
   .centroProfile {
-    display: flex;
-    flex-direction: column;
-    min-width: 450px;
-    max-width: 450px;
-    align-content: flex-start;
+    width: 450px;
+    text-align: center;
+  }
+ 
+  .centroProfile img {
+    width: 90%;
+    padding-top:40px
+  }
+
+  .leftProfile p {
+    padding: 10px;
   }
 }
 
@@ -1142,29 +1231,24 @@ input.inputAvatar:focus {
   }
   header {
     width: 100%;
-    padding: 0vw 15vw;
+    padding: 0vw 80px;
     display: flex;
     justify-content: space-between;
   }
   .grayContainer {
     padding: 3% 12%;
   }
+  
   .centroProfile {
-    display: flex;
-    flex-direction: column;
-    min-width: 450px;
-    max-width: 600px;
-    align-content: flex-start;
+    width: 450px;
+    text-align: center;
+  }
+  
+  .centroProfile img {
+    width: 90%;
+    padding-top:40px
   }
 
-  .datosProfile {
-    text-align: left;
-    width: 80%;
-    align-self: center;
-  }
-  .tituloProfile {
-    padding-top: 10px;
-  }
   .iconCardsContainer {
     display: flex;
     justify-content: center;
@@ -1179,9 +1263,9 @@ input.inputAvatar:focus {
     flex-direction: column;
     justify-content: space-between;
   }
+
 }
 
-/**/
 .registroNotas {
   display: flex;
 }
@@ -1225,19 +1309,18 @@ input.inputAvatar:focus {
   display: flex;
   align-items: center;
 }
-<<<<<<< HEAD
 .score p {
   padding-left: 1vw;
 }
 .isWriting {
   height: 1.5vh;
   padding-left: 5vw;
-=======
-.score p{
-  padding-left:1vw;
 }
 .red{
   color: red;
   font-size: small;
->>>>>>> origin/carla
+}
+.cross2{
+  width: 20px;
+  height: 20px;
 }
