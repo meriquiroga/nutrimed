@@ -224,11 +224,12 @@ const EditProfileDoctor = (props) => {
               />
               </div>
             </div>}
-               <button onClick={submitHandler}>Actualizar datos</button>
+            {validEdit && <button onClick={submitHandler}>Actualizar datos</button>}
                <div>
                   <Link to="/profile">Volver al perfil</Link>
                </div>
         </div>
+        
       </div>
     </>
   )
