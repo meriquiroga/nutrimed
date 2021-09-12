@@ -30,7 +30,7 @@ const Score = ({scoreArray, staff,valid,doctorId,sendScore})=>{
         return(
             <div className='score'>
                 <ReactStars count={5} size={27} value={AddScores()} onChange={changeScoreHandler} color2={'#ffd700'} half={true}/>
-                <p>{AddScores()}/5</p>
+                <p>{AddScores().toFixed(1)}/5</p>
             </div>
              
         )

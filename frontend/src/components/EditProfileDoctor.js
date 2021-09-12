@@ -26,7 +26,7 @@ const EditProfileDoctor = (props) => {
       phoneNumber: phoneNumber,
    },
    src: src,
-   socialWork: "",
+   socialwork: "",
 })
  
   const editHandler = () => {
@@ -113,7 +113,7 @@ const EditProfileDoctor = (props) => {
                 onChange={addDocHandler}
                 defaultValue={description}
                 disabled={
-                  !description.join() ? false : validEdit ? false : true
+                  !description ? false : validEdit ? false : true
                 }
               />
             </div>

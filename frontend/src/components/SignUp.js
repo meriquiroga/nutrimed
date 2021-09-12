@@ -214,10 +214,9 @@ return(
       </ReactTooltip>
       <div className="container">
         <div className="grayContainer">
-        <img src="/assets/form.png" alt="" />
-          <h3>¿Usted se registrará como paciente o profesional?</h3>
-        </div>
-        <div className="radio">
+          <img src="/assets/form.png" alt="" />
+            <h3>¿Usted se registrará como paciente o profesional?</h3>
+            <div className="radio">
             <div>
               <p>Paciente </p>
               <input
@@ -400,12 +399,11 @@ return(
                 />
               }
             </div>
-            <div className="forError">
+            <div className="forError" style={{display:disp}}>
               <input
                 type="password"
                 placeholder="Clave profesional NutriMed"
                 name="passwordAdm"
-                style={{ display: disp }}
                 className={
                   error.errorOne && !newUser.passwordAdm.length
                     ? "errorY"
@@ -436,12 +434,11 @@ return(
                 />
               }
             </div>
-            <div className="forError">
+            <div className="forError" style={{display:disp}}  >
               <input
                 type="text"
                 placeholder="Ingrese URL de imágen"
                 name={valueIn === "prof" ? "src" : ""}
-                style={{ display: disp }}
                 className={
                   error.errorOne && !newUser.src.length ? "errorY" : "errorN"
                 }
@@ -512,7 +509,10 @@ return(
                 </div>
               ))}
             </div>
-            <button onClick={submitHandler}>REGISTRARSE</button>
+           
+        
+          </div>
+          <button onClick={submitHandler}>REGISTRARSE</button>
           {
             <img
               data-tip
@@ -537,10 +537,10 @@ return(
               />
             </div>
           </div>
-            <p>
+          <p>
               ¿Ya tenés cuenta? <Link to="/signin">¡Ingresá aquí!</Link>
             </p>
-          </div>
+        </div>
       </div>
   </>
 )

@@ -1,11 +1,9 @@
 import { GoogleLogin} from 'react-google-login'
 import { useState } from "react"
 import { connect } from "react-redux"
-import { connect } from "react-redux"
 import userActions from "../redux/actions/userActions"
 import { Link } from "react-router-dom"
 import ReactTooltip from "react-tooltip"
-import { set } from 'mongoose'
 
 const SignIn = ({ logIn }) => {
    const [valueIn, setValueIn] = useState("")
@@ -34,7 +32,7 @@ const responseGoogle = (res)=>{
    logIn(newUserWithGoogle, validUser)
    .then(res=>{
       if(!res.success){
-         set("Debe estar registrado con Google para utilizar este botón")
+         setErrors("Debe estar registrado con Google para utilizar este botón")
          setError({ errorDos: true })
       }
    })
@@ -123,21 +121,19 @@ return(
             </div>
           </div>
          <button id="buttonSign" onClick={submitUserLog}>LOGIN</button>
-         <div
-                  style={{
-                     display: valueIn === "prof" ? "none" : "block flex",
-                     justifyContent: "center",
-                  }}
-               >
-                  <GoogleLogin
-                     disabled={valueIn === "" ? true : false}
-                     clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
-                     buttonText="Ingresar con Google"
-                     onSuccess={responseGoogle}
-                     onFailure={responseGoogle}
-                     cookiePolicy={"single_host_origin"}
-                  />
-               </div>
+
+         <div style={{ display: dispGo }}>
+            <div>
+              <GoogleLogin 
+                clientId="253529321992-379gqmcfo48ljen82l34v8fj58gvgk6v.apps.googleusercontent.com"
+                buttonText="Ingresar con Google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={"single_host_origin"}
+                
+              />
+            </div>
+          </div>
                <p>
                   ¿No tenés cuenta? <Link to="/signup">¡Creala aquí!</Link>
                </p>

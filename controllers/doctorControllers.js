@@ -77,7 +77,6 @@ const doctorControllers = {
             res.json({success:true, res:newScore.score})
           }else{
             let editScore = await Doctor.findOneAndUpdate({'score.patientId': req.user._id},{$set:{'score.$.point': req.body.point}},{new:true})
-            console.log(editScore)
             res.json({success:true, res:editScore.score})
           }
         }catch(err){

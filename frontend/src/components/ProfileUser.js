@@ -18,14 +18,15 @@ const ProfileUser = ({
    deleteAllAppointmentByDoctor,
    deleteProfileDoctor,
    history,
-   logOut,
+   logOut
 }) => {
-   const { doc, src, name, lastName, dni, data, socialWork } = user
+   const { doc, src, name, lastName, dni, data, socialWork} = user
    const [appointments, setAppointments] = useState([])
    const [loading, setLoading] = useState(true)
    const [change, setChange] = useState([])
    const [confirmDelete, setConfirmDelete] = useState(false)
    const [deleteDoctor, setDeleteDoctor] = useState(false)
+   console.log(user)
 
   useEffect(() => {
     getAppointments(token).then((res) => {
@@ -196,11 +197,11 @@ const ProfileUser = ({
                   {!doc && (
                      <p>
                         <span className="datosBold">Obra Social:</span>{" "}
-                        {!socialWork ? (
+                        {!socialWork ? 
                            <span className="sinCompletar">Sin completar</span>
-                        ) : (
-                           { socialWork }
-                        )}
+                         : 
+                           socialWork
+                        }
                      </p>
                   )}
                </div>
