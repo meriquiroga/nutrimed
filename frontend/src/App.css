@@ -73,13 +73,13 @@ button {
 }
 
 .buttonDelete {
-   background-color: #b8b8b8;
-   color: white;
-   padding: 5px 20px;
-   border-radius: 50px;
-   border: none;
-   margin: 10px;
-   cursor: pointer;
+  background-color: #b8b8b8;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 50px;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
 }
 
 button a {
@@ -190,10 +190,10 @@ h4 {
   background-color: #f0f3f5;
 }
 .grayContainer {
-   text-align: center;
-   background-color: #f0f3f5;
-   padding: 30px 150px;
-   min-height: 80vh;
+  text-align: center;
+  background-color: #f0f3f5;
+  padding: 30px 150px;
+  min-height: 80vh;
 }
 .click {
   color: #1bb6d1;
@@ -301,13 +301,13 @@ h4 {
 }
 
 .rightProfile {
-   display: flex;
-   flex-direction: column;
-   background-color: #f0f3f5;
-   width: 300px;
-   padding: 22px;
-   align-items: center;
-   text-align: center;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f3f5;
+  width: 300px;
+  padding: 22px;
+  align-items: center;
+  text-align: center;
 }
 
 .centroProfile {
@@ -317,7 +317,7 @@ h4 {
 }
 
 .proxTurnos {
-   padding-top: 1rem;
+  padding-top: 1rem;
 }
 
 .tituloProfile {
@@ -325,8 +325,8 @@ h4 {
 }
 
 .turnos {
-   text-align: center;
-   font-size: small;
+  text-align: center;
+  font-size: small;
 }
 
 .datosProfile {
@@ -387,9 +387,9 @@ h4 {
 }
 
 .stars {
-   align-self: center;
-   position: absolute;
-   top: 80px;
+  align-self: center;
+  position: absolute;
+  top: 80px;
 }
 .doc {
   width: 150px;
@@ -446,15 +446,15 @@ h4 {
 }
 
 #optionDoctor {
-   padding: 10px;
-   border-radius: 50px;
-   border: 2px gray solid;
-   margin: 10px 10px 30px 10px;
-   width: 400px;
-   align-self: center;
-   outline: none;
-   color: gray;
-   appearance: none;
+  padding: 10px;
+  border-radius: 50px;
+  border: 2px gray solid;
+  margin: 10px 10px 30px 10px;
+  width: 400px;
+  align-self: center;
+  outline: none;
+  color: gray;
+  appearance: none;
 }
 
 #fileCharger {
@@ -491,14 +491,14 @@ h4 {
 }
 
 .hour {
-   padding: 3px;
-   border-radius: 20px;
-   border: 1px solid black;
-   width: 60px;
-   margin: 6px;
-   background-color: transparent;
-   color: black;
-   background-color: white;
+  padding: 3px;
+  border-radius: 20px;
+  border: 1px solid black;
+  width: 60px;
+  margin: 6px;
+  background-color: transparent;
+  color: black;
+  background-color: white;
 }
 
 .textArea {
@@ -526,9 +526,9 @@ h4 {
 }
 
 .medicalData {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .divComentaries {
@@ -551,35 +551,35 @@ h4 {
 }
 
 .container2 {
-   display: flex;
-   flex-direction: column;
-   flex-wrap: wrap;
-   justify-content: center;
-   align-items: auto;
-   align-content: center;
-   padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: auto;
+  align-content: center;
+  padding-top: 30px;
 }
 .containerDay {
-   display: flex;
-   width: 70%;
-   justify-content: flex-start;
+  display: flex;
+  width: 70%;
+  justify-content: flex-start;
 }
 
 .days {
-   display: flex;
-   flex-wrap: wrap;
-   margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
 }
 .full,
 .noFull {
-   height: 45px;
-   width: 200px;
-   flex: 0 0 auto;
-   margin: 10px;
-   padding: 10px 3px;
-   color: white;
-   border-radius: 50px;
-   cursor: pointer;
+  height: 45px;
+  width: 200px;
+  flex: 0 0 auto;
+  margin: 10px;
+  padding: 10px 3px;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
 }
 
 .full {
@@ -754,25 +754,25 @@ input.inputAvatar:focus {
 
 .accordion {
   text-align: center;
-  padding: 5px 0px; 
+  padding: 5px 0px;
   /*paddind 10px*/
   margin: 1rem;
 }
 
 .accordion h3 {
-   background-color: #71cbe3;
-   color: white;
-   padding: 5px;
-   border-radius: 50px;
-   border: none;
-   margin: 10px;
-   cursor: pointer;
-   font-size: medium;
+  background-color: #71cbe3;
+  color: white;
+  padding: 5px;
+  border-radius: 50px;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+  font-size: medium;
 }
 
 .accordion p {
-   text-align: center;
-   font-size: small;
+  text-align: center;
+  font-size: small;
 }
 
 .historiaClinica {
@@ -781,10 +781,10 @@ input.inputAvatar:focus {
 }
 
 .nombre-HC {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
 }
 
 .medicalInput {
@@ -812,24 +812,24 @@ input.inputAvatar:focus {
 }
 
 .divEnviarNota {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .linksDoctor {
-   color: #1bb6d1;
-   border-radius: 10px;
-   padding: 5px 10px;
+  color: #1bb6d1;
+  border-radius: 10px;
+  padding: 5px 10px;
 }
 
 .linksDoctor:hover {
-   color: #12abc2;
+  color: #12abc2;
 }
 
 .protocolo {
-   padding-top: 30px;
+  padding-top: 30px;
 }
 
 .divComentaries::-webkit-scrollbar,
@@ -1059,7 +1059,6 @@ input.inputAvatar:focus {
     width: 100%;
     justify-content: flex-start;
   }
-
 }
 @media (max-width: 1200px) {
   .forError {
@@ -1090,7 +1089,7 @@ input.inputAvatar:focus {
     appearance: none;
     background-color: transparent;
   }
-  
+
   .grayContainer {
     padding: 20%;
   }
@@ -1226,10 +1225,14 @@ input.inputAvatar:focus {
   font-size: 18px;
   padding-right: 10px;
 }
-.score{
-  display:flex;
+.score {
+  display: flex;
   align-items: center;
 }
-.score p{
-  padding-left:1vw;
+.score p {
+  padding-left: 1vw;
+}
+.isWriting {
+  height: 1.5vh;
+  padding-left: 5vw;
 }
